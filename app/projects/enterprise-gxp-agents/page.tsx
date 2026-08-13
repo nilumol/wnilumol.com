@@ -15,7 +15,7 @@ export default function EnterpriseGxpAgentsPage() {
       <article className="gxp-article">
         <header>
           <p className="gxp-article-eyebrow">Enterprise AI · Reference architecture</p>
-          <h1>Leveraging AI for authoring regulatory documents flows</h1>
+          <h1>Leveraging AI for authoring regulatory documents</h1>
           <p className="gxp-article-dek">AI can accelerate how regulated information is extracted, authored, and reviewed. The harder problem is connecting it to the right evidence, workflow, requirements, and accountable people.</p>
           <div className="gxp-article-meta"><span>Winston Nilumol</span><span>4 min read</span></div>
         </header>
@@ -23,7 +23,7 @@ export default function EnterpriseGxpAgentsPage() {
         <section>
           <h2>The opportunity</h2>
           <p>Scientific and regulated teams already create the information needed for decisions and downstream artifacts. Friction appears when people must locate that information across systems, reconstruct its context, and reshape it for a new audience or controlled use.</p>
-          <div className="gxp-article-callout"><strong>The central idea</strong><p>LLMs serve as a component to a broader infrastracture that supports adopting AI. Software needs to enable tightly controlled information flow and structure.</p></div>
+          <div className="gxp-article-callout"><strong>The central idea</strong><p>LLMs serve as a component to a broader infrastracture that supports adopting AI. Software needs to enable tightly controlled flow of information and structured outputs.</p></div>
           <p>A useful architecture must improve the business workflow, retrieve the right <strong>source information</strong>, preserve the applicable <strong>regulatory boundary</strong>, and produce an output people can verify and use.</p>
         </section>
 
