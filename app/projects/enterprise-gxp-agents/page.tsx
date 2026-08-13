@@ -15,15 +15,15 @@ export default function EnterpriseGxpAgentsPage() {
       <article className="gxp-article">
         <header>
           <p className="gxp-article-eyebrow">Enterprise AI · Reference architecture</p>
-          <h1>Inserting AI into regulated information flows</h1>
+          <h1>Leveraging AI for authoring regulatory documents flows</h1>
           <p className="gxp-article-dek">AI can accelerate how regulated information is extracted, authored, and reviewed. The harder problem is connecting it to the right evidence, workflow, requirements, and accountable people.</p>
-          <div className="gxp-article-meta"><span>Winston Nilumol</span><span>4 min read</span><span>Working thesis</span></div>
+          <div className="gxp-article-meta"><span>Winston Nilumol</span><span>4 min read</span><span></div>
         </header>
 
         <section>
           <h2>The opportunity</h2>
           <p>Scientific and regulated teams already create the information needed for decisions and downstream artifacts. Friction appears when people must locate that information across systems, reconstruct its context, and reshape it for a new audience or controlled use.</p>
-          <div className="gxp-article-callout"><strong>The central idea</strong><p>The model is only one component. The product is the controlled information flow around it.</p></div>
+          <div className="gxp-article-callout"><strong>The central idea</strong><p>LLMs serve as a component to a broader infrastracture that supports adopting AI. Software needs to enable tightly controlled information flow and structure.</p></div>
           <p>A useful architecture must improve the business workflow, retrieve the right <strong>source information</strong>, preserve the applicable <strong>regulatory boundary</strong>, and produce an output people can verify and use.</p>
         </section>
 
@@ -32,7 +32,7 @@ export default function EnterpriseGxpAgentsPage() {
           <p>Consider a regulated professional who needs to turn an existing document into both a cross-functional summary and reusable controlled content. Today, that may require finding the correct document, interpreting its tables and attachments, checking context with colleagues, and manually reformatting the same information for different audiences.</p>
           <div className="gxp-article-diagram">
             <div className="gxp-article-diagram-label">Current information flow</div>
-            <pre><b>Source document · DOC-2048</b>{`\n`}<em>narrative · tables · references · metadata · attachments</em>{`\n    │\n    ▼\n`}<b>Human reconstruction</b>{`\n`}<em>find · reconcile · interpret · summarize · format · review</em>{`\n    │\n    ├──→ Stakeholder-ready summary\n    └──→ Reviewed controlled document`}</pre>
+            <pre><b>Source documents · Clinical Safety Report-2048</b>{`\n`}<em>narrative · tables · references · metadata · attachments</em>{`\n    │\n    ▼\n`}<b>Human reconstruction</b>{`\n`}<em>find · reconcile · interpret · summarize · format · review</em>{`\n    │\n    ├──→ Stakeholder-ready summary\n    └──→ Reviewed controlled document`}</pre>
             <p className="gxp-article-diagram-note">The same source evidence is interpreted and reformatted for multiple downstream uses.</p>
           </div>
           <h3>Why this is difficult</h3>
