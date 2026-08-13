@@ -17,7 +17,7 @@ export default function EnterpriseGxpAgentsPage() {
           <p className="gxp-article-eyebrow">Enterprise AI · Reference architecture</p>
           <h1>Leveraging AI for authoring regulatory documents flows</h1>
           <p className="gxp-article-dek">AI can accelerate how regulated information is extracted, authored, and reviewed. The harder problem is connecting it to the right evidence, workflow, requirements, and accountable people.</p>
-          <div className="gxp-article-meta"><span>Winston Nilumol</span><span>4 min read</span><span></div>
+          <div className="gxp-article-meta"><span>Winston Nilumol</span><span>4 min read</span></div>
         </header>
 
         <section>
