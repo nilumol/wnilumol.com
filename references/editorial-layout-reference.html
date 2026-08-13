@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Winston Nilumol | Project Page Reference</title>
+  <style>
+    :root {
+      --ink: #1d1d1f;
+      --muted: #66666b;
+      --line: #dededf;
+      --soft: #f6f6f6;
+      --accent: #6d4aff;
+      --page: #fff;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--page);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      padding: 0 32px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+    }
+    .brand { font-weight: 650; letter-spacing: -.03em; }
+    .topbar span:last-child { color: var(--muted); font-size: 13px; }
+
+    .layout {
+      width: min(760px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 86px 0 120px;
+    }
+    main { min-width: 0; }
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(44px, 7vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+      font-weight: 650;
+    }
+    .dek {
+      max-width: 690px;
+      margin: 28px 0 24px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.55;
+    }
+    .meta {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 72px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .meta span + span::before { content: "·"; margin-right: 12px; }
+
+    section { margin-top: 72px; scroll-margin-top: 90px; }
+    h2 { margin: 0 0 18px; font-size: 30px; line-height: 1.2; letter-spacing: -.035em; }
+    h3 { margin: 36px 0 12px; font-size: 19px; line-height: 1.35; letter-spacing: -.02em; }
+    p { margin: 0 0 18px; }
+    code {
+      padding: 2px 6px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--soft);
+      font-family: var(--mono);
+      font-size: .88em;
+    }
+    .callout {
+      margin: 30px 0;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      background: var(--soft);
+    }
+    .callout strong { display: block; margin-bottom: 5px; }
+    .callout p { margin: 0; color: var(--muted); }
+
+    .diagram {
+      margin: 34px 0;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fcfcfc, #f7f7f7);
+    }
+    .diagram-label { margin-bottom: 25px; color: var(--muted); font-size: 12px; font-weight: 650; text-transform: uppercase; letter-spacing: .1em; }
+    .workflow {
+      overflow-x: auto;
+      margin: 0;
+      padding: 4px 0;
+      color: #29292c;
+      font: 13px/1.75 var(--mono);
+      white-space: pre;
+    }
+    .workflow .action { color: var(--accent); font-weight: 700; }
+    .workflow .detail { color: var(--muted); }
+    .diagram-note { margin: 22px 0 0; color: var(--muted); font-size: 13px; text-align: center; }
+
+    ol.steps { margin: 28px 0 0; padding: 0; list-style: none; counter-reset: steps; }
+    ol.steps li { position: relative; padding: 24px 0 24px 58px; border-top: 1px solid var(--line); counter-increment: steps; }
+    ol.steps li:last-child { border-bottom: 1px solid var(--line); }
+    ol.steps li::before {
+      content: counter(steps, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 25px;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    ol.steps strong { display: block; margin-bottom: 4px; }
+    ol.steps p { margin: 0; color: var(--muted); font-size: 15px; }
+    ul { padding-left: 22px; }
+    li { margin: 8px 0; padding-left: 5px; }
+    li::marker { color: var(--accent); }
+
+    footer { margin-top: 84px; padding-top: 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 880px) {
+      .layout { width: min(720px, calc(100% - 40px)); padding-top: 60px; }
+    }
+    @media (max-width: 520px) {
+      .topbar { padding: 0 20px; }
+      .layout { width: calc(100% - 32px); }
+      .diagram { padding: 20px; }
+      h1 { font-size: 44px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">WN</span>
+    <span>Project page visual reference</span>
+  </header>
+
+  <div class="layout">
+    <main>
+      <p class="eyebrow">Enterprise AI · Working analysis</p>
+      <h1>From regulated content to operational intelligence</h1>
+      <p class="dek">A visual reference for explaining complex systems with a clear reading path, compact technical language, and diagrams that make hierarchy visible.</p>
+      <div class="meta"><span>Winston Nilumol</span><span>8 min read</span><span>Concept</span></div>
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>Strong project pages help a reader understand the problem before introducing the solution. Technical terms such as <code>validated workflow</code>, <code>source provenance</code>, and <code>human review</code> are visually distinct without interrupting the sentence.</p>
+        <div class="callout">
+          <strong>The central idea</strong>
+          <p>AI becomes useful in regulated work when the surrounding system makes its evidence, limits, and accountability visible.</p>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <h2>How the workflow fits together</h2>
+        <p>This diagram makes the execution hierarchy, individual steps, and retry path visible in one compact view.</p>
+        <div class="diagram" role="img" aria-label="AI code evaluation workflow with generation, testing, sandbox execution, and a retry loop">
+          <div class="diagram-label">Durable evaluation workflow</div>
+          <div class="workflow"><span class="action">User prompt</span>
+    │
+    ▼
+POST /api/evaluate  →  start(evaluateCode, [prompt])
+    │
+    ▼
+<span class="action">evaluateCode()</span>          <span class="detail">← "use workflow"</span>
+    │
+    ├── generateCode()      <span class="detail">← "use step" + AI Gateway</span>
+    ├── generateTests()     <span class="detail">← "use step" + AI Gateway</span>
+    ├── executeInSandbox()  <span class="detail">← "use step" + Sandbox</span>
+    ├── Tests pass?
+    │     ├── Yes → return results
+    │     └── No  → loop back with error context (max 3 attempts)
+    │
+    ▼
+<span class="action">Results returned</span></div>
+          <p class="diagram-note">The branching structure communicates orchestration more clearly than a row of equal cards.</p>
+        </div>
+      </section>
+
+      <section id="principles">
+        <h2>Three design decisions</h2>
+        <ol class="steps">
+          <li><strong>Start with controlled sources</strong><p>Constrain retrieval to information the user is authorized to access.</p></li>
+          <li><strong>Expose the evidence</strong><p>Connect material claims to their source and effective version.</p></li>
+          <li><strong>Keep people accountable</strong><p>Use the system to support judgment, not conceal or replace it.</p></li>
+        </ol>
+      </section>
+
+      <section id="implementation">
+        <h2>Implementation pattern</h2>
+        <p>Inline labels like <code>source_id</code>, <code>effective_version</code>, and <code>review_required</code> make technical concepts distinct without turning the section into a terminal or code editor.</p>
+        <h3>What the page should make clear</h3>
+        <ul>
+          <li>Who is experiencing the problem</li>
+          <li>Where friction occurs in the current workflow</li>
+          <li>What the proposed system changes</li>
+          <li>How value and risk would be measured</li>
+        </ul>
+      </section>
+
+      <section id="takeaway">
+        <h2>Takeaway</h2>
+        <p>This reference combines editorial typography, generous spacing, restrained borders, technical callouts, and structured diagrams. The intent is to borrow useful design principles while preserving a distinct identity for Winston's site.</p>
+      </section>
+
+      <footer>Standalone reference · No internet connection or external assets required</footer>
+    </main>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GxP Agents Editorial Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Poppins:wght@500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+  <style>
+    :root { --page:#edebe1; --ink:#191919; --muted:rgba(25,25,25,.66); --line:rgba(25,25,25,.16); --soft:rgba(25,25,25,.035); }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--page); font:16px/1.72 "Tenor Sans",sans-serif; -webkit-font-smoothing:antialiased; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; height:76px; padding:0 clamp(24px,5vw,76px); border-bottom:1px solid var(--line); }
+    .brand { font:600 23px "Poppins",sans-serif; letter-spacing:-.06em; }
+    .status { color:var(--muted); font-size:13px; }
+    main { width:min(760px,calc(100% - 48px)); margin:auto; padding:86px 0 120px; }
+    .eyebrow { margin:0 0 20px; font:12px "Belleza",serif; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { max-width:740px; margin:0; font:clamp(44px,7vw,72px)/1.02 "Tenor Sans",sans-serif; letter-spacing:-.055em; }
+    .dek { max-width:700px; margin:28px 0 24px; color:var(--muted); font-size:20px; line-height:1.58; }
+    .meta { display:flex; gap:12px; margin-bottom:72px; color:var(--muted); font-size:13px; }
+    .meta span+span::before { content:"·"; margin-right:12px; }
+    section { margin-top:72px; }
+    h2 { margin:0 0 18px; font:30px/1.2 "Belleza",serif; letter-spacing:-.025em; }
+    h3 { margin:36px 0 12px; font:19px/1.35 "Belleza",serif; }
+    p { margin:0 0 18px; }
+    code { padding:2px 6px; border:1px solid var(--line); border-radius:4px; background:var(--soft); font: .88em ui-monospace,"SFMono-Regular",Consolas,monospace; }
+    .callout { margin:30px 0; padding:22px 24px; border:1px solid var(--line); border-left:3px solid var(--ink); border-radius:8px; background:var(--soft); }
+    .callout strong { display:block; margin-bottom:5px; }
+    .callout p { margin:0; color:var(--muted); }
+    .diagram { margin:34px 0; padding:34px; overflow:hidden; border:1px solid var(--line); border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(25,25,25,.025)); }
+    .diagram-label { margin-bottom:25px; color:var(--muted); font:12px "Belleza",serif; text-transform:uppercase; letter-spacing:.1em; }
+    pre { overflow-x:auto; margin:0; padding:4px 0; color:var(--ink); font:13px/1.75 ui-monospace,"SFMono-Regular",Consolas,monospace; white-space:pre; }
+    pre em { color:var(--muted); font-style:normal; }
+    .diagram-note { margin:22px 0 0; color:var(--muted); font-size:13px; text-align:center; }
+    .architecture-svg { display:block; width:100%; height:auto; }
+    .architecture-panel { width:min(1050px,calc(100vw - 48px)); margin-left:50%; transform:translateX(-50%); }
+    .architecture-svg .box { fill:#edebe1; stroke:#191919; stroke-width:2; rx:5; }
+    .architecture-svg .soft-box { fill:rgba(25,25,25,.035); stroke:#191919; stroke-width:2; rx:5; }
+    .architecture-svg .boundary { fill:rgba(255,255,255,.18); stroke:#666; stroke-width:2; stroke-dasharray:7 5; rx:10; }
+    .architecture-svg .title { font:600 16px "Poppins",sans-serif; fill:#191919; text-anchor:middle; }
+    .architecture-svg .sub { font:13px "Tenor Sans",sans-serif; fill:#666; text-anchor:middle; }
+    .architecture-svg .tiny { font:11px "Tenor Sans",sans-serif; fill:#666; text-anchor:middle; }
+    .architecture-svg .edge-label { font:11px ui-monospace,"SFMono-Regular",Consolas,monospace; fill:#666; text-anchor:middle; }
+    .architecture-svg .line { stroke:#191919; stroke-width:2; fill:none; marker-end:url(#gxp-arrow); }
+    .architecture-svg .line-dashed { stroke:#666; stroke-width:2; stroke-dasharray:5 5; fill:none; marker-end:url(#gxp-arrow-dashed); }
+    ul { padding-left:22px; } li { margin:8px 0; padding-left:5px; }
+    .steps { margin:28px 0 0; padding:0; list-style:none; counter-reset:steps; }
+    .steps li { position:relative; margin:0; padding:24px 0 24px 58px; border-top:1px solid var(--line); counter-increment:steps; }
+    .steps li:last-child { border-bottom:1px solid var(--line); }
+    .steps li::before { content:counter(steps,decimal-leading-zero); position:absolute; left:0; top:25px; font:700 12px ui-monospace,"SFMono-Regular",Consolas,monospace; }
+    .steps strong { display:block; margin-bottom:4px; }
+    .steps p { margin:0; color:var(--muted); font-size:15px; }
+    footer { margin-top:84px; padding-top:28px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+    @media(max-width:520px){ .topbar{padding:0 20px}.status{display:none}main{width:calc(100% - 32px);padding-top:60px}.diagram{padding:20px}.architecture-panel{width:calc(100vw - 24px);padding:12px;overflow-x:auto}.architecture-svg{min-width:800px}.meta{flex-wrap:wrap} }
+  </style>
+</head>
+<body>
+  <header class="topbar"><span class="brand">WN</span><span class="status">Standalone local mockup · Not part of website</span></header>
+  <main>
+    <header>
+      <p class="eyebrow">Enterprise AI · Reference architecture</p>
+      <h1>Inserting AI into regulated information flows</h1>
+      <p class="dek">AI can accelerate how regulated information is extracted, authored, and reviewed. The harder problem is connecting it to the right evidence, workflow, requirements, and accountable people.</p>
+      <div class="meta"><span>Winston Nilumol</span><span>4 min read</span><span>Working thesis</span></div>
+    </header>
+
+    <section>
+      <h2>The opportunity</h2>
+      <p>Scientific and regulated teams already create the information needed for decisions and downstream artifacts. Friction appears when people must locate that information across systems, reconstruct its context, and reshape it for a new audience or controlled use.</p>
+      <div class="callout"><strong>The central idea</strong><p>The model is only one component. The product is the controlled information flow around it.</p></div>
+      <p>A useful architecture must improve the business workflow, retrieve the right <strong>source information</strong>, preserve the applicable <strong>regulatory boundary</strong>, and produce an output people can verify and use.</p>
+    </section>
+
+    <section>
+      <h2>A concrete workflow</h2>
+      <p>Consider a regulated professional who needs to turn an existing document into both a cross-functional summary and reusable controlled content. Today, that may require finding the correct document, interpreting its tables and attachments, checking context with colleagues, and manually reformatting the same information for different audiences.</p>
+      <div class="diagram">
+        <div class="diagram-label">Current information flow</div>
+        <pre><b>Source document · DOC-2048</b>
+<em>narrative · tables · references · metadata · attachments</em>
+    │
+    ▼
+<b>Human reconstruction</b>
+<em>find · reconcile · interpret · summarize · format · review</em>
+    │
+    ├──→ Stakeholder-ready summary
+    └──→ Reviewed controlled document</pre>
+        <p class="diagram-note">The same source evidence is interpreted and reformatted for multiple downstream uses.</p>
+      </div>
+      <h3>Why this is difficult</h3>
+      <ul>
+        <li><strong>Functional:</strong> improve how scientists and reviewers work—not simply add another interface.</li>
+        <li><strong>Source information:</strong> identify which documents, records, attachments, and versions are authoritative.</li>
+        <li><strong>Technical:</strong> handle APIs, identity, permissions, mappings, provenance, and failures explicitly.</li>
+        <li><strong>Regulatory:</strong> apply controls based on intended use and the relevant requirements.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>A controlled AI pattern</h2>
+      <p>The reference architecture starts with a document in an existing system of record. The application authenticates the user, establishes permissions and the task boundary, then coordinates source extraction, business logic, regulatory context, model calls, and qualified review.</p>
+      <div class="diagram architecture-panel">
+        <div class="diagram-label">Document-to-output reference architecture</div>
+        <svg class="architecture-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 760" role="img" aria-labelledby="architecture-title architecture-description">
+          <title id="architecture-title">Controlled AI architecture for transforming a source document into reviewed stakeholder and controlled-document outputs</title>
+          <desc id="architecture-description">A user request and document system of record feed a controlled application boundary. User templates and regulatory requirements provide additional context. The workflow extracts sources, applies business and regulatory logic, orchestrates LLM calls, and retains provenance before human review produces two evidence-linked outputs.</desc>
+          <defs>
+            <marker id="gxp-arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#191919"/></marker>
+            <marker id="gxp-arrow-dashed" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#666"/></marker>
+          </defs>
+
+          <!-- Controlled application -->
+          <rect x="300" y="55" width="500" height="580" class="boundary"/>
+          <text x="550" y="87" class="title">Controlled Application Boundary</text>
+          <text x="550" y="106" class="sub">Identity · permissions · task boundary · auditability</text>
+
+          <!-- External request and sources -->
+          <rect x="20" y="80" width="220" height="72" class="box"/>
+          <text x="130" y="110" class="title">User Request</text>
+          <text x="130" y="132" class="sub">Natural language prompt + Document ID</text>
+
+          <rect x="20" y="205" width="220" height="92" class="box"/>
+          <text x="130" y="235" class="title">System of Record</text>
+          <text x="130" y="258" class="sub">Document</text>
+          <text x="130" y="278" class="sub">content · metadata · tables · attachments</text>
+
+          <rect x="20" y="390" width="220" height="112" class="soft-box"/>
+          <text x="130" y="420" class="title">Authorized Context</text>
+          <text x="130" y="443" class="sub">Templates · example documents</text>
+          <text x="130" y="463" class="sub">gold standards · terminology</text>
+          <text x="130" y="483" class="sub">applicable regulatory requirements</text>
+
+          <!-- Internal controlled sequence -->
+          <rect x="345" y="135" width="410" height="60" class="box"/>
+          <text x="550" y="162" class="title">1. Authenticate &amp; Define Context</text>
+          <text x="550" y="182" class="sub">User · permissions · intended use · accessible records</text>
+
+          <rect x="345" y="225" width="410" height="70" class="box"/>
+          <text x="550" y="252" class="title">2. Retrieve &amp; Extract Source Evidence</text>
+          <text x="550" y="273" class="sub">Resolve Document ID · retrieve authorized content · retain provenance</text>
+
+          <rect x="345" y="325" width="410" height="82" class="box"/>
+          <text x="550" y="352" class="title">3. Apply Business &amp; Regulatory Logic</text>
+          <text x="550" y="373" class="sub">Document boundaries · mappings · required content</text>
+          <text x="550" y="393" class="sub">Document structures · templates · formatting rules</text>
+
+          <rect x="345" y="437" width="410" height="72" class="box"/>
+          <text x="550" y="465" class="title">4. Orchestrate LLM Calls</text>
+          <text x="550" y="486" class="sub">Summarize · transform · draft · check</text>
+
+          <rect x="345" y="539" width="410" height="64" class="box"/>
+          <text x="550" y="566" class="title">5. Assemble Evidence-Linked Drafts</text>
+          <text x="550" y="586" class="sub">Structured output · claim-to-source links · audit record</text>
+
+          <!-- External LLM -->
+          <rect x="855" y="428" width="220" height="90" class="box"/>
+          <text x="965" y="458" class="title">AI Platform · LLM</text>
+          <text x="965" y="481" class="sub">Task-specific model calls</text>
+          <text x="965" y="501" class="sub">No direct system-of-record access</text>
+
+          <!-- Human accountability and outputs -->
+          <rect x="370" y="670" width="360" height="66" class="soft-box"/>
+          <text x="550" y="697" class="title">Qualified Human Review &amp; Decision</text>
+          <text x="550" y="718" class="sub">Verify · revise · approve · reject</text>
+
+          <rect x="820" y="610" width="255" height="66" class="box"/>
+          <text x="947" y="637" class="title">Stakeholder Output</text>
+          <text x="947" y="658" class="sub">Decision-ready summary</text>
+
+          <rect x="820" y="694" width="255" height="66" class="box"/>
+          <text x="947" y="721" class="title">Technical Output</text>
+          <text x="947" y="742" class="sub">Reviewed controlled document</text>
+
+          <!-- Connections -->
+          <path d="M240 116H290V165H335" class="line"/>
+          <path d="M240 251H335" class="line"/>
+          <rect x="244" y="226" width="80" height="19" fill="#edebe1"/>
+          <text x="284" y="240" class="edge-label">API retrieval</text>
+          <path d="M240 446H275V366H335" class="line-dashed"/>
+          <rect x="222" y="411" width="106" height="19" fill="#edebe1"/>
+          <text x="275" y="425" class="edge-label">controlled context</text>
+
+          <path d="M550 195V215" class="line"/>
+          <path d="M550 295V315" class="line"/>
+          <path d="M550 407V427" class="line"/>
+          <path d="M550 509V529" class="line"/>
+
+          <path d="M755 461H845" class="line"/>
+          <path d="M845 490H765" class="line-dashed"/>
+          <rect x="753" y="436" width="98" height="19" fill="#edebe1"/>
+          <text x="802" y="450" class="edge-label">prompt + evidence</text>
+          <rect x="760" y="497" width="90" height="19" fill="#edebe1"/>
+          <text x="805" y="511" class="edge-label">model response</text>
+
+          <path d="M550 603V660" class="line"/>
+          <path d="M730 703H780V643H810" class="line"/>
+          <path d="M730 703H810" class="line"/>
+        </svg>
+        <p class="diagram-note">The application—not the model—controls access, source retrieval, business logic, regulatory context, provenance, and the handoff to accountable reviewers.</p>
+      </div>
+      <p>The flow can remain read-only during an initial proof. If an approved result later needs to be written back to a controlled system, that bidirectional path would require explicit status mapping, reconciliation, audit-trail behavior, and validation.</p>
+    </section>
+
+    <section>
+      <h2>Three architecture decisions</h2>
+      <ol class="steps">
+        <li><strong>Establish trust before generation</strong><p>Confirm identity, permissions, record status, version, provenance, and intended use at the application boundary.</p></li>
+        <li><strong>Control the workflow, not only the prompt</strong><p>Combine extraction, templates, deterministic logic, model instructions, source-linked checks, and qualified review.</p></li>
+        <li><strong>Evaluate the task in context</strong><p>Measure extraction accuracy, coverage, source support, unsupported claims, reviewer corrections, and appropriate refusal.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>How I can help move this forward</h2>
+      <p>My experience across regulated biopharma operations, enterprise scientific software, implementation, and AI-assisted regulatory authoring helps me connect the workflow, technical, and adoption questions surrounding the model.</p>
+      <ol class="steps">
+        <li><strong>Discovery</strong><p>Map the user, source evidence, current friction, exceptions, baseline, and desired business result.</p></li>
+        <li><strong>Design</strong><p>Define system boundaries, APIs, authoritative objects, permissions, provenance, transformations, and review.</p></li>
+        <li><strong>Validate</strong><p>Turn intended use and risk into evaluation cases, acceptance criteria, control evidence, and workflow outcomes.</p></li>
+        <li><strong>Repeatability</strong><p>Convert field learning into reusable integrations, architecture patterns, evaluation frameworks, and playbooks.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>What I would test next</h2>
+      <p>Build one bounded example using experimental data: retrieve an authorized experiment from an ELN by <code>experiment_id</code>, preserve references to its results and attachments, and produce a stakeholder brief plus reviewed technical-report content from the same verified evidence.</p>
+      <div class="callout"><strong>Measure the workflow—not the volume of AI output</strong><p>Compare evidence-gathering time, reviewer effort, right-first-time content, unsupported claims, and time to a usable decision.</p></div>
+    </section>
+
+    <footer>Standalone editorial mockup · Safe to delete after implementation</footer>
+  </main>
+</body>
+</html>
