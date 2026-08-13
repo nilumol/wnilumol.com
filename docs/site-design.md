@@ -1,4 +1,4 @@
-# Site Design — v0.1
+# Site Design: v0.1
 
 ## Status
 
@@ -110,7 +110,7 @@ Evidence may include:
 
 The site should progressively disclose information.
 
-### Level 1 — Immediate Understanding
+### Level 1: Immediate Understanding
 
 Goal: Within several seconds, a visitor should understand the general intersection of my work:
 
@@ -121,9 +121,9 @@ Goal: Within several seconds, a visitor should understand the general intersecti
 
 The homepage should remain concise and visually simple.
 
-### Level 2 — Supporting Evidence
+### Level 2: Supporting Evidence
 
-Goal: Within roughly 30–60 seconds, an interested visitor should be able to understand why the positioning is credible.
+Goal: Within roughly 30-60 seconds, an interested visitor should be able to understand why the positioning is credible.
 
 Examples:
 
@@ -133,7 +133,7 @@ Examples:
 - Certifications
 - Short explanations of how I create value
 
-### Level 3 — Deep Exploration
+### Level 3: Deep Exploration
 
 Goal: Give interested users the ability to understand how I think and work.
 
@@ -354,7 +354,7 @@ Interested users should then be able to separately explore:
 
 ---
 
-## 8. MVP Scope — v0.1
+## 8. MVP Scope: v0.1
 
 The initial version should focus on the portfolio foundation.
 

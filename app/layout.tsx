@@ -8,11 +8,11 @@ const poppins = Poppins({ weight: ["500", "600"], subsets: ["latin"], variable: 
 
 export const metadata: Metadata = {
   title: {
-    default: "Winston | Enterprise Technology, Biopharma & AI",
-    template: "%s | Winston",
+    default: "Winston Nilumol | Enterprise Software, Biopharma & AI Solutions",
+    template: "%s | Winston Nilumol",
   },
   description:
-    "Portfolio exploring enterprise technology, biopharma, AI, systems thinking, and implementation.",
+    "Winston Nilumol's work across enterprise software, global biopharma, AI solutions, and implementation.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

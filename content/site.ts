@@ -1,8 +1,8 @@
 export const site = {
-  name: "Winston",
+  name: "Winston Nilumol",
   logo: "WN",
   statement:
-    "I work at the intersection of enterprise technology, biopharma, and AI—translating complex systems into practical workflows, adoption strategies, and business value.",
+    "I work at the intersection of enterprise software, global biopharma, and AI solutions - helping translate complex workflows into enterprise-ready solutions, adoption strategies, and business value.",
 };
 
 export const navigation = [
@@ -24,39 +24,26 @@ export const projects = [
 export const career = [
   {
     company: "Collate",
-    role: "Role details to add",
+    role: "Senior Implementations Manager",
     summary:
-      "Add a concise description of your most recent work, the problems you addressed, and why this experience matters to your current direction.",
-    highlights: [],
+      "0 -> 1 implementation for an AI regulatory authoring solution, including read/write integrations for Veeva and SharePoint.",
   },
   {
     company: "Benchling",
     role: "Scientific Solutions Consultant",
     summary:
-      "Worked at the intersection of scientific workflows, enterprise software, customer needs, and technology adoption.",
-    highlights: [
-      "Add a selected enterprise customer outcome.",
-      "Add a selected technical or commercial accomplishment.",
-    ],
+      "Won new logos and generated $2M in ARR through Demo2Win. Designed a sequencing data model that captured sample lineage, temporal context, and library characteristics.",
   },
   {
     company: "Genentech",
     role: "Scientific Manager / Supervisor",
     summary:
-      "Built experience leading within biopharma operations and understanding how regulated organizations scale people, processes, and systems.",
-    highlights: [
-      "Add a selected operational or leadership accomplishment.",
-      "Add a selected cross-functional or systems accomplishment.",
-    ],
+      "Built a highly potent API lab and led a six-person GLP and GMP team. Helped deliver the first clinical batch of Itovebi, a small-molecule breast cancer treatment.",
   },
   {
     company: "Merck",
     role: "Lead Bio-Process Technician",
     summary:
       "Developed an early foundation in biopharma manufacturing, regulated operations, and the systems required to reliably produce medicines.",
-    highlights: [
-      "Add a selected manufacturing accomplishment.",
-      "Add a selected GxP or process-improvement accomplishment.",
-    ],
   },
 ];

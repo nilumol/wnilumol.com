@@ -12,7 +12,7 @@ export default function CareerPage() {
         <header className="page-intro career-intro">
           <p className="eyebrow">Experience</p>
           <h1>Career</h1>
-          <p>My path from biopharma operations to enterprise technology, customer problems, and the systems behind modern scientific work.</p>
+          <p>My path from small molecule R&amp;D to enterprise software.</p>
         </header>
         <div className="career-list">
           {career.map((experience, index) => (
@@ -21,18 +21,9 @@ export default function CareerPage() {
               <div className="career-body">
                 <div className="career-heading">
                   <h2>{experience.company}</h2>
-                  <p>{experience.role}</p>
+                  {experience.role ? <p>{experience.role}</p> : null}
                 </div>
-                <p className="career-summary">{experience.summary}</p>
-                {experience.highlights.length > 0 ? (
-                  <div className="career-impact">
-                    <p className="eyebrow">Selected impact</p>
-                    <ul>
-                      {experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
-                    </ul>
-                  </div>
-                ) : null}
-                <span className="text-link muted-link">Deeper experience page can be added later →</span>
+                {experience.summary ? <p className="career-summary">{experience.summary}</p> : null}
               </div>
             </article>
           ))}

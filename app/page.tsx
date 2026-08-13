@@ -7,7 +7,7 @@ export default function HomePage() {
       <SiteHeader />
       <section className="hero" aria-labelledby="home-title">
         <div className="hero-content">
-          <p className="hero-kicker">Enterprise Technology · Biopharma · AI</p>
+          <p className="hero-kicker">Enterprise Software · BIOPHARMA · AI Solutions</p>
           <h1 id="home-title">{site.name}</h1>
           <p className="hero-statement">{site.statement}</p>
         </div>
