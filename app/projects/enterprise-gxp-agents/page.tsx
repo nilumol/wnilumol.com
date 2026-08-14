@@ -5,13 +5,12 @@ import { DocumentOutputArchitecture } from "./document-output-architecture";
 export const metadata: Metadata = {
   title: "AI Architecture for Regulated Information",
   description: "A reference architecture for inserting AI into regulated information flows.",
-  robots: { index: false, follow: false },
 };
 
 export default function EnterpriseGxpAgentsPage() {
   return (
     <main className="page-shell">
-      <SiteHeader />
+      <SiteHeader active="projects" />
       <article className="gxp-article">
         <header>
           <p className="gxp-article-eyebrow">Enterprise AI · Reference architecture</p>
@@ -81,7 +80,7 @@ export default function EnterpriseGxpAgentsPage() {
           <div className="gxp-article-callout"><strong>Measure the workflow—not the volume of AI output</strong><p>Compare evidence-gathering time, reviewer effort, right-first-time content, unsupported claims, and time to a usable decision.</p></div>
         </section>
 
-        <footer>Working reference architecture · Unlisted · Not regulatory advice</footer>
+        <footer>Working reference architecture · Not regulatory advice</footer>
       </article>
     </main>
   );

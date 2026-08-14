@@ -76,8 +76,11 @@ Include:
 - A specific title
 - A problem statement of one or two sentences
 - A clear point of view
+- A byline: author name and estimated reading time (for example, `Winston Nilumol · 4 min read`)
 
 The hero should not contain background research, a capability list, or implementation details.
+
+The byline is a project-page convention only. Do not add it to non-project pages (About, Career, the Projects index).
 
 **Target:** 40–70 words after the title.
 

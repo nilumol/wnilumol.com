@@ -13,11 +13,18 @@ export const navigation = [
 
 export const projects = [
   {
-    slug: "ai-in-biopharma",
-    title: "AI in Biopharma",
+    slug: "enterprise-gxp-agents",
+    title: "Leveraging AI for authoring regulatory documents",
     description:
-      "Exploring where AI can create measurable business value across biopharma organizations.",
-    status: "Exploration",
+      "AI can accelerate how regulated information is extracted, authored, and reviewed. The harder problem is connecting it to the right evidence, workflow, requirements, and accountable people.",
+    status: "Reference architecture",
+  },
+  {
+    slug: "wnilumol-com",
+    title: "See One. Do One. Teach One.",
+    description:
+      "Why I built wnilumol.com myself, and what building it is teaching me about how I work.",
+    status: "Origin story",
   },
 ];
 

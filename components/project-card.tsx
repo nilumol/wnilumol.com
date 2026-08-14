@@ -13,7 +13,6 @@ export function ProjectCard({ title, description, href, eyebrow }: ProjectCardPr
       {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
       <h2>{title}</h2>
       <p>{description}</p>
-      <span className="text-link">Explore →</span>
     </Link>
   );
 }
