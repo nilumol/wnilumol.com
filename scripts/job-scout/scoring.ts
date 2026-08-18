@@ -8,7 +8,7 @@ import type { CandidateJob, FitScoreResult } from "./types.ts";
 
 export { STRONG_FIT_CUTOFF };
 
-export const JOB_SCOUT_MODEL = "claude-opus-5";
+export const JOB_SCOUT_MODEL = "claude-sonnet-5";
 
 const FitScoreSchema = z.object({
   score: z.number().int().min(1).max(10),
