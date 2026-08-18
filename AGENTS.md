@@ -90,7 +90,7 @@ npm run start     # serve an existing production build
 
 ## Job Scout (hidden)
 
-A hidden, unlisted daily job-search assistant lives at `/job-scout` (excluded from `navigation`, `robots: noindex/nofollow`). Tracked companies, the title keyword pre-filter, structured resume data, and the scoring rubric each live in their own file under `content/job-scout-*` - see those files' own comments before editing. The git-committed ledger is `content/job-scout-seen.json`; per-job resume-adjustment docs are under `content/job-scout-resume-notes/`. The daily script is `scripts/job-scout/run.ts` (dependency-injected pipeline logic in `scripts/job-scout/pipeline.ts`, tests via `npm run job-scout:test`), scheduled by `.github/workflows/job-scout.yml`, and requires an `ANTHROPIC_API_KEY` repository secret. `applied`/`passed` ledger statuses are captain-set only - set them by hand-editing `content/job-scout-seen.json`, never from code.
+A hidden, unlisted daily job-search assistant lives at `/job-scout` (excluded from `navigation`, `robots: noindex/nofollow`), rendered as a flat table sorted by fit score. Tracked companies, the title keyword pre-filter, structured resume data, and the scoring rubric each live in their own file under `content/job-scout-*` - see those files' own comments before editing. The git-committed ledger is `content/job-scout-seen.json` (one Claude scoring call per job also extracts a nullable `compensationRange` from the posting content; `location` is read directly from Greenhouse, no LLM involved). The daily script is `scripts/job-scout/run.ts` (dependency-injected pipeline logic in `scripts/job-scout/pipeline.ts`, tests via `npm run job-scout:test`), scheduled by `.github/workflows/job-scout.yml`, and requires an `ANTHROPIC_API_KEY` repository secret. `applied`/`passed` ledger statuses are captain-set only - set them by hand-editing `content/job-scout-seen.json`, never from code.
 
 ## Maintaining this file
 
@@ -98,3 +98,13 @@ Keep this file for knowledge useful to almost every future agent session in this
 Do not repeat what the codebase already shows; point to the authoritative file or command instead.
 Prefer rewriting or pruning existing entries over appending new ones.
 When updating this file, preserve this bar for all agents and keep entries concise.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

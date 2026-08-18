@@ -5,6 +5,7 @@ export interface GreenhouseJob {
   content?: string;
   requisition_id?: string | null;
   updated_at?: string;
+  location?: { name: string };
 }
 
 interface GreenhouseJobsResponse {
@@ -25,12 +26,14 @@ export interface JobScoutLedgerEntry {
   id: number;
   company: string;
   title: string;
+  keywordFamily: string;
   absoluteUrl: string;
   firstSeen: string;
   status: JobScoutStatus;
   fitScore: number;
   fitRationale: string;
-  resumeNotesPath: string | null;
+  location: string | null;
+  compensationRange: string | null;
 }
 
 /** Keyed by Greenhouse job id (as a string, since JSON object keys are always strings). */
@@ -39,7 +42,7 @@ export type JobScoutLedger = Record<string, JobScoutLedgerEntry>;
 export interface FitScoreResult {
   score: number;
   rationale: string;
-  resumeAdjustments: string;
+  compensationRange: string | null;
 }
 
 /** A job that survived the company+keyword pre-filter, with its matched keyword family. */

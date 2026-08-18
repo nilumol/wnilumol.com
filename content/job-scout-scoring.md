@@ -57,7 +57,7 @@ For each posting, produce:
 - `score`: an integer from 1 (poor fit) to 10 (excellent fit).
 - `rationale`: 2-3 sentences, specific to this posting - name the concrete overlaps or gaps
   you weighed, not generic praise.
-- `resumeAdjustments`: for postings that are not a strong fit, name the specific resume
-  bullets, skills, or framing from his background to emphasize (or de-emphasize) for this
-  posting. If the posting is already a strong fit, this can be a short note that no
-  adjustment is needed.
+- `compensationRange`: any pay/compensation range explicitly stated in the posting content
+  (e.g. "$120,000-$150,000" or "$85K-$115K annually"), taken verbatim or lightly normalized.
+  Return null if the posting does not state a specific figure or range - do not guess or
+  infer one from level or title.

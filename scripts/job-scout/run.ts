@@ -7,7 +7,6 @@ import { resumeData } from "../../content/resume-data.ts";
 import { fetchBoardJobs } from "./greenhouse.ts";
 import { loadLedger, saveLedger } from "./ledger.ts";
 import { runJobScoutPipeline } from "./pipeline.ts";
-import { writeResumeNotes } from "./resume-notes.ts";
 import { getAnthropicApiKeyOrThrow, scoreJobWithClaude } from "./scoring.ts";
 import type { CandidateJob } from "./types.ts";
 
@@ -37,7 +36,6 @@ async function main(): Promise<void> {
     result = await runJobScoutPipeline(jobScoutBoards, ledger, {
       fetchBoard: fetchBoardJobs,
       scoreJob,
-      writeResumeNotes: (candidate, fitResult) => writeResumeNotes(REPO_ROOT, candidate, fitResult),
       log: console.log,
     });
   } finally {

@@ -108,34 +108,19 @@ p, h1, h2, ul { margin-top: 0; }
 .gxp-architecture-svg .label-mask { fill: var(--background); }
 .job-scout-empty { max-width: 620px; color: var(--muted); line-height: 1.7; }
 .job-scout-empty code { padding: 2px 6px; border: 1px solid var(--line); border-radius: 4px; background: rgba(25,25,25,.035); font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .88em; }
-.job-scout-company { margin-top: 56px; }
-.job-scout-company:first-of-type { margin-top: 0; }
-.job-scout-company h2 { margin-bottom: 20px; font-family: var(--font-belleza), serif; font-size: 1.5rem; font-weight: 400; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-.job-scout-list { display: grid; gap: 16px; }
-.job-scout-card { padding: 22px 26px; border: 1px solid var(--line); border-radius: 10px; transition: background 160ms ease; }
-.job-scout-card:hover { background: rgba(25, 25, 25, 0.035); }
-.job-scout-card-header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
-.job-scout-card-header h3 { margin: 0; font-family: var(--font-poppins), sans-serif; font-size: 1.05rem; font-weight: 600; }
-.job-scout-score { flex-shrink: 0; padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; font-family: var(--font-belleza), serif; font-size: 0.8rem; letter-spacing: 0.04em; color: var(--muted); }
-.job-scout-score.strong { border-color: var(--text); color: var(--text); }
-.job-scout-rationale { margin: 12px 0 0; max-width: 700px; color: var(--muted); line-height: 1.65; }
-.job-scout-card-footer { display: flex; align-items: center; gap: 20px; margin-top: 16px; }
-.job-scout-card-footer .text-link { margin-top: 0; }
-.job-scout-status { padding: 3px 10px; border-radius: 999px; background: rgba(25,25,25,.06); font-family: var(--font-belleza), serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-.job-scout-note { max-width: 720px; }
-.job-scout-note-back { margin-bottom: 28px; }
-.job-scout-note h1 { margin: 8px 0 6px; font-size: clamp(2.2rem, 5vw, 3.2rem); }
-.job-scout-note-meta { color: var(--muted); margin-bottom: 40px; }
-.job-scout-note-content h2 { margin: 36px 0 14px; font-family: var(--font-belleza), serif; font-size: 1.35rem; font-weight: 400; }
-.job-scout-note-content h2:first-child { margin-top: 0; }
-.job-scout-note-content h3 { margin: 26px 0 10px; font-family: var(--font-belleza), serif; font-size: 1.05rem; font-weight: 400; }
-.job-scout-note-content p { margin: 0 0 16px; line-height: 1.75; }
-.job-scout-note-content ul { padding-left: 22px; margin: 0 0 16px; }
-.job-scout-note-content li { margin: 6px 0; line-height: 1.6; }
+.job-scout-table-wrap { margin-top: 8px; overflow-x: auto; }
+.job-scout-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 0.93rem; }
+.job-scout-table th { padding: 12px 18px 12px 0; border-bottom: 1px solid var(--text); font-family: var(--font-belleza), serif; font-size: 0.72rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-align: left; white-space: nowrap; }
+.job-scout-table td { padding: 16px 18px 16px 0; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.55; }
+.job-scout-table tbody tr:hover { background: rgba(25, 25, 25, 0.035); }
+.job-scout-table td:first-child { font-family: var(--font-poppins), sans-serif; font-weight: 600; }
+.job-scout-status { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 999px; background: rgba(25,25,25,.06); font-family: var(--font-belleza), serif; font-size: 0.66rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.job-scout-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; font-family: var(--font-belleza), serif; font-size: 0.82rem; letter-spacing: 0.02em; white-space: nowrap; }
+.job-scout-pill-strong { background: rgba(96, 122, 80, 0.16); color: #4c6140; }
+.job-scout-pill-moderate { background: rgba(176, 137, 61, 0.18); color: #8a692f; }
+.job-scout-pill-weak { background: rgba(166, 79, 62, 0.16); color: #8a4433; }
 
 @media (max-width: 780px) {
-  .job-scout-card-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .job-scout-card-footer { flex-wrap: wrap; row-gap: 10px; }
   .site-header { padding-top: 24px; }
   .site-nav { gap: 18px; font-size: 0.82rem; }
   .hero { min-height: calc(100vh - 84px); }
