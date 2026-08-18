@@ -6,6 +6,7 @@ import { test } from "node:test";
 import type { JobScoutBoard } from "../../content/job-scout-boards.ts";
 import { matchJobScoutKeywordFamily } from "../../content/job-scout-keywords.ts";
 import { resumeData } from "../../content/resume-data.ts";
+import { applyScoresToLedger, parseScoreBatch } from "./apply-scores.ts";
 import { fetchAshbyBoardJobs } from "./ashby.ts";
 import { filterCandidateJobs } from "./filter.ts";
 import type { GreenhouseBoardFetchResult } from "./greenhouse.ts";
@@ -14,8 +15,8 @@ import { expireMissingEntries, hasLedgerEntry, loadLedger, saveLedger } from "./
 import { fetchLeverBoardJobs } from "./lever.ts";
 import { cleanLocationName } from "./location.ts";
 import { runJobScoutPipeline } from "./pipeline.ts";
-import { buildScoringPrompt, STRONG_FIT_CUTOFF } from "./scoring.ts";
-import type { CandidateJob, FitScoreResult, GreenhouseJob, JobScoutLedger } from "./types.ts";
+import { buildScoringPrompt } from "./scoring.ts";
+import type { CandidateJob, GreenhouseJob, JobScoutLedger, JobScoutStatus, JobScoutSource } from "./types.ts";
 
 // ---------------------------------------------------------------------------
 // Keyword pre-filter (section 3)
@@ -263,10 +264,11 @@ test("loadLedger returns an empty object when the file doesn't exist", () => {
 function makeEntry(partial: {
   id: number | string;
   company: string;
-  source: "greenhouse" | "lever" | "ashby";
-  status: "scored" | "applied" | "passed" | "expired";
+  source: JobScoutSource;
+  status: JobScoutStatus;
+  compensationRange?: string | null;
 }) {
-  return {
+  const base = {
     id: partial.id,
     source: partial.source,
     company: partial.company,
@@ -275,11 +277,11 @@ function makeEntry(partial: {
     absoluteUrl: `https://example.com/jobs/${partial.id}`,
     firstSeen: "2026-08-17T00:00:00.000Z",
     status: partial.status,
-    fitScore: 6,
-    fitRationale: "Fixture entry.",
     location: null,
-    compensationRange: null,
+    compensationRange: partial.compensationRange ?? null,
   };
+  if (partial.status === "pending") return base;
+  return { ...base, fitScore: 6, fitRationale: "Fixture entry." };
 }
 
 // ---------------------------------------------------------------------------
@@ -304,19 +306,19 @@ test("buildScoringPrompt includes the rubric verbatim, the resume, and the job p
 });
 
 // ---------------------------------------------------------------------------
-// End-to-end pipeline dry run (sections 3-6 wired together) with a mocked scorer -
-// this is the "does not require a live Anthropic API key" coverage.
+// End-to-end pipeline dry run (sections 3-6 wired together) - no LLM call anywhere in this
+// path; new candidates land as "pending" and are scored later via apply-scores.ts.
 // ---------------------------------------------------------------------------
 
-test("runJobScoutPipeline: filters, skips already-seen, scores new jobs, expires missing ones, and never calls the mocked scorer for skipped/expired jobs", async () => {
+test("runJobScoutPipeline: filters, skips already-seen, adds new candidates as pending, expires missing ones", async () => {
   const acme: JobScoutBoard = { token: "acme", label: "Acme", source: "greenhouse" };
   const ghost: JobScoutBoard = { token: "ghost", label: "Ghost Co", source: "greenhouse" };
 
   const freshAcmeJobs: GreenhouseJob[] = [
-    fixtureJob({ id: 100, title: "Solutions Consultant", location: { name: "-REMOTE, USA-" } }), // new candidate, will score below cutoff
+    fixtureJob({ id: 100, title: "Solutions Consultant", location: { name: "-REMOTE, USA-" } }), // new candidate
     fixtureJob({ id: 101, title: "Backend Engineer" }), // filtered out by keywords, never touches ledger
-    fixtureJob({ id: 102, title: "Sr Implementations Manager" }), // already ledgered -> must not be rescored
-    fixtureJob({ id: 107, title: "Customer Success Manager" }), // new candidate, will score at/above cutoff, no stated pay
+    fixtureJob({ id: 102, title: "Sr Implementations Manager" }), // already ledgered -> must not be re-added
+    fixtureJob({ id: 107, title: "Customer Success Manager" }), // new candidate, no location/pay data
   ];
 
   const fetchGreenhouse = async (board: JobScoutBoard): Promise<GreenhouseBoardFetchResult> => {
@@ -330,52 +332,38 @@ test("runJobScoutPipeline: filters, skips already-seen, scores new jobs, expires
   const fetchAshby = fetchLever;
 
   const ledger: JobScoutLedger = {
-    "greenhouse:102": makeEntry({ id: 102, company: "Acme", source: "greenhouse", status: "scored" }), // still present -> untouched, not rescored
+    "greenhouse:102": makeEntry({ id: 102, company: "Acme", source: "greenhouse", status: "scored" }), // still present -> untouched
     "greenhouse:103": makeEntry({ id: 103, company: "Acme", source: "greenhouse", status: "scored" }), // missing from fresh fetch -> expires
     "greenhouse:104": makeEntry({ id: 104, company: "Acme", source: "greenhouse", status: "applied" }), // missing, captain-set -> preserved
     "greenhouse:105": makeEntry({ id: 105, company: "Acme", source: "greenhouse", status: "passed" }), // missing, captain-set -> preserved
     "greenhouse:200": makeEntry({ id: 200, company: "Ghost Co", source: "greenhouse", status: "scored" }), // board 404'd -> must not be touched
   };
 
-  const scoreCalls: number[] = [];
-  const scoreJob = async (candidate: CandidateJob): Promise<FitScoreResult> => {
-    scoreCalls.push(candidate.job.id as number);
-    if (candidate.job.id === 100) {
-      return { score: 5, rationale: "Partial domain overlap.", compensationRange: "$85K-$115K" };
-    }
-    return { score: 9, rationale: "Strong role and domain match.", compensationRange: null };
-  };
-
   const result = await runJobScoutPipeline([acme, ghost], ledger, {
     fetchers: { greenhouse: fetchGreenhouse, lever: fetchLever, ashby: fetchAshby },
-    scoreJob,
     log: () => {},
   });
 
-  // Only the two genuinely new, keyword-matching jobs were scored.
-  assert.deepEqual(scoreCalls.sort(), [100, 107]);
-  assert.equal(result.scoredCount, 2);
+  // Only the two genuinely new, keyword-matching jobs were added.
+  assert.equal(result.addedCount, 2);
 
-  // Ledger entries reflect the mocked scoring, including the new location/compensation fields,
-  // written under the migrated <source>:<id> key.
-  assert.equal(ledger["greenhouse:100"]!.status, "scored");
+  // New entries land as "pending" with no fit score yet, written under the <source>:<id> key.
+  assert.equal(ledger["greenhouse:100"]!.status, "pending");
   assert.equal(ledger["greenhouse:100"]!.source, "greenhouse");
-  assert.equal(ledger["greenhouse:100"]!.fitScore, 5);
+  assert.equal(ledger["greenhouse:100"]!.fitScore, undefined);
   assert.equal(ledger["greenhouse:100"]!.keywordFamily, "Solutions Consultant");
   assert.equal(ledger["greenhouse:100"]!.location, "REMOTE, USA"); // dash-stripped from "-REMOTE, USA-"
-  assert.equal(ledger["greenhouse:100"]!.compensationRange, "$85K-$115K"); // LLM-extracted, no structured value available
-  assert.ok(ledger["greenhouse:100"]!.fitScore < STRONG_FIT_CUTOFF);
+  assert.equal(ledger["greenhouse:100"]!.compensationRange, null); // no structured value available, no LLM to extract one
 
-  assert.equal(ledger["greenhouse:107"]!.status, "scored");
-  assert.equal(ledger["greenhouse:107"]!.fitScore, 9);
+  assert.equal(ledger["greenhouse:107"]!.status, "pending");
+  assert.equal(ledger["greenhouse:107"]!.fitScore, undefined);
   assert.equal(ledger["greenhouse:107"]!.keywordFamily, "Customer Success Manager");
   assert.equal(ledger["greenhouse:107"]!.location, null); // fixture job has no location field at all
-  assert.equal(ledger["greenhouse:107"]!.compensationRange, null); // no pay range stated
 
   // Job 101 never matched the keyword filter and never touched the ledger.
   assert.equal(hasLedgerEntry(ledger, "greenhouse", 101), false);
 
-  // Already-seen job was left exactly as-is (not rescored).
+  // Already-seen job was left exactly as-is.
   assert.equal(ledger["greenhouse:102"]!.status, "scored");
 
   // Missing-from-fetch entries: only the plain "scored" one expires.
@@ -428,30 +416,26 @@ test("runJobScoutPipeline: routes Lever/Ashby boards to their own fetchers, uses
   });
 
   const ledger: JobScoutLedger = {};
-  const scoreJob = async (): Promise<FitScoreResult> => ({
-    score: 8,
-    rationale: "Strong match.",
-    compensationRange: "$90K-$120K", // should be ignored for the Lever job since it has a structured value
-  });
 
   const result = await runJobScoutPipeline([ethena, notion], ledger, {
     fetchers: { greenhouse: fetchGreenhouse, lever: fetchLever, ashby: fetchAshby },
-    scoreJob,
     log: () => {},
   });
 
-  assert.equal(result.scoredCount, 2);
+  assert.equal(result.addedCount, 2);
 
   const leverEntry = ledger["lever:lever-uuid-1"]!;
+  assert.equal(leverEntry.status, "pending");
   assert.equal(leverEntry.source, "lever");
   assert.equal(leverEntry.company, "Ethena");
-  assert.equal(leverEntry.compensationRange, "$140K-$300K"); // structured value wins over the LLM's guess
+  assert.equal(leverEntry.compensationRange, "$140K-$300K"); // structured value used directly, no LLM involved
   assert.equal(leverEntry.postedAt, "2026-07-01T00:00:00.000Z");
 
   const ashbyEntry = ledger["ashby:ashby-uuid-1"]!;
+  assert.equal(ashbyEntry.status, "pending");
   assert.equal(ashbyEntry.source, "ashby");
   assert.equal(ashbyEntry.company, "Notion");
-  assert.equal(ashbyEntry.compensationRange, "$90K-$120K"); // no structured value -> falls back to the LLM's extraction
+  assert.equal(ashbyEntry.compensationRange, null); // no structured value -> stays null until scored later
   assert.equal(ashbyEntry.postedAt, "2026-07-15T00:00:00.000Z");
 });
 
@@ -472,60 +456,101 @@ test("runJobScoutPipeline: maps Greenhouse's first_published into the ledger's p
   const ledger: JobScoutLedger = {};
   const result = await runJobScoutPipeline([acme], ledger, {
     fetchers: { greenhouse: fetchGreenhouse, lever: fetchLever, ashby: fetchLever },
-    scoreJob: async () => ({ score: 7, rationale: "Good match.", compensationRange: null }),
     log: () => {},
   });
 
-  assert.equal(result.scoredCount, 1);
+  assert.equal(result.addedCount, 1);
   assert.equal(ledger["greenhouse:500"]!.postedAt, "2026-06-01T00:00:00-07:00");
 });
 
-test("runJobScoutPipeline: mutates the ledger in place as it goes, so entries scored before a mid-run failure survive the rejection", async () => {
-  const acme: JobScoutBoard = { token: "acme", label: "Acme", source: "greenhouse" };
+// ---------------------------------------------------------------------------
+// apply-scores.ts: the standalone tool that merges a batch of externally-computed scores
+// (from a human or an assistant reasoning over postings directly - not a paid API call from
+// this repo's automation) into "pending" ledger entries.
+// ---------------------------------------------------------------------------
 
-  const freshAcmeJobs: GreenhouseJob[] = [
-    fixtureJob({ id: 100, title: "Solutions Consultant" }), // scores fine
-    fixtureJob({ id: 101, title: "Solutions Architect" }), // scorer throws on this one
-  ];
+test("parseScoreBatch accepts a well-formed batch and rejects malformed input", () => {
+  const batch = parseScoreBatch(
+    JSON.stringify([{ id: "greenhouse:100", fitScore: 8, fitRationale: "Strong match.", compensationRange: null }]),
+  );
+  assert.equal(batch.length, 1);
+  assert.equal(batch[0]!.id, "greenhouse:100");
 
-  const fetchGreenhouse = async (board: JobScoutBoard): Promise<GreenhouseBoardFetchResult> => {
-    if (board.token === "acme") return { board, found: true, jobs: freshAcmeJobs };
-    throw new Error(`unexpected board in test: ${board.token}`);
-  };
-  const fetchLever = async (): Promise<never> => {
-    throw new Error("not called");
-  };
+  assert.throws(() => parseScoreBatch("not json"), /not valid JSON/);
+  assert.throws(() => parseScoreBatch(JSON.stringify({ id: "greenhouse:100" })), /must be a JSON array/);
+  assert.throws(
+    () => parseScoreBatch(JSON.stringify([{ id: "greenhouse:100", fitScore: "8" }])),
+    /entry at index 0 is malformed/,
+  );
+});
 
+test("applyScoresToLedger scores a pending entry matching the batch id", () => {
   const ledger: JobScoutLedger = {
-    "greenhouse:103": makeEntry({ id: 103, company: "Acme", source: "greenhouse", status: "scored" }), // missing from fresh fetch -> should still expire
+    "greenhouse:100": makeEntry({ id: 100, company: "Acme", source: "greenhouse", status: "pending" }),
   };
 
-  const scoreJob = async (candidate: CandidateJob): Promise<FitScoreResult> => {
-    if (candidate.job.id === 101) {
-      throw new Error("simulated Anthropic API failure mid-run");
-    }
-    return { score: 9, rationale: "Strong match.", compensationRange: null };
+  applyScoresToLedger(ledger, [
+    { id: "greenhouse:100", fitScore: 8, fitRationale: "Strong domain match.", compensationRange: "$120K-$150K" },
+  ]);
+
+  const entry = ledger["greenhouse:100"]!;
+  assert.equal(entry.status, "scored");
+  assert.equal(entry.fitScore, 8);
+  assert.equal(entry.fitRationale, "Strong domain match.");
+  assert.equal(entry.compensationRange, "$120K-$150K");
+});
+
+test("applyScoresToLedger rejects an id that isn't pending, and leaves it and the rest of the ledger untouched", () => {
+  const ledger: JobScoutLedger = {
+    "greenhouse:100": makeEntry({ id: 100, company: "Acme", source: "greenhouse", status: "pending" }),
+    "greenhouse:200": makeEntry({ id: 200, company: "Acme", source: "greenhouse", status: "scored" }),
   };
 
-  await assert.rejects(
+  assert.throws(
     () =>
-      runJobScoutPipeline([acme], ledger, {
-        fetchers: { greenhouse: fetchGreenhouse, lever: fetchLever, ashby: fetchLever },
-        scoreJob,
-        log: () => {},
-      }),
-    /simulated Anthropic API failure mid-run/,
+      applyScoresToLedger(ledger, [
+        { id: "greenhouse:100", fitScore: 8, fitRationale: "Strong match.", compensationRange: null },
+        { id: "greenhouse:200", fitScore: 9, fitRationale: "Should not apply.", compensationRange: null },
+      ]),
+    /"greenhouse:200" is not "pending"/,
   );
 
-  // The job scored before the throw was already upserted into the (in-place mutated) ledger object,
-  // so a caller that persists `ledger` from a `finally` block (as scripts/job-scout/run.ts does)
-  // does not lose it, even though the pipeline call itself rejected.
-  assert.equal(ledger["greenhouse:100"]!.status, "scored");
-  assert.equal(ledger["greenhouse:100"]!.fitScore, 9);
+  // Validation runs before any mutation, so even the otherwise-valid pending entry in the same
+  // batch is left untouched - a bad batch can't partially corrupt the ledger.
+  assert.equal(ledger["greenhouse:100"]!.status, "pending");
+  assert.equal(ledger["greenhouse:100"]!.fitScore, undefined);
+  assert.equal(ledger["greenhouse:200"]!.status, "scored");
+  assert.equal(ledger["greenhouse:200"]!.fitScore, 6); // untouched fixture default
+});
 
-  // Expiry (which happens before scoring) is also preserved.
-  assert.equal(ledger["greenhouse:103"]!.status, "expired");
+test("applyScoresToLedger rejects an id that isn't in the ledger at all", () => {
+  const ledger: JobScoutLedger = {
+    "greenhouse:100": makeEntry({ id: 100, company: "Acme", source: "greenhouse", status: "pending" }),
+  };
 
-  // The job that failed to score was never written to the ledger.
-  assert.equal(hasLedgerEntry(ledger, "greenhouse", 101), false);
+  assert.throws(
+    () =>
+      applyScoresToLedger(ledger, [
+        { id: "greenhouse:999", fitScore: 8, fitRationale: "No such job.", compensationRange: null },
+      ]),
+    /no ledger entry found for id "greenhouse:999"/,
+  );
+  assert.equal(ledger["greenhouse:100"]!.status, "pending");
+});
+
+test("applyScoresToLedger scores multiple entries in one batch and leaves other pending entries untouched", () => {
+  const ledger: JobScoutLedger = {
+    "greenhouse:1": makeEntry({ id: 1, company: "Acme", source: "greenhouse", status: "pending" }),
+    "greenhouse:2": makeEntry({ id: 2, company: "Acme", source: "greenhouse", status: "pending" }),
+    "greenhouse:3": makeEntry({ id: 3, company: "Acme", source: "greenhouse", status: "pending" }),
+  };
+
+  applyScoresToLedger(ledger, [
+    { id: "greenhouse:1", fitScore: 4, fitRationale: "Weak fit.", compensationRange: null },
+    { id: "greenhouse:2", fitScore: 9, fitRationale: "Excellent fit.", compensationRange: "$150K-$180K" },
+  ]);
+
+  assert.equal(ledger["greenhouse:1"]!.status, "scored");
+  assert.equal(ledger["greenhouse:2"]!.status, "scored");
+  assert.equal(ledger["greenhouse:3"]!.status, "pending"); // not in the batch -> untouched
 });

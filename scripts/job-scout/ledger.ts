@@ -9,7 +9,7 @@ export function loadLedger(path: string): JobScoutLedger {
   return JSON.parse(raw) as JobScoutLedger;
 }
 
-function ledgerKey(source: JobScoutSource, id: string | number): string {
+export function ledgerKey(source: JobScoutSource, id: string | number): string {
   return `${source}:${id}`;
 }
 
@@ -31,7 +31,7 @@ export function hasLedgerEntry(ledger: JobScoutLedger, source: JobScoutSource, i
   return ledgerKey(source, id) in ledger;
 }
 
-export function upsertScoredEntry(ledger: JobScoutLedger, entry: JobScoutLedgerEntry): void {
+export function upsertLedgerEntry(ledger: JobScoutLedger, entry: JobScoutLedgerEntry): void {
   ledger[ledgerKey(entry.source, entry.id)] = entry;
 }
 

@@ -78,6 +78,12 @@ export function buildScoringPrompt(
   ].join("\n\n");
 }
 
+/**
+ * Calls Claude directly for one job. Used only by the standalone, opt-in
+ * `job-scout:score-via-api` script - never by the automated GitHub Actions pipeline, which
+ * writes new jobs as "pending" and leaves scoring to a separate step (see
+ * `scripts/job-scout/apply-scores.ts`).
+ */
 export async function scoreJobWithClaude(
   client: Anthropic,
   candidate: CandidateJob,
@@ -103,17 +109,15 @@ export async function scoreJobWithClaude(
 }
 
 /**
- * Reads the Anthropic API key from the environment. Throws a clear, specific error only when
- * called - i.e. only when a run actually needs to score at least one new job - rather than
- * failing every run regardless of whether the API is needed.
+ * Reads the Anthropic API key from the local environment. Only `job-scout:score-via-api` needs
+ * this - it is never required by the automated GitHub Actions workflow, which makes no LLM call.
  */
 export function getAnthropicApiKeyOrThrow(): string {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     throw new Error(
-      "job-scout: ANTHROPIC_API_KEY environment variable is not set, but this run has new " +
-        "job(s) that need Claude fit-scoring. Set ANTHROPIC_API_KEY before running this " +
-        "script (in GitHub Actions, add it as a repository secret named ANTHROPIC_API_KEY).",
+      "job-scout: ANTHROPIC_API_KEY environment variable is not set. Set it in your local " +
+        "environment before running `npm run job-scout:score-via-api`.",
     );
   }
   return apiKey;

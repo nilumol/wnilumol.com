@@ -99,7 +99,7 @@ export interface BoardFetchResult {
   jobs: NormalizedJob[];
 }
 
-export type JobScoutStatus = "scored" | "applied" | "passed" | "expired";
+export type JobScoutStatus = "pending" | "scored" | "applied" | "passed" | "expired";
 
 export interface JobScoutLedgerEntry {
   id: number | string;
@@ -110,8 +110,13 @@ export interface JobScoutLedgerEntry {
   absoluteUrl: string;
   firstSeen: string;
   status: JobScoutStatus;
-  fitScore: number;
-  fitRationale: string;
+  /**
+   * Absent until a score is recorded, via `job-scout:apply-scores` (a pre-computed batch) or
+   * `job-scout:score-via-api` (calls Claude directly) - either way, status transitions
+   * "pending" -> "scored".
+   */
+  fitScore?: number;
+  fitRationale?: string;
   location: string | null;
   compensationRange: string | null;
   /** ISO date the posting went live, when the source provides one. Not backfilled for entries scored before this field existed. */
@@ -121,16 +126,17 @@ export interface JobScoutLedgerEntry {
 /** Keyed by `<source>:<id>` (e.g. `"greenhouse:8122020"`) to guarantee uniqueness across sources. */
 export type JobScoutLedger = Record<string, JobScoutLedgerEntry>;
 
-export interface FitScoreResult {
-  score: number;
-  rationale: string;
-  compensationRange: string | null;
-}
-
 /** A job that survived the company+keyword pre-filter, with its matched keyword family. */
 export interface CandidateJob {
   job: NormalizedJob;
   company: string;
   keywordFamily: string;
   source: JobScoutSource;
+}
+
+/** The result of scoring one job, whether by `job-scout:score-via-api` or a hand-assembled apply-scores batch. */
+export interface FitScoreResult {
+  score: number;
+  rationale: string;
+  compensationRange: string | null;
 }

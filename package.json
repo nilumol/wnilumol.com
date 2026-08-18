@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "job-scout": "node --experimental-strip-types scripts/job-scout/run.ts",
+    "job-scout:apply-scores": "node --experimental-strip-types scripts/job-scout/apply-scores.ts",
+    "job-scout:score-via-api": "node --experimental-strip-types scripts/job-scout/score-via-api.ts",
     "job-scout:test": "node --experimental-strip-types --test scripts/job-scout/*.test.ts"
   },
   "dependencies": {
