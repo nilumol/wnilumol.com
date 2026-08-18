@@ -32,9 +32,9 @@ export default function JobScoutPage() {
           <p className="eyebrow">Private</p>
           <h1>Job Scout</h1>
           <p>
-            A daily Greenhouse scan pre-filtered to role families that fit my background, scored
-            for fit against my resume. Not indexed, not linked from navigation - a working tool,
-            not a public page.
+            A daily scan of tracked companies&apos; job boards, pre-filtered to role families that fit
+            my background, scored for fit against my resume. Not indexed, not linked from
+            navigation - a working tool, not a public page.
           </p>
         </header>
 
