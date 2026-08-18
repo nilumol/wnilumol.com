@@ -10,8 +10,8 @@ import { filterCandidateJobs } from "./filter.ts";
 import type { BoardFetchResult } from "./greenhouse.ts";
 import { htmlToPlainText } from "./html.ts";
 import { expireMissingEntries, hasLedgerEntry, loadLedger, saveLedger } from "./ledger.ts";
+import { cleanLocationName } from "./location.ts";
 import { runJobScoutPipeline } from "./pipeline.ts";
-import { writeResumeNotes } from "./resume-notes.ts";
 import { buildScoringPrompt, STRONG_FIT_CUTOFF } from "./scoring.ts";
 import type { CandidateJob, FitScoreResult, GreenhouseJob, JobScoutLedger } from "./types.ts";
 
@@ -50,6 +50,23 @@ test("htmlToPlainText strips tags and decodes common entities", () => {
   assert.ok(text.includes("Item one"));
   assert.ok(text.includes("Item two"));
   assert.ok(!text.includes("<"));
+});
+
+// ---------------------------------------------------------------------------
+// Location cleanup
+// ---------------------------------------------------------------------------
+
+test("cleanLocationName strips stray leading/trailing dashes and whitespace", () => {
+  assert.equal(cleanLocationName("-REMOTE, USA-"), "REMOTE, USA");
+  assert.equal(cleanLocationName("- Bellevue, WA -"), "Bellevue, WA");
+  assert.equal(cleanLocationName("San Francisco, CA"), "San Francisco, CA");
+});
+
+test("cleanLocationName returns null for missing or empty input", () => {
+  assert.equal(cleanLocationName(undefined), null);
+  assert.equal(cleanLocationName(null), null);
+  assert.equal(cleanLocationName("   "), null);
+  assert.equal(cleanLocationName("-"), null);
 });
 
 function fixtureJob(overrides: Partial<GreenhouseJob> & { id: number; title: string }): GreenhouseJob {
@@ -132,12 +149,14 @@ function makeEntry(
     id: partial.id,
     company: partial.company,
     title: "Some Role",
+    keywordFamily: "Solutions Consultant",
     absoluteUrl: `https://job-boards.greenhouse.io/acme/jobs/${partial.id}`,
     firstSeen: "2026-08-17T00:00:00.000Z",
     status: partial.status,
     fitScore: 6,
     fitRationale: "Fixture entry.",
-    resumeNotesPath: null,
+    location: null,
+    compensationRange: null,
   };
 }
 
@@ -162,34 +181,6 @@ test("buildScoringPrompt includes the rubric verbatim, the resume, and the job p
 });
 
 // ---------------------------------------------------------------------------
-// Resume-adjustment document writing (section 6)
-// ---------------------------------------------------------------------------
-
-test("writeResumeNotes writes a distinct markdown file per job and returns its repo-relative path", () => {
-  const repoRoot = mkdtempSync(join(tmpdir(), "job-scout-repo-"));
-  const candidate: CandidateJob = {
-    job: fixtureJob({ id: 55, title: "Customer Success Manager" }),
-    company: "Acme",
-    keywordFamily: "Customer Success Manager",
-  };
-  const result: FitScoreResult = {
-    score: 5,
-    rationale: "Partial overlap only.",
-    resumeAdjustments: "Emphasize the Benchling enterprise account work.",
-  };
-
-  const relativePath = writeResumeNotes(repoRoot, candidate, result);
-  assert.equal(relativePath, "content/job-scout-resume-notes/55.md");
-
-  const written = readFileSync(join(repoRoot, relativePath), "utf-8");
-  assert.ok(written.includes("Customer Success Manager"));
-  assert.ok(written.includes("5/10"));
-  assert.ok(written.includes("Emphasize the Benchling enterprise account work."));
-
-  rmSync(repoRoot, { recursive: true, force: true });
-});
-
-// ---------------------------------------------------------------------------
 // End-to-end pipeline dry run (sections 3-6 wired together) with a mocked scorer -
 // this is the "does not require a live Anthropic API key" coverage.
 // ---------------------------------------------------------------------------
@@ -199,10 +190,10 @@ test("runJobScoutPipeline: filters, skips already-seen, scores new jobs, expires
   const ghost: JobScoutBoard = { token: "ghost", label: "Ghost Co" };
 
   const freshAcmeJobs: GreenhouseJob[] = [
-    fixtureJob({ id: 100, title: "Solutions Consultant" }), // new candidate, will score below cutoff
+    fixtureJob({ id: 100, title: "Solutions Consultant", location: { name: "-REMOTE, USA-" } }), // new candidate, will score below cutoff
     fixtureJob({ id: 101, title: "Backend Engineer" }), // filtered out by keywords, never touches ledger
     fixtureJob({ id: 102, title: "Sr Implementations Manager" }), // already ledgered -> must not be rescored
-    fixtureJob({ id: 107, title: "Customer Success Manager" }), // new candidate, will score at/above cutoff
+    fixtureJob({ id: 107, title: "Customer Success Manager" }), // new candidate, will score at/above cutoff, no stated pay
   ];
 
   const fetchBoard = async (board: JobScoutBoard): Promise<BoardFetchResult> => {
@@ -223,21 +214,14 @@ test("runJobScoutPipeline: filters, skips already-seen, scores new jobs, expires
   const scoreJob = async (candidate: CandidateJob): Promise<FitScoreResult> => {
     scoreCalls.push(candidate.job.id);
     if (candidate.job.id === 100) {
-      return { score: 5, rationale: "Partial domain overlap.", resumeAdjustments: "Emphasize Benchling work." };
+      return { score: 5, rationale: "Partial domain overlap.", compensationRange: "$85K-$115K" };
     }
-    return { score: 9, rationale: "Strong role and domain match.", resumeAdjustments: "No changes needed." };
-  };
-
-  const resumeNotesCalls: number[] = [];
-  const writeResumeNotesMock = (candidate: CandidateJob): string => {
-    resumeNotesCalls.push(candidate.job.id);
-    return `content/job-scout-resume-notes/${candidate.job.id}.md`;
+    return { score: 9, rationale: "Strong role and domain match.", compensationRange: null };
   };
 
   const result = await runJobScoutPipeline([acme, ghost], ledger, {
     fetchBoard,
     scoreJob,
-    writeResumeNotes: writeResumeNotesMock,
     log: () => {},
   });
 
@@ -245,18 +229,19 @@ test("runJobScoutPipeline: filters, skips already-seen, scores new jobs, expires
   assert.deepEqual(scoreCalls.sort(), [100, 107]);
   assert.equal(result.scoredCount, 2);
 
-  // Resume notes only written for the below-cutoff job.
-  assert.deepEqual(resumeNotesCalls, [100]);
-
-  // Ledger entries reflect the mocked scoring.
+  // Ledger entries reflect the mocked scoring, including the new location/compensation fields.
   assert.equal(ledger["100"]!.status, "scored");
   assert.equal(ledger["100"]!.fitScore, 5);
-  assert.equal(ledger["100"]!.resumeNotesPath, "content/job-scout-resume-notes/100.md");
+  assert.equal(ledger["100"]!.keywordFamily, "Solutions Consultant");
+  assert.equal(ledger["100"]!.location, "REMOTE, USA"); // dash-stripped from "-REMOTE, USA-"
+  assert.equal(ledger["100"]!.compensationRange, "$85K-$115K");
   assert.ok(ledger["100"]!.fitScore < STRONG_FIT_CUTOFF);
 
   assert.equal(ledger["107"]!.status, "scored");
   assert.equal(ledger["107"]!.fitScore, 9);
-  assert.equal(ledger["107"]!.resumeNotesPath, null);
+  assert.equal(ledger["107"]!.keywordFamily, "Customer Success Manager");
+  assert.equal(ledger["107"]!.location, null); // fixture job has no location field at all
+  assert.equal(ledger["107"]!.compensationRange, null); // no pay range stated
 
   // Job 101 never matched the keyword filter and never touched the ledger.
   assert.equal(hasLedgerEntry(ledger, 101), false);
@@ -296,7 +281,7 @@ test("runJobScoutPipeline: mutates the ledger in place as it goes, so entries sc
     if (candidate.job.id === 101) {
       throw new Error("simulated Anthropic API failure mid-run");
     }
-    return { score: 9, rationale: "Strong match.", resumeAdjustments: "No changes needed." };
+    return { score: 9, rationale: "Strong match.", compensationRange: null };
   };
 
   await assert.rejects(
@@ -304,7 +289,6 @@ test("runJobScoutPipeline: mutates the ledger in place as it goes, so entries sc
       runJobScoutPipeline([acme], ledger, {
         fetchBoard,
         scoreJob,
-        writeResumeNotes: (candidate) => `content/job-scout-resume-notes/${candidate.job.id}.md`,
         log: () => {},
       }),
     /simulated Anthropic API failure mid-run/,

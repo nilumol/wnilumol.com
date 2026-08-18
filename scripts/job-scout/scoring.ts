@@ -13,7 +13,16 @@ export const JOB_SCOUT_MODEL = "claude-opus-5";
 const FitScoreSchema = z.object({
   score: z.number().int().min(1).max(10),
   rationale: z.string().min(1),
-  resumeAdjustments: z.string().min(1),
+  compensationRange: z
+    .string()
+    .min(1)
+    .nullable()
+    .describe(
+      "Any pay/compensation range explicitly stated in the posting content (e.g. " +
+        '"$120,000-$150,000" or "$85K-$115K annually"), taken verbatim or lightly ' +
+        "normalized. Null if the posting does not state a specific figure or range - do not " +
+        "guess or infer one from level or title.",
+    ),
 });
 
 function formatResumeForPrompt(resumeData: ResumeData): string {

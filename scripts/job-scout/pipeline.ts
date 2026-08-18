@@ -2,13 +2,12 @@ import type { JobScoutBoard } from "../../content/job-scout-boards.ts";
 import { filterCandidateJobs } from "./filter.ts";
 import type { BoardFetchResult } from "./greenhouse.ts";
 import { expireMissingEntries, hasLedgerEntry, upsertScoredEntry } from "./ledger.ts";
-import { STRONG_FIT_CUTOFF } from "./scoring.ts";
+import { cleanLocationName } from "./location.ts";
 import type { CandidateJob, FitScoreResult, JobScoutLedger, JobScoutLedgerEntry } from "./types.ts";
 
 export interface JobScoutPipelineDeps {
   fetchBoard: (board: JobScoutBoard) => Promise<BoardFetchResult>;
   scoreJob: (candidate: CandidateJob) => Promise<FitScoreResult>;
-  writeResumeNotes: (candidate: CandidateJob, result: FitScoreResult) => string;
   log?: (message: string) => void;
 }
 
@@ -72,19 +71,19 @@ export async function runJobScoutPipeline(
   for (const candidate of pending) {
     log(`job-scout: scoring "${candidate.job.title}" (${candidate.company}, id ${candidate.job.id})`);
     const result = await deps.scoreJob(candidate);
-    const resumeNotesPath =
-      result.score < STRONG_FIT_CUTOFF ? deps.writeResumeNotes(candidate, result) : null;
 
     const entry: JobScoutLedgerEntry = {
       id: candidate.job.id,
       company: candidate.company,
       title: candidate.job.title,
+      keywordFamily: candidate.keywordFamily,
       absoluteUrl: candidate.job.absolute_url,
       firstSeen: new Date().toISOString(),
       status: "scored",
       fitScore: result.score,
       fitRationale: result.rationale,
-      resumeNotesPath,
+      location: cleanLocationName(candidate.job.location?.name),
+      compensationRange: result.compensationRange,
     };
     upsertScoredEntry(ledger, entry);
   }
