@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
-import type { JobScoutLedger, JobScoutLedgerEntry } from "./types.ts";
+import type { JobScoutBoard } from "../../content/job-scout-boards.ts";
+import type { JobScoutLedger, JobScoutLedgerEntry, JobScoutSource } from "./types.ts";
 
 export function loadLedger(path: string): JobScoutLedger {
   if (!existsSync(path)) return {};
@@ -8,40 +9,46 @@ export function loadLedger(path: string): JobScoutLedger {
   return JSON.parse(raw) as JobScoutLedger;
 }
 
+function ledgerKey(source: JobScoutSource, id: string | number): string {
+  return `${source}:${id}`;
+}
+
 /**
- * Writes the ledger sorted by numeric job id so daily diffs in git history stay small and
- * reviewable, with a trailing newline.
+ * Writes the ledger sorted by key (`<source>:<id>`, numeric-aware so e.g. "greenhouse:99" sorts
+ * before "greenhouse:100") so daily diffs in git history stay small and reviewable, with a
+ * trailing newline.
  */
 export function saveLedger(path: string, ledger: JobScoutLedger): void {
   const sorted: JobScoutLedger = {};
-  for (const entry of Object.values(ledger).sort((a, b) => a.id - b.id)) {
-    sorted[String(entry.id)] = entry;
+  const keys = Object.keys(ledger).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  for (const key of keys) {
+    sorted[key] = ledger[key]!;
   }
   writeFileSync(path, `${JSON.stringify(sorted, null, 2)}\n`, "utf-8");
 }
 
-export function hasLedgerEntry(ledger: JobScoutLedger, jobId: number): boolean {
-  return String(jobId) in ledger;
+export function hasLedgerEntry(ledger: JobScoutLedger, source: JobScoutSource, id: string | number): boolean {
+  return ledgerKey(source, id) in ledger;
 }
 
 export function upsertScoredEntry(ledger: JobScoutLedger, entry: JobScoutLedgerEntry): void {
-  ledger[String(entry.id)] = entry;
+  ledger[ledgerKey(entry.source, entry.id)] = entry;
 }
 
 /**
- * For one company's fresh board fetch, marks any ledger entry belonging to that company whose
- * id is absent from freshJobIds as "expired" - unless it's already "applied", "passed", or
- * "expired" (captain-set statuses are never overwritten by code; already-expired is a no-op).
- * Returns the number of entries newly marked expired.
+ * For one board's fresh fetch, marks any ledger entry belonging to that board's company+source
+ * whose id is absent from freshJobIds as "expired" - unless it's already "applied", "passed",
+ * or "expired" (captain-set statuses are never overwritten by code; already-expired is a
+ * no-op). Returns the number of entries newly marked expired.
  */
 export function expireMissingEntries(
   ledger: JobScoutLedger,
-  company: string,
-  freshJobIds: Set<number>,
+  board: JobScoutBoard,
+  freshJobIds: Set<string | number>,
 ): number {
   let expiredCount = 0;
   for (const entry of Object.values(ledger)) {
-    if (entry.company !== company) continue;
+    if (entry.company !== board.label || entry.source !== board.source) continue;
     if (freshJobIds.has(entry.id)) continue;
     if (entry.status === "applied" || entry.status === "passed" || entry.status === "expired") {
       continue;

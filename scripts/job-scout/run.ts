@@ -4,7 +4,9 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { jobScoutBoards } from "../../content/job-scout-boards.ts";
 import { resumeData } from "../../content/resume-data.ts";
+import { fetchAshbyBoardJobs } from "./ashby.ts";
 import { fetchBoardJobs } from "./greenhouse.ts";
+import { fetchLeverBoardJobs } from "./lever.ts";
 import { loadLedger, saveLedger } from "./ledger.ts";
 import { runJobScoutPipeline } from "./pipeline.ts";
 import { getAnthropicApiKeyOrThrow, scoreJobWithClaude } from "./scoring.ts";
@@ -34,7 +36,11 @@ async function main(): Promise<void> {
   let result: Awaited<ReturnType<typeof runJobScoutPipeline>> | undefined;
   try {
     result = await runJobScoutPipeline(jobScoutBoards, ledger, {
-      fetchBoard: fetchBoardJobs,
+      fetchers: {
+        greenhouse: fetchBoardJobs,
+        lever: fetchLeverBoardJobs,
+        ashby: fetchAshbyBoardJobs,
+      },
       scoreJob,
       log: console.log,
     });

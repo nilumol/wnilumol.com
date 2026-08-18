@@ -1,12 +1,24 @@
 import type { JobScoutBoard } from "../../content/job-scout-boards.ts";
 import { filterCandidateJobs } from "./filter.ts";
-import type { BoardFetchResult } from "./greenhouse.ts";
+import type { GreenhouseBoardFetchResult } from "./greenhouse.ts";
 import { expireMissingEntries, hasLedgerEntry, upsertScoredEntry } from "./ledger.ts";
 import { cleanLocationName } from "./location.ts";
-import type { CandidateJob, FitScoreResult, JobScoutLedger, JobScoutLedgerEntry } from "./types.ts";
+import type {
+  BoardFetchResult,
+  CandidateJob,
+  FitScoreResult,
+  JobScoutLedger,
+  JobScoutLedgerEntry,
+} from "./types.ts";
+
+export interface JobScoutFetchers {
+  greenhouse: (board: JobScoutBoard) => Promise<GreenhouseBoardFetchResult>;
+  lever: (board: JobScoutBoard) => Promise<BoardFetchResult>;
+  ashby: (board: JobScoutBoard) => Promise<BoardFetchResult>;
+}
 
 export interface JobScoutPipelineDeps {
-  fetchBoard: (board: JobScoutBoard) => Promise<BoardFetchResult>;
+  fetchers: JobScoutFetchers;
   scoreJob: (candidate: CandidateJob) => Promise<FitScoreResult>;
   log?: (message: string) => void;
 }
@@ -15,6 +27,29 @@ export interface JobScoutPipelineResult {
   scoredCount: number;
   expiredCount: number;
   skippedBoardTokens: string[];
+}
+
+/**
+ * Routes a board to the fetcher matching its `source` and normalizes the result into the shared
+ * candidate-job shape. Lever and Ashby's fetcher modules already return fully normalized jobs;
+ * Greenhouse's fetcher module is unchanged, so its raw `first_published` field is mapped to the
+ * shared `postedAt` field here.
+ */
+async function fetchBoardNormalized(board: JobScoutBoard, fetchers: JobScoutFetchers): Promise<BoardFetchResult> {
+  switch (board.source) {
+    case "greenhouse": {
+      const result = await fetchers.greenhouse(board);
+      return {
+        board: result.board,
+        found: result.found,
+        jobs: result.jobs.map((job) => ({ ...job, postedAt: job.first_published })),
+      };
+    }
+    case "lever":
+      return fetchers.lever(board);
+    case "ashby":
+      return fetchers.ashby(board);
+  }
 }
 
 /**
@@ -36,7 +71,7 @@ export async function runJobScoutPipeline(
   for (const board of boards) {
     let fetchResult: BoardFetchResult;
     try {
-      fetchResult = await deps.fetchBoard(board);
+      fetchResult = await fetchBoardNormalized(board, deps.fetchers);
     } catch (error) {
       log(
         `job-scout: failed to fetch board "${board.token}" (${board.label}): ${(error as Error).message}`,
@@ -59,10 +94,10 @@ export async function runJobScoutPipeline(
     );
 
     const freshJobIds = new Set(fetchResult.jobs.map((job) => job.id));
-    expiredCount += expireMissingEntries(ledger, board.label, freshJobIds);
+    expiredCount += expireMissingEntries(ledger, board, freshJobIds);
 
     for (const candidate of candidates) {
-      if (!hasLedgerEntry(ledger, candidate.job.id)) {
+      if (!hasLedgerEntry(ledger, candidate.source, candidate.job.id)) {
         pending.push(candidate);
       }
     }
@@ -74,6 +109,7 @@ export async function runJobScoutPipeline(
 
     const entry: JobScoutLedgerEntry = {
       id: candidate.job.id,
+      source: candidate.source,
       company: candidate.company,
       title: candidate.job.title,
       keywordFamily: candidate.keywordFamily,
@@ -83,7 +119,8 @@ export async function runJobScoutPipeline(
       fitScore: result.score,
       fitRationale: result.rationale,
       location: cleanLocationName(candidate.job.location?.name),
-      compensationRange: result.compensationRange,
+      compensationRange: candidate.job.structuredCompensationRange ?? result.compensationRange,
+      postedAt: candidate.job.postedAt,
     };
     upsertScoredEntry(ledger, entry);
   }
