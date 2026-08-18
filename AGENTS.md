@@ -87,3 +87,14 @@ npm run start     # serve an existing production build
 - Do not turn Markdown research or files under `references/` into public routes automatically.
 - Preserve unrelated working-tree changes. Stage and commit explicit paths when the worktree is mixed.
 - Vercel production should track GitHub `main`. A redeploy rebuilds the deployment's original Git reference; use a new deployment from the desired branch/commit when the source reference is wrong.
+
+## Job Scout (hidden)
+
+A hidden, unlisted daily job-search assistant lives at `/job-scout` (excluded from `navigation`, `robots: noindex/nofollow`). Tracked companies, the title keyword pre-filter, structured resume data, and the scoring rubric each live in their own file under `content/job-scout-*` - see those files' own comments before editing. The git-committed ledger is `content/job-scout-seen.json`; per-job resume-adjustment docs are under `content/job-scout-resume-notes/`. The daily script is `scripts/job-scout/run.ts` (dependency-injected pipeline logic in `scripts/job-scout/pipeline.ts`, tests via `npm run job-scout:test`), scheduled by `.github/workflows/job-scout.yml`, and requires an `ANTHROPIC_API_KEY` repository secret. `applied`/`passed` ledger statuses are captain-set only - set them by hand-editing `content/job-scout-seen.json`, never from code.
+
+## Maintaining this file
+
+Keep this file for knowledge useful to almost every future agent session in this project.
+Do not repeat what the codebase already shows; point to the authoritative file or command instead.
+Prefer rewriting or pruning existing entries over appending new ones.
+When updating this file, preserve this bar for all agents and keep entries concise.
