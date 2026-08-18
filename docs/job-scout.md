@@ -43,10 +43,10 @@ Winston's background. It's for Winston only - it is not part of the public portf
 
 ## Companies currently tracked
 
-Defined in `content/job-scout-boards.ts` (Greenhouse only, for now):
+Defined in `content/job-scout-boards.ts`, across Greenhouse, Lever, and Ashby:
 
 Smartsheet, Vaxcyte, HealthVerity, Figma, Zscaler, Celonis, Algolia, Databricks, GitLab,
-Cloudflare.
+Cloudflare, Ethena, Veeva, Windfall, Aizon, AlphaLifeSci, Notion, LevelPath.
 
 ## Common edits (no code changes needed)
 
