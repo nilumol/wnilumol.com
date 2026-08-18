@@ -32,14 +32,18 @@ async function main(): Promise<void> {
     return scoreJobWithClaude(client, candidate, resumeData, rubricMarkdown);
   };
 
-  const result = await runJobScoutPipeline(jobScoutBoards, ledger, {
-    fetchBoard: fetchBoardJobs,
-    scoreJob,
-    writeResumeNotes: (candidate, fitResult) => writeResumeNotes(REPO_ROOT, candidate, fitResult),
-    log: console.log,
-  });
+  let result: Awaited<ReturnType<typeof runJobScoutPipeline>> | undefined;
+  try {
+    result = await runJobScoutPipeline(jobScoutBoards, ledger, {
+      fetchBoard: fetchBoardJobs,
+      scoreJob,
+      writeResumeNotes: (candidate, fitResult) => writeResumeNotes(REPO_ROOT, candidate, fitResult),
+      log: console.log,
+    });
+  } finally {
+    saveLedger(LEDGER_PATH, ledger);
+  }
 
-  saveLedger(LEDGER_PATH, ledger);
   console.log(
     `job-scout: run complete - scored ${result.scoredCount} new job(s), expired ${result.expiredCount} entry(ies), ` +
       `skipped ${result.skippedBoardTokens.length} board(s), ledger has ${Object.keys(ledger).length} entry(ies) total`,
