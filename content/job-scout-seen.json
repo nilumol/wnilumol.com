@@ -1,1 +1,46 @@
-{}
+{
+  "7917721": {
+    "id": 7917721,
+    "company": "Smartsheet",
+    "title": "Principal Customer Success Manager - Enterprise Global (West)",
+    "absoluteUrl": "https://job-boards.greenhouse.io/smartsheet/jobs/7917721",
+    "firstSeen": "2026-08-18T06:23:12.976Z",
+    "status": "scored",
+    "fitScore": 5,
+    "fitRationale": "Role family matches on paper (enterprise CSM: adoption, QBR/EBR, renewals influence, cross-functional partnering with Product/Sales), and Winston has real strategic-enterprise account and exec-stakeholder experience from Benchling plus data-driven insight work (SQL, Tableau). But the bar is 10+ years of specifically SaaS Customer Success/Account Management with 'deep Smartsheet subject matter expertise' and multiple Smartsheet certifications — Winston has ~2.5 years in SaaS presales/implementations and zero Smartsheet platform depth, so he'd read as a stretch for a Principal-level, mentor-the-team hire. Smartsheet is a horizontal collaborative work management vendor with no life sciences or regulated-industry angle, so his strongest differentiator (10+ years biopharma/GMP, 21 CFR Part 11, Veeva/Benchling) carries almost no weight here.",
+    "resumeNotesPath": "content/job-scout-resume-notes/7917721.md"
+  },
+  "8029487": {
+    "id": 8029487,
+    "company": "Smartsheet",
+    "title": "Customer Success Manager II - Enterprise (Central/East)",
+    "absoluteUrl": "https://job-boards.greenhouse.io/smartsheet/jobs/8029487",
+    "firstSeen": "2026-08-18T06:22:52.272Z",
+    "status": "scored",
+    "fitScore": 5,
+    "fitRationale": "Role family is a clean match \\u2014 enterprise CSM work (onboarding, adoption, QBRs, expansion with Sales/Presales, product feedback loops) maps directly to his Benchling SC and Collate Senior Implementations Manager work. But the domain is horizontal work-management SaaS with zero life-sciences or regulated-industry angle, which strips out his biggest differentiator (21 CFR Part 11, GMP, Veeva/Benchling fluency), and the 'CSM II / 3+ years' level plus $85\\u2013115K band sits below his Strategic Enterprise / Senior Implementations seniority. The explicit Central/Eastern US location preference is also a likely mismatch given his Bay Area track record (Genentech, Benchling).",
+    "resumeNotesPath": "content/job-scout-resume-notes/8029487.md"
+  },
+  "8109667": {
+    "id": 8109667,
+    "company": "Smartsheet",
+    "title": "Solutions Consultant - East",
+    "absoluteUrl": "https://job-boards.greenhouse.io/smartsheet/jobs/8109667",
+    "firstSeen": "2026-08-18T06:23:32.199Z",
+    "status": "scored",
+    "fitScore": 5,
+    "fitRationale": "The day-to-day work — leading concurrent implementation projects, discovery, prototyping/iterative build sprints, UAT, scope/budget ownership, and partnering with Sales on expansion — maps closely to Winston's Senior Implementations Manager work at Collate and the 30+ implementation projects at Genentech, so role-family fit is solid. However, Smartsheet is a horizontal work-management platform with zero life sciences or regulated-industry angle, so his single biggest differentiator (biopharma/GMP/21 CFR Part 11, Veeva/Benchling/TrackWise depth) carries almost no weight here, and the posting instead prizes management-consulting delivery mechanics (billable utilization, project margin, Agile, change management) that he can only partially evidence. Seniority also skews slightly junior for him (4–5 years minimum, $92.5–126K band), and the role is restricted to the US Eastern region, which is a likely hard geographic blocker given his Bay Area/West Coast track record.",
+    "resumeNotesPath": "content/job-scout-resume-notes/8109667.md"
+  },
+  "8122020": {
+    "id": 8122020,
+    "company": "Smartsheet",
+    "title": "Solutions Consultant - West",
+    "absoluteUrl": "https://job-boards.greenhouse.io/smartsheet/jobs/8122020",
+    "firstSeen": "2026-08-18T06:23:51.454Z",
+    "status": "scored",
+    "fitScore": 6,
+    "fitRationale": "Role family fits reasonably well — this is a professional-services delivery consultant blending implementation ownership (scope, timeline, UAT, iterative build sprints) with advisory discovery and sales-partnered expansion, which maps directly onto his Collate Senior Implementations Manager work and his Benchling discovery/demo/POC experience. The main gaps are domain and level: Smartsheet is horizontal work-management software with no life-sciences or regulated-industry angle (explicitly 'a variety of industries'), so his 10+ years of GMP/21 CFR Part 11/Veeva/Benchling depth is largely non-differentiating here, and the $92.5–126K band plus '4–5 years consulting' bar sits below his Strategic Enterprise seniority. He also has no track record in a billable-utilization/project-margin PS model or formal Agile/change-management methodology, and the posting contradicts its own 'West' title by requiring Eastern-region residence, which may make him ineligible.",
+    "resumeNotesPath": "content/job-scout-resume-notes/8122020.md"
+  }
+}
