@@ -1,7 +1,7 @@
 import type { JobScoutBoard } from "../../content/job-scout-boards.ts";
 import { type GreenhouseJob, isGreenhouseJobsResponse } from "./types.ts";
 
-export interface BoardFetchResult {
+export interface GreenhouseBoardFetchResult {
   board: JobScoutBoard;
   /** false when the board token 404s (invalid/renamed) - the board is skipped, not fatal. */
   found: boolean;
@@ -14,7 +14,7 @@ export interface BoardFetchResult {
  * A 404 (invalid/renamed token) is treated as "board not found" rather than thrown, so the
  * caller can skip it and continue the run. Any other non-OK status throws.
  */
-export async function fetchBoardJobs(board: JobScoutBoard): Promise<BoardFetchResult> {
+export async function fetchBoardJobs(board: JobScoutBoard): Promise<GreenhouseBoardFetchResult> {
   const url = `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(board.token)}/jobs?content=true`;
   const response = await fetch(url);
 

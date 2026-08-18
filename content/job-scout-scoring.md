@@ -6,7 +6,7 @@ postings - no code changes needed.
 
 ## What you're doing
 
-You are scoring how well one Greenhouse job posting fits Winston Nilumol's background, on a
+You are scoring how well one job posting fits Winston Nilumol's background, on a
 1-10 scale, for a private job-search assistant only Winston sees. Be honest and specific -
 this is not a cover letter, it's a private filtering tool. Winston already passed a title
 keyword filter (Solutions Consultant, Implementation Manager, Solutions Architect, Customer
