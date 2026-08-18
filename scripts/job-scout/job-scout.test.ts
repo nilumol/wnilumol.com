@@ -274,3 +274,51 @@ test("runJobScoutPipeline: filters, skips already-seen, scores new jobs, expires
   assert.equal(ledger["200"]!.status, "scored");
   assert.deepEqual(result.skippedBoardTokens, ["ghost"]);
 });
+
+test("runJobScoutPipeline: mutates the ledger in place as it goes, so entries scored before a mid-run failure survive the rejection", async () => {
+  const acme: JobScoutBoard = { token: "acme", label: "Acme" };
+
+  const freshAcmeJobs: GreenhouseJob[] = [
+    fixtureJob({ id: 100, title: "Solutions Consultant" }), // scores fine
+    fixtureJob({ id: 101, title: "Solutions Architect" }), // scorer throws on this one
+  ];
+
+  const fetchBoard = async (board: JobScoutBoard): Promise<BoardFetchResult> => {
+    if (board.token === "acme") return { board, found: true, jobs: freshAcmeJobs };
+    throw new Error(`unexpected board in test: ${board.token}`);
+  };
+
+  const ledger: JobScoutLedger = {
+    "103": makeEntry({ id: 103, company: "Acme", status: "scored" }), // missing from fresh fetch -> should still expire
+  };
+
+  const scoreJob = async (candidate: CandidateJob): Promise<FitScoreResult> => {
+    if (candidate.job.id === 101) {
+      throw new Error("simulated Anthropic API failure mid-run");
+    }
+    return { score: 9, rationale: "Strong match.", resumeAdjustments: "No changes needed." };
+  };
+
+  await assert.rejects(
+    () =>
+      runJobScoutPipeline([acme], ledger, {
+        fetchBoard,
+        scoreJob,
+        writeResumeNotes: (candidate) => `content/job-scout-resume-notes/${candidate.job.id}.md`,
+        log: () => {},
+      }),
+    /simulated Anthropic API failure mid-run/,
+  );
+
+  // The job scored before the throw was already upserted into the (in-place mutated) ledger object,
+  // so a caller that persists `ledger` from a `finally` block (as scripts/job-scout/run.ts does)
+  // does not lose it, even though the pipeline call itself rejected.
+  assert.equal(ledger["100"]!.status, "scored");
+  assert.equal(ledger["100"]!.fitScore, 9);
+
+  // Expiry (which happens before scoring) is also preserved.
+  assert.equal(ledger["103"]!.status, "expired");
+
+  // The job that failed to score was never written to the ledger.
+  assert.equal(hasLedgerEntry(ledger, 101), false);
+});
