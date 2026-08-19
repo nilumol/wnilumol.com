@@ -1,3 +1,5 @@
+import { timingSafeEqual } from "node:crypto";
+
 export const TAILOR_PASSPHRASE_HEADER = "x-tailor-passphrase";
 
 /**
@@ -11,5 +13,9 @@ export function verifyTailorPassphrase(request: Request): boolean {
   const expected = process.env.TAILOR_PASSPHRASE;
   if (!expected) return false;
   const provided = request.headers.get(TAILOR_PASSPHRASE_HEADER);
-  return provided === expected;
+  if (!provided) return false;
+  const expectedBuffer = Buffer.from(expected);
+  const providedBuffer = Buffer.from(provided);
+  if (expectedBuffer.length !== providedBuffer.length) return false;
+  return timingSafeEqual(providedBuffer, expectedBuffer);
 }

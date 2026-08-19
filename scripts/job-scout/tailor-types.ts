@@ -51,7 +51,6 @@ export interface TailorSuggestResponseBody {
 
 /** Shared payload for the preview and PDF routes - everything needed to render one tailored resume. */
 const TailorRenderRequestSchema = z.object({
-  jobTitle: z.string().min(1),
   company: z.string().min(1),
   keywordFamily: z.string().min(1),
   acceptedSuggestions: z.array(z.object({ id: z.string() }).passthrough()),

@@ -34,7 +34,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   const tailored = mergeTailoredResume(resumeData, body.acceptedSuggestions, body.ownText);
-  const html = renderResumeHtml(tailored, { jobTitle: body.jobTitle, company: body.company });
+  const html = renderResumeHtml(tailored, { company: body.company });
 
   // No WebGL/graphics needed to print static text - disabling the graphics stack trims cold start.
   chromium.setGraphicsMode = false;

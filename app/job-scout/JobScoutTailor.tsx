@@ -120,7 +120,6 @@ function TailorCard({
 
   function renderPayload() {
     return {
-      jobTitle: entry.title,
       company: entry.company,
       keywordFamily: entry.keywordFamily,
       acceptedSuggestions: acceptedSuggestions(),

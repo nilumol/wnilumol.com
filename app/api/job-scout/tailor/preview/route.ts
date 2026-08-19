@@ -24,7 +24,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   const tailored = mergeTailoredResume(resumeData, body.acceptedSuggestions, body.ownText);
-  const html = renderResumeHtml(tailored, { jobTitle: body.jobTitle, company: body.company });
+  const html = renderResumeHtml(tailored, { company: body.company });
 
   return new NextResponse(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
 }

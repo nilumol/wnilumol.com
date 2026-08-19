@@ -60,7 +60,7 @@ function renderHighlight(highlight: string): string {
  * font requests. Used identically by the preview route (opened as-is in a browser tab) and the
  * PDF route (fed to Puppeteer's page.setContent()), so View and Generate PDF can never drift.
  */
-export function renderResumeHtml(resume: TailoredResume, meta: { jobTitle: string; company: string }): string {
+export function renderResumeHtml(resume: TailoredResume, meta: { company: string }): string {
   const roleSections = resume.roles
     .map(
       (role) => `
