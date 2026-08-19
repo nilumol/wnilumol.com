@@ -46,7 +46,7 @@ Prefer evidence of thinking and execution over unsupported claims. The site must
 - Preserve font roles:
   - Tenor Sans: body copy and primary display text.
   - Belleza: eyebrows, section headings, and restrained editorial labels.
-  - Poppins: logo and selective technical/diagram emphasis.
+  - Poppins: selective technical/diagram emphasis.
 - Maintain the shared header and shallow primary navigation. Do not add hidden or targeted projects to `navigation` or `projects` unless explicitly requested.
 - Project pages should be designed arguments, not dumps of research notes. Follow the five movements in `docs/project-page-system.md`: orient, make the problem visible, show the key idea, make it concrete, establish fit and momentum.
 - Aim for a 2–4 minute primary reading path, one dominant visual, and progressive disclosure of supporting technical detail.
@@ -98,3 +98,13 @@ Keep this file for knowledge useful to almost every future agent session in this
 Do not repeat what the codebase already shows; point to the authoritative file or command instead.
 Prefer rewriting or pruning existing entries over appending new ones.
 When updating this file, preserve this bar for all agents and keep entries concise.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
