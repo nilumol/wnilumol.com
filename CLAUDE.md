@@ -46,7 +46,7 @@ Prefer evidence of thinking and execution over unsupported claims. The site must
 - Preserve font roles:
   - Tenor Sans: body copy and primary display text.
   - Belleza: eyebrows, section headings, and restrained editorial labels.
-  - Poppins: logo and selective technical/diagram emphasis.
+  - Poppins: selective technical/diagram emphasis.
 - Maintain the shared header and shallow primary navigation. Do not add hidden or targeted projects to `navigation` or `projects` unless explicitly requested.
 - Project pages should be designed arguments, not dumps of research notes. Follow the five movements in `docs/project-page-system.md`: orient, make the problem visible, show the key idea, make it concrete, establish fit and momentum.
 - Aim for a 2–4 minute primary reading path, one dominant visual, and progressive disclosure of supporting technical detail.
