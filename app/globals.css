@@ -15,7 +15,7 @@ a { color: inherit; text-decoration: none; }
 p, h1, h2, ul { margin-top: 0; }
 
 .site-header { width: min(100%, var(--content-width)); margin: 0 auto; padding: var(--page-y) var(--page-x) 0; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-.site-logo { display: inline-flex; align-items: center; font-family: var(--font-poppins), sans-serif; font-size: 1.45rem; font-weight: 600; letter-spacing: -0.06em; }
+.site-logo { display: inline-flex; align-items: center; font-family: var(--font-poppins), sans-serif; font-size: 1.885rem; font-weight: 600; letter-spacing: -0.06em; }
 .site-logo-mark { width: 1.45em; height: 1.45em; display: block; }
 .site-logo-ring { transition: stroke-width 160ms ease; }
 .site-logo:hover .site-logo-ring,
@@ -30,7 +30,7 @@ p, h1, h2, ul { margin-top: 0; }
 .hero-content { width: min(840px, 100%); text-align: center; transform: translateY(-2vh); }
 .hero-kicker, .eyebrow { font-family: var(--font-belleza), serif; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.74rem; }
 .hero-kicker { margin-bottom: 28px; }
-.hero h1 { margin-bottom: 30px; font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 400; line-height: 0.95; letter-spacing: -0.045em; }
+.hero h1 { margin-bottom: 30px; font-size: clamp(4rem, 10vw, 7rem); font-weight: 400; line-height: 0.95; letter-spacing: -0.045em; }
 .hero-statement { width: min(720px, 100%); margin: 0 auto; font-size: clamp(1rem, 1.7vw, 1.35rem); line-height: 1.7; }
 
 .page-shell { min-height: 100vh; }
@@ -145,7 +145,7 @@ p, h1, h2, ul { margin-top: 0; }
 }
 
 @media (max-width: 480px) {
-  .site-logo { font-size: 1.2rem; }
+  .site-logo { font-size: 1.56rem; }
   .site-nav { gap: 13px; font-size: 0.76rem; }
   .career-entry { grid-template-columns: 36px 1fr; gap: 14px; }
   .gxp-article { width: calc(100% - 32px); }
