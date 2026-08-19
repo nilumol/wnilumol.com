@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { JobScoutLedgerEntry } from "@/scripts/job-scout/types";
 import { JobScoutTable } from "./JobScoutTable";
+import { JobScoutTailor } from "./JobScoutTailor";
 import { JobScoutTracker } from "./JobScoutTracker";
 
 function entryKey(entry: JobScoutLedgerEntry): string {
@@ -11,14 +12,17 @@ function entryKey(entry: JobScoutLedgerEntry): string {
 
 export function JobScoutSections({ entries: initialEntries }: { entries: JobScoutLedgerEntry[] }) {
   const [entries, setEntries] = useState(initialEntries);
-  const [sentCount, setSentCount] = useState(0);
+  const [sentEntries, setSentEntries] = useState<JobScoutLedgerEntry[]>([]);
   const trackedEntries = initialEntries.filter(
     (entry) => entry.status === "applied" || entry.status === "passed",
   );
 
   function handleSend(sentKeys: Set<string>) {
     setEntries((current) => current.filter((entry) => !sentKeys.has(entryKey(entry))));
-    setSentCount((count) => count + sentKeys.size);
+    setSentEntries((current) => [
+      ...current,
+      ...entries.filter((entry) => sentKeys.has(entryKey(entry))),
+    ]);
   }
 
   return (
@@ -59,11 +63,7 @@ export function JobScoutSections({ entries: initialEntries }: { entries: JobScou
           </span>
         </summary>
         <div className="job-scout-section-body">
-          <p className="job-scout-placeholder">
-            {sentCount > 0
-              ? `${sentCount} sent — Tailor My Profile isn't built yet.`
-              : "Tailor My Profile isn't built yet."}
-          </p>
+          <JobScoutTailor entries={sentEntries} />
         </div>
       </details>
     </div>
