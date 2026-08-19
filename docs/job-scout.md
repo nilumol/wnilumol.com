@@ -21,8 +21,12 @@ Winston's background. It's for Winston only - it is not part of the public portf
   on the current page, and a "Send" button (disabled with nothing selected) that removes the
   selected rows from the list and updates the Tailor My Profile section's placeholder with the
   sent count - client-side only, not persisted, and reverts on refresh.
-- **Tracker** and **Tailor My Profile** are collapsed-by-default placeholder sections with no
-  logic yet; see "Known limits / not yet built" below.
+- **Tracker** (collapsed by default) is a read-only table, built in
+  `app/job-scout/JobScoutTracker.tsx`, of ledger entries whose status is `applied` or `passed` -
+  job title, company, a status pill, location, and a link to the posting, in a fixed
+  company/title order. It reads the same ledger the page already loads; there is no sort,
+  pagination, or write path. **Tailor My Profile** is still a collapsed-by-default placeholder
+  section with no logic yet; see "Known limits / not yet built" below.
 
 ## The pipeline, end to end
 
@@ -97,7 +101,7 @@ Cloudflare, Ethena, Veeva, Windfall, Aizon, AlphaLifeSci, Notion, LevelPath.
   rationale, and an optional compensation range.
 - **No UI for applied/passed.** Marking a job as applied or passed is a manual edit to
   `content/job-scout-seen.json` - there is no button on the page for it yet.
-- **Tracker and Tailor My Profile are placeholders.** Sending rows from Opportunities only
-  updates the Tailor My Profile section's placeholder text with a count, client-side and
-  ephemeral - it does not write to the ledger, build a resume/cover-letter draft, or populate the
-  Tracker table. Both are queued as separate follow-on builds.
+- **Tailor My Profile is a placeholder.** Sending rows from Opportunities only updates its
+  placeholder text with a count, client-side and ephemeral - it does not write to the ledger or
+  build a resume/cover-letter draft. It is queued as a separate follow-on build. It is not
+  connected to Tracker: Tracker only reflects hand-set `applied`/`passed` ledger entries.

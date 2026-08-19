@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { JobScoutLedgerEntry } from "@/scripts/job-scout/types";
 import { JobScoutTable } from "./JobScoutTable";
+import { JobScoutTracker } from "./JobScoutTracker";
 
 function entryKey(entry: JobScoutLedgerEntry): string {
   return `${entry.source}:${entry.id}`;
@@ -11,6 +12,9 @@ function entryKey(entry: JobScoutLedgerEntry): string {
 export function JobScoutSections({ entries: initialEntries }: { entries: JobScoutLedgerEntry[] }) {
   const [entries, setEntries] = useState(initialEntries);
   const [sentCount, setSentCount] = useState(0);
+  const trackedEntries = initialEntries.filter(
+    (entry) => entry.status === "applied" || entry.status === "passed",
+  );
 
   function handleSend(sentKeys: Set<string>) {
     setEntries((current) => current.filter((entry) => !sentKeys.has(entryKey(entry))));
@@ -43,7 +47,7 @@ export function JobScoutSections({ entries: initialEntries }: { entries: JobScou
           </span>
         </summary>
         <div className="job-scout-section-body">
-          <p className="job-scout-placeholder">Tracking isn&apos;t built yet.</p>
+          <JobScoutTracker entries={trackedEntries} />
         </div>
       </details>
 
