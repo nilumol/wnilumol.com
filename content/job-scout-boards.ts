@@ -31,6 +31,7 @@ export const jobScoutBoards: JobScoutBoard[] = [
   { token: "veeva", label: "Veeva", source: "lever" },
   { token: "windfalldata", label: "Windfall", source: "lever" },
   { token: "aizon", label: "Aizon", source: "lever" },
+  { token: "aeratechnology", label: "Aera Technology", source: "lever" },
   { token: "alphalifesci", label: "AlphaLifeSci", source: "ashby" },
   { token: "notion", label: "Notion", source: "ashby" },
   { token: "levelpath", label: "LevelPath", source: "ashby" },
