@@ -1,12 +1,11 @@
 import type { JobScoutBoard } from "../../content/job-scout-boards.ts";
 import { filterCandidateJobs } from "./filter.ts";
 import type { GreenhouseBoardFetchResult } from "./greenhouse.ts";
-import { expireMissingEntries, hasLedgerEntry, upsertScoredEntry } from "./ledger.ts";
+import { expireMissingEntries, hasLedgerEntry, upsertLedgerEntry } from "./ledger.ts";
 import { cleanLocationName } from "./location.ts";
 import type {
   BoardFetchResult,
   CandidateJob,
-  FitScoreResult,
   JobScoutLedger,
   JobScoutLedgerEntry,
 } from "./types.ts";
@@ -19,12 +18,11 @@ export interface JobScoutFetchers {
 
 export interface JobScoutPipelineDeps {
   fetchers: JobScoutFetchers;
-  scoreJob: (candidate: CandidateJob) => Promise<FitScoreResult>;
   log?: (message: string) => void;
 }
 
 export interface JobScoutPipelineResult {
-  scoredCount: number;
+  addedCount: number;
   expiredCount: number;
   skippedBoardTokens: string[];
 }
@@ -33,9 +31,10 @@ export interface JobScoutPipelineResult {
  * Routes a board to the fetcher matching its `source` and normalizes the result into the shared
  * candidate-job shape. Lever and Ashby's fetcher modules already return fully normalized jobs;
  * Greenhouse's fetcher module is unchanged, so its raw `first_published` field is mapped to the
- * shared `postedAt` field here.
+ * shared `postedAt` field here. Exported so `score-via-api.ts` can re-fetch full posting content
+ * (not persisted in the ledger) for pending entries using the same source-routing logic.
  */
-async function fetchBoardNormalized(board: JobScoutBoard, fetchers: JobScoutFetchers): Promise<BoardFetchResult> {
+export async function fetchBoardNormalized(board: JobScoutBoard, fetchers: JobScoutFetchers): Promise<BoardFetchResult> {
   switch (board.source) {
     case "greenhouse": {
       const result = await fetchers.greenhouse(board);
@@ -53,10 +52,11 @@ async function fetchBoardNormalized(board: JobScoutBoard, fetchers: JobScoutFetc
 }
 
 /**
- * The daily job-scout logic (sections 3-6 of the design), parameterized over fetch/score/write
- * so it can run for real (scripts/job-scout/run.ts) or against fixtures with a mocked scorer
- * (scripts/job-scout/job-scout.test.ts) without hitting the network or the Anthropic API.
- * Mutates `ledger` in place; the caller is responsible for persisting it.
+ * The daily job-scout logic (sections 3-6 of the design), parameterized over fetch/write so it
+ * can run for real (scripts/job-scout/run.ts) or against fixtures (scripts/job-scout/job-scout.test.ts)
+ * without hitting the network. Makes no LLM call: new candidates are written as "pending" and
+ * are scored later, outside this pipeline, via `npm run job-scout:apply-scores`. Mutates
+ * `ledger` in place; the caller is responsible for persisting it.
  */
 export async function runJobScoutPipeline(
   boards: JobScoutBoard[],
@@ -104,8 +104,7 @@ export async function runJobScoutPipeline(
   }
 
   for (const candidate of pending) {
-    log(`job-scout: scoring "${candidate.job.title}" (${candidate.company}, id ${candidate.job.id})`);
-    const result = await deps.scoreJob(candidate);
+    log(`job-scout: new pending job "${candidate.job.title}" (${candidate.company}, id ${candidate.job.id})`);
 
     const entry: JobScoutLedgerEntry = {
       id: candidate.job.id,
@@ -115,15 +114,13 @@ export async function runJobScoutPipeline(
       keywordFamily: candidate.keywordFamily,
       absoluteUrl: candidate.job.absolute_url,
       firstSeen: new Date().toISOString(),
-      status: "scored",
-      fitScore: result.score,
-      fitRationale: result.rationale,
+      status: "pending",
       location: cleanLocationName(candidate.job.location?.name),
-      compensationRange: candidate.job.structuredCompensationRange ?? result.compensationRange,
+      compensationRange: candidate.job.structuredCompensationRange ?? null,
       postedAt: candidate.job.postedAt,
     };
-    upsertScoredEntry(ledger, entry);
+    upsertLedgerEntry(ledger, entry);
   }
 
-  return { scoredCount: pending.length, expiredCount, skippedBoardTokens };
+  return { addedCount: pending.length, expiredCount, skippedBoardTokens };
 }
