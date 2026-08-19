@@ -19,8 +19,9 @@ Winston's background. It's for Winston only - it is not part of the public portf
   a time. Each row has a checkbox; selection persists across pagination and re-sorting. A toolbar
   above the table shows a running "N selected" count, a "Select All" button that selects every row
   on the current page, and a "Send" button (disabled with nothing selected) that removes the
-  selected rows from the list and updates the Tailor My Profile section's placeholder with the
-  sent count - client-side only, not persisted, and reverts on refresh.
+  selected rows from the list and forwards them to the Tailor My Profile section as sent ledger
+  entries (`JobScoutSections.tsx`'s `sentEntries` state) - client-side only, not persisted, and
+  reverts on refresh.
 - **Tracker** (collapsed by default) is a read-only table, built in
   `app/job-scout/JobScoutTracker.tsx`, of ledger entries whose status is `applied` or `passed` -
   job title, company, a status pill, location, and a link to the posting, in a fixed
