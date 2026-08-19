@@ -83,14 +83,33 @@ function compareEntries(
   return direction === "asc" ? result : -result;
 }
 
-export function JobScoutTable({ entries }: { entries: JobScoutLedgerEntry[] }) {
+function entryKey(entry: JobScoutLedgerEntry): string {
+  return `${entry.source}:${entry.id}`;
+}
+
+const PAGE_SIZE = 30;
+
+export function JobScoutTable({
+  entries,
+  onSend,
+}: {
+  entries: JobScoutLedgerEntry[];
+  onSend: (selectedKeys: Set<string>) => void;
+}) {
   const [sortKey, setSortKey] = useState<SortKey>("fitScore");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
+  const [page, setPage] = useState(0);
+  const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set());
 
   const sortedEntries = useMemo(
     () => [...entries].sort((a, b) => compareEntries(a, b, sortKey, sortDirection)),
     [entries, sortKey, sortDirection],
   );
+
+  const totalPages = Math.max(1, Math.ceil(sortedEntries.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages - 1);
+  const pageStart = currentPage * PAGE_SIZE;
+  const pageEntries = sortedEntries.slice(pageStart, pageStart + PAGE_SIZE);
 
   function handleSort(key: SortKey) {
     if (key === sortKey) {
@@ -99,45 +118,137 @@ export function JobScoutTable({ entries }: { entries: JobScoutLedgerEntry[] }) {
       setSortKey(key);
       setSortDirection(key === "fitScore" ? "desc" : "asc");
     }
+    setPage(0);
+  }
+
+  function toggleRow(key: string, checked: boolean) {
+    setSelectedKeys((current) => {
+      const next = new Set(current);
+      if (checked) {
+        next.add(key);
+      } else {
+        next.delete(key);
+      }
+      return next;
+    });
+  }
+
+  function handleSelectAll() {
+    setSelectedKeys((current) => {
+      const next = new Set(current);
+      for (const entry of pageEntries) next.add(entryKey(entry));
+      return next;
+    });
+  }
+
+  function handleSend() {
+    if (selectedKeys.size === 0) return;
+    onSend(selectedKeys);
+    setSelectedKeys(new Set());
   }
 
   return (
-    <div className="job-scout-table-wrap">
-      <table className="job-scout-table">
-        <thead>
-          <tr>
-            {COLUMNS.map((column) => {
-              const isActive = column.key === sortKey;
+    <div>
+      <div className="job-scout-toolbar">
+        <p className="job-scout-toolbar-count">
+          <strong>{selectedKeys.size}</strong> selected
+        </p>
+        <div className="job-scout-toolbar-actions">
+          <button type="button" className="job-scout-btn" onClick={handleSelectAll}>
+            Select All
+          </button>
+          <button
+            type="button"
+            className="job-scout-btn job-scout-btn-primary"
+            onClick={handleSend}
+            disabled={selectedKeys.size === 0}
+          >
+            Send
+          </button>
+        </div>
+      </div>
+
+      <div className="job-scout-table-wrap">
+        <table className="job-scout-table">
+          <thead>
+            <tr>
+              <th aria-hidden="true" />
+              {COLUMNS.map((column) => {
+                const isActive = column.key === sortKey;
+                return (
+                  <th key={column.key} aria-sort={isActive ? (sortDirection === "asc" ? "ascending" : "descending") : "none"}>
+                    <button type="button" className="job-scout-sort-button" onClick={() => handleSort(column.key)}>
+                      {column.label}
+                      <span className="job-scout-sort-caret" aria-hidden="true">
+                        {isActive ? (sortDirection === "asc" ? "▲" : "▼") : ""}
+                      </span>
+                    </button>
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {pageEntries.map((entry) => {
+              const key = entryKey(entry);
               return (
-                <th key={column.key} aria-sort={isActive ? (sortDirection === "asc" ? "ascending" : "descending") : "none"}>
-                  <button type="button" className="job-scout-sort-button" onClick={() => handleSort(column.key)}>
-                    {column.label}
-                    <span className="job-scout-sort-caret" aria-hidden="true">
-                      {isActive ? (sortDirection === "asc" ? "▲" : "▼") : ""}
-                    </span>
-                  </button>
-                </th>
+                <JobScoutRow
+                  key={key}
+                  entry={entry}
+                  selected={selectedKeys.has(key)}
+                  onToggle={(checked) => toggleRow(key, checked)}
+                />
               );
             })}
-          </tr>
-        </thead>
-        <tbody>
-          {sortedEntries.map((entry) => (
-            <JobScoutRow key={`${entry.source}:${entry.id}`} entry={entry} />
-          ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
+
+      <div className="job-scout-pagination">
+        <button type="button" onClick={() => setPage(currentPage - 1)} disabled={currentPage === 0}>
+          ← Previous
+        </button>
+        <span className="job-scout-pagination-info">
+          Page {currentPage + 1} of {totalPages} · rows{" "}
+          {sortedEntries.length === 0 ? 0 : pageStart + 1}–{Math.min(pageStart + PAGE_SIZE, sortedEntries.length)} of{" "}
+          {sortedEntries.length}
+        </span>
+        <button
+          type="button"
+          onClick={() => setPage(currentPage + 1)}
+          disabled={currentPage >= totalPages - 1}
+        >
+          Next →
+        </button>
+      </div>
     </div>
   );
 }
 
-function JobScoutRow({ entry }: { entry: JobScoutLedgerEntry }) {
+function JobScoutRow({
+  entry,
+  selected,
+  onToggle,
+}: {
+  entry: JobScoutLedgerEntry;
+  selected: boolean;
+  onToggle: (checked: boolean) => void;
+}) {
   const isPending = entry.status === "pending" || entry.fitScore === undefined;
   const tier = !isPending ? fitScoreTier(entry.fitScore!) : null;
   const postedLabel = formatPostedDate(entry.postedAt);
 
   return (
-    <tr className={isPending ? "job-scout-row-pending" : undefined}>
+    <tr className={[isPending ? "job-scout-row-pending" : "", selected ? "job-scout-row-selected" : ""].join(" ").trim() || undefined}>
+      <td>
+        <input
+          type="checkbox"
+          className="job-scout-row-check"
+          checked={selected}
+          onChange={(event) => onToggle(event.target.checked)}
+          aria-label={`Select ${entry.title} at ${entry.company}`}
+        />
+      </td>
       <td>
         {entry.title}
         {entry.status !== "scored" ? <span className="job-scout-status">{entry.status}</span> : null}

@@ -5,15 +5,24 @@ Winston's background. It's for Winston only - it is not part of the public portf
 
 ## What it is and where it lives
 
-- Page: `/job-scout`, rendered by `app/job-scout/page.tsx` (server component) with the
-  interactive table in `app/job-scout/JobScoutTable.tsx` (client component).
+- Page: `/job-scout`, rendered by `app/job-scout/page.tsx` (server component). The interactive
+  body lives in `app/job-scout/JobScoutSections.tsx` (client component), which renders three
+  native `<details>`/`<summary>` collapsible sections and owns the state shared across them.
 - **Hidden**: not in the site's primary navigation, and the page sets
   `robots: { index: false, follow: false }` so search engines won't index it.
-- It shows a single sortable table (every column header sorts, default: fit score descending) of
-  every non-expired job the scan has found: title, company, matched role, location, posted date,
-  pay (if listed), a link to the posting, and a fit score - either a 1-10 color-banded pill for
-  scored jobs (green = strong fit, at or above the cutoff in `content/job-scout-config.ts`) or a
-  muted "pending" pill for jobs not yet scored.
+- **Opportunities** (open by default) is the sortable table of every non-expired job the scan
+  has found, built in `app/job-scout/JobScoutTable.tsx`: title, company, matched role, location,
+  posted date, pay (if listed), a link to the posting, and a fit score - either a 1-10
+  color-banded pill for scored jobs (green = strong fit, at or above the cutoff in
+  `content/job-scout-config.ts`) or a muted "pending" pill for jobs not yet scored. Every column
+  header sorts (default: fit score descending), and sorting resets to page 1. Rows paginate 30 at
+  a time. Each row has a checkbox; selection persists across pagination and re-sorting. A toolbar
+  above the table shows a running "N selected" count, a "Select All" button that selects every row
+  on the current page, and a "Send" button (disabled with nothing selected) that removes the
+  selected rows from the list and updates the Tailor My Profile section's placeholder with the
+  sent count - client-side only, not persisted, and reverts on refresh.
+- **Tracker** and **Tailor My Profile** are collapsed-by-default placeholder sections with no
+  logic yet; see "Known limits / not yet built" below.
 
 ## The pipeline, end to end
 
@@ -88,3 +97,7 @@ Cloudflare, Ethena, Veeva, Windfall, Aizon, AlphaLifeSci, Notion, LevelPath.
   rationale, and an optional compensation range.
 - **No UI for applied/passed.** Marking a job as applied or passed is a manual edit to
   `content/job-scout-seen.json` - there is no button on the page for it yet.
+- **Tracker and Tailor My Profile are placeholders.** Sending rows from Opportunities only
+  updates the Tailor My Profile section's placeholder text with a count, client-side and
+  ephemeral - it does not write to the ledger, build a resume/cover-letter draft, or populate the
+  Tracker table. Both are queued as separate follow-on builds.

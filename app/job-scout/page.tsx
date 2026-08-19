@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import ledgerJson from "@/content/job-scout-seen.json";
 import type { JobScoutLedger } from "@/scripts/job-scout/types";
-import { JobScoutTable } from "./JobScoutTable";
+import { JobScoutSections } from "./JobScoutSections";
 
 export const metadata: Metadata = {
   title: "Job Scout",
@@ -31,7 +31,7 @@ export default function JobScoutPage() {
         {entries.length === 0 ? (
           <p className="job-scout-empty">No jobs tracked yet. The daily scan runs at 13:00 UTC.</p>
         ) : (
-          <JobScoutTable entries={entries} />
+          <JobScoutSections entries={entries} />
         )}
       </section>
     </main>
