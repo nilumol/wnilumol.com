@@ -205,7 +205,7 @@ export function JobScoutTable({
       </div>
 
       <div className="job-scout-pagination">
-        <button type="button" onClick={() => setPage((p) => p - 1)} disabled={currentPage === 0}>
+        <button type="button" onClick={() => setPage(currentPage - 1)} disabled={currentPage === 0}>
           ← Previous
         </button>
         <span className="job-scout-pagination-info">
@@ -215,7 +215,7 @@ export function JobScoutTable({
         </span>
         <button
           type="button"
-          onClick={() => setPage((p) => p + 1)}
+          onClick={() => setPage(currentPage + 1)}
           disabled={currentPage >= totalPages - 1}
         >
           Next →
