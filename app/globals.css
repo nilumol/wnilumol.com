@@ -130,6 +130,8 @@ p, h1, h2, ul { margin-top: 0; }
 .job-scout-pill-moderate { background: rgba(176, 137, 61, 0.18); color: #8a692f; }
 .job-scout-pill-weak { background: rgba(166, 79, 62, 0.16); color: #8a4433; }
 .job-scout-pill-pending { background: rgba(25, 25, 25, 0.05); color: var(--muted); font-style: italic; text-transform: lowercase; }
+.job-scout-pill-applied { background: rgba(96, 122, 80, 0.16); color: #4c6140; text-transform: lowercase; }
+.job-scout-pill-passed { background: rgba(25, 25, 25, 0.08); color: var(--muted); text-transform: lowercase; }
 .job-scout-sections { margin-top: 8px; }
 .job-scout-section { border-top: 1px solid var(--line); }
 .job-scout-section:last-of-type { border-bottom: 1px solid var(--line); }
