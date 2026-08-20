@@ -7,10 +7,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.ashbyhq.com/openai/0b80474f-6438-4b41-94e4-0e653c7e3457",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Dublin, Ireland",
     "compensationRange": null,
-    "postedAt": "2026-07-16T18:18:11.023+00:00"
+    "postedAt": "2026-07-16T18:18:11.023+00:00",
+    "fitScore": 3,
+    "fitRationale": "Duplicate OpenAI Ads Solutions CSM posting based in Dublin - same digital-advertising domain mismatch with no life-sciences relevance."
   },
   "ashby:0c457d2a-5e8e-4392-94b2-c63696b55dd8": {
     "id": "0c457d2a-5e8e-4392-94b2-c63696b55dd8",
@@ -20,10 +22,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/0c457d2a-5e8e-4392-94b2-c63696b55dd8",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Tokyo, Japan",
     "compensationRange": null,
-    "postedAt": "2026-08-17T01:35:29.502+00:00"
+    "postedAt": "2026-08-17T01:35:29.502+00:00",
+    "fitScore": 2,
+    "fitRationale": "Head of Enterprise Solutions Consultants, Japan is a senior second-line sales-leadership role requiring 3+ years managing managers and native/bilingual Japanese fluency - well beyond his people-management scope and a disqualifying language requirement, with no life-sciences domain overlap."
   },
   "ashby:00f42dd8-c3b3-45cf-829e-550b675b3dd8": {
     "id": "00f42dd8-c3b3-45cf-829e-550b675b3dd8",
@@ -33,10 +37,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/00f42dd8-c3b3-45cf-829e-550b675b3dd8",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "New York, New York",
-    "compensationRange": null,
-    "postedAt": "2026-07-27T19:28:51.123+00:00"
+    "compensationRange": "$216,000-$276,000 per year",
+    "postedAt": "2026-07-27T19:28:51.123+00:00",
+    "fitScore": 4,
+    "fitRationale": "Mid-Market Solutions Consultant at Notion (4-7+ years) is a closer seniority match than the commercial-tier posting, and the live-demo/discovery-driven role family fits his background, but there's no life-sciences domain relevance in Notion's productivity-software product."
   },
   "ashby:4e3851f1-834b-443f-87d7-be1619e9d6fb": {
     "id": "4e3851f1-834b-443f-87d7-be1619e9d6fb",
@@ -46,10 +52,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/levelpath/4e3851f1-834b-443f-87d7-be1619e9d6fb",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "New York City",
-    "compensationRange": null,
-    "postedAt": "2025-07-23T16:22:58.869+00:00"
+    "compensationRange": "$150,000-$200,000 OTE",
+    "postedAt": "2025-07-23T16:22:58.869+00:00",
+    "fitScore": 5,
+    "fitRationale": "Duplicate LevelPath Solutions Consultant posting for New York - same seniority/role-family match with no life-sciences domain relevance."
   },
   "ashby:5d5d69c5-7977-4c74-9ba3-e26be06be081": {
     "id": "5d5d69c5-7977-4c74-9ba3-e26be06be081",
@@ -59,10 +67,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/levelpath/5d5d69c5-7977-4c74-9ba3-e26be06be081",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "San Francisco",
-    "compensationRange": null,
-    "postedAt": "2024-09-30T16:12:10.846+00:00"
+    "compensationRange": "$150,000-$200,000 OTE",
+    "postedAt": "2024-09-30T16:12:10.846+00:00",
+    "fitScore": 5,
+    "fitRationale": "Solutions Consultant at LevelPath (AI procurement platform) asks for 6+ years including 4+ in customer-facing pre-sales/implementation, which matches his seniority and role family reasonably well, but procurement software has no life-sciences domain overlap."
   },
   "ashby:6f3f5aef-069b-4153-80e3-ce96cc4f7a47": {
     "id": "6f3f5aef-069b-4153-80e3-ce96cc4f7a47",
@@ -72,10 +82,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/candidhealth/6f3f5aef-069b-4153-80e3-ce96cc4f7a47",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "New York City",
-    "compensationRange": null,
-    "postedAt": "2026-02-19T05:43:37.889+00:00"
+    "compensationRange": "$175,000-$226,000 OTE",
+    "postedAt": "2026-02-19T05:43:37.889+00:00",
+    "fitScore": 7,
+    "fitRationale": "Technical Solutions Consultant (Pre-Sales) at Candid Health, a revenue-cycle-management healthcare technology company, closely matches his demo/discovery/value-analysis Solutions Consultant track record and sits in an adjacent regulated-healthcare domain, though it's RCM/billing rather than his core GMP/biopharma R&D specialty."
   },
   "ashby:8c7e45c0-85ad-485e-aa6d-4b440d2e0723": {
     "id": "8c7e45c0-85ad-485e-aa6d-4b440d2e0723",
@@ -85,10 +97,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/8c7e45c0-85ad-485e-aa6d-4b440d2e0723",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "San Francisco, California",
-    "compensationRange": null,
-    "postedAt": "2026-07-27T13:14:11.050+00:00"
+    "compensationRange": "$216,000-$276,000 per year",
+    "postedAt": "2026-07-27T13:14:11.050+00:00",
+    "fitScore": 4,
+    "fitRationale": "Duplicate Mid-Market Solutions Consultant posting for a different location - same reasonable seniority/role-family match with no life-sciences domain relevance."
   },
   "ashby:9ecff4f6-409e-4600-a53d-9016139592ce": {
     "id": "9ecff4f6-409e-4600-a53d-9016139592ce",
@@ -98,10 +112,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/9ecff4f6-409e-4600-a53d-9016139592ce",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "San Francisco, California",
-    "compensationRange": null,
-    "postedAt": "2026-07-27T12:56:40.111+00:00"
+    "compensationRange": "$306,000-$390,000 per year",
+    "postedAt": "2026-07-27T12:56:40.111+00:00",
+    "fitScore": 5,
+    "fitRationale": "Enterprise Solutions Consultant at Notion (8-15+ years, large complex deals) is a strong seniority and role-family match to his enterprise closing and demo experience, but there's no life-sciences or regulated-industry relevance in the productivity-software product."
   },
   "ashby:9fe70944-f84f-421c-8168-bbf21d4b4ca4": {
     "id": "9fe70944-f84f-421c-8168-bbf21d4b4ca4",
@@ -111,10 +127,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/9fe70944-f84f-421c-8168-bbf21d4b4ca4",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Tokyo, Japan",
     "compensationRange": null,
-    "postedAt": "2026-08-05T08:28:53.412+00:00"
+    "postedAt": "2026-08-05T08:28:53.412+00:00",
+    "fitScore": 3,
+    "fitRationale": "Solutions Consultant Manager role for Notion's Enterprise Japan segment requires frontline sales-management experience directly managing a team of SCs plus native Japanese fluency - Winston hasn't managed an SC team and doesn't have that language skill, and Notion's productivity-software domain has no life-sciences overlap."
   },
   "ashby:14c52e6b-b00b-42b5-96fb-195919ef6bab": {
     "id": "14c52e6b-b00b-42b5-96fb-195919ef6bab",
@@ -124,10 +142,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/14c52e6b-b00b-42b5-96fb-195919ef6bab",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Paris, France",
-    "compensationRange": null,
-    "postedAt": "2026-08-07T11:09:11.933+00:00"
+    "compensationRange": "€174,000-€186,000 per year",
+    "postedAt": "2026-08-07T11:09:11.933+00:00",
+    "fitScore": 2,
+    "fitRationale": "Solutions Consultant, Mid-Market France requires French fluency, a disqualifying language mismatch, on top of no life-sciences domain relevance in Notion's productivity product."
   },
   "ashby:15dde0f5-b3fd-4d46-8ec2-0858ebdd888d": {
     "id": "15dde0f5-b3fd-4d46-8ec2-0858ebdd888d",
@@ -137,10 +157,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/15dde0f5-b3fd-4d46-8ec2-0858ebdd888d",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Tokyo, Japan",
     "compensationRange": null,
-    "postedAt": "2026-07-27T13:22:01.097+00:00"
+    "postedAt": "2026-07-27T13:22:01.097+00:00",
+    "fitScore": 2,
+    "fitRationale": "Commercial Solutions Consultant at Notion Japan (1-3 years, below his seniority) requires Japanese-market placement without stated fluency but is functionally in the same category as the other Japan roles; no life-sciences relevance and below-seniority scope keep this weak."
   },
   "ashby:30e2445d-561e-4e10-8a30-1f5baa611596": {
     "id": "30e2445d-561e-4e10-8a30-1f5baa611596",
@@ -150,10 +172,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.ashbyhq.com/openai/30e2445d-561e-4e10-8a30-1f5baa611596",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Munich, Germany",
     "compensationRange": null,
-    "postedAt": "2026-07-16T18:18:16.292+00:00"
+    "postedAt": "2026-07-16T18:18:16.292+00:00",
+    "fitScore": 3,
+    "fitRationale": "Duplicate OpenAI Ads Solutions CSM posting based in Munich - same digital-advertising domain mismatch with no life-sciences relevance."
   },
   "ashby:43b37ac5-1ce9-4106-8df1-1ae8515087ee": {
     "id": "43b37ac5-1ce9-4106-8df1-1ae8515087ee",
@@ -163,10 +187,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/43b37ac5-1ce9-4106-8df1-1ae8515087ee",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "New York, New York",
-    "compensationRange": null,
-    "postedAt": "2026-07-27T13:01:22.995+00:00"
+    "compensationRange": "$306,000-$390,000 per year",
+    "postedAt": "2026-07-27T13:01:22.995+00:00",
+    "fitScore": 5,
+    "fitRationale": "Enterprise Solutions Consultant at Notion (8-15+ years) matches his seniority well and the demo-driven, full-cycle account-ownership role family closely echoes his Benchling track record, though Notion's productivity-software domain has no life-sciences overlap."
   },
   "ashby:77af0faa-8f69-4dc5-baa6-6e253823bccb": {
     "id": "77af0faa-8f69-4dc5-baa6-6e253823bccb",
@@ -176,10 +202,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/77af0faa-8f69-4dc5-baa6-6e253823bccb",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Paris, France",
-    "compensationRange": null,
-    "postedAt": "2026-08-05T16:20:37.792+00:00"
+    "compensationRange": "€240,000 per year",
+    "postedAt": "2026-08-05T16:20:37.792+00:00",
+    "fitScore": 2,
+    "fitRationale": "Manager, Solutions Consultants for Notion's France region requires direct frontline management of an SC team plus French fluency - Winston hasn't managed an SC team, lacks French fluency, and there's no life-sciences domain relevance."
   },
   "ashby:99f4a8ea-6bd0-49a3-b90a-5004c8923523": {
     "id": "99f4a8ea-6bd0-49a3-b90a-5004c8923523",
@@ -189,10 +217,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.ashbyhq.com/openai/99f4a8ea-6bd0-49a3-b90a-5004c8923523",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "San Francisco",
     "compensationRange": null,
-    "postedAt": "2026-05-11T14:17:51.272+00:00"
+    "postedAt": "2026-05-11T14:17:51.272+00:00",
+    "fitScore": 3,
+    "fitRationale": "Customer Success Manager for OpenAI's Ads Solutions team requires 5-10+ years of digital-advertising/adtech account management - a domain (advertising) with no biopharma or regulated-industry adjacency, though the SQL/data-querying and trusted-advisor elements are familiar territory."
   },
   "ashby:991f7a9c-5908-4690-b655-aea652f7e7b0": {
     "id": "991f7a9c-5908-4690-b655-aea652f7e7b0",
@@ -202,10 +232,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.ashbyhq.com/openai/991f7a9c-5908-4690-b655-aea652f7e7b0",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Singapore",
     "compensationRange": null,
-    "postedAt": "2026-05-22T22:31:37.294+00:00"
+    "postedAt": "2026-05-22T22:31:37.294+00:00",
+    "fitScore": 3,
+    "fitRationale": "Duplicate OpenAI Ads Solutions CSM posting based in Singapore - same digital-advertising domain mismatch with no life-sciences relevance."
   },
   "ashby:6140e48c-949d-48a8-a3f0-c826199040fe": {
     "id": "6140e48c-949d-48a8-a3f0-c826199040fe",
@@ -215,10 +247,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/6140e48c-949d-48a8-a3f0-c826199040fe",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Munich, Germany",
-    "compensationRange": null,
-    "postedAt": "2026-08-05T16:38:53.800+00:00"
+    "compensationRange": "€260,000 per year",
+    "postedAt": "2026-08-05T16:38:53.800+00:00",
+    "fitScore": 2,
+    "fitRationale": "Manager, Solutions Consultants for Notion's DACH region requires the same SC-team management background plus German fluency - both unmet, with no life-sciences domain relevance."
   },
   "ashby:38380ec7-9b4a-4bc1-8efd-852f831cf64f": {
     "id": "38380ec7-9b4a-4bc1-8efd-852f831cf64f",
@@ -228,10 +262,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/38380ec7-9b4a-4bc1-8efd-852f831cf64f",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Tokyo, Japan",
     "compensationRange": null,
-    "postedAt": "2026-07-27T13:17:56.837+00:00"
+    "postedAt": "2026-07-27T13:17:56.837+00:00",
+    "fitScore": 2,
+    "fitRationale": "Enterprise Solutions Consultant at Notion Japan requires native/bilingual Japanese fluency, which is disqualifying, on top of no life-sciences domain relevance in the product."
   },
   "ashby:a1e9f265-7a8d-4acd-9503-3c36b6f7008b": {
     "id": "a1e9f265-7a8d-4acd-9503-3c36b6f7008b",
@@ -241,10 +277,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/a1e9f265-7a8d-4acd-9503-3c36b6f7008b",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "New York, New York",
-    "compensationRange": null,
-    "postedAt": "2026-07-27T13:06:34.843+00:00"
+    "compensationRange": "$180,000-$216,000 per year",
+    "postedAt": "2026-07-27T13:06:34.843+00:00",
+    "fitScore": 4,
+    "fitRationale": "Commercial Solutions Consultant at Notion (1-3 years) is below his seniority level, though the demo-driven role family fits and there's no life-sciences domain overlap."
   },
   "ashby:be119222-db73-45fb-8634-0095154fcf1d": {
     "id": "be119222-db73-45fb-8634-0095154fcf1d",
@@ -254,10 +292,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/be119222-db73-45fb-8634-0095154fcf1d",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Seoul, South Korea",
     "compensationRange": null,
-    "postedAt": "2026-07-27T13:26:28.188+00:00"
+    "postedAt": "2026-07-27T13:26:28.188+00:00",
+    "fitScore": 5,
+    "fitRationale": "Enterprise Solutions Consultant at Notion Korea (8-15+ years) matches his seniority and demo-driven role family well; the posting doesn't state a Korean-language requirement, but there's no life-sciences domain relevance."
   },
   "ashby:d1d118da-f081-4d0a-91a1-de8450ae0438": {
     "id": "d1d118da-f081-4d0a-91a1-de8450ae0438",
@@ -267,10 +307,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/d1d118da-f081-4d0a-91a1-de8450ae0438",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Tokyo, Japan",
     "compensationRange": null,
-    "postedAt": "2026-07-27T13:36:09.109+00:00"
+    "postedAt": "2026-07-27T13:36:09.109+00:00",
+    "fitScore": 2,
+    "fitRationale": "Mid-Market Solutions Consultant at Notion Japan requires native/bilingual Japanese fluency, a disqualifying language mismatch, compounded by no life-sciences domain overlap."
   },
   "ashby:d3eab521-8adb-4576-b740-905b3894a031": {
     "id": "d3eab521-8adb-4576-b740-905b3894a031",
@@ -280,10 +322,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/d3eab521-8adb-4576-b740-905b3894a031",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Seoul, South Korea",
     "compensationRange": null,
-    "postedAt": "2026-08-06T06:28:09.765+00:00"
+    "postedAt": "2026-08-06T06:28:09.765+00:00",
+    "fitScore": 2,
+    "fitRationale": "Commercial Solutions Consultant requiring native/bilingual Korean fluency and only 1-3 years experience - both a language mismatch and below his seniority, with no life-sciences domain relevance."
   },
   "ashby:e2a538e9-70ce-4596-9e1c-5ad578040c61": {
     "id": "e2a538e9-70ce-4596-9e1c-5ad578040c61",
@@ -293,10 +337,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.ashbyhq.com/openai/e2a538e9-70ce-4596-9e1c-5ad578040c61",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Paris, France",
     "compensationRange": null,
-    "postedAt": "2026-07-16T18:18:21.760+00:00"
+    "postedAt": "2026-07-16T18:18:21.760+00:00",
+    "fitScore": 3,
+    "fitRationale": "Duplicate OpenAI Ads Solutions CSM posting based in Paris - same digital-advertising domain mismatch with no life-sciences relevance."
   },
   "ashby:e12b83e9-18bd-4f5b-8bf8-16c78726559a": {
     "id": "e12b83e9-18bd-4f5b-8bf8-16c78726559a",
@@ -306,10 +352,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/e12b83e9-18bd-4f5b-8bf8-16c78726559a",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "San Francisco, California",
-    "compensationRange": null,
-    "postedAt": "2026-07-27T13:10:21.071+00:00"
+    "compensationRange": "$180,000-$216,000 per year",
+    "postedAt": "2026-07-27T13:10:21.071+00:00",
+    "fitScore": 4,
+    "fitRationale": "Commercial Solutions Consultant at Notion asks for only 1-3 years of technical selling experience - well below his 10+ years of seniority - and the productivity-software domain has no life-sciences adjacency, though the live-demo/discovery role family itself matches his track record."
   },
   "ashby:fa089457-a22c-406f-9bc2-223656b87026": {
     "id": "fa089457-a22c-406f-9bc2-223656b87026",
@@ -319,10 +367,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/fa089457-a22c-406f-9bc2-223656b87026",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Dublin, Ireland",
-    "compensationRange": null,
-    "postedAt": "2026-08-07T13:32:14.008+00:00"
+    "compensationRange": "€144,000-€156,000 per year",
+    "postedAt": "2026-08-07T13:32:14.008+00:00",
+    "fitScore": 2,
+    "fitRationale": "Solutions Consultant, Commercial MEDIT (Dublin-based) requires fluency in English and Spanish, which Winston doesn't have, and there is no life-sciences domain relevance."
   },
   "greenhouse:7917721": {
     "id": 7917721,
@@ -391,10 +441,12 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://boards.greenhouse.io/cloudflare/jobs/8113115?gh_jid=8113115",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Hybrid",
     "compensationRange": null,
-    "postedAt": "2026-08-18T18:34:51-04:00"
+    "postedAt": "2026-08-18T18:34:51-04:00",
+    "fitScore": 3,
+    "fitRationale": "Senior Manager leading a Solutions Architecture team for Cloudflare's AI & Developer Platform requires 7+ years of technical sales leadership in cloud/full-stack engineering - the people-leadership and cross-functional GTM elements are familiar territory, but the deep cloud/developer-platform technical requirement and lack of life-sciences relevance make this a weak fit."
   },
   "greenhouse:8122020": {
     "id": 8122020,
@@ -419,10 +471,12 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://boards.greenhouse.io/cloudflare/jobs/8131824?gh_jid=8131824",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Hybrid",
     "compensationRange": null,
-    "postedAt": "2026-08-18T18:57:38-04:00"
+    "postedAt": "2026-08-18T18:57:38-04:00",
+    "fitScore": 3,
+    "fitRationale": "Principal Solutions Architect for Cloudflare's Public Sector Federal team requires 15+ years of technical sales and deep government/edge-cloud/networking expertise - the strategic-account and roadmap-building elements echo his enterprise consulting experience, but the technical domain (edge networking, FEDRAMP) and vertical (federal government, not life sciences) don't overlap."
   },
   "greenhouse:5032672007": {
     "id": 5032672007,
@@ -882,10 +936,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5177715007",
     "firstSeen": "2026-08-20T13:42:04.832Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - Texas, USA",
-    "compensationRange": null,
-    "postedAt": "2026-07-23T13:59:38-04:00"
+    "compensationRange": "$154,875-$221,250 USD",
+    "postedAt": "2026-07-23T13:59:38-04:00",
+    "fitScore": 2,
+    "fitRationale": "Public-sector SLED Sales Engineer requiring security operations/firewall/proxy experience and US citizenship - purely cybersecurity technical stack, no life-sciences domain relevance, and government-vertical focus he hasn't worked in."
   },
   "greenhouse:5187339007": {
     "id": 5187339007,
@@ -1045,10 +1101,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5196237007",
     "firstSeen": "2026-08-19T00:47:22.094Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - USA",
-    "compensationRange": null,
-    "postedAt": "2026-08-18T14:50:37-04:00"
+    "compensationRange": "$194,250-$277,500 USD",
+    "postedAt": "2026-08-18T14:50:37-04:00",
+    "fitScore": 2,
+    "fitRationale": "Director-level sales engineering leadership for Zscaler's Data Security/Gen AI product line - pure cybersecurity domain with zero life-sciences or regulated-industry overlap, and requires technical expertise in data protection/web security that shares nothing with Winston's SQL/demo/biopharma track record."
   },
   "greenhouse:5196417007": {
     "id": 5196417007,
@@ -1207,10 +1265,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198898007",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - California, USA; Remote - Washington, USA",
-    "compensationRange": null,
-    "postedAt": "2026-08-18T17:58:52-04:00"
+    "compensationRange": "$175,875-$251,250 USD",
+    "postedAt": "2026-08-18T17:58:52-04:00",
+    "fitScore": 2,
+    "fitRationale": "Duplicate Senior Manager, Sales Engineering posting (Majors, West) - same cybersecurity/networking specialization with no biopharma or regulated-industry adjacency."
   },
   "greenhouse:5198900007": {
     "id": 5198900007,
@@ -1220,10 +1280,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198900007",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - Illinois, USA",
-    "compensationRange": null,
-    "postedAt": "2026-08-18T18:02:33-04:00"
+    "compensationRange": "$175,875-$251,250 USD",
+    "postedAt": "2026-08-18T18:02:33-04:00",
+    "fitScore": 2,
+    "fitRationale": "Same Senior Manager, Sales Engineering role for a different US region (Majors, Central) - identical cybersecurity/networking requirements and zero domain overlap with his biopharma background."
   },
   "greenhouse:5198904007": {
     "id": 5198904007,
@@ -1233,10 +1295,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198904007",
     "firstSeen": "2026-08-20T13:42:04.832Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - Florida, USA; Remote - Georgia, USA; Remote - North Carolina, USA; Remote - South Carolina, USA",
-    "compensationRange": null,
-    "postedAt": "2026-08-19T16:25:40-04:00"
+    "compensationRange": "$175,875-$251,250 USD",
+    "postedAt": "2026-08-19T16:25:40-04:00",
+    "fitScore": 2,
+    "fitRationale": "Senior Manager, Sales Engineering (Majors, Southeast) requiring 10+ years sales/systems engineering plus 5+ years managing an SE team selling network security - Winston lacks that specific management background, and there is no life-sciences relevance."
   },
   "greenhouse:5198908007": {
     "id": 5198908007,
@@ -1291,10 +1355,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198914007",
     "firstSeen": "2026-08-20T13:42:04.832Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - Texas, USA",
-    "compensationRange": null,
-    "postedAt": "2026-08-19T16:25:45-04:00"
+    "compensationRange": "$175,875-$251,250 USD",
+    "postedAt": "2026-08-19T16:25:45-04:00",
+    "fitScore": 2,
+    "fitRationale": "Duplicate of the Zscaler Senior Manager, Sales Engineering (Majors) posting for a different territory (TOLA) - same cybersecurity domain mismatch and unmet SE-team-management requirement."
   },
   "greenhouse:5199283007": {
     "id": 5199283007,
@@ -1379,10 +1445,12 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5203169007",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - USA",
-    "compensationRange": null,
-    "postedAt": "2026-08-18T18:17:52-04:00"
+    "compensationRange": "$194,250-$277,500 USD",
+    "postedAt": "2026-08-18T18:17:52-04:00",
+    "fitScore": 2,
+    "fitRationale": "Specialist Solutions Architect for OT/industrial security requiring deep IACS/Purdue-model and network segmentation expertise - despite the Solutions Architect title, the day-to-day work is deeply technical cybersecurity architecture with zero life-sciences or regulated-pharma relevance."
   },
   "greenhouse:5204227007": {
     "id": 5204227007,
@@ -1437,10 +1505,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5207286007",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - California, USA",
-    "compensationRange": null,
-    "postedAt": "2026-08-18T19:54:42-04:00"
+    "compensationRange": "$128,625-$183,750 USD",
+    "postedAt": "2026-08-18T19:54:42-04:00",
+    "fitScore": 2,
+    "fitRationale": "Commercial Sales Engineer requiring hands-on cybersecurity/networking fundamentals and prior quota-carrying deal-closing experience in networking - no biopharma or regulated-industry relevance, and the required technical stack doesn't overlap with his tools."
   },
   "greenhouse:5207292007": {
     "id": 5207292007,
@@ -1495,10 +1565,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5209070007",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - California, USA",
-    "compensationRange": null,
-    "postedAt": "2026-08-18T17:54:57-04:00"
+    "compensationRange": "$175,875-$251,250 USD",
+    "postedAt": "2026-08-18T17:54:57-04:00",
+    "fitScore": 2,
+    "fitRationale": "Senior Manager leading a regional sales engineering team for Zscaler's core cybersecurity portfolio; while the people-leadership and demo/POC process elements echo his GTM launch experience, the required cybersecurity/networking technical expertise and total absence of life-sciences relevance make this a weak fit."
   },
   "greenhouse:5210703007": {
     "id": 5210703007,
@@ -1508,10 +1580,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5210703007",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - Ontario, Canada; Remote - Quebec, Canada",
-    "compensationRange": null,
-    "postedAt": "2026-08-18T16:34:23-04:00"
+    "compensationRange": "$138,600-$198,000 CAD",
+    "postedAt": "2026-08-18T16:34:23-04:00",
+    "fitScore": 2,
+    "fitRationale": "Sales Engineer role requiring 5+ years of cybersecurity/networking experience (TCP/IP, DNS, VPN, firewalls) - a specific technical stack with no adjacency to Winston's life-sciences SaaS demo/discovery background, and no domain overlap."
   },
   "greenhouse:5211136007": {
     "id": 5211136007,
@@ -1536,10 +1610,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5211688007",
     "firstSeen": "2026-08-19T13:36:49.144Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - Maryland, USA; Remote - New Jersey, USA; Remote - North Carolina, USA; Remote - Pennsylvania, USA; Remote - South Carolina, USA; Remote - Virginia, USA; Remote - West Virginia, USA",
-    "compensationRange": null,
-    "postedAt": "2026-08-19T09:10:49-04:00"
+    "compensationRange": "$154,875-$210,000 USD",
+    "postedAt": "2026-08-19T09:10:49-04:00",
+    "fitScore": 2,
+    "fitRationale": "Hands-on Senior Sales Engineer for Zscaler's Federal/Aerospace & Defense vertical requiring deep Zero Trust/network security architecture expertise - a specialized technical stack with no overlap to his SQL/demo-driven life-sciences background."
   },
   "greenhouse:5212674007": {
     "id": 5212674007,
@@ -1549,10 +1625,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5212674007",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - Nova Scotia, Canada; Remote - Ontario, Canada; Remote - Quebec, Canada",
-    "compensationRange": null,
-    "postedAt": "2026-08-18T16:39:31-04:00"
+    "compensationRange": "$138,600-$198,000 CAD",
+    "postedAt": "2026-08-18T16:39:31-04:00",
+    "fitScore": 2,
+    "fitRationale": "Same cybersecurity Sales Engineer role as Zscaler's other SE postings, with an added French-fluency requirement; zero life-sciences domain relevance and a networking/security technical stack outside his background."
   },
   "greenhouse:5615966004": {
     "id": 5615966004,
@@ -1967,10 +2045,12 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/celonis/jobs/7797439003?gh_jid=7797439003",
     "firstSeen": "2026-08-20T13:42:04.832Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote, US, Washington DC",
-    "compensationRange": null,
-    "postedAt": "2026-07-20T15:58:32-04:00"
+    "compensationRange": "$126,000-$149,000 USD",
+    "postedAt": "2026-07-20T15:58:32-04:00",
+    "fitScore": 2,
+    "fitRationale": "Identical Celonis Senior Solutions Architect posting (containerized-deployment, Kubernetes/Terraform, government clearance) for a different location - same DevOps-heavy mismatch with no domain overlap."
   },
   "greenhouse:7811355002": {
     "id": 7811355002,
@@ -2010,10 +2090,12 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/celonis/jobs/7905008003?gh_jid=7905008003",
     "firstSeen": "2026-08-20T13:42:04.832Z",
-    "status": "pending",
+    "status": "scored",
     "location": "New York, US, New York",
-    "compensationRange": null,
-    "postedAt": "2026-08-19T13:36:05-04:00"
+    "compensationRange": "$126,000-$149,000 USD",
+    "postedAt": "2026-08-19T13:36:05-04:00",
+    "fitScore": 2,
+    "fitRationale": "Senior Solutions Architect role centered on Kubernetes/container deployment, Terraform/IaC, and federal government-clearance work - this is a hands-on DevOps/infrastructure role, not the consultative discovery-and-demo Solutions Architect work Winston has done, and there is no life-sciences relevance."
   },
   "greenhouse:8073294002": {
     "id": 8073294002,
@@ -2847,10 +2929,12 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8563159002",
     "firstSeen": "2026-08-20T13:42:04.832Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote - California; San Francisco, California",
-    "compensationRange": null,
-    "postedAt": "2026-08-19T12:54:03-04:00"
+    "compensationRange": "$180,000-$247,500 USD",
+    "postedAt": "2026-08-19T12:54:03-04:00",
+    "fitScore": 3,
+    "fitRationale": "Solutions Architect pre-sales role for Databricks' High Tech vertical involves POCs, SQL, and enterprise account partnership that echo his demo/discovery track record, but requires hands-on Spark/distributed-data-engineering coding depth he doesn't have, and there is no life-sciences domain relevance in the High Tech segment."
   },
   "greenhouse:8563181002": {
     "id": 8563181002,
@@ -4238,10 +4322,12 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8697067002",
     "firstSeen": "2026-08-19T13:36:49.145Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Riyadh, Saudi Arabia",
     "compensationRange": null,
-    "postedAt": "2026-08-19T04:09:34-04:00"
+    "postedAt": "2026-08-19T04:09:34-04:00",
+    "fitScore": 2,
+    "fitRationale": "Senior Solutions Architect role based in Riyadh requiring business-level Arabic fluency and hands-on Spark/big-data coding - the language and location requirement alone is disqualifying, and there is no life-sciences domain overlap."
   },
   "greenhouse:8697987002": {
     "id": 8697987002,
@@ -4356,10 +4442,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/5ff3db43-cc72-40b1-a618-7d90aecfe12c",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Massachusetts - Boston",
     "compensationRange": null,
-    "postedAt": "2026-05-29T21:09:21.237Z"
+    "postedAt": "2026-05-29T21:09:21.237Z",
+    "fitScore": 7,
+    "fitRationale": "Senior Client Partner for Veeva's Ostro platform serving pharmaceutical companies - strong life-sciences domain and appropriate seniority, though centered on executive relationship-building rather than the technical discovery/demo work he's best known for."
   },
   "lever:6e838fc4-565a-45cc-b00c-bf6c8668035e": {
     "id": "6e838fc4-565a-45cc-b00c-bf6c8668035e",
@@ -4369,10 +4457,12 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.lever.co/windfalldata/6e838fc4-565a-45cc-b00c-bf6c8668035e",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "San Francisco",
-    "compensationRange": "$125K-$155K",
-    "postedAt": "2026-07-11T00:22:14.846Z"
+    "compensationRange": null,
+    "postedAt": "2026-07-11T00:22:14.846Z",
+    "fitScore": 3,
+    "fitRationale": "Solutions Consultant role at Windfall requiring AdTech/MarTech ecosystem knowledge - the demo-driven, GTM-support role family matches his track record well, but the AdTech domain and Windfall's people-data product have no life-sciences relevance."
   },
   "lever:9ae6621d-2817-46e4-8d4c-113d4125293d": {
     "id": "9ae6621d-2817-46e4-8d4c-113d4125293d",
@@ -4395,10 +4485,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/80e60cdb-b94e-4712-9e23-7ee8503ffdf3",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Japan - Tokyo",
     "compensationRange": null,
-    "postedAt": "2026-03-12T14:11:22.654Z"
+    "postedAt": "2026-03-12T14:11:22.654Z",
+    "fitScore": 7,
+    "fitRationale": "Customer Success Manager for Veeva's CRM suite is squarely in his life-sciences SaaS domain (Veeva is one of his listed tools, and he has direct biopharma commercial experience), though the role is CSM rather than his more common Solutions Consultant/demo-heavy track, and it's based in Japan rather than requiring travel from a US base."
   },
   "lever:83c64282-ccdd-455f-a0e7-87fe3b633bc2": {
     "id": "83c64282-ccdd-455f-a0e7-87fe3b633bc2",
@@ -4408,10 +4500,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/83c64282-ccdd-455f-a0e7-87fe3b633bc2",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "United Kingdom - London",
     "compensationRange": null,
-    "postedAt": "2026-05-13T22:06:51.317Z"
+    "postedAt": "2026-05-13T22:06:51.317Z",
+    "fitScore": 8,
+    "fitRationale": "Customer Success Manager for Veeva's Quality product line lines up closely with his GMP/quality-compliance background from Genentech and Merck (21 CFR Part 11/210/211) plus his existing familiarity with Veeva as a tool, though the role is CSM rather than his more typical technical Solutions Consultant track."
   },
   "lever:85bb3c0f-0a39-4dbd-bdcd-3ebe4242dfbb": {
     "id": "85bb3c0f-0a39-4dbd-bdcd-3ebe4242dfbb",
@@ -4421,10 +4515,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/85bb3c0f-0a39-4dbd-bdcd-3ebe4242dfbb",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Germany - Berlin",
     "compensationRange": null,
-    "postedAt": "2026-05-13T22:08:00.650Z"
+    "postedAt": "2026-05-13T22:08:00.650Z",
+    "fitScore": 8,
+    "fitRationale": "Duplicate Veeva Quality CSM posting - same strong GMP/quality domain match given his manufacturing-compliance background."
   },
   "lever:87c8a056-1cb0-4b33-bd1e-2144acf1821c": {
     "id": "87c8a056-1cb0-4b33-bd1e-2144acf1821c",
@@ -4447,10 +4543,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/90f49c93-6f2a-45d9-93f4-0fd494f97c57",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Ireland - Dublin",
     "compensationRange": null,
-    "postedAt": "2026-06-17T17:10:43.194Z"
+    "postedAt": "2026-06-17T17:10:43.194Z",
+    "fitScore": 8,
+    "fitRationale": "Duplicate Veeva Quality CSM posting - same strong GMP/quality domain match given his manufacturing-compliance background."
   },
   "lever:961ebde4-46c4-44b6-b502-55fcd56d17b6": {
     "id": "961ebde4-46c4-44b6-b502-55fcd56d17b6",
@@ -4460,10 +4558,12 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://jobs.lever.co/ethena/961ebde4-46c4-44b6-b502-55fcd56d17b6",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Remote",
-    "compensationRange": "$95K-$150K",
-    "postedAt": "2026-07-09T22:47:03.998Z"
+    "compensationRange": null,
+    "postedAt": "2026-07-09T22:47:03.998Z",
+    "fitScore": 2,
+    "fitRationale": "Sales Engineer role at Ethena, a compliance-training SaaS company with no life-sciences or biopharma focus; the posting text available doesn't even detail day-to-day technical duties, and the company's HR/compliance-training domain has no adjacency to his GMP/regulated-manufacturing background."
   },
   "lever:2173d43f-5756-475d-86ff-a837d91c2133": {
     "id": "2173d43f-5756-475d-86ff-a837d91c2133",
@@ -4486,10 +4586,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/6517ca0c-cac9-4ed7-b7ea-77f984787f52",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "South Korea - Seoul",
     "compensationRange": null,
-    "postedAt": "2026-02-27T16:23:41.782Z"
+    "postedAt": "2026-02-27T16:23:41.782Z",
+    "fitScore": 7,
+    "fitRationale": "Veeva Quality CSM role based in Korea - the GMP/quality-compliance domain overlap is strong, but the location likely implies local-market fluency not established in his background, slightly dampening the fit relative to the US postings."
   },
   "lever:12194e83-3c4a-4a9d-a398-ce906a8063ce": {
     "id": "12194e83-3c4a-4a9d-a398-ce906a8063ce",
@@ -4499,10 +4601,12 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://jobs.lever.co/veeva/12194e83-3c4a-4a9d-a398-ce906a8063ce",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Hungary - Budapest",
     "compensationRange": null,
-    "postedAt": "2025-01-13T21:20:40.822Z"
+    "postedAt": "2025-01-13T21:20:40.822Z",
+    "fitScore": 8,
+    "fitRationale": "Solutions Architect configuring Veeva's Vault PromoMats/MedComms applications directly for life-sciences/pharma customers - a near-ideal match to his technical configuration, discovery, and biopharma-domain track record from Benchling and his manufacturing background."
   },
   "lever:039516d3-491e-4ef3-b15a-75f18bca8e7f": {
     "id": "039516d3-491e-4ef3-b15a-75f18bca8e7f",
@@ -4512,10 +4616,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/039516d3-491e-4ef3-b15a-75f18bca8e7f",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Pennsylvania - Philadelphia",
     "compensationRange": null,
-    "postedAt": "2026-07-08T21:43:32.804Z"
+    "postedAt": "2026-07-08T21:43:32.804Z",
+    "fitScore": 7,
+    "fitRationale": "Principal Client Services role for Veeva's Ostro brand-engagement platform serving life-sciences/pharma clients - strong domain fit and appropriate senior title, though it's an account-ownership/ROI role rather than the technical demo-driven work that's his strongest track record."
   },
   "lever:d309d40d-0325-4913-820f-832089865db0": {
     "id": "d309d40d-0325-4913-820f-832089865db0",
@@ -4525,10 +4631,12 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/windfalldata/d309d40d-0325-4913-820f-832089865db0",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "San Francisco",
-    "compensationRange": "$110K-$168K",
-    "postedAt": "2023-08-31T17:05:48.810Z"
+    "compensationRange": null,
+    "postedAt": "2023-08-31T17:05:48.810Z",
+    "fitScore": 3,
+    "fitRationale": "Customer Success Manager for Windfall, a people-data platform with no life-sciences or regulated-industry focus - the account-ownership and onboarding elements are familiar, but the generic consumer/B2B data domain has no adjacency to his biopharma background."
   },
   "lever:e0e108c1-9fa6-4044-bff8-5eb6548128ef": {
     "id": "e0e108c1-9fa6-4044-bff8-5eb6548128ef",
@@ -4551,9 +4659,11 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/e7bc87a0-2b65-4cfa-ae3f-6c85581271a9",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "scored",
     "location": "Japan - Osaka",
     "compensationRange": null,
-    "postedAt": "2026-03-12T14:14:31.105Z"
+    "postedAt": "2026-03-12T14:14:31.105Z",
+    "fitScore": 7,
+    "fitRationale": "Duplicate Veeva CRM Suite CSM posting for Japan - same strong life-sciences domain match tempered by the CSM (not SC) role family and Japan-based location."
   }
 }
