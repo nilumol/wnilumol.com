@@ -45,18 +45,6 @@ export function JobScoutSections({ entries: initialEntries }: { entries: JobScou
 
       <details className="job-scout-section">
         <summary className="job-scout-section-summary">
-          <h2>Tracker</h2>
-          <span className="job-scout-chevron" aria-hidden="true">
-            ▶
-          </span>
-        </summary>
-        <div className="job-scout-section-body">
-          <JobScoutTracker entries={trackedEntries} />
-        </div>
-      </details>
-
-      <details className="job-scout-section">
-        <summary className="job-scout-section-summary">
           <h2>Tailor My Profile</h2>
           <span className="job-scout-chevron" aria-hidden="true">
             ▶
@@ -64,6 +52,18 @@ export function JobScoutSections({ entries: initialEntries }: { entries: JobScou
         </summary>
         <div className="job-scout-section-body">
           <JobScoutTailor entries={sentEntries} />
+        </div>
+      </details>
+
+      <details className="job-scout-section">
+        <summary className="job-scout-section-summary">
+          <h2>Tracker</h2>
+          <span className="job-scout-chevron" aria-hidden="true">
+            ▶
+          </span>
+        </summary>
+        <div className="job-scout-section-body">
+          <JobScoutTracker entries={trackedEntries} />
         </div>
       </details>
     </div>
