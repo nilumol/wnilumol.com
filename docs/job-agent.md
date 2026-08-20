@@ -129,25 +129,53 @@ sends it as the `X-Tailor-Passphrase` header on every request to the three route
 verifies it server-side (`scripts/job-agent/tailor-auth.ts`) before doing any paid work. No
 cookies, no server-side session state.
 
+**Card actions.** Each card shows an "Open application" link (the job's `absoluteUrl`, opens in a
+new tab) plus four actions with real processing time - each shows the site's standard loading
+spinner (see CLAUDE.md's Design System section) while in flight:
+
+- **Tailor This Resume** - the initial suggestions call, described below.
+- **Revise** - sends the free-text notes box's current content plus every suggestion's current
+  accepted/rejected state back to `/suggestions` (as a `revision` block) so the model can produce
+  a revised suggestion set incorporating the captain's own corrections (e.g. "you got my Personal
+  Sabbatical role wrong, fix it"). The only other place besides the initial call that makes a real
+  Anthropic API call.
+- **Review** (renamed from "View") - opens the merged resume in a new tab with newly-added
+  grounded phrasing and reordered content visually marked, so the captain can see what changed at
+  a glance before downloading.
+- **Generate PDF** - identical merge/render, no highlight marks.
+
 **Three hosted API routes**, all Node runtime (not Edge - Puppeteer needs Node):
 
 - `POST /api/job-agent/tailor/suggestions` - given `{ source, id }`, re-fetches the posting's
   live content the same way `job-agent:score-via-api` does (the ledger doesn't persist full
   descriptions), then calls Claude with the guardrailed prompt above. Returns the suggestion
   list, each with a short one-clause rationale (~12 words - the existing fit-scoring rationale
-  style is 600+ characters and doesn't fit this compact checklist UI).
+  style is 600+ characters and doesn't fit this compact checklist UI). Also accepts an optional
+  `revision: { priorSuggestions: { suggestion, accepted }[], notes }` block (the "Revise" action) -
+  when present, `scripts/job-agent/tailor-suggestions.ts` appends the prior suggestions' kept/
+  rejected state and the captain's notes to the prompt before calling Claude again.
 - `POST /api/job-agent/tailor/preview` - given the job's metadata, the captain's accepted
   suggestions, and free text, merges them onto the unmodified `resumeData`
   (`scripts/job-agent/resume-tailor.ts`) and renders the result as a self-contained HTML page
-  (`scripts/job-agent/resume-template.ts`). The client opens the response as a `blob:` URL in a
-  new tab - a true preview, not a separate representation, because...
+  (`scripts/job-agent/resume-template.ts`), with `highlightChanges: true`. The client opens the
+  response as a `blob:` URL in a new tab - a true preview (the "Review" action), not a separate
+  representation, because...
 - `POST /api/job-agent/tailor/pdf` - takes the identical request shape and calls the *same*
-  `renderResumeHtml()` used by `/preview`, then prints it through headless Chromium
-  (`puppeteer-core` + `@sparticuz/chromium`, chosen over a programmatic PDF-drawing library for
-  faithful HTML/CSS layout) and returns it as a direct download
+  `renderResumeHtml()` used by `/preview`, with `highlightChanges: false`, then prints it through
+  headless Chromium (`puppeteer-core` + `@sparticuz/chromium`, chosen over a programmatic
+  PDF-drawing library for faithful HTML/CSS layout) and returns it as a direct download
   (`Content-Disposition: attachment`), generated fresh per click and never stored. Filename is
   `Winston Nilumol_Resume_<ABBR>.pdf`, where `<ABBR>` comes from the job's `keywordFamily` field
   mapped through `jobAgentKeywordFamilyAbbreviations` in `content/job-agent-keywords.ts`.
+
+**Highlighting.** `mergeTailoredResume()` tags every bullet as `added` (from an accepted
+new-phrasing suggestion) and every role/highlights list as `bulletsReordered`/`highlightsReordered`
+(an accepted reorder suggestion permuted it). `renderResumeHtml(resume, meta, highlightChanges)`
+takes a single boolean flag - Review and Generate PDF call the *exact same* merge/render logic and
+differ only in that flag, so the PDF can never visually drift from what was reviewed. When true,
+added bullets get one mark color and reordered lists get a different one (matching the suggestion-
+type pill colors already used in the checklist above); when false, no highlight markup is emitted
+at all.
 
 **Font fidelity.** The real resume (`career/Winston Nilumol Resume_August_2026.pdf`) is set in
 Verdana, which is neither open-licensed nor installed on Vercel's Linux serverless environment -

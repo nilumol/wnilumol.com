@@ -10,37 +10,33 @@ import { ledgerKey } from "@/scripts/job-agent/ledger";
 import { fetchBoardNormalized } from "@/scripts/job-agent/pipeline";
 import { verifyTailorPassphrase } from "@/scripts/job-agent/tailor-auth";
 import { generateTailorSuggestions } from "@/scripts/job-agent/tailor-suggestions";
-import type { TailorSuggestRequestBody } from "@/scripts/job-agent/tailor-types";
-import type { JobAgentLedger, JobAgentSource } from "@/scripts/job-agent/types";
+import { parseTailorSuggestRequestBody } from "@/scripts/job-agent/tailor-types";
+import type { JobAgentLedger } from "@/scripts/job-agent/types";
 
 export const runtime = "nodejs";
 
 const ledger = ledgerJson as unknown as JobAgentLedger;
-const SOURCES: JobAgentSource[] = ["greenhouse", "lever", "ashby"];
-
-function parseBody(value: unknown): TailorSuggestRequestBody | null {
-  if (typeof value !== "object" || value === null) return null;
-  const { source, id } = value as Record<string, unknown>;
-  if (typeof source !== "string" || !SOURCES.includes(source as JobAgentSource)) return null;
-  if (typeof id !== "string" && typeof id !== "number") return null;
-  return { source: source as JobAgentSource, id };
-}
 
 /**
  * Generates resume-tailoring suggestions for one job the captain sent forward from
- * Opportunities. Re-fetches the posting's live content the same way score-via-api.ts does (the
- * ledger doesn't persist full descriptions), then calls Claude with only the highlights array
- * and the Collate/Benchling role bullets as reorderable/groundable targets - see
+ * Opportunities - the "Tailor This Resume" action, or, when the request carries a `revision`
+ * block, the "Revise" action re-running with the captain's notes and prior accept/reject state.
+ * Re-fetches the posting's live content the same way score-via-api.ts does (the ledger doesn't
+ * persist full descriptions), then calls Claude with only the highlights array and the
+ * Collate/Benchling role bullets as reorderable/groundable targets - see
  * scripts/job-agent/tailor-suggestions.ts and docs/job-agent.md for the guardrail this enforces.
+ * This and the initial call are the only two places besides Claude's structured-output schema
+ * itself that ever make a real Anthropic API call in Tailor My Profile - Review and Generate PDF
+ * never do.
  */
 export async function POST(request: Request): Promise<NextResponse> {
   if (!verifyTailorPassphrase(request)) {
     return NextResponse.json({ error: "Invalid or missing passphrase." }, { status: 401 });
   }
 
-  const body = parseBody(await request.json().catch(() => null));
+  const body = parseTailorSuggestRequestBody(await request.json().catch(() => null));
   if (!body) {
-    return NextResponse.json({ error: "Request body must be { source, id }." }, { status: 400 });
+    return NextResponse.json({ error: "Request body must be { source, id, revision? }." }, { status: 400 });
   }
 
   const entry = ledger[ledgerKey(body.source, body.id)];
@@ -79,7 +75,12 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   try {
     const client = new Anthropic({ apiKey });
-    const suggestions = await generateTailorSuggestions(client, { ...job, company: entry.company }, resumeData);
+    const suggestions = await generateTailorSuggestions(
+      client,
+      { ...job, company: entry.company },
+      resumeData,
+      body.revision,
+    );
     return NextResponse.json({ suggestions });
   } catch (error) {
     return NextResponse.json({ error: (error as Error).message }, { status: 502 });

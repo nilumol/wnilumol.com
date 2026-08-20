@@ -85,6 +85,13 @@ export function JobAgentTailor({ entries }: { entries: JobAgentLedgerEntry[] }) 
   );
 }
 
+type BusyAction = "tailor" | "revise" | "review" | "pdf" | null;
+
+/** Standard spinner treatment for any action with real processing time - see CLAUDE.md's Design System section. */
+function Spinner() {
+  return <span className="spinner" aria-hidden="true" />;
+}
+
 function TailorCard({
   entry,
   passphrase,
@@ -96,8 +103,7 @@ function TailorCard({
 }) {
   const [suggestions, setSuggestions] = useState<TailorSuggestion[] | null>(null);
   const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set());
-  const [loadingSuggestions, setLoadingSuggestions] = useState(false);
-  const [generatingPdf, setGeneratingPdf] = useState(false);
+  const [busy, setBusy] = useState<BusyAction>(null);
   const [ownText, setOwnText] = useState("");
   const [error, setError] = useState<string | null>(null);
 
@@ -132,8 +138,13 @@ function TailorCard({
     setError(err instanceof Error ? err.message : "Something went wrong.");
   }
 
+  function applySuggestionResponse(data: { suggestions: TailorSuggestion[] }) {
+    setSuggestions(data.suggestions);
+    setCheckedIds(new Set(data.suggestions.map((suggestion) => suggestion.id)));
+  }
+
   async function handleTailor() {
-    setLoadingSuggestions(true);
+    setBusy("tailor");
     setError(null);
     try {
       const response = await callTailorApi("/api/job-agent/tailor/suggestions", {
@@ -141,13 +152,11 @@ function TailorCard({
         id: entry.id,
       });
       if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't generate suggestions."));
-      const data: { suggestions: TailorSuggestion[] } = await response.json();
-      setSuggestions(data.suggestions);
-      setCheckedIds(new Set(data.suggestions.map((suggestion) => suggestion.id)));
+      applySuggestionResponse(await response.json());
     } catch (err) {
       reportError(err);
     } finally {
-      setLoadingSuggestions(false);
+      setBusy(null);
     }
   }
 
@@ -160,7 +169,38 @@ function TailorCard({
     });
   }
 
-  async function handleView() {
+  /**
+   * Sends the free-text notes plus every suggestion's current accepted/rejected state back to
+   * the suggestion-generation route so the model can produce a revised set incorporating the
+   * captain's own corrections. This is the only other place (besides "Tailor This Resume") that
+   * makes a real Anthropic API call - Review and Generate PDF below never do.
+   */
+  async function handleRevise() {
+    setBusy("revise");
+    setError(null);
+    try {
+      const response = await callTailorApi("/api/job-agent/tailor/suggestions", {
+        source: entry.source,
+        id: entry.id,
+        revision: {
+          priorSuggestions: (suggestions ?? []).map((suggestion) => ({
+            suggestion,
+            accepted: checkedIds.has(suggestion.id),
+          })),
+          notes: ownText,
+        },
+      });
+      if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't revise suggestions."));
+      applySuggestionResponse(await response.json());
+    } catch (err) {
+      reportError(err);
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function handleReview() {
+    setBusy("review");
     setError(null);
     try {
       const response = await callTailorApi("/api/job-agent/tailor/preview", renderPayload());
@@ -170,11 +210,13 @@ function TailorCard({
       window.open(URL.createObjectURL(blob), "_blank");
     } catch (err) {
       reportError(err);
+    } finally {
+      setBusy(null);
     }
   }
 
   async function handleGeneratePdf() {
-    setGeneratingPdf(true);
+    setBusy("pdf");
     setError(null);
     try {
       const response = await callTailorApi("/api/job-agent/tailor/pdf", renderPayload());
@@ -191,7 +233,7 @@ function TailorCard({
     } catch (err) {
       reportError(err);
     } finally {
-      setGeneratingPdf(false);
+      setBusy(null);
     }
   }
 
@@ -202,6 +244,9 @@ function TailorCard({
         <p>
           {entry.company} · {entry.location ?? "Not listed"}
         </p>
+        <a className="text-link" href={entry.absoluteUrl} target="_blank" rel="noreferrer">
+          Open application
+        </a>
       </div>
 
       {suggestions === null ? (
@@ -209,9 +254,10 @@ function TailorCard({
           type="button"
           className="job-agent-btn job-agent-btn-primary"
           onClick={handleTailor}
-          disabled={loadingSuggestions}
+          disabled={busy !== null}
         >
-          {loadingSuggestions ? "Generating…" : "Tailor This Resume"}
+          {busy === "tailor" ? <Spinner /> : null}
+          {busy === "tailor" ? "Tailoring…" : "Tailor This Resume"}
         </button>
       ) : (
         <>
@@ -255,17 +301,26 @@ function TailorCard({
             onChange={(event) => setOwnText(event.target.value)}
           />
 
+          <div className="job-agent-tailor-revise-row">
+            <button type="button" className="job-agent-btn" onClick={handleRevise} disabled={busy !== null}>
+              {busy === "revise" ? <Spinner /> : null}
+              {busy === "revise" ? "Revising…" : "Revise"}
+            </button>
+          </div>
+
           <div className="job-agent-tailor-actions">
-            <button type="button" className="job-agent-btn" onClick={handleView}>
-              View
+            <button type="button" className="job-agent-btn" onClick={handleReview} disabled={busy !== null}>
+              {busy === "review" ? <Spinner /> : null}
+              {busy === "review" ? "Reviewing…" : "Review"}
             </button>
             <button
               type="button"
               className="job-agent-btn job-agent-btn-primary"
               onClick={handleGeneratePdf}
-              disabled={generatingPdf}
+              disabled={busy !== null}
             >
-              {generatingPdf ? "Generating…" : "Generate PDF"}
+              {busy === "pdf" ? <Spinner /> : null}
+              {busy === "pdf" ? "Generating…" : "Generate PDF"}
             </button>
           </div>
         </>

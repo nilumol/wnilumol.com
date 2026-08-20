@@ -40,9 +40,45 @@ export type TailorReorderSuggestion = z.infer<typeof TailorReorderSuggestionSche
 export type TailorNewPhrasingSuggestion = z.infer<typeof TailorNewPhrasingSuggestionSchema> & { id: string };
 export type TailorSuggestion = TailorReorderSuggestion | TailorNewPhrasingSuggestion;
 
-export interface TailorSuggestRequestBody {
-  source: "greenhouse" | "lever" | "ashby";
-  id: string | number;
+/**
+ * One suggestion from a prior /suggestions call plus whether the captain kept it checked. The
+ * suggestion already carries its server-assigned `id` (round-tripped from the client the same
+ * way `acceptedSuggestions` does below), which `TailorSuggestionSchema` alone doesn't model - so
+ * this, like `TailorRenderRequestSchema` below, only validates the envelope shape and is cast to
+ * the real `TailorSuggestion` type rather than fully re-typed through zod.
+ */
+const TailorRevisionSuggestionStateSchema = z.object({
+  suggestion: z.object({ id: z.string() }).passthrough(),
+  accepted: z.boolean(),
+});
+
+/**
+ * Sent only by the "Revise" action - the captain's free-text notes plus the accept/reject state
+ * of every suggestion from the round being revised, so the model can weigh that signal and
+ * incorporate corrections (e.g. "you got my Personal Sabbatical role wrong, fix it") into a new
+ * suggestion set. See scripts/job-agent/tailor-suggestions.ts.
+ */
+const TailorRevisionRequestSchema = z.object({
+  priorSuggestions: z.array(TailorRevisionSuggestionStateSchema),
+  notes: z.string(),
+});
+export type TailorRevisionRequest = Omit<z.infer<typeof TailorRevisionRequestSchema>, "priorSuggestions"> & {
+  priorSuggestions: { suggestion: TailorSuggestion; accepted: boolean }[];
+};
+
+const TailorSuggestRequestSchema = z.object({
+  source: z.enum(["greenhouse", "lever", "ashby"]),
+  id: z.union([z.string(), z.number()]),
+  revision: TailorRevisionRequestSchema.optional(),
+});
+export type TailorSuggestRequestBody = Omit<z.infer<typeof TailorSuggestRequestSchema>, "revision"> & {
+  revision?: TailorRevisionRequest;
+};
+
+/** Only checks the envelope shape, same rationale as parseTailorRenderRequestBody below. */
+export function parseTailorSuggestRequestBody(value: unknown): TailorSuggestRequestBody | null {
+  const result = TailorSuggestRequestSchema.safeParse(value);
+  return result.success ? (result.data as TailorSuggestRequestBody) : null;
 }
 
 export interface TailorSuggestResponseBody {

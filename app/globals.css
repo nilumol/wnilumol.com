@@ -47,6 +47,10 @@ p, h1, h2, ul { margin-top: 0; }
 .project-card p { max-width: 410px; min-height: 75px; color: var(--muted); line-height: 1.65; }
 .text-link { display: inline-block; margin-top: 16px; font-size: 0.9rem; }
 
+/** Standard loading treatment for any action with real processing time - see CLAUDE.md's Design System section. */
+.spinner { display: inline-block; width: 0.85em; height: 0.85em; margin-right: 7px; vertical-align: -0.13em; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; opacity: 0.7; animation: spin 700ms linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
 .career-page { display: grid; grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.55fr); gap: clamp(60px, 9vw, 140px); }
 .career-intro { position: sticky; top: 54px; align-self: start; }
 .career-list { border-top: 1px solid var(--line); }
@@ -168,7 +172,8 @@ p, h1, h2, ul { margin-top: 0; }
 .job-agent-tailor-cards { display: flex; flex-direction: column; gap: 20px; }
 .job-agent-tailor-card { border: 1px solid var(--line); border-radius: 12px; padding: 24px 26px; }
 .job-agent-tailor-card-head h3 { margin: 0 0 4px; font-family: var(--font-poppins), sans-serif; font-weight: 600; font-size: 1.05rem; }
-.job-agent-tailor-card-head p { margin: 0 0 16px; color: var(--muted); font-size: 0.86rem; }
+.job-agent-tailor-card-head p { margin: 0 0 4px; color: var(--muted); font-size: 0.86rem; }
+.job-agent-tailor-card-head .text-link { margin-top: 0; margin-bottom: 16px; font-size: 0.82rem; }
 .job-agent-suggestion-list { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .job-agent-suggestion-item { display: flex; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: rgba(25, 25, 25, 0.02); }
 .job-agent-suggestion-item input[type="checkbox"] { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--text); cursor: pointer; flex-shrink: 0; }
@@ -179,7 +184,8 @@ p, h1, h2, ul { margin-top: 0; }
 .job-agent-suggestion-text { font-size: 0.9rem; line-height: 1.5; margin-bottom: 3px; }
 .job-agent-suggestion-rationale { color: var(--muted); font-size: 0.78rem; font-style: italic; }
 .job-agent-suggestion-grounded { margin-top: 5px; padding-left: 10px; border-left: 2px solid var(--line); color: var(--muted); font-size: 0.76rem; }
-.job-agent-tailor-own-text { width: 100%; font-family: var(--font-tenor), serif; font-size: 0.88rem; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255, 255, 255, 0.3); resize: vertical; min-height: 60px; margin-bottom: 16px; }
+.job-agent-tailor-own-text { width: 100%; font-family: var(--font-tenor), serif; font-size: 0.88rem; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255, 255, 255, 0.3); resize: vertical; min-height: 60px; margin-bottom: 10px; }
+.job-agent-tailor-revise-row { margin-bottom: 16px; }
 .job-agent-tailor-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .job-agent-tailor-error { margin: 12px 0 0; color: #8a4433; font-size: 0.82rem; }
 
