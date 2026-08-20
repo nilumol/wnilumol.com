@@ -54,6 +54,7 @@ Prefer evidence of thinking and execution over unsupported claims. The site must
 - Diagrams must answer one clear question, use a consistent reading direction, label information flow, expose trust/system boundaries, and remain usable on narrow screens. Prefer a separate accessible SVG component for complex architecture.
 - Connect regulations to design consequences; do not use lists of regulations as decoration.
 - Separate observed facts, inferences, proposals, and validated results. Never imply that a conceptual architecture or unbuilt prototype has measured outcomes.
+- Any action with real processing time (an API/AI call, a server render, a file generation) must show a loading/buffering indicator while in flight. Use the shared `.spinner` class in `app/globals.css` (see its use in `app/job-agent/JobAgentTailor.tsx`) rather than inventing a new animation.
 
 ## Recurring Project-Page Pattern
 

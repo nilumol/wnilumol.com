@@ -1,10 +1,24 @@
 import type { ResumeData, ResumeRole } from "../../content/resume-data.ts";
 import type { TailorSuggestion } from "./tailor-types.ts";
 
+/** One rendered bullet plus whether it was appended by an accepted new-phrasing suggestion. */
+export interface TailoredBullet {
+  text: string;
+  added: boolean;
+}
+
+export interface TailoredRole extends Omit<ResumeRole, "bullets"> {
+  bullets: TailoredBullet[];
+  /** True when an accepted reorder suggestion permuted this role's bullets. */
+  bulletsReordered: boolean;
+}
+
 export interface TailoredResume {
   headline: string;
   highlights: string[];
-  roles: ResumeRole[];
+  /** True when an accepted reorder suggestion permuted the highlights array. */
+  highlightsReordered: boolean;
+  roles: TailoredRole[];
   areasOfExpertise: ResumeData["areasOfExpertise"];
   education: string[];
   executiveEndorsement: string;
@@ -25,7 +39,7 @@ function reorder<T>(items: T[], order: number[]): T[] {
   return order.map((index) => items[index]!);
 }
 
-function applyToRole(role: ResumeRole, suggestions: TailorSuggestion[], target: "collate" | "benchling"): ResumeRole {
+function applyToRole(role: ResumeRole, suggestions: TailorSuggestion[], target: "collate" | "benchling"): TailoredRole {
   let bullets = role.bullets;
 
   const reorderSuggestion = [...suggestions]
@@ -37,7 +51,18 @@ function applyToRole(role: ResumeRole, suggestions: TailorSuggestion[], target: 
     .filter((s): s is Extract<TailorSuggestion, { type: "new-phrasing" }> => s.type === "new-phrasing" && s.role === target)
     .map((s) => s.text);
 
-  return { ...role, bullets: [...bullets, ...newPhrasingBullets] };
+  return {
+    ...role,
+    bullets: [
+      ...bullets.map((text) => ({ text, added: false })),
+      ...newPhrasingBullets.map((text) => ({ text, added: true })),
+    ],
+    bulletsReordered: Boolean(reorderSuggestion),
+  };
+}
+
+function passthroughRole(role: ResumeRole): TailoredRole {
+  return { ...role, bullets: role.bullets.map((text) => ({ text, added: false })), bulletsReordered: false };
 }
 
 /**
@@ -60,12 +85,13 @@ export function mergeTailoredResume(
   const roles = resumeData.roles.map((role) => {
     if (role.company === "Collate") return applyToRole(role, acceptedSuggestions, "collate");
     if (role.company === "Benchling") return applyToRole(role, acceptedSuggestions, "benchling");
-    return role;
+    return passthroughRole(role);
   });
 
   return {
     headline: resumeData.headline,
     highlights,
+    highlightsReordered: Boolean(highlightsReorder),
     roles,
     areasOfExpertise: resumeData.areasOfExpertise,
     education: resumeData.education,

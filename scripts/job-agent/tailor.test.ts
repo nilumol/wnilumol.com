@@ -3,8 +3,10 @@ import { test } from "node:test";
 import { jobAgentKeywordFamilyAbbreviations } from "../../content/job-agent-keywords.ts";
 import type { ResumeData } from "../../content/resume-data.ts";
 import { mergeTailoredResume } from "./resume-tailor.ts";
+import { renderResumeHtml } from "./resume-template.ts";
 import { buildTailorPrompt } from "./tailor-suggestions.ts";
-import type { TailorSuggestion } from "./tailor-types.ts";
+import type { TailorRevisionRequest, TailorSuggestion } from "./tailor-types.ts";
+import { parseTailorSuggestRequestBody } from "./tailor-types.ts";
 import { verifyTailorPassphrase } from "./tailor-auth.ts";
 import type { NormalizedJob } from "./types.ts";
 
@@ -74,14 +76,30 @@ test("mergeTailoredResume ignores a reorder suggestion with a malformed permutat
   assert.deepEqual(result.highlights, resumeFixture.highlights);
 });
 
-test("mergeTailoredResume reorders and appends new-phrasing bullets on the Collate role only", () => {
+test("mergeTailoredResume reorders and appends new-phrasing bullets on the Collate role only, tagging added bullets and the reordered flag", () => {
   const suggestions: TailorSuggestion[] = [
     { id: "s1", type: "reorder", target: "collate", newOrder: [2, 1, 0], rationale: "r" },
     { id: "s2", type: "new-phrasing", role: "collate", text: "New Collate bullet", groundedIn: "Collate bullet 1", rationale: "r" },
   ];
   const result = mergeTailoredResume(resumeFixture, suggestions, "");
   const collate = result.roles.find((r) => r.company === "Collate")!;
-  assert.deepEqual(collate.bullets, ["Collate bullet 2", "Collate bullet 1", "Collate bullet 0", "New Collate bullet"]);
+  assert.deepEqual(
+    collate.bullets,
+    [
+      { text: "Collate bullet 2", added: false },
+      { text: "Collate bullet 1", added: false },
+      { text: "Collate bullet 0", added: false },
+      { text: "New Collate bullet", added: true },
+    ],
+  );
+  assert.equal(collate.bulletsReordered, true);
+});
+
+test("mergeTailoredResume marks bulletsReordered/highlightsReordered false when no reorder suggestion was accepted for that target", () => {
+  const result = mergeTailoredResume(resumeFixture, [], "");
+  assert.equal(result.highlightsReordered, false);
+  const collate = result.roles.find((r) => r.company === "Collate")!;
+  assert.equal(collate.bulletsReordered, false);
 });
 
 test("mergeTailoredResume never changes Genentech or Merck bullets regardless of suggestions", () => {
@@ -93,13 +111,48 @@ test("mergeTailoredResume never changes Genentech or Merck bullets regardless of
   const result = mergeTailoredResume(resumeFixture, suggestions, "");
   const genentech = result.roles.find((r) => r.company === "Genentech")!;
   const merck = result.roles.find((r) => r.company.startsWith("Merck"))!;
-  assert.deepEqual(genentech.bullets, resumeFixture.roles[2]!.bullets);
-  assert.deepEqual(merck.bullets, resumeFixture.roles[3]!.bullets);
+  assert.deepEqual(genentech.bullets.map((b) => b.text), resumeFixture.roles[2]!.bullets);
+  assert.deepEqual(merck.bullets.map((b) => b.text), resumeFixture.roles[3]!.bullets);
+  assert.equal(genentech.bulletsReordered, false);
+  assert.equal(merck.bulletsReordered, false);
 });
 
 test("mergeTailoredResume trims and carries the captain's own free text separately from suggestions", () => {
   const result = mergeTailoredResume(resumeFixture, [], "  My own notes.  ");
   assert.equal(result.ownText, "My own notes.");
+});
+
+// ---------------------------------------------------------------------------
+// renderResumeHtml - highlightChanges must be the only difference between Review and Generate PDF
+// ---------------------------------------------------------------------------
+
+test("renderResumeHtml marks added and reordered content only when highlightChanges is true", () => {
+  const suggestions: TailorSuggestion[] = [
+    { id: "s1", type: "reorder", target: "collate", newOrder: [2, 1, 0], rationale: "r" },
+    { id: "s2", type: "new-phrasing", role: "collate", text: "New Collate bullet", groundedIn: "Collate bullet 1", rationale: "r" },
+  ];
+  const tailored = mergeTailoredResume(resumeFixture, suggestions, "");
+
+  const highlighted = renderResumeHtml(tailored, { company: "Acme" }, true);
+  assert.match(highlighted, /class="hl-added"/);
+  assert.match(highlighted, /class="hl-reordered"/);
+
+  const clean = renderResumeHtml(tailored, { company: "Acme" }, false);
+  assert.doesNotMatch(clean, /class="hl-added"/);
+  assert.doesNotMatch(clean, /class="hl-reordered"/);
+});
+
+test("renderResumeHtml never marks content as changed when nothing was reordered or added", () => {
+  const tailored = mergeTailoredResume(resumeFixture, [], "");
+  const html = renderResumeHtml(tailored, { company: "Acme" }, true);
+  assert.doesNotMatch(html, /class="hl-added"/);
+  assert.doesNotMatch(html, /class="hl-reordered"/);
+});
+
+test("renderResumeHtml colors the role title with the accent sampled from the source PDF", () => {
+  const tailored = mergeTailoredResume(resumeFixture, [], "");
+  const html = renderResumeHtml(tailored, { company: "Acme" }, false);
+  assert.match(html, /\.role-head\s*\{[^}]*color:\s*#134f5c/);
 });
 
 // ---------------------------------------------------------------------------
@@ -130,6 +183,87 @@ test("buildTailorPrompt includes only the highlights and Collate/Benchling bulle
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
+
+// ---------------------------------------------------------------------------
+// buildTailorPrompt - the "Revise" action's prior-suggestion and notes context
+// ---------------------------------------------------------------------------
+
+test("buildTailorPrompt appends a revision section carrying accepted/rejected state and the captain's notes", () => {
+  const job: NormalizedJob & { company: string } = {
+    id: 1,
+    title: "Solutions Consultant",
+    absolute_url: "https://example.com/job/1",
+    content: "We need someone with agile delivery experience.",
+    company: "Acme",
+  };
+  const revision: TailorRevisionRequest = {
+    priorSuggestions: [
+      {
+        suggestion: { id: "s1", type: "reorder", target: "collate", newOrder: [1, 0, 2], rationale: "r" },
+        accepted: true,
+      },
+      {
+        suggestion: {
+          id: "s2",
+          type: "new-phrasing",
+          role: "benchling",
+          text: "Bad phrasing",
+          groundedIn: "Benchling bullet 0",
+          rationale: "r",
+        },
+        accepted: false,
+      },
+    ],
+    notes: "You got my Personal Sabbatical role wrong, fix it.",
+  };
+
+  const prompt = buildTailorPrompt(job, resumeFixture, revision);
+  assert.match(prompt, /Revision request/);
+  assert.match(prompt, /kept/);
+  assert.match(prompt, /rejected/);
+  assert.match(prompt, /You got my Personal Sabbatical role wrong, fix it\./);
+});
+
+test("buildTailorPrompt omits the revision section entirely when no revision is passed", () => {
+  const job: NormalizedJob & { company: string } = {
+    id: 1,
+    title: "Solutions Consultant",
+    absolute_url: "https://example.com/job/1",
+    content: "We need someone with agile delivery experience.",
+    company: "Acme",
+  };
+  const prompt = buildTailorPrompt(job, resumeFixture);
+  assert.doesNotMatch(prompt, /Revision request/);
+});
+
+// ---------------------------------------------------------------------------
+// parseTailorSuggestRequestBody - the /suggestions route's envelope check
+// ---------------------------------------------------------------------------
+
+test("parseTailorSuggestRequestBody accepts a plain { source, id } body and one with a revision block", () => {
+  assert.notEqual(parseTailorSuggestRequestBody({ source: "greenhouse", id: "123" }), null);
+  assert.notEqual(
+    parseTailorSuggestRequestBody({
+      source: "lever",
+      id: 42,
+      revision: {
+        priorSuggestions: [
+          {
+            suggestion: { id: "s1", type: "reorder", target: "highlights", newOrder: [0, 1, 2], rationale: "r" },
+            accepted: true,
+          },
+        ],
+        notes: "fix it",
+      },
+    }),
+    null,
+  );
+});
+
+test("parseTailorSuggestRequestBody rejects an unknown source and a missing id", () => {
+  assert.equal(parseTailorSuggestRequestBody({ source: "workday", id: "1" }), null);
+  assert.equal(parseTailorSuggestRequestBody({ source: "greenhouse" }), null);
+});
 
 // ---------------------------------------------------------------------------
 // content/job-agent-keywords.ts abbreviation mapping

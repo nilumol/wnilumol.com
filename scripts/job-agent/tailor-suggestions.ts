@@ -2,7 +2,11 @@ import Anthropic from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import type { ResumeData, ResumeRole } from "../../content/resume-data.ts";
 import { JOB_AGENT_MODEL } from "./scoring.ts";
-import { TailorSuggestionsResponseSchema, type TailorSuggestion } from "./tailor-types.ts";
+import {
+  TailorSuggestionsResponseSchema,
+  type TailorRevisionRequest,
+  type TailorSuggestion,
+} from "./tailor-types.ts";
 import type { NormalizedJob } from "./types.ts";
 
 function findRole(resumeData: ResumeData, company: string): ResumeRole {
@@ -15,13 +19,44 @@ function numberedList(items: string[]): string {
   return items.map((item, index) => `${index}. ${item}`).join("\n");
 }
 
+function describeSuggestion(suggestion: TailorSuggestion): string {
+  if (suggestion.type === "reorder") return `Reorder ${suggestion.target} (${suggestion.rationale})`;
+  return `New phrasing for ${suggestion.role}: "${suggestion.text}" - grounded in "${suggestion.groundedIn}" (${suggestion.rationale})`;
+}
+
+function buildRevisionSection(revision: TailorRevisionRequest): string {
+  const priorList = revision.priorSuggestions.length
+    ? revision.priorSuggestions
+        .map((entry) => `- [${entry.accepted ? "kept" : "rejected"}] ${describeSuggestion(entry.suggestion)}`)
+        .join("\n")
+    : "(none - the previous round proposed no suggestions)";
+
+  return [
+    "---",
+    "## Revision request",
+    "The captain reviewed the suggestions below from a previous round and wants a revised set. " +
+      'Suggestions marked "kept" were accepted; weigh those as validated direction. Suggestions ' +
+      'marked "rejected" were declined - avoid proposing the same or similar changes again unless ' +
+      "the captain's notes explicitly ask for them. Treat the captain's notes as authoritative " +
+      "corrections and incorporate them directly, even if they contradict something above.",
+    "### Previous suggestions",
+    priorList,
+    "### Captain's notes",
+    revision.notes.trim() || "(none provided)",
+  ].join("\n\n");
+}
+
 /**
  * The prompt sends ONLY the highlights array and the Collate/Benchling role bullets as
  * reorderable/groundable targets - Genentech, Merck, areas of expertise, education, and the
  * endorsement are never included, so the model structurally cannot touch them regardless of
  * instructions. See the guardrail section of docs/job-agent.md.
  */
-export function buildTailorPrompt(job: NormalizedJob & { company: string }, resumeData: ResumeData): string {
+export function buildTailorPrompt(
+  job: NormalizedJob & { company: string },
+  resumeData: ResumeData,
+  revision?: TailorRevisionRequest,
+): string {
   const collate = findRole(resumeData, "Collate");
   const benchling = findRole(resumeData, "Benchling");
 
@@ -50,7 +85,10 @@ export function buildTailorPrompt(job: NormalizedJob & { company: string }, resu
     `Title: ${job.title}`,
     "",
     job.content ?? "(no description provided)",
-  ].join("\n\n");
+    revision ? buildRevisionSection(revision) : "",
+  ]
+    .filter(Boolean)
+    .join("\n\n");
 }
 
 function isValidPermutation(order: number[], length: number): boolean {
@@ -62,12 +100,15 @@ function isValidPermutation(order: number[], length: number): boolean {
  * Calls Claude for one job, constrained by structured outputs to the reorder/new-phrasing shape
  * in tailor-types.ts. Drops any reorder suggestion whose permutation doesn't match its target's
  * actual length (defensive - the schema can't express "must be a permutation of length N").
- * Never called by the automated pipeline; only the passphrase-gated /api/job-agent/tailor/suggestions route.
+ * Never called by the automated pipeline; only the passphrase-gated /api/job-agent/tailor/suggestions
+ * route - both the initial "Tailor This Resume" call and, when `revision` is passed, the
+ * "Revise" call. Review and Generate PDF never reach this function.
  */
 export async function generateTailorSuggestions(
   client: Anthropic,
   job: NormalizedJob & { company: string },
   resumeData: ResumeData,
+  revision?: TailorRevisionRequest,
 ): Promise<TailorSuggestion[]> {
   const collate = findRole(resumeData, "Collate");
   const benchling = findRole(resumeData, "Benchling");
@@ -77,7 +118,7 @@ export async function generateTailorSuggestions(
     benchling: benchling.bullets.length,
   };
 
-  const prompt = buildTailorPrompt(job, resumeData);
+  const prompt = buildTailorPrompt(job, resumeData, revision);
   const response = await client.messages.parse({
     model: JOB_AGENT_MODEL,
     max_tokens: 4096,

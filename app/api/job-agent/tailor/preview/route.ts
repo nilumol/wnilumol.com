@@ -9,9 +9,11 @@ export const runtime = "nodejs";
 
 /**
  * Renders the tailored resume as a real HTML page - the exact same template renderResumeHtml()
- * feeds to Puppeteer in the PDF route - so View is a true preview, not a representation that
+ * feeds to Puppeteer in the PDF route - so Review is a true preview, not a representation that
  * could drift from the download. The client fetches this (to send the passphrase as a header,
  * which a plain navigation can't do) and opens the returned HTML as a blob: URL in a new tab.
+ * Passes `highlightChanges: true` - the only difference from the PDF route's render call - so
+ * added/reordered content is marked for review; Generate PDF always renders clean.
  */
 export async function POST(request: Request): Promise<NextResponse> {
   if (!verifyTailorPassphrase(request)) {
@@ -24,7 +26,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   const tailored = mergeTailoredResume(resumeData, body.acceptedSuggestions, body.ownText);
-  const html = renderResumeHtml(tailored, { company: body.company });
+  const html = renderResumeHtml(tailored, { company: body.company }, true);
 
   return new NextResponse(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
 }

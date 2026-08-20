@@ -21,7 +21,9 @@ function pdfFilename(keywordFamily: string): string {
  * returns it as a direct download - generated fresh per click, never stored server-side. See
  * docs/job-agent.md for why puppeteer-core + @sparticuz/chromium (HTML/CSS printed by a real
  * browser, run as a Vercel serverless function) was chosen over a programmatic PDF-drawing
- * library.
+ * library. Passes `highlightChanges: false` - the download must never carry Review's highlight
+ * marks, so what the captain reviewed and what gets printed are the same content with only that
+ * one presentational flag differing.
  */
 export async function POST(request: Request): Promise<NextResponse> {
   if (!verifyTailorPassphrase(request)) {
@@ -34,7 +36,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   const tailored = mergeTailoredResume(resumeData, body.acceptedSuggestions, body.ownText);
-  const html = renderResumeHtml(tailored, { company: body.company });
+  const html = renderResumeHtml(tailored, { company: body.company }, false);
 
   // No WebGL/graphics needed to print static text - disabling the graphics stack trims cold start.
   chromium.setGraphicsMode = false;
