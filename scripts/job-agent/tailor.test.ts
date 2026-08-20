@@ -74,6 +74,7 @@ test("mergeTailoredResume ignores a reorder suggestion with a malformed permutat
   ];
   const result = mergeTailoredResume(resumeFixture, suggestions, "");
   assert.deepEqual(result.highlights, resumeFixture.highlights);
+  assert.equal(result.highlightsReordered, false);
 });
 
 test("mergeTailoredResume reorders and appends new-phrasing bullets on the Collate role only, tagging added bullets and the reordered flag", () => {

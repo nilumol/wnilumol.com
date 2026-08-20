@@ -34,9 +34,10 @@ function isValidPermutation(order: number[], length: number): boolean {
   return order.every((index) => index >= 0 && index < length);
 }
 
-function reorder<T>(items: T[], order: number[]): T[] {
-  if (!isValidPermutation(order, items.length)) return items;
-  return order.map((index) => items[index]!);
+/** Reorders `items` per `order`, returning the original array and `false` if `order` isn't a valid permutation. */
+function reorder<T>(items: T[], order: number[]): [T[], boolean] {
+  if (!isValidPermutation(order, items.length)) return [items, false];
+  return [order.map((index) => items[index]!), true];
 }
 
 function applyToRole(role: ResumeRole, suggestions: TailorSuggestion[], target: "collate" | "benchling"): TailoredRole {
@@ -45,7 +46,8 @@ function applyToRole(role: ResumeRole, suggestions: TailorSuggestion[], target: 
   const reorderSuggestion = [...suggestions]
     .reverse()
     .find((s): s is Extract<TailorSuggestion, { type: "reorder" }> => s.type === "reorder" && s.target === target);
-  if (reorderSuggestion) bullets = reorder(bullets, reorderSuggestion.newOrder);
+  let bulletsReordered = false;
+  if (reorderSuggestion) [bullets, bulletsReordered] = reorder(bullets, reorderSuggestion.newOrder);
 
   const newPhrasingBullets = suggestions
     .filter((s): s is Extract<TailorSuggestion, { type: "new-phrasing" }> => s.type === "new-phrasing" && s.role === target)
@@ -57,7 +59,7 @@ function applyToRole(role: ResumeRole, suggestions: TailorSuggestion[], target: 
       ...bullets.map((text) => ({ text, added: false })),
       ...newPhrasingBullets.map((text) => ({ text, added: true })),
     ],
-    bulletsReordered: Boolean(reorderSuggestion),
+    bulletsReordered,
   };
 }
 
@@ -80,7 +82,9 @@ export function mergeTailoredResume(
   const highlightsReorder = [...acceptedSuggestions]
     .reverse()
     .find((s): s is Extract<TailorSuggestion, { type: "reorder" }> => s.type === "reorder" && s.target === "highlights");
-  const highlights = highlightsReorder ? reorder(resumeData.highlights, highlightsReorder.newOrder) : resumeData.highlights;
+  const [highlights, highlightsReordered] = highlightsReorder
+    ? reorder(resumeData.highlights, highlightsReorder.newOrder)
+    : [resumeData.highlights, false];
 
   const roles = resumeData.roles.map((role) => {
     if (role.company === "Collate") return applyToRole(role, acceptedSuggestions, "collate");
@@ -91,7 +95,7 @@ export function mergeTailoredResume(
   return {
     headline: resumeData.headline,
     highlights,
-    highlightsReordered: Boolean(highlightsReorder),
+    highlightsReordered,
     roles,
     areasOfExpertise: resumeData.areasOfExpertise,
     education: resumeData.education,
