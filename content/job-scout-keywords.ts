@@ -32,6 +32,19 @@ export const jobScoutKeywordFamilies: JobScoutKeywordFamily[] = [
 ];
 
 /**
+ * Filename abbreviation for each keyword family, used by the Tailor My Profile PDF route to
+ * name the download (`Winston Nilumol_Resume_<ABBR>.pdf`). Keyed by `jobScoutKeywordFamily.name`
+ * above - not a separate classifier, just a display abbreviation for families that already exist.
+ */
+export const jobScoutKeywordFamilyAbbreviations: Record<string, string> = {
+  "Solutions Consultant": "SC",
+  "Sales Engineer": "SE",
+  "Implementation Manager": "IM",
+  "Customer Success Manager": "CS",
+  "Solutions Architect": "SA",
+};
+
+/**
  * Returns the name of the first keyword family the title matches, or null if none match.
  */
 export function matchJobScoutKeywordFamily(

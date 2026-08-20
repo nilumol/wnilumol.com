@@ -19,14 +19,20 @@ Winston's background. It's for Winston only - it is not part of the public portf
   a time. Each row has a checkbox; selection persists across pagination and re-sorting. A toolbar
   above the table shows a running "N selected" count, a "Select All" button that selects every row
   on the current page, and a "Send" button (disabled with nothing selected) that removes the
-  selected rows from the list and updates the Tailor My Profile section's placeholder with the
-  sent count - client-side only, not persisted, and reverts on refresh.
+  selected rows from the list and forwards them to the Tailor My Profile section as sent ledger
+  entries (`JobScoutSections.tsx`'s `sentEntries` state) - client-side only, not persisted, and
+  reverts on refresh.
 - **Tracker** (collapsed by default) is a read-only table, built in
   `app/job-scout/JobScoutTracker.tsx`, of ledger entries whose status is `applied` or `passed` -
   job title, company, a status pill, location, and a link to the posting, in a fixed
   company/title order. It reads the same ledger the page already loads; there is no sort,
-  pagination, or write path. **Tailor My Profile** is still a collapsed-by-default placeholder
-  section with no logic yet; see "Known limits / not yet built" below.
+  pagination, or write path.
+- **Tailor My Profile** (collapsed by default), built in `app/job-scout/JobScoutTailor.tsx`, is
+  the first of two planned stages. This stage covers resume-tailoring suggestions and a
+  downloadable tailored PDF for every job Opportunities' "Send" button forwards (Opportunities'
+  local `sentEntries` state, held in `JobScoutSections.tsx` - not persisted). The second stage
+  (application-scan / cover-letter / question-drafting) is a separate, not-yet-built piece. See
+  "Tailor My Profile: resume tailoring" below for the full design.
 
 ## The pipeline, end to end
 
@@ -94,14 +100,73 @@ Cloudflare, Ethena, Veeva, Windfall, Aizon, AlphaLifeSci, Notion, LevelPath.
   that wires it to the real Greenhouse/Lever/Ashby APIs and the ledger file); it has its own test
   suite runnable via `npm run job-scout:test`.
 
+## Tailor My Profile: resume tailoring
+
+Reworks a job's fit into resume-tailoring suggestions and a downloadable tailored PDF, without
+ever fabricating an accomplishment or persisting anything server-side. Fully ephemeral by
+explicit design: nothing this feature generates is ever written back to
+`content/resume-data.ts` (the permanent source of truth, changed only by hand) or stored on the
+server between requests.
+
+**The guardrail.** The AI may only ever (1) **reorder** the 5 career highlights or the bullets
+within one of the two most recent roles (Collate, Benchling), or (2) propose **new phrasing**
+for one of those two roles, grounded in something already true in an existing bullet from that
+same role (every such suggestion carries a `groundedIn` pointer back to the specific bullet it's
+drawn from, shown to the captain for review). Genentech and Merck (the two older roles) are
+never touched by either suggestion type - enforced structurally, not just by prompt instruction:
+`scripts/job-scout/tailor-suggestions.ts`'s prompt only ever sends the highlights array and the
+Collate/Benchling bullets as reorderable/groundable targets, so the model has no way to
+reference the older roles even if instructed to. The response is constrained to this shape via
+Anthropic structured outputs (`output_config.format` + a Zod discriminated-union schema in
+`scripts/job-scout/tailor-types.ts`), the same `client.messages.parse()` pattern
+`scripts/job-scout/scoring.ts` already uses, on the same `claude-sonnet-5` model.
+
+**Passphrase gate.** One shared secret, `TAILOR_PASSPHRASE` (a new required env var - not set,
+the paid routes below refuse all requests). Not a real user-account system, just a gate so this
+unauthenticated, unlisted page can't run up API costs if the URL leaks. The client stores the
+entered passphrase in `sessionStorage` after first entry (that browser tab's session only) and
+sends it as the `X-Tailor-Passphrase` header on every request to the three routes below; each
+verifies it server-side (`scripts/job-scout/tailor-auth.ts`) before doing any paid work. No
+cookies, no server-side session state.
+
+**Three hosted API routes**, all Node runtime (not Edge - Puppeteer needs Node):
+
+- `POST /api/job-scout/tailor/suggestions` - given `{ source, id }`, re-fetches the posting's
+  live content the same way `job-scout:score-via-api` does (the ledger doesn't persist full
+  descriptions), then calls Claude with the guardrailed prompt above. Returns the suggestion
+  list, each with a short one-clause rationale (~12 words - the existing fit-scoring rationale
+  style is 600+ characters and doesn't fit this compact checklist UI).
+- `POST /api/job-scout/tailor/preview` - given the job's metadata, the captain's accepted
+  suggestions, and free text, merges them onto the unmodified `resumeData`
+  (`scripts/job-scout/resume-tailor.ts`) and renders the result as a self-contained HTML page
+  (`scripts/job-scout/resume-template.ts`). The client opens the response as a `blob:` URL in a
+  new tab - a true preview, not a separate representation, because...
+- `POST /api/job-scout/tailor/pdf` - takes the identical request shape and calls the *same*
+  `renderResumeHtml()` used by `/preview`, then prints it through headless Chromium
+  (`puppeteer-core` + `@sparticuz/chromium`, chosen over a programmatic PDF-drawing library for
+  faithful HTML/CSS layout) and returns it as a direct download
+  (`Content-Disposition: attachment`), generated fresh per click and never stored. Filename is
+  `Winston Nilumol_Resume_<ABBR>.pdf`, where `<ABBR>` comes from the job's `keywordFamily` field
+  mapped through `jobScoutKeywordFamilyAbbreviations` in `content/job-scout-keywords.ts`.
+
+**Font fidelity.** The real resume (`career/Winston Nilumol Resume_August_2026.pdf`) is set in
+Verdana, which is neither open-licensed nor installed on Vercel's Linux serverless environment -
+without a bundled substitute, headless Chromium would silently fall back to a generic
+sans-serif. `assets/fonts/open-sans/` bundles Open Sans (Regular/Bold/Italic, OFL-licensed), a
+standard visual equivalent to Verdana; `resume-template.ts` embeds it as base64 `@font-face`
+data URIs directly in the generated HTML, so both `/preview` and `/pdf` render from the exact
+same bytes with no outbound network dependency during a serverless cold start.
+
+**Local dev limitation.** `@sparticuz/chromium`'s bundled binary is Linux-only, so the PDF route
+cannot be exercised end-to-end on a local macOS dev machine (`spawn ENOEXEC`) - this is the
+inherent, expected reason the binary needs bundling for Vercel in the first place. `/suggestions`
+and `/preview` can be tested locally with `TAILOR_PASSPHRASE` and `ANTHROPIC_API_KEY` set.
+
 ## Known limits / not yet built
 
-- **No resume-adjustment suggestions.** An earlier version had Claude also suggest resume
-  tweaks per posting; that was removed to cut token cost. Scoring now returns only a score, a
-  rationale, and an optional compensation range.
 - **No UI for applied/passed.** Marking a job as applied or passed is a manual edit to
   `content/job-scout-seen.json` - there is no button on the page for it yet.
-- **Tailor My Profile is a placeholder.** Sending rows from Opportunities only updates its
-  placeholder text with a count, client-side and ephemeral - it does not write to the ledger or
-  build a resume/cover-letter draft. It is queued as a separate follow-on build. It is not
+- **Tailor My Profile's second stage isn't built.** The application-scan / cover-letter /
+  question-drafting piece (scanning the real application for extra questions, drafting answers
+  in the captain's voice) is a separate, queued follow-on build. Tailor My Profile is not
   connected to Tracker: Tracker only reflects hand-set `applied`/`passed` ledger entries.
