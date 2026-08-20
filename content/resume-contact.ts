@@ -1,9 +1,9 @@
 /**
  * Contact line for the generated tailored-resume preview/PDF only, transcribed from
  * career/Winston Nilumol Resume_August_2026.pdf. Deliberately kept separate from
- * content/resume-data.ts (which flows into LLM prompts - see scripts/job-scout/scoring.ts and
+ * content/resume-data.ts (which flows into LLM prompts - see scripts/job-agent/scoring.ts and
  * tailor-suggestions.ts - and must never carry personal contact info) and from content/site.ts
- * (public, search-indexed pages). Only scripts/job-scout/resume-template.ts imports this.
+ * (public, search-indexed pages). Only scripts/job-agent/resume-template.ts imports this.
  */
 export const resumeContact = {
   name: "Winston Nilumol",

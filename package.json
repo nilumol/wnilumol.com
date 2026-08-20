@@ -6,10 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "job-scout": "node --experimental-strip-types scripts/job-scout/run.ts",
-    "job-scout:apply-scores": "node --experimental-strip-types scripts/job-scout/apply-scores.ts",
-    "job-scout:score-via-api": "node --experimental-strip-types scripts/job-scout/score-via-api.ts",
-    "job-scout:test": "node --experimental-strip-types --test scripts/job-scout/*.test.ts"
+    "job-agent": "node --experimental-strip-types scripts/job-agent/run.ts",
+    "job-agent:apply-scores": "node --experimental-strip-types scripts/job-agent/apply-scores.ts",
+    "job-agent:score-via-api": "node --experimental-strip-types scripts/job-agent/score-via-api.ts",
+    "job-agent:test": "node --experimental-strip-types --test scripts/job-agent/*.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.117.1",
