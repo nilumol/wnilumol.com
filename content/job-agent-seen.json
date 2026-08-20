@@ -612,7 +612,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5150493007",
     "firstSeen": "2026-08-18T07:32:41.355Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Although the presales/Sales Engineer role family matches Winston's Benchling experience, the substance is deep network security engineering - routers/switches administration, proxies/firewalls, Active Directory/LDAP, SSO/SAML, SSE/SASE - none of which appear in his SQL/Python/Veeva/Benchling toolset. It also requires 5+ years selling network security specifically into Banking & Financial customers, an unrelated regulated industry with no biopharma adjacency, and the role is Singapore-hybrid public sector/BFSI focused. Zero life sciences domain overlap makes this a poor fit despite the title match.",
     "location": "Singapore, SGP",
@@ -837,7 +837,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5168578007",
     "firstSeen": "2026-08-18T07:31:23.491Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Role family (presales sales engineering, technical demos, POCs, trusted-advisor work) is a genuine match, but everything else misses: it requires 3+ years selling network security specifically, hands-on router/switch installation and administration, and deep knowledge of proxies, firewalls, AD/LDAP, SSO/SAML - none of which appear in Winston's SQL/Python/Veeva/Benchling/GMP toolkit. There is zero life-sciences or regulated-industry relevance, and the role is a hybrid position based in Singapore, which is a further practical mismatch.",
     "location": "Singapore, SGP",
@@ -874,6 +874,19 @@
     "compensationRange": "$175,875 - $251,250 USD",
     "postedAt": "2026-07-22T13:33:10-04:00"
   },
+  "greenhouse:5177715007": {
+    "id": 5177715007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer, SLED - Texas ",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5177715007",
+    "firstSeen": "2026-08-20T13:42:04.832Z",
+    "status": "pending",
+    "location": "Remote - Texas, USA",
+    "compensationRange": null,
+    "postedAt": "2026-07-23T13:59:38-04:00"
+  },
   "greenhouse:5187339007": {
     "id": 5187339007,
     "source": "greenhouse",
@@ -897,7 +910,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5190628007",
     "firstSeen": "2026-08-18T07:35:13.062Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family fits well - senior presales Sales Engineer running technical sales cycles, POVs, and enterprise/majors accounts, which maps directly to Winston's Benchling Strategic Enterprise SC work. However, the technical substance is network security/zero-trust with expectations of CCNP/JNCIP/CISSP-level networking depth, which shares nothing with his SQL/Python/Veeva/Benchling/GMP toolset, and there is zero life-sciences or regulated-industry adjacency. Also geographically constrained to TN/KY, further reducing practical fit despite the strong seniority and comp match.",
     "location": "Remote - Kentucky, USA; Remote - Tennessee, USA",
@@ -1212,6 +1225,19 @@
     "compensationRange": null,
     "postedAt": "2026-08-18T18:02:33-04:00"
   },
+  "greenhouse:5198904007": {
+    "id": 5198904007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Manager, Sales Engineering - Majors, Southeast",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198904007",
+    "firstSeen": "2026-08-20T13:42:04.832Z",
+    "status": "pending",
+    "location": "Remote - Florida, USA; Remote - Georgia, USA; Remote - North Carolina, USA; Remote - South Carolina, USA",
+    "compensationRange": null,
+    "postedAt": "2026-08-19T16:25:40-04:00"
+  },
   "greenhouse:5198908007": {
     "id": 5198908007,
     "source": "greenhouse",
@@ -1256,6 +1282,19 @@
     "location": "Remote - Delaware, USA; Remote - Maryland, USA; Remote - Pennsylvania, USA; Remote - Virginia, USA; Remote - West Virginia, USA",
     "compensationRange": "$175,875—$251,250 USD",
     "postedAt": "2026-08-17T20:22:47-04:00"
+  },
+  "greenhouse:5198914007": {
+    "id": 5198914007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Manager, Sales Engineering - Majors, TOLA",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198914007",
+    "firstSeen": "2026-08-20T13:42:04.832Z",
+    "status": "pending",
+    "location": "Remote - Texas, USA",
+    "compensationRange": null,
+    "postedAt": "2026-08-19T16:25:45-04:00"
   },
   "greenhouse:5199283007": {
     "id": 5199283007,
@@ -1920,6 +1959,19 @@
     "compensationRange": null,
     "postedAt": "2026-06-30T04:39:29-04:00"
   },
+  "greenhouse:7797439003": {
+    "id": 7797439003,
+    "source": "greenhouse",
+    "company": "Celonis",
+    "title": "Senior Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/celonis/jobs/7797439003?gh_jid=7797439003",
+    "firstSeen": "2026-08-20T13:42:04.832Z",
+    "status": "pending",
+    "location": "Remote, US, Washington DC",
+    "compensationRange": null,
+    "postedAt": "2026-07-20T15:58:32-04:00"
+  },
   "greenhouse:7811355002": {
     "id": 7811355002,
     "source": "greenhouse",
@@ -1949,6 +2001,19 @@
     "location": "Mexico City",
     "compensationRange": null,
     "postedAt": "2025-03-06T21:01:14-05:00"
+  },
+  "greenhouse:7905008003": {
+    "id": 7905008003,
+    "source": "greenhouse",
+    "company": "Celonis",
+    "title": "Senior Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/celonis/jobs/7905008003?gh_jid=7905008003",
+    "firstSeen": "2026-08-20T13:42:04.832Z",
+    "status": "pending",
+    "location": "New York, US, New York",
+    "compensationRange": null,
+    "postedAt": "2026-08-19T13:36:05-04:00"
   },
   "greenhouse:8073294002": {
     "id": 8073294002,
@@ -2333,7 +2398,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8469076002",
     "firstSeen": "2026-08-18T07:50:04.205Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 5,
     "fitRationale": "Role family is a genuine fit - post-sale technical account leadership, discovery workshops, executive stakeholder management, and driving adoption closely mirror Winston's Benchling SC and Collate Senior Implementations Manager work, and Python/SQL are in his toolkit. However, the domain is a general-purpose Data+AI platform targeting an 'AI native' customer with no life-sciences or regulated-industry angle, and the posting expects 7+ years of accountable technical delivery specifically within Data and AI plus understanding of distributed data systems/solution architecture - depth Winston's biopharma SaaS background doesn't directly cover. Databricks DSA roles also skew heavily technical (cloud cost tuning, workload optimization, private previews), which is a stretch versus his scientific/GxP-domain technical credibility.",
     "location": "Remote - California; Remote - Colorado; Remote - Oregon; Remote - Washington",
@@ -2422,7 +2487,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8480642002",
     "firstSeen": "2026-08-18T07:39:43.867Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Role family is presales/industry SA which nominally matches, but the posting demands deep Financial Services sub-vertical expertise (Capital Markets, Insurance, Payments, quant research personas) — an unrelated regulated industry with no biopharma adjacency — plus 15+ years customer-facing presales and hands-on depth in Spark/Delta Lake/MLflow and an engineering or math degree. Winston's 10+ years in life sciences, SQL-driven Benchling demos, and biology B.S. don't map to either the domain or the stack, and the seniority bar (~$264K–$363K, reporting to FS Tech GM) is well above his current level. The only real overlaps are POV/demo asset creation, POC leadership, and partner/GTM enablement.",
     "location": "Georgia; Illinois; Massachusetts; New York; North Carolina; Washington, D.C.",
@@ -2774,6 +2839,19 @@
     "compensationRange": null,
     "postedAt": "2026-05-29T10:42:26-04:00"
   },
+  "greenhouse:8563159002": {
+    "id": 8563159002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Strategic High Tech",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8563159002",
+    "firstSeen": "2026-08-20T13:42:04.832Z",
+    "status": "pending",
+    "location": "Remote - California; San Francisco, California",
+    "compensationRange": null,
+    "postedAt": "2026-08-19T12:54:03-04:00"
+  },
   "greenhouse:8563181002": {
     "id": 8563181002,
     "source": "greenhouse",
@@ -2857,7 +2935,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8567961002",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "expired",
     "location": "California; Remote - California; San Francisco, California; West Coast - United States",
     "compensationRange": null,
     "postedAt": "2026-08-18T15:53:24-04:00"
@@ -4304,7 +4382,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/9ae6621d-2817-46e4-8d4c-113d4125293d",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Pennsylvania - Philadelphia",
     "compensationRange": null,
     "postedAt": "2026-05-29T21:10:47.485Z"
@@ -4356,7 +4434,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/87c8a056-1cb0-4b33-bd1e-2144acf1821c",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "expired",
     "location": "California - Pleasanton",
     "compensationRange": null,
     "postedAt": "2026-07-08T21:44:37.737Z"
@@ -4395,7 +4473,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/2173d43f-5756-475d-86ff-a837d91c2133",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "expired",
     "location": "New York - New York City",
     "compensationRange": null,
     "postedAt": "2026-07-08T21:42:47.641Z"
@@ -4460,7 +4538,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/e0e108c1-9fa6-4044-bff8-5eb6548128ef",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "pending",
+    "status": "expired",
     "location": "New York - New York City",
     "compensationRange": null,
     "postedAt": "2026-05-29T21:10:06.751Z"
