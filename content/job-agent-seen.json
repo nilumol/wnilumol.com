@@ -4459,7 +4459,7 @@
     "firstSeen": "2026-08-19T00:47:22.095Z",
     "status": "scored",
     "location": "San Francisco",
-    "compensationRange": null,
+    "compensationRange": "$125K-$155K",
     "postedAt": "2026-07-11T00:22:14.846Z",
     "fitScore": 3,
     "fitRationale": "Solutions Consultant role at Windfall requiring AdTech/MarTech ecosystem knowledge - the demo-driven, GTM-support role family matches his track record well, but the AdTech domain and Windfall's people-data product have no life-sciences relevance."
@@ -4560,7 +4560,7 @@
     "firstSeen": "2026-08-19T00:47:22.095Z",
     "status": "scored",
     "location": "Remote",
-    "compensationRange": null,
+    "compensationRange": "$95K-$150K",
     "postedAt": "2026-07-09T22:47:03.998Z",
     "fitScore": 2,
     "fitRationale": "Sales Engineer role at Ethena, a compliance-training SaaS company with no life-sciences or biopharma focus; the posting text available doesn't even detail day-to-day technical duties, and the company's HR/compliance-training domain has no adjacency to his GMP/regulated-manufacturing background."
@@ -4633,7 +4633,7 @@
     "firstSeen": "2026-08-19T00:47:22.095Z",
     "status": "scored",
     "location": "San Francisco",
-    "compensationRange": null,
+    "compensationRange": "$110K-$168K",
     "postedAt": "2023-08-31T17:05:48.810Z",
     "fitScore": 3,
     "fitRationale": "Customer Success Manager for Windfall, a people-data platform with no life-sciences or regulated-industry focus - the account-ownership and onboarding elements are familiar, but the generic consumer/B2B data domain has no adjacency to his biopharma background."

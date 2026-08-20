@@ -523,6 +523,29 @@ test("applyScoresToLedger rejects an id that isn't pending, and leaves it and th
   assert.equal(ledger["greenhouse:200"]!.fitScore, 6); // untouched fixture default
 });
 
+test("applyScoresToLedger keeps an existing structured compensationRange and never overwrites it with the batch's value", () => {
+  const ledger: JobAgentLedger = {
+    "lever:abc": makeEntry({
+      id: "abc",
+      company: "Acme",
+      source: "lever",
+      status: "pending",
+      compensationRange: "$125K-$155K",
+    }),
+    "lever:def": makeEntry({ id: "def", company: "Acme", source: "lever", status: "pending" }),
+  };
+
+  applyScoresToLedger(ledger, [
+    { id: "lever:abc", fitScore: 8, fitRationale: "Strong match.", compensationRange: null },
+    { id: "lever:def", fitScore: 7, fitRationale: "Good match.", compensationRange: "$100K-$140K" },
+  ]);
+
+  // Pre-existing structured value survives even though the batch sent null for it.
+  assert.equal(ledger["lever:abc"]!.compensationRange, "$125K-$155K");
+  // Ledger had no compensationRange, so the batch's value fills it in.
+  assert.equal(ledger["lever:def"]!.compensationRange, "$100K-$140K");
+});
+
 test("applyScoresToLedger rejects an id that isn't in the ledger at all", () => {
   const ledger: JobAgentLedger = {
     "greenhouse:100": makeEntry({ id: 100, company: "Acme", source: "greenhouse", status: "pending" }),
