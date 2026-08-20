@@ -1,10 +1,10 @@
 /**
  * Structured, hand-authored transcription of career/Winston Nilumol Resume_August_2026.pdf,
  * with personal contact info (phone/email/LinkedIn) deliberately excluded - this data flows
- * into LLM prompts (see scripts/job-scout/scoring.ts and tailor-suggestions.ts) and must not
+ * into LLM prompts (see scripts/job-agent/scoring.ts and tailor-suggestions.ts) and must not
  * carry it.
  *
- * This is source-of-truth data for job-scout fit scoring, decoupled from the printable PDF so
+ * This is source-of-truth data for job-agent fit scoring, decoupled from the printable PDF so
  * nothing has to parse it at runtime. Keep this in sync by hand if the resume changes.
  */
 
