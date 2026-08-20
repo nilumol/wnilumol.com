@@ -23,16 +23,20 @@ Winston's background. It's for Winston only - it is not part of the public portf
   entries (`JobAgentSections.tsx`'s `sentEntries` state) - client-side only, not persisted, and
   reverts on refresh.
 - **Tracker** (collapsed by default) is a read-only table, built in
-  `app/job-agent/JobAgentTracker.tsx`, of ledger entries whose status is `applied` or `passed` -
-  job title, company, a status pill, location, and a link to the posting, in a fixed
-  company/title order. It reads the same ledger the page already loads; there is no sort,
-  pagination, or write path.
+  `app/job-agent/JobAgentTracker.tsx`, of every job whose status is `applied` or `passed` - job
+  title, company, a status pill, location, and a link to the posting, in a fixed company/title
+  order. Its row list is computed server-side in `app/job-agent/page.tsx` and passed down as a
+  `trackedEntries` prop: hand-set ledger entries (status edited directly in
+  `content/job-agent-seen.json`) plus live entries from the Blob status overlay, merged by
+  `mergeTrackerEntries()` - see "Live status overlay: Mark Applied / Mark Passed" below. The
+  table itself still has no sort, pagination, or write path of its own.
 - **Tailor My Profile** (collapsed by default), built in `app/job-agent/JobAgentTailor.tsx`, is
-  the first of two planned stages. This stage covers resume-tailoring suggestions and a
-  downloadable tailored PDF for every job Opportunities' "Send" button forwards (Opportunities'
-  local `sentEntries` state, held in `JobAgentSections.tsx` - not persisted). The second stage
-  (application-scan / cover-letter / question-drafting) is a separate, not-yet-built piece. See
-  "Tailor My Profile: resume tailoring" below for the full design.
+  the first of two planned stages. This stage covers resume-tailoring suggestions, a downloadable
+  tailored PDF, and the "Mark Applied"/"Mark Passed" actions (see below) for every job
+  Opportunities' "Send" button forwards (Opportunities' local `sentEntries` state, held in
+  `JobAgentSections.tsx` - not persisted). The second stage (application-scan / cover-letter /
+  question-drafting) is a separate, not-yet-built piece. See "Tailor My Profile: resume tailoring"
+  below for the full design.
 
 ## The pipeline, end to end
 
@@ -57,8 +61,9 @@ Winston's background. It's for Winston only - it is not part of the public portf
      demonstrable feature; not part of the automated pipeline and never needs a GitHub Actions
      secret. See `scripts/job-agent/score-via-api.ts`.
    Either path flips matching `"pending"` ledger entries to `"scored"`.
-5. **Table page.** The hidden `/job-agent` page reads the same ledger JSON file at build time and
-   renders it as a sortable table.
+5. **Table page.** The hidden `/job-agent` page reads the same ledger JSON file (a build-time
+   static import) and renders it as a sortable table. Tracker also layers in the live Blob status
+   overlay at request time - see "Live status overlay: Mark Applied / Mark Passed" below.
 
 ## Companies currently tracked
 
@@ -80,9 +85,12 @@ Cloudflare, Ethena, Veeva, Windfall, Aizon, AlphaLifeSci, Notion, LevelPath.
   changes needed.
 - **Change the "strong fit" score cutoff** (the threshold for the green pill): edit
   `STRONG_FIT_CUTOFF` in `content/job-agent-config.ts`.
-- **Mark a job "applied" or "passed"**: hand-edit the `status` field for that job's entry in
-  `content/job-agent-seen.json`. This is deliberate - there is no button or UI for it, so a
-  status only ever changes when Winston edits the file himself.
+- **Mark a job "applied" or "passed"**: either hand-edit the `status` field for that job's entry
+  in `content/job-agent-seen.json` (the original path, part of git history), or click "Mark
+  Applied"/"Mark Passed" on the job's card in Tailor My Profile, which writes to the live Blob
+  overlay instead and never touches git - see "Live status overlay: Mark Applied / Mark Passed"
+  below. If both ever disagree for the same job, the Blob overlay wins (it's the more recent,
+  captain-driven signal). There is still no UI for editing or un-marking an existing status.
 
 ## Automation (no paid API in the automated loop)
 
@@ -130,8 +138,9 @@ verifies it server-side (`scripts/job-agent/tailor-auth.ts`) before doing any pa
 cookies, no server-side session state.
 
 **Card actions.** Each card shows an "Open application" link (the job's `absoluteUrl`, opens in a
-new tab) plus four actions with real processing time - each shows the site's standard loading
-spinner (see CLAUDE.md's Design System section) while in flight:
+new tab), "Mark Passed"/"Mark Applied" (see "Live status overlay" below), and four more actions
+with real processing time - each shows the site's standard loading spinner (see CLAUDE.md's
+Design System section) while in flight:
 
 - **Tailor This Resume** - the initial suggestions call, described below.
 - **Revise** - sends the free-text notes box's current content plus every suggestion's current
@@ -190,11 +199,64 @@ cannot be exercised end-to-end on a local macOS dev machine (`spawn ENOEXEC`) - 
 inherent, expected reason the binary needs bundling for Vercel in the first place. `/suggestions`
 and `/preview` can be tested locally with `TAILOR_PASSPHRASE` and `ANTHROPIC_API_KEY` set.
 
+## Live status overlay: Mark Applied / Mark Passed
+
+Each card in Tailor My Profile has "Mark Passed" and "Mark Applied" buttons (next to "Open
+application"), each showing the standard spinner while in flight. This is the only way, besides a
+captain hand-edit, to change a job's status - and it's deliberately narrow: it writes to a small
+live overlay, never to git.
+
+- **Why not just write to the ledger?** The ledger (`content/job-agent-seen.json`) is
+  git-committed and written only by the daily automated scan and the manual scoring scripts - a
+  browser click was never going to commit-and-push on someone's behalf. A live-writable store was
+  the only option that didn't mean building a commit-per-click flow.
+- **Storage: Vercel Blob, one JSON document.** `scripts/job-agent/tracker-overlay.ts` reads/writes
+  a single blob at `job-agent/tracker-overlay.json` in a private Blob store (`job-agent-tracker`,
+  env var prefix `JOB_AGENT_TRACKER` - every SDK call passes
+  `token: process.env.JOB_AGENT_TRACKER_READ_WRITE_TOKEN` explicitly, since the custom prefix
+  means `@vercel/blob`'s default `BLOB_READ_WRITE_TOKEN` env var doesn't apply). One document
+  holding a small `{ "<source>:<id>": { status, title, company, location, absoluteUrl, updatedAt
+  } }` map was chosen over one blob per job: expected volume is a handful of marks over the
+  tool's lifetime, so a single read/write beats a `list()` call plus N reads. Retention is
+  indefinite by design - no TTL or cleanup - matching the ledger's own "expired but retained
+  forever" precedent.
+- **Why the overlay snapshots title/company/location/absoluteUrl instead of resolving them from
+  the ledger at read time:** the daily scan flips a ledger entry's own `status` to `"expired"`
+  once its posting disappears from the board - which tends to happen exactly when you've been
+  hired or the req has closed - and `/job-agent` drops expired ledger entries before Tracker ever
+  sees them. Snapshotting these fields at write time (server-side, from the ledger entry looked up
+  by id - never from client input) keeps a marked job visible in Tracker regardless of what later
+  happens to the live posting.
+- **Route:** `POST /api/job-agent/tailor/status`, passphrase-gated the same way as the other three
+  Tailor routes. Body is `{ source, id, status }`; the job's other fields are looked up
+  server-side from the ledger, not trusted from the client.
+- **Merge at render time.** `app/job-agent/page.tsx` reads the non-expired ledger slice (as
+  before) plus the overlay, and calls `mergeTrackerEntries()` to build Tracker's full row list -
+  hand-set ledger rows, plus overlay rows, with an overlay entry winning over a stale ledger row
+  for the same job. `JobAgentSections` receives this as a `trackedEntries` prop instead of
+  deriving it from `initialEntries` itself.
+- **This forced `/job-agent` off static generation.** Reading the overlay from Blob is a
+  request-time operation, so `page.tsx` now declares `export const dynamic = "force-dynamic"`.
+  Before this feature, the page was fully statically generated from the ledger's build-time JSON
+  import (served from cache, no per-request work); now every load does one Blob read server-side.
+  Tradeoff accepted deliberately for a low-traffic hidden internal tool - freshness beats
+  build-time caching here. The ledger JSON import itself is still a build-time static import; only
+  the overlay read is dynamic.
+- **Read failures degrade gracefully; write failures don't.** If the Blob token is missing or the
+  read fails for any reason (e.g. local dev, where `JOB_AGENT_TRACKER_READ_WRITE_TOKEN` isn't
+  set), `page.tsx` treats it as "no live overlay rows" rather than crashing the whole hidden page
+  - Tracker still shows any hand-set ledger rows. The `/status` route's write path does the
+  opposite: a missing token or a failed write returns a clear error, shown inline on the card,
+  because a click that silently did nothing would be worse than one that visibly failed.
+- **After a successful mark**, the card shows a status pill in place of the two buttons, and the
+  client calls `router.refresh()` so Tracker picks up the new row immediately, without a full page
+  reload - no separate polling or client-side cache invalidation needed. There's no UI to edit or
+  un-mark a status, on the same "hand-edit only" principle as the ledger itself.
+
 ## Known limits / not yet built
 
-- **No UI for applied/passed.** Marking a job as applied or passed is a manual edit to
-  `content/job-agent-seen.json` - there is no button on the page for it yet.
+- **No UI for editing or un-marking an existing applied/passed status** - only setting one for the
+  first time, from either path above.
 - **Tailor My Profile's second stage isn't built.** The application-scan / cover-letter /
   question-drafting piece (scanning the real application for extra questions, drafting answers
-  in the captain's voice) is a separate, queued follow-on build. Tailor My Profile is not
-  connected to Tracker: Tracker only reflects hand-set `applied`/`passed` ledger entries.
+  in the captain's voice) is a separate, queued follow-on build.
