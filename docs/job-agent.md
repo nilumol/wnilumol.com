@@ -50,7 +50,9 @@ Winston's background. It's for Winston only - it is not part of the public portf
    - **Default, free**: `npm run job-agent:apply-scores -- <path-to-json>` merges a
      pre-computed batch of `{ id, fitScore, fitRationale, compensationRange }` - typically from
      Winston or an assistant reasoning over the postings directly, no paid API call - into the
-     ledger. See `scripts/job-agent/apply-scores.ts`.
+     ledger. A structured, source-provided `compensationRange` already on the ledger entry (see
+     step 3) is authoritative and is never overwritten by the batch's value. See
+     `scripts/job-agent/apply-scores.ts`.
    - **Opt-in, calls Claude directly**: `npm run job-agent:score-via-api` re-fetches pending
      jobs' full posting content and scores them via a live Claude API call, using
      `ANTHROPIC_API_KEY` from the local environment. Kept in the codebase as a working,
