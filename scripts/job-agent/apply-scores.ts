@@ -74,7 +74,12 @@ export function applyScoresToLedger(ledger: JobAgentLedger, batch: ScoreBatchEnt
     existing.status = "scored";
     existing.fitScore = entry.fitScore;
     existing.fitRationale = entry.fitRationale;
-    existing.compensationRange = entry.compensationRange;
+    // A structured, source-provided compensationRange (e.g. Lever's salaryRange) is authoritative
+    // and must never be clobbered by the batch's text-parsed value - only fill it in when the
+    // ledger doesn't already have one.
+    if (existing.compensationRange == null) {
+      existing.compensationRange = entry.compensationRange;
+    }
   }
 }
 
