@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { STRONG_FIT_CUTOFF } from "@/content/job-agent-config";
+import { selectOpportunityPage, toggleSelectedOpportunity } from "@/scripts/job-agent/opportunity-session";
 import type { JobAgentLedgerEntry } from "@/scripts/job-agent/types";
 
 type SortKey = "title" | "company" | "role" | "location" | "posted" | "pay" | "link" | "fitScore";
@@ -122,23 +123,11 @@ export function JobAgentTable({
   }
 
   function toggleRow(key: string, checked: boolean) {
-    setSelectedKeys((current) => {
-      const next = new Set(current);
-      if (checked) {
-        next.add(key);
-      } else {
-        next.delete(key);
-      }
-      return next;
-    });
+    setSelectedKeys((current) => toggleSelectedOpportunity(current, key, checked));
   }
 
   function handleSelectAll() {
-    setSelectedKeys((current) => {
-      const next = new Set(current);
-      for (const entry of pageEntries) next.add(entryKey(entry));
-      return next;
-    });
+    setSelectedKeys((current) => selectOpportunityPage(current, pageEntries));
   }
 
   function handleSend() {
