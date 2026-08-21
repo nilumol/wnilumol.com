@@ -6,17 +6,18 @@ import type { ApplicationDraftAnswer } from "@/scripts/job-agent/application-dra
 import type { ApplicationScanResult } from "@/scripts/job-agent/application-scan-types";
 import type { TailorSuggestion } from "@/scripts/job-agent/tailor-types";
 import type { JobAgentLedgerEntry } from "@/scripts/job-agent/types";
+import {
+  clearTailorPassphrase,
+  onTailorPassphraseChange,
+  readJobAgentError,
+  readStoredTailorPassphrase,
+  storeTailorPassphrase,
+} from "./job-agent-client";
 
-const PASSPHRASE_STORAGE_KEY = "job-agent-tailor-passphrase";
 const AUTH_ERROR = "job-agent-tailor-auth-error";
 
 function entryKey(entry: JobAgentLedgerEntry): string {
   return `${entry.source}:${entry.id}`;
-}
-
-async function readErrorMessage(response: Response, fallback: string): Promise<string> {
-  const data: { error?: string } | null = await response.json().catch(() => null);
-  return data?.error ?? fallback;
 }
 
 export function JobAgentTailor({ entries }: { entries: JobAgentLedgerEntry[] }) {
@@ -25,7 +26,11 @@ export function JobAgentTailor({ entries }: { entries: JobAgentLedgerEntry[] }) 
   const [gateError, setGateError] = useState<string | null>(null);
 
   useEffect(() => {
-    setPassphrase(sessionStorage.getItem(PASSPHRASE_STORAGE_KEY));
+    function syncPassphrase() {
+      setPassphrase(readStoredTailorPassphrase());
+    }
+    syncPassphrase();
+    return onTailorPassphraseChange(syncPassphrase);
   }, []);
 
   function handleUnlock(event: React.FormEvent) {
@@ -36,12 +41,12 @@ export function JobAgentTailor({ entries }: { entries: JobAgentLedgerEntry[] }) 
       return;
     }
     setGateError(null);
-    sessionStorage.setItem(PASSPHRASE_STORAGE_KEY, trimmed);
+    storeTailorPassphrase(trimmed);
     setPassphrase(trimmed);
   }
 
   function handleAuthError() {
-    sessionStorage.removeItem(PASSPHRASE_STORAGE_KEY);
+    clearTailorPassphrase();
     setPassphrase(null);
     setPassphraseInput("");
     setGateError("That's not it — try again.");
@@ -159,7 +164,7 @@ function TailorCard({
         source: entry.source,
         id: entry.id,
       });
-      if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't generate suggestions."));
+      if (!response.ok) throw new Error(await readJobAgentError(response, "Couldn't generate suggestions."));
       applySuggestionResponse(await response.json());
     } catch (err) {
       reportError(err);
@@ -184,7 +189,7 @@ function TailorCard({
         status,
       });
       if (!response.ok) {
-        throw new Error(await readErrorMessage(response, `Couldn't mark this job ${status}.`));
+        throw new Error(await readJobAgentError(response, `Couldn't mark this job ${status}.`));
       }
       setMarkedStatus(status);
       router.refresh();
@@ -225,7 +230,7 @@ function TailorCard({
           notes: ownText,
         },
       });
-      if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't revise suggestions."));
+      if (!response.ok) throw new Error(await readJobAgentError(response, "Couldn't revise suggestions."));
       applySuggestionResponse(await response.json());
     } catch (err) {
       reportError(err);
@@ -239,7 +244,7 @@ function TailorCard({
     setError(null);
     try {
       const response = await callTailorApi("/api/job-agent/tailor/preview", renderPayload());
-      if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't build the preview."));
+      if (!response.ok) throw new Error(await readJobAgentError(response, "Couldn't build the preview."));
       const html = await response.text();
       const blob = new Blob([html], { type: "text/html" });
       window.open(URL.createObjectURL(blob), "_blank");
@@ -255,7 +260,7 @@ function TailorCard({
     setError(null);
     try {
       const response = await callTailorApi("/api/job-agent/tailor/pdf", renderPayload());
-      if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't generate the PDF."));
+      if (!response.ok) throw new Error(await readJobAgentError(response, "Couldn't generate the PDF."));
       const disposition = response.headers.get("Content-Disposition") ?? "";
       const filename = /filename="([^"]+)"/.exec(disposition)?.[1] ?? "Winston Nilumol_Resume.pdf";
       const blob = await response.blob();
@@ -280,7 +285,7 @@ function TailorCard({
         source: entry.source,
         id: entry.id,
       });
-      if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't scan the application page."));
+      if (!response.ok) throw new Error(await readJobAgentError(response, "Couldn't scan the application page."));
       setScan(await response.json());
     } catch (err) {
       if (err instanceof Error && err.message === AUTH_ERROR) return;
@@ -300,7 +305,7 @@ function TailorCard({
         id: entry.id,
         questions: scan.questions.map((question) => ({ id: question.id, prompt: question.prompt })),
       });
-      if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't draft answers."));
+      if (!response.ok) throw new Error(await readJobAgentError(response, "Couldn't draft answers."));
       const data: { answers: ApplicationDraftAnswer[] } = await response.json();
       setDraftedAnswers(new Map(data.answers.map((answer) => [answer.id, answer.answer])));
     } catch (err) {

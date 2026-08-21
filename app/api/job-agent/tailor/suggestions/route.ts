@@ -1,13 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
-import { jobAgentBoards } from "@/content/job-agent-boards";
 import ledgerJson from "@/content/job-agent-seen.json";
 import { resumeData } from "@/content/resume-data";
-import { fetchAshbyBoardJobs } from "@/scripts/job-agent/ashby";
-import { fetchBoardJobs } from "@/scripts/job-agent/greenhouse";
-import { fetchLeverBoardJobs } from "@/scripts/job-agent/lever";
-import { ledgerKey } from "@/scripts/job-agent/ledger";
-import { fetchBoardNormalized } from "@/scripts/job-agent/pipeline";
+import { OpportunityContextError, resolveOpportunityContext } from "@/scripts/job-agent/opportunity-context";
 import { verifyTailorPassphrase } from "@/scripts/job-agent/tailor-auth";
 import { generateTailorSuggestions } from "@/scripts/job-agent/tailor-suggestions";
 import { parseTailorSuggestRequestBody } from "@/scripts/job-agent/tailor-types";
@@ -21,8 +16,8 @@ const ledger = ledgerJson as unknown as JobAgentLedger;
  * Generates resume-tailoring suggestions for one job the captain sent forward from
  * Opportunities - the "Tailor This Resume" action, or, when the request carries a `revision`
  * block, the "Revise" action re-running with the captain's notes and prior accept/reject state.
- * Re-fetches the posting's live content the same way score-via-api.ts does (the ledger doesn't
- * persist full descriptions), then calls Claude with only the highlights array and the
+ * Re-fetches automated-ledger posting content the same way score-via-api.ts does, or uses the
+ * captured description persisted for a manual opportunity, then calls Claude with only the highlights array and the
  * Collate/Benchling role bullets as reorderable/groundable targets - see
  * scripts/job-agent/tailor-suggestions.ts and docs/job-agent.md for the guardrail this enforces.
  * This and the initial call are the only two places besides Claude's structured-output schema
@@ -39,33 +34,25 @@ export async function POST(request: Request): Promise<NextResponse> {
     return NextResponse.json({ error: "Request body must be { source, id, revision? }." }, { status: 400 });
   }
 
-  const entry = ledger[ledgerKey(body.source, body.id)];
-  if (!entry) {
-    return NextResponse.json({ error: "Job not found in the ledger." }, { status: 404 });
-  }
-
-  const board = jobAgentBoards.find((b) => b.label === entry.company && b.source === entry.source);
-  if (!board) {
-    return NextResponse.json({ error: "No tracked board for this job's company." }, { status: 500 });
-  }
-
-  let fetchResult;
+  let context;
   try {
-    fetchResult = await fetchBoardNormalized(board, {
-      greenhouse: fetchBoardJobs,
-      lever: fetchLeverBoardJobs,
-      ashby: fetchAshbyBoardJobs,
-    });
+    context = await resolveOpportunityContext(ledger, body.source, body.id);
   } catch (error) {
+    const status =
+      error instanceof OpportunityContextError
+        ? error.code === "not-live"
+          ? 404
+          : error.code === "fetch"
+            ? 502
+            : 500
+        : 500;
     return NextResponse.json(
-      { error: `Failed to fetch the live posting: ${(error as Error).message}` },
-      { status: 502 },
+      { error: (error as Error).message },
+      { status },
     );
   }
-
-  const job = fetchResult.jobs.find((candidate) => String(candidate.id) === String(entry.id));
-  if (!job) {
-    return NextResponse.json({ error: "This posting is no longer live." }, { status: 404 });
+  if (!context) {
+    return NextResponse.json({ error: "Job not found in stored opportunities." }, { status: 404 });
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -77,7 +64,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     const client = new Anthropic({ apiKey });
     const suggestions = await generateTailorSuggestions(
       client,
-      { ...job, company: entry.company },
+      { ...context.posting, company: context.entry.company },
       resumeData,
       body.revision,
     );
