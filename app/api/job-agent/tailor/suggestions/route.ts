@@ -17,8 +17,8 @@ const ledger = ledgerJson as unknown as JobAgentLedger;
  * Opportunities - the "Tailor This Resume" action, or, when the request carries a `revision`
  * block, the "Revise" action re-running with the captain's notes and prior accept/reject state.
  * Re-fetches automated-ledger posting content the same way score-via-api.ts does, or uses the
- * captured description persisted for a manual opportunity, then calls Claude with only the highlights array and the
- * Collate/Benchling role bullets as reorderable/groundable targets - see
+ * captured description persisted for a manual opportunity, then calls Claude with only the
+ * highlights array and the Collate/Benchling role bullets as reorderable/groundable targets - see
  * scripts/job-agent/tailor-suggestions.ts and docs/job-agent.md for the guardrail this enforces.
  * This and the initial call are the only two places besides Claude's structured-output schema
  * itself that ever make a real Anthropic API call in Tailor My Profile - Review and Generate PDF

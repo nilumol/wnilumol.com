@@ -24,9 +24,8 @@ const ledger = ledgerJson as unknown as JobAgentLedger;
 export default async function JobAgentPage() {
   const ledgerEntries = Object.values(ledger).filter((entry) => entry.status !== "expired");
   // Missing/misconfigured Blob credentials (e.g. local dev without JOB_AGENT_TRACKER_READ_WRITE_TOKEN
-  // set) degrade to "no live overlay rows" rather than crashing the whole hidden page - Tracker
-  // still shows hand-set ledger rows. The write path (the Mark Applied/Passed action itself)
-  // fails loudly instead; see app/api/job-agent/tailor/status/route.ts.
+  // set) degrade to "no live Blob rows" rather than crashing the whole hidden page - the git
+  // ledger still renders. Intake and status writes fail loudly instead; see docs/job-agent.md.
   const [overlay, manualStore] = await Promise.all([
     readTrackerOverlay().catch(() => ({})),
     readManualOpportunities().catch(() => ({})),

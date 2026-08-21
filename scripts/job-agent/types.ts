@@ -92,7 +92,7 @@ export interface NormalizedJob {
   content?: string;
   location?: { name: string };
   postedAt?: string;
-  /** Structured compensation the source itself provides (currently Lever's `salaryRange` only). */
+  /** Structured compensation the source provides (Lever ranges or Ashby manual-intake summaries). */
   structuredCompensationRange?: string | null;
 }
 
