@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+import Anthropic, { APIError } from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import type { ResumeData, ResumeRole } from "../../content/resume-data.ts";
 import { htmlToPlainText } from "./html.ts";
@@ -114,7 +114,9 @@ const MAX_ATTEMPTS = 3;
  * on a request, which zodOutputFormat can't distinguish from a plain miss) and a thrown
  * AnthropicError from zodOutputFormat's own parse step (malformed JSON or a schema-violating
  * shape). Both can be transient model misses that a retry self-heals; if every attempt fails,
- * the final error includes the model's stop reason/explanation when available.
+ * the final error includes the model's stop reason/explanation when available. A thrown APIError
+ * (network failure, rate limit, auth, etc.) is a request-level failure, not a parse failure - it
+ * is not retried here and propagates immediately as itself.
  */
 export async function generateTailorSuggestions(
   client: Anthropic,
@@ -159,6 +161,7 @@ export async function generateTailorSuggestions(
           : "no text content in the response";
       return { failureDetail };
     } catch (error) {
+      if (error instanceof APIError) throw error;
       return { failureDetail: (error as Error).message };
     }
   }
