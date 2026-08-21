@@ -1,6 +1,7 @@
-import Anthropic from "@anthropic-ai/sdk";
+import Anthropic, { APIError } from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import type { ResumeData, ResumeRole } from "../../content/resume-data.ts";
+import { htmlToPlainText } from "./html.ts";
 import { JOB_AGENT_MODEL } from "./scoring.ts";
 import {
   TailorSuggestionsResponseSchema,
@@ -84,7 +85,7 @@ export function buildTailorPrompt(
     `Company: ${job.company}`,
     `Title: ${job.title}`,
     "",
-    job.content ?? "(no description provided)",
+    job.content ? htmlToPlainText(job.content) : "(no description provided)",
     revision ? buildRevisionSection(revision) : "",
   ]
     .filter(Boolean)
@@ -96,6 +97,9 @@ function isValidPermutation(order: number[], length: number): boolean {
   return new Set(order).size === length && order.every((i) => i >= 0 && i < length);
 }
 
+/** 1 initial call + 2 retries - bounded so a persistent structural failure still surfaces promptly. */
+const MAX_ATTEMPTS = 3;
+
 /**
  * Calls Claude for one job, constrained by structured outputs to the reorder/new-phrasing shape
  * in tailor-types.ts. Drops any reorder suggestion whose permutation doesn't match its target's
@@ -103,6 +107,16 @@ function isValidPermutation(order: number[], length: number): boolean {
  * Never called by the automated pipeline; only the passphrase-gated /api/job-agent/tailor/suggestions
  * route - both the initial "Tailor This Resume" call and, when `revision` is passed, the
  * "Revise" call. Review and Generate PDF never reach this function.
+ *
+ * Retries up to MAX_ATTEMPTS times on a failed parse before giving up. Two distinct SDK failure
+ * modes count as "a failed parse" here: `parsed_output: null` (the response had no text content
+ * block at all - e.g. `stop_reason: "refusal"`, when Anthropic's streaming classifiers intervene
+ * on a request, which zodOutputFormat can't distinguish from a plain miss) and a thrown
+ * AnthropicError from zodOutputFormat's own parse step (malformed JSON or a schema-violating
+ * shape). Both can be transient model misses that a retry self-heals; if every attempt fails,
+ * the final error includes the model's stop reason/explanation when available. A thrown APIError
+ * (network failure, rate limit, auth, etc.) is a request-level failure, not a parse failure - it
+ * is not retried here and propagates immediately as itself.
  */
 export async function generateTailorSuggestions(
   client: Anthropic,
@@ -119,18 +133,48 @@ export async function generateTailorSuggestions(
   };
 
   const prompt = buildTailorPrompt(job, resumeData, revision);
-  const response = await client.messages.parse({
-    model: JOB_AGENT_MODEL,
-    max_tokens: 4096,
-    messages: [{ role: "user", content: prompt }],
-    output_config: { format: zodOutputFormat(TailorSuggestionsResponseSchema) },
-  });
 
-  if (!response.parsed_output) {
-    throw new Error(`tailor-suggestions: response for "${job.title}" did not parse against the suggestion schema.`);
+  // Kept as one call scoped inside this closure (rather than hoisting `response`'s type out to
+  // the loop) so TypeScript can infer the parsed shape from zodOutputFormat's generic - an
+  // explicit `Awaited<ReturnType<typeof client.messages.parse>>` annotation loses that inference
+  // since `.parse` is an overloaded method.
+  async function attempt(): Promise<{ suggestions: TailorSuggestion[] } | { failureDetail: string }> {
+    try {
+      const response = await client.messages.parse({
+        model: JOB_AGENT_MODEL,
+        max_tokens: 4096,
+        messages: [{ role: "user", content: prompt }],
+        output_config: { format: zodOutputFormat(TailorSuggestionsResponseSchema) },
+      });
+
+      if (response.parsed_output) {
+        const suggestions = response.parsed_output.suggestions
+          .filter((s) => s.type !== "reorder" || isValidPermutation(s.newOrder, targetLengths[s.target]!))
+          .map((s, index) => ({ ...s, id: `sugg-${index}` }));
+        return { suggestions };
+      }
+
+      const failureDetail = response.stop_details?.explanation
+        ? `${response.stop_reason}: ${response.stop_details.explanation}`
+        : response.stop_reason
+          ? `stop_reason: ${response.stop_reason}`
+          : "no text content in the response";
+      return { failureDetail };
+    } catch (error) {
+      if (error instanceof APIError) throw error;
+      return { failureDetail: (error as Error).message };
+    }
   }
 
-  return response.parsed_output.suggestions
-    .filter((s) => s.type !== "reorder" || isValidPermutation(s.newOrder, targetLengths[s.target]!))
-    .map((s, index) => ({ ...s, id: `sugg-${index}` }));
+  let lastFailureDetail = "no text content in the response";
+  for (let i = 0; i < MAX_ATTEMPTS; i++) {
+    const result = await attempt();
+    if ("suggestions" in result) return result.suggestions;
+    lastFailureDetail = result.failureDetail;
+  }
+
+  throw new Error(
+    `tailor-suggestions: response for "${job.title}" did not parse against the suggestion schema after ` +
+      `${MAX_ATTEMPTS} attempts (${lastFailureDetail}).`,
+  );
 }

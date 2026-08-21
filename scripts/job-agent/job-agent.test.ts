@@ -55,6 +55,21 @@ test("htmlToPlainText strips tags and decodes common entities", () => {
   assert.ok(!text.includes("<"));
 });
 
+test("htmlToPlainText also strips and decodes a whole-field double-HTML-encoded posting", () => {
+  // Some Greenhouse postings return their `content` field HTML-entity-escaped an extra time
+  // (e.g. "&lt;div&gt;" instead of "<div>"), which hides real tags from a naive strip-then-decode
+  // pass - this reproduces that shape, including a doubly-escaped "&amp;mdash;" for a real dash.
+  const doublyEscaped =
+    "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;We build tools &amp;amp; platforms.&lt;/p&gt;&lt;/div&gt;" +
+    "&lt;p&gt;$92,500&lt;span&gt;&amp;mdash;&lt;/span&gt;$126,250&lt;/p&gt;";
+  const text = htmlToPlainText(doublyEscaped);
+  assert.ok(text.includes("We build tools & platforms."));
+  assert.ok(text.includes("$92,500—$126,250"));
+  assert.ok(!text.includes("<"));
+  assert.ok(!text.includes("&lt;"));
+  assert.ok(!text.includes("&quot;"));
+});
+
 // ---------------------------------------------------------------------------
 // Location cleanup
 // ---------------------------------------------------------------------------
