@@ -198,10 +198,11 @@ Design System section) while in flight:
 
 - `POST /api/job-agent/tailor/suggestions` - given `{ source, id }`, re-fetches an automated
   ledger posting's live content the same way `job-agent:score-via-api` does, or uses the captured
-  description persisted with a manual opportunity, then calls Claude with the guardrailed prompt. Returns the suggestion
-  list, each with a short one-clause rationale (~12 words - the existing fit-scoring rationale
-  style is 600+ characters and doesn't fit this compact checklist UI). Also accepts an optional
-  `revision: { priorSuggestions: { suggestion, accepted }[], notes }` block (the "Revise" action) -
+  description persisted with a manual opportunity, then calls Claude with the guardrailed prompt.
+  Returns the suggestion list, each with a short one-clause rationale (~12 words - the existing
+  fit-scoring rationale style is 600+ characters and doesn't fit this compact checklist UI). Also
+  accepts an optional `revision: { priorSuggestions: { suggestion, accepted }[], notes }` block
+  (the "Revise" action) -
   when present, `scripts/job-agent/tailor-suggestions.ts` appends the prior suggestions' kept/
   rejected state and the captain's notes to the prompt before calling Claude again.
 - `POST /api/job-agent/tailor/preview` - given the job's metadata, the captain's accepted
@@ -277,7 +278,8 @@ live overlay, never to git.
   git-committed and written only by the daily automated scan and the manual scoring scripts - a
   browser click was never going to commit-and-push on someone's behalf. A live-writable store was
   the only option that didn't mean building a commit-per-click flow.
-- **Storage: Vercel Blob, one JSON document for statuses.** `scripts/job-agent/tracker-overlay.ts` reads/writes
+- **Storage: Vercel Blob, one JSON document for statuses.**
+  `scripts/job-agent/tracker-overlay.ts` reads/writes
   a single blob at `job-agent/tracker-overlay.json` in a private Blob store (`job-agent-tracker`,
   env var prefix `JOB_AGENT_TRACKER` - every SDK call passes
   `token: process.env.JOB_AGENT_TRACKER_READ_WRITE_TOKEN` explicitly, since the custom prefix

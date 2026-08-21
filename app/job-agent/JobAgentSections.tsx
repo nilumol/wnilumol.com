@@ -14,9 +14,9 @@ export function JobAgentSections({
 }: {
   entries: JobAgentLedgerEntry[];
   /**
-   * Tracker's full row list, computed server-side in page.tsx from the non-expired ledger slice
-   * plus the live Blob status overlay - not derived here, since a marked-applied/passed job may
-   * no longer be part of `initialEntries` if its underlying posting has since expired. See
+   * Tracker's full row list, computed server-side in page.tsx from stored opportunities plus the
+   * live Blob status overlay - not derived here, since a marked-applied/passed job may no longer
+   * be part of `initialEntries` if its underlying posting has since expired. See
    * scripts/job-agent/tracker-overlay.ts.
    */
   trackedEntries: JobAgentLedgerEntry[];
