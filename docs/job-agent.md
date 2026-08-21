@@ -30,13 +30,14 @@ Winston's background. It's for Winston only - it is not part of the public portf
   `content/job-agent-seen.json`) plus live entries from the Blob status overlay, merged by
   `mergeTrackerEntries()` - see "Live status overlay: Mark Applied / Mark Passed" below. The
   table itself still has no sort, pagination, or write path of its own.
-- **Tailor My Profile** (collapsed by default), built in `app/job-agent/JobAgentTailor.tsx`, is
-  the first of two planned stages. This stage covers resume-tailoring suggestions, a downloadable
-  tailored PDF, and the "Mark Applied"/"Mark Passed" actions (see below) for every job
-  Opportunities' "Send" button forwards (Opportunities' local `sentEntries` state, held in
-  `JobAgentSections.tsx` - not persisted). The second stage (application-scan / cover-letter /
-  question-drafting) is a separate, not-yet-built piece. See "Tailor My Profile: resume tailoring"
-  below for the full design.
+- **Tailor My Profile** (collapsed by default), built in `app/job-agent/JobAgentTailor.tsx`, has
+  two stages for every job Opportunities' "Send" button forwards (Opportunities' local
+  `sentEntries` state, held in `JobAgentSections.tsx` - not persisted), both complete:
+  resume-tailoring suggestions plus a downloadable tailored PDF, and scanning the real application
+  page for cover-letter acceptance and free-text questions with an option to draft answers to them
+  in a real (gradually-captured) voice, plus the "Mark Applied"/"Mark Passed" actions (see below).
+  See "Tailor My Profile: resume tailoring" and "Tailor My Profile: application scan" below for the
+  full design.
 
 ## The pipeline, end to end
 
@@ -255,10 +256,64 @@ live overlay, never to git.
   reload - no separate polling or client-side cache invalidation needed. There's no UI to edit or
   un-mark a status, on the same "hand-edit only" principle as the ledger itself.
 
+## Tailor My Profile: application scan (second stage, complete)
+
+The second of Tailor My Profile's two stages, both now built. Scans the real application page for
+a job the captain has sent forward, surfaces what it asks for, and can draft answers to the
+free-text questions it finds - review-only throughout: nothing here fills in or submits the real
+form, and nothing is persisted server-side.
+
+**Scan Application** (a new action on each card, alongside "Tailor This Resume" - independent of
+it, so either can be run first) calls `POST /api/job-agent/tailor/scan` with `{ source, id }`,
+passphrase-gated the same way as the other routes. The route looks up the ledger entry's
+`absoluteUrl` (the same link "Open application" already points to - no separate re-fetch from the
+board API, unlike `/suggestions`), loads it with headless Chromium
+(`scripts/job-agent/application-scan.ts`'s `scrapeApplicationPage()`, the same
+`puppeteer-core` + `@sparticuz/chromium` dependency the PDF route already uses - no second
+browser-automation dependency), and pulls a generic, ATS-agnostic snapshot: every form field's
+associated label (walked across the main page and any embedded frames, since some ATS platforms
+mount the application form in an iframe) plus the full visible page text as a fallback. No
+per-site selectors or Greenhouse/Lever/Ashby-specific parsing - `classifyApplicationPage()` then
+sends that snapshot to Claude (same `claude-sonnet-5` model, same `client.messages.parse()` +
+structured-output pattern as scoring and resume tailoring) to classify cover-letter acceptance
+and every free-text/paragraph question, so the same code path generalizes across any application
+form shape rather than needing per-ATS scraping rules. Detected questions render immediately once
+the scan completes - no separate reveal click.
+
+**Draft Answers** (shown once a scan finds at least one question, right below the question list)
+is a second, separate action/API call - `POST /api/job-agent/tailor/draft`, given
+`{ source, id, questions }` (the exact questions the client already has from the scan response, so
+the server never re-derives them). It re-fetches the posting's live content the same way
+`/suggestions` does, then calls Claude (`scripts/job-agent/application-draft.ts`'s
+`draftApplicationAnswers()`) grounded in `resumeData` - never inventing an accomplishment, employer,
+or metric - to write one answer per question, correlated back to the client's question ids by
+array position (the model is never asked to echo ids back; the response schema is built per-request
+with `z.array(...).length(questions.length)` so a wrong count fails loudly instead of silently
+mismatching). Drafted answers render directly under their question once ready.
+
+**Voice profiles.** Drafting writes in a real, captured voice rather than a generic assistant
+tone, sourced from `content/voice-profile/` - three separate categories in their own files
+(`public-speaking.ts`, `formal-professional.ts`, `short-form-outreach.ts`), because a conference
+talk, a cover letter, and a LinkedIn note are genuinely different registers. Draft Answers always
+uses `formalProfessional` (cover letters/application answers are exactly what that category is
+for) - it is not a client-chosen option. Each category's `samples: VoiceSample[]` is populated by
+hand, gradually, as the captain supplies real writing samples (past cover letters, emails, or
+similar) - tracked separately from this build and **not** blocking it. `buildVoiceSection()` in
+`content/voice-profile/index.ts` degrades gracefully per category: any category still empty falls
+back to a hand-authored tone description read directly off how `content/resume-data.ts` is
+already written (concise, metric-led, action-verb first, no first-person "I", never overstated),
+so drafting works today and simply gets closer to the captain's real voice as samples are added -
+no category has to be filled in before any other can be used.
+
 ## Known limits / not yet built
 
 - **No UI for editing or un-marking an existing applied/passed status** - only setting one for the
   first time, from either path above.
-- **Tailor My Profile's second stage isn't built.** The application-scan / cover-letter /
-  question-drafting piece (scanning the real application for extra questions, drafting answers
-  in the captain's voice) is a separate, queued follow-on build.
+- **Voice-profile samples are still empty.** All three `content/voice-profile/*.ts` files start
+  with `samples: []`; drafting currently runs entirely on the resume-derived fallback tone until
+  the captain adds real writing samples by hand.
+- **The application-scan and draft routes can't be exercised end-to-end on local macOS dev.** Same
+  root cause as the PDF route's "Local dev limitation" above (`@sparticuz/chromium`'s bundled
+  binary is Linux-only) - `scrapeApplicationPage()` cannot launch headless Chromium locally on
+  macOS; verified locally instead via unit tests plus a mocked-fetch manual UI pass in a real
+  browser.

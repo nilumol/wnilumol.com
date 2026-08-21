@@ -190,6 +190,13 @@ p, h1, h2, ul { margin-top: 0; }
 .job-agent-tailor-revise-row { margin-bottom: 16px; }
 .job-agent-tailor-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .job-agent-tailor-error { margin: 12px 0 0; color: #8a4433; font-size: 0.82rem; }
+.job-agent-scan-section { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.job-agent-scan-results { display: flex; flex-direction: column; gap: 10px; }
+.job-agent-scan-cover-letter { margin: 0; font-family: var(--font-poppins), sans-serif; font-size: 0.82rem; color: var(--muted); }
+.job-agent-scan-question-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.job-agent-scan-question { padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: rgba(25, 25, 25, 0.02); font-size: 0.88rem; line-height: 1.5; }
+.job-agent-scan-answer { margin: 8px 0 0; padding-top: 8px; border-top: 1px solid var(--line); white-space: pre-wrap; color: var(--text); font-size: 0.86rem; line-height: 1.55; }
+.job-agent-scan-draft-row { margin-top: 12px; }
 
 @media (max-width: 780px) {
   .site-header { padding-top: 24px; }
