@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import type { ApplicationDraftAnswer } from "@/scripts/job-agent/application-draft-types";
+import type { ApplicationScanResult } from "@/scripts/job-agent/application-scan-types";
 import type { TailorSuggestion } from "@/scripts/job-agent/tailor-types";
 import type { JobAgentLedgerEntry } from "@/scripts/job-agent/types";
 
@@ -86,7 +88,7 @@ export function JobAgentTailor({ entries }: { entries: JobAgentLedgerEntry[] }) 
   );
 }
 
-type BusyAction = "tailor" | "revise" | "review" | "pdf" | "applied" | "passed" | null;
+type BusyAction = "tailor" | "revise" | "review" | "pdf" | "applied" | "passed" | "scan" | "draft" | null;
 
 /** Standard spinner treatment for any action with real processing time - see CLAUDE.md's Design System section. */
 function Spinner() {
@@ -109,6 +111,9 @@ function TailorCard({
   const [ownText, setOwnText] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [markedStatus, setMarkedStatus] = useState<"applied" | "passed" | null>(null);
+  const [scan, setScan] = useState<ApplicationScanResult | null>(null);
+  const [scanError, setScanError] = useState<string | null>(null);
+  const [draftedAnswers, setDraftedAnswers] = useState<Map<string, string> | null>(null);
 
   async function callTailorApi(path: string, body: unknown): Promise<Response> {
     const response = await fetch(path, {
@@ -267,6 +272,45 @@ function TailorCard({
     }
   }
 
+  async function handleScan() {
+    setBusy("scan");
+    setScanError(null);
+    try {
+      const response = await callTailorApi("/api/job-agent/tailor/scan", {
+        source: entry.source,
+        id: entry.id,
+      });
+      if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't scan the application page."));
+      setScan(await response.json());
+    } catch (err) {
+      if (err instanceof Error && err.message === AUTH_ERROR) return;
+      setScanError(err instanceof Error ? err.message : "Something went wrong.");
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function handleDraft() {
+    if (!scan) return;
+    setBusy("draft");
+    setScanError(null);
+    try {
+      const response = await callTailorApi("/api/job-agent/tailor/draft", {
+        source: entry.source,
+        id: entry.id,
+        questions: scan.questions.map((question) => ({ id: question.id, prompt: question.prompt })),
+      });
+      if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't draft answers."));
+      const data: { answers: ApplicationDraftAnswer[] } = await response.json();
+      setDraftedAnswers(new Map(data.answers.map((answer) => [answer.id, answer.answer])));
+    } catch (err) {
+      if (err instanceof Error && err.message === AUTH_ERROR) return;
+      setScanError(err instanceof Error ? err.message : "Something went wrong.");
+    } finally {
+      setBusy(null);
+    }
+  }
+
   return (
     <div className="job-agent-tailor-card">
       <div className="job-agent-tailor-card-head">
@@ -303,6 +347,49 @@ function TailorCard({
             </button>
           </div>
         )}
+      </div>
+
+      <div className="job-agent-scan-section">
+        {scan === null ? (
+          <button
+            type="button"
+            className="job-agent-btn"
+            onClick={handleScan}
+            disabled={busy !== null}
+          >
+            {busy === "scan" ? <Spinner /> : null}
+            {busy === "scan" ? "Scanning…" : "Scan Application"}
+          </button>
+        ) : (
+          <div className="job-agent-scan-results">
+            <p className="job-agent-scan-cover-letter">
+              {scan.acceptsCoverLetter ? "Accepts a cover letter." : "No cover letter field detected."}
+            </p>
+            {scan.questions.length === 0 ? (
+              <p className="job-agent-placeholder">No free-text questions detected beyond the resume/contact fields.</p>
+            ) : (
+              <>
+                <ul className="job-agent-scan-question-list">
+                  {scan.questions.map((question) => (
+                    <li key={question.id} className="job-agent-scan-question">
+                      {question.prompt}
+                      {draftedAnswers?.has(question.id) ? (
+                        <p className="job-agent-scan-answer">{draftedAnswers.get(question.id)}</p>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+                <div className="job-agent-scan-draft-row">
+                  <button type="button" className="job-agent-btn" onClick={handleDraft} disabled={busy !== null}>
+                    {busy === "draft" ? <Spinner /> : null}
+                    {busy === "draft" ? "Drafting…" : draftedAnswers ? "Redraft Answers" : "Draft Answers"}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+        {scanError ? <p className="job-agent-tailor-error">{scanError}</p> : null}
       </div>
 
       {suggestions === null ? (

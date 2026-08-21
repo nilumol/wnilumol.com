@@ -25,7 +25,8 @@ const FitScoreSchema = z.object({
     ),
 });
 
-function formatResumeForPrompt(resumeData: ResumeData): string {
+/** Also reused by scripts/job-agent/application-draft.ts to ground drafted answers in the real resume. */
+export function formatResumeForPrompt(resumeData: ResumeData): string {
   const roles = resumeData.roles
     .map((role) => {
       const bullets = role.bullets.map((bullet) => `  - ${bullet}`).join("\n");
