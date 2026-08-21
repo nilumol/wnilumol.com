@@ -108,3 +108,16 @@ export function parseTailorRenderRequestBody(value: unknown): TailorRenderReques
   const result = TailorRenderRequestSchema.safeParse(value);
   return result.success ? (result.data as TailorRenderRequestBody) : null;
 }
+
+/** The "Mark Applied"/"Mark Passed" request - identifies the job the same way /suggestions does. */
+const TailorStatusRequestSchema = z.object({
+  source: z.enum(["greenhouse", "lever", "ashby"]),
+  id: z.union([z.string(), z.number()]),
+  status: z.enum(["applied", "passed"]),
+});
+export type TailorStatusRequestBody = z.infer<typeof TailorStatusRequestSchema>;
+
+export function parseTailorStatusRequestBody(value: unknown): TailorStatusRequestBody | null {
+  const result = TailorStatusRequestSchema.safeParse(value);
+  return result.success ? result.data : null;
+}

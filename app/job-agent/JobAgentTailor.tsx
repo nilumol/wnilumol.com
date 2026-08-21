@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { TailorSuggestion } from "@/scripts/job-agent/tailor-types";
 import type { JobAgentLedgerEntry } from "@/scripts/job-agent/types";
@@ -85,7 +86,7 @@ export function JobAgentTailor({ entries }: { entries: JobAgentLedgerEntry[] }) 
   );
 }
 
-type BusyAction = "tailor" | "revise" | "review" | "pdf" | null;
+type BusyAction = "tailor" | "revise" | "review" | "pdf" | "applied" | "passed" | null;
 
 /** Standard spinner treatment for any action with real processing time - see CLAUDE.md's Design System section. */
 function Spinner() {
@@ -101,11 +102,13 @@ function TailorCard({
   passphrase: string;
   onAuthError: () => void;
 }) {
+  const router = useRouter();
   const [suggestions, setSuggestions] = useState<TailorSuggestion[] | null>(null);
   const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set());
   const [busy, setBusy] = useState<BusyAction>(null);
   const [ownText, setOwnText] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [markedStatus, setMarkedStatus] = useState<"applied" | "passed" | null>(null);
 
   async function callTailorApi(path: string, body: unknown): Promise<Response> {
     const response = await fetch(path, {
@@ -153,6 +156,33 @@ function TailorCard({
       });
       if (!response.ok) throw new Error(await readErrorMessage(response, "Couldn't generate suggestions."));
       applySuggestionResponse(await response.json());
+    } catch (err) {
+      reportError(err);
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  /**
+   * Writes to the live Blob status overlay (scripts/job-agent/tracker-overlay.ts) - the only
+   * writable path outside a captain hand-edit to content/job-agent-seen.json, and it never
+   * touches git. router.refresh() re-runs the page's server component so Tracker (which reads
+   * the overlay at request time) picks up the new row without a full page reload.
+   */
+  async function handleMark(status: "applied" | "passed") {
+    setBusy(status);
+    setError(null);
+    try {
+      const response = await callTailorApi("/api/job-agent/tailor/status", {
+        source: entry.source,
+        id: entry.id,
+        status,
+      });
+      if (!response.ok) {
+        throw new Error(await readErrorMessage(response, `Couldn't mark this job ${status}.`));
+      }
+      setMarkedStatus(status);
+      router.refresh();
     } catch (err) {
       reportError(err);
     } finally {
@@ -247,6 +277,32 @@ function TailorCard({
         <a className="text-link" href={entry.absoluteUrl} target="_blank" rel="noreferrer">
           Open application
         </a>
+        {markedStatus ? (
+          <p className="job-agent-tailor-marked">
+            <span className={`job-agent-pill job-agent-pill-${markedStatus}`}>{markedStatus}</span>
+          </p>
+        ) : (
+          <div className="job-agent-tailor-mark-row">
+            <button
+              type="button"
+              className="job-agent-btn"
+              onClick={() => handleMark("passed")}
+              disabled={busy !== null}
+            >
+              {busy === "passed" ? <Spinner /> : null}
+              {busy === "passed" ? "Marking…" : "Mark Passed"}
+            </button>
+            <button
+              type="button"
+              className="job-agent-btn job-agent-btn-primary"
+              onClick={() => handleMark("applied")}
+              disabled={busy !== null}
+            >
+              {busy === "applied" ? <Spinner /> : null}
+              {busy === "applied" ? "Marking…" : "Mark Applied"}
+            </button>
+          </div>
+        )}
       </div>
 
       {suggestions === null ? (

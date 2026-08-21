@@ -10,12 +10,21 @@ function entryKey(entry: JobAgentLedgerEntry): string {
   return `${entry.source}:${entry.id}`;
 }
 
-export function JobAgentSections({ entries: initialEntries }: { entries: JobAgentLedgerEntry[] }) {
+export function JobAgentSections({
+  entries: initialEntries,
+  trackedEntries,
+}: {
+  entries: JobAgentLedgerEntry[];
+  /**
+   * Tracker's full row list, computed server-side in page.tsx from the non-expired ledger slice
+   * plus the live Blob status overlay - not derived here, since a marked-applied/passed job may
+   * no longer be part of `initialEntries` if its underlying posting has since expired. See
+   * scripts/job-agent/tracker-overlay.ts.
+   */
+  trackedEntries: JobAgentLedgerEntry[];
+}) {
   const [entries, setEntries] = useState(initialEntries);
   const [sentEntries, setSentEntries] = useState<JobAgentLedgerEntry[]>([]);
-  const trackedEntries = initialEntries.filter(
-    (entry) => entry.status === "applied" || entry.status === "passed",
-  );
 
   function handleSend(sentKeys: Set<string>) {
     setEntries((current) => current.filter((entry) => !sentKeys.has(entryKey(entry))));
