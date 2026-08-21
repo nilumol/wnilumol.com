@@ -13,6 +13,12 @@ import {
 import type { JobAgentLedger } from "./types.ts";
 
 const MANUAL_OPPORTUNITIES_PATHNAME = "job-agent/manual-opportunities.json";
+const STORE_WRITE_ATTEMPTS = 5;
+
+export interface ManualOpportunityStoreSnapshot {
+  store: ManualOpportunityStore;
+  etag: string | null;
+}
 
 export class DuplicateManualOpportunityError extends Error {
   constructor() {
@@ -28,13 +34,26 @@ function blobToken(): string {
 }
 
 export async function readManualOpportunities(): Promise<ManualOpportunityStore> {
-  const token = blobToken();
-  const result = await get(MANUAL_OPPORTUNITIES_PATHNAME, { access: "private", token, useCache: false });
-  if (!result || result.statusCode !== 200) return {};
-  return parseManualOpportunityStore(await new Response(result.stream).text());
+  return (await readManualOpportunitySnapshot()).store;
 }
 
-export async function writeManualOpportunities(store: ManualOpportunityStore): Promise<void> {
+async function readManualOpportunitySnapshot(): Promise<ManualOpportunityStoreSnapshot> {
+  const token = blobToken();
+  const result = await get(MANUAL_OPPORTUNITIES_PATHNAME, { access: "private", token, useCache: false });
+  if (!result) return { store: {}, etag: null };
+  if (result.statusCode !== 200 || !result.stream) {
+    throw new Error(`Couldn't read the manual opportunity store (status ${result.statusCode}).`);
+  }
+  return {
+    store: parseManualOpportunityStore(await new Response(result.stream).text()),
+    etag: result.blob.etag,
+  };
+}
+
+async function writeManualOpportunitySnapshot(
+  store: ManualOpportunityStore,
+  etag: string | null,
+): Promise<void> {
   const token = blobToken();
   const sorted = Object.fromEntries(
     Object.entries(store).sort(([left], [right]) => left.localeCompare(right, undefined, { numeric: true })),
@@ -43,13 +62,47 @@ export async function writeManualOpportunities(store: ManualOpportunityStore): P
     access: "private",
     token,
     contentType: "application/json",
-    allowOverwrite: true,
+    allowOverwrite: etag !== null,
+    ...(etag === null ? {} : { ifMatch: etag }),
   });
+}
+
+export async function writeManualOpportunities(store: ManualOpportunityStore): Promise<void> {
+  const snapshot = await readManualOpportunitySnapshot();
+  await writeManualOpportunitySnapshot(store, snapshot.etag);
+}
+
+function isStoreWriteConflict(error: unknown): boolean {
+  return error instanceof Error &&
+    (error.name === "BlobPreconditionFailedError" || error.name === "BlobAlreadyExistsError");
+}
+
+export async function persistManualOpportunity(
+  key: string,
+  record: ManualOpportunityRecord,
+  dependencies: {
+    readSnapshot?: () => Promise<ManualOpportunityStoreSnapshot>;
+    writeSnapshot?: (store: ManualOpportunityStore, etag: string | null) => Promise<void>;
+  } = {},
+): Promise<void> {
+  const readSnapshot = dependencies.readSnapshot ?? readManualOpportunitySnapshot;
+  const writeSnapshot = dependencies.writeSnapshot ?? writeManualOpportunitySnapshot;
+  for (let attempt = 0; attempt < STORE_WRITE_ATTEMPTS; attempt += 1) {
+    const snapshot = await readSnapshot();
+    if (key in snapshot.store) throw new DuplicateManualOpportunityError();
+    try {
+      await writeSnapshot({ ...snapshot.store, [key]: record }, snapshot.etag);
+      return;
+    } catch (error) {
+      if (!isStoreWriteConflict(error) || attempt === STORE_WRITE_ATTEMPTS - 1) throw error;
+    }
+  }
 }
 
 export interface AddManualOpportunityDependencies {
   readStore?: () => Promise<ManualOpportunityStore>;
   writeStore?: (store: ManualOpportunityStore) => Promise<void>;
+  persistRecord?: (key: string, record: ManualOpportunityRecord) => Promise<void>;
   extract?: (
     target: ReturnType<typeof parseSupportedJobUrl>,
   ) => Promise<ExtractedManualOpportunity>;
@@ -70,11 +123,11 @@ export async function addManualOpportunity(
   const key = ledgerKey(target.source, target.postingId);
   if (key in ledger) throw new DuplicateManualOpportunityError();
 
+  const usesInjectedStore = dependencies.readStore !== undefined || dependencies.writeStore !== undefined;
   const readStore = dependencies.readStore ?? readManualOpportunities;
-  const writeStore = dependencies.writeStore ?? writeManualOpportunities;
-  const current = await readStore();
+  const current = usesInjectedStore ? await readStore() : null;
 
-  if (key in current) throw new DuplicateManualOpportunityError();
+  if (current && key in current) throw new DuplicateManualOpportunityError();
 
   const extracted = dependencies.extract
     ? await dependencies.extract(target)
@@ -84,7 +137,14 @@ export async function addManualOpportunity(
     ...extracted,
     createdAt,
   };
-  await writeStore({ ...current, [key]: record });
+  if (dependencies.persistRecord) {
+    await dependencies.persistRecord(key, record);
+  } else if (usesInjectedStore) {
+    const writeStore = dependencies.writeStore ?? writeManualOpportunities;
+    await writeStore({ ...(current ?? {}), [key]: record });
+  } else {
+    await persistManualOpportunity(key, record);
+  }
   return record;
 }
 

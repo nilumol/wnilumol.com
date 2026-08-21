@@ -10,6 +10,7 @@ import {
   addManualOpportunity,
   DuplicateManualOpportunityError,
   mergeOpportunityEntries,
+  persistManualOpportunity,
 } from "./manual-opportunities.ts";
 import { resolveOpportunityContext, resolveOpportunityEntry } from "./opportunity-context.ts";
 import {
@@ -105,6 +106,68 @@ test("a Greenhouse URL extracts, normalizes, and persists one complete JSON-back
 
   const roundTripped = parseManualOpportunityStore(`${JSON.stringify(store)}\n`);
   assert.deepEqual(roundTripped, store);
+});
+
+test("malformed persisted stores fail instead of being replaced with an empty store", () => {
+  assert.throws(() => parseManualOpportunityStore(""));
+  assert.throws(() => parseManualOpportunityStore("{not json"));
+  assert.throws(() => parseManualOpportunityStore('{"lever:abc-123":{"entry":{}}}'));
+});
+
+test("the persistence boundary can reject a duplicate discovered after extraction", async () => {
+  const existing = fixtureRecord();
+  let persistCalls = 0;
+
+  await assert.rejects(
+    addManualOpportunity(existing.originalUrl, {}, {
+      extract: async () => existing,
+      persistRecord: async () => {
+        persistCalls += 1;
+        throw new DuplicateManualOpportunityError();
+      },
+    }),
+    DuplicateManualOpportunityError,
+  );
+  assert.equal(persistCalls, 1);
+});
+
+test("concurrent additions retry stale snapshots without losing either record", async () => {
+  const first = fixtureRecord();
+  const second = {
+    ...fixtureRecord(),
+    entry: { ...fixtureRecord().entry, id: "def-456" },
+    posting: { ...fixtureRecord().posting, id: "def-456" },
+  };
+  let store: ManualOpportunityStore = {};
+  let version = 0;
+  let initialReads = 0;
+  let releaseInitialReads: (() => void) | undefined;
+  const bothRead = new Promise<void>((resolve) => {
+    releaseInitialReads = resolve;
+  });
+  const readSnapshot = async () => {
+    const snapshot = { store: { ...store }, etag: String(version) };
+    initialReads += 1;
+    if (initialReads === 2) releaseInitialReads?.();
+    if (initialReads <= 2) await bothRead;
+    return snapshot;
+  };
+  const writeSnapshot = async (next: ManualOpportunityStore, etag: string | null) => {
+    if (etag !== String(version)) {
+      const conflict = new Error("stale snapshot");
+      conflict.name = "BlobPreconditionFailedError";
+      throw conflict;
+    }
+    store = next;
+    version += 1;
+  };
+
+  await Promise.all([
+    persistManualOpportunity("lever:abc-123", first, { readSnapshot, writeSnapshot }),
+    persistManualOpportunity("lever:def-456", second, { readSnapshot, writeSnapshot }),
+  ]);
+
+  assert.deepEqual(Object.keys(store).sort(), ["lever:abc-123", "lever:def-456"]);
 });
 
 test("Lever normalization preserves structured salary and derives an untracked company from trusted JobPosting metadata", async () => {

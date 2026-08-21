@@ -47,14 +47,8 @@ export interface ManualOpportunityRecord {
 export type ManualOpportunityStore = Record<string, ManualOpportunityRecord>;
 
 export function parseManualOpportunityStore(raw: string): ManualOpportunityStore {
-  if (!raw.trim()) return {};
-  try {
-    const parsed: unknown = JSON.parse(raw);
-    const result = z.record(z.string(), ManualOpportunityRecordSchema).safeParse(parsed);
-    return result.success ? (result.data as ManualOpportunityStore) : {};
-  } catch {
-    return {};
-  }
+  const parsed: unknown = JSON.parse(raw);
+  return z.record(z.string(), ManualOpportunityRecordSchema).parse(parsed) as ManualOpportunityStore;
 }
 
 const ManualOpportunityRequestSchema = z.object({
