@@ -201,6 +201,32 @@ cannot be exercised end-to-end on a local macOS dev machine (`spawn ENOEXEC`) - 
 inherent, expected reason the binary needs bundling for Vercel in the first place. `/suggestions`
 and `/preview` can be tested locally with `TAILOR_PASSPHRASE` and `ANTHROPIC_API_KEY` set.
 
+**Bounded retry and HTML decoding (fixed 2026-08).** `generateTailorSuggestions()` used to make
+one `client.messages.parse()` call and throw immediately on any failed parse, surfacing straight
+to the captain as a red error. Root-caused against a real posting (Smartsheet's "Solutions
+Consultant - West"): `buildTailorPrompt()`, unlike `buildScoringPrompt()` in `scoring.ts`, sent
+the job's `content` field to Claude raw instead of running it through `htmlToPlainText()` first.
+Some Greenhouse postings return `content` HTML-entity-escaped an extra time (e.g.
+`&lt;div class=&quot;...&quot;&gt;` instead of `<div class="...">`), so the prompt held a long
+block of entity-encoded tag soup - a shape that resembles obfuscated/encoded content. The
+Anthropic SDK's `zodOutputFormat` helper (`node_modules/@anthropic-ai/sdk/src/helpers/zod.ts`)
+throws on every parse/validation failure it can detect - it never silently returns null - so a
+`parsed_output: null` with no exception can only happen when the response has no text content
+block at all, which matches `stop_reason: "refusal"` (Anthropic's streaming classifiers
+intervening on a request) far more than a plain generation miss. This exact job had already been
+scored successfully by `score-via-api` (which does call `htmlToPlainText()`), consistent with the
+un-decoded prompt being what triggered the failure on the tailor path specifically.
+
+Two fixes landed together: `htmlToPlainText()` (`scripts/job-agent/html.ts`) now decodes entities
+*before* stripping tags (a no-op on normally-encoded postings, since it just resolves entities
+early; it only changes behavior for the double-escaped case, where it unwraps the extra layer so
+the real tags are visible to the stripping regexes), and `buildTailorPrompt()` now calls it on
+`job.content`, matching `buildScoringPrompt()`. Independently, `generateTailorSuggestions()` now
+retries up to twice (three attempts total) on either failure mode - `parsed_output: null` or a
+thrown parse error - before giving up, so an isolated miss self-heals instead of reaching the
+captain; the final error, if every attempt fails, includes the model's `stop_reason`/explanation
+when available instead of just "did not parse."
+
 ## Live status overlay: Mark Applied / Mark Passed
 
 Each card in Tailor My Profile has "Mark Passed" and "Mark Applied" buttons (next to "Open

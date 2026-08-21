@@ -1,14 +1,20 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import type Anthropic from "@anthropic-ai/sdk";
 import { jobAgentKeywordFamilyAbbreviations } from "../../content/job-agent-keywords.ts";
 import type { ResumeData } from "../../content/resume-data.ts";
 import { mergeTailoredResume } from "./resume-tailor.ts";
 import { renderResumeHtml } from "./resume-template.ts";
-import { buildTailorPrompt } from "./tailor-suggestions.ts";
+import { buildTailorPrompt, generateTailorSuggestions } from "./tailor-suggestions.ts";
 import type { TailorRevisionRequest, TailorSuggestion } from "./tailor-types.ts";
 import { parseTailorSuggestRequestBody } from "./tailor-types.ts";
 import { verifyTailorPassphrase } from "./tailor-auth.ts";
 import type { NormalizedJob } from "./types.ts";
+
+/** Minimal stand-in for the one Anthropic client method generateTailorSuggestions calls. */
+function fakeClient(parseImpl: () => Promise<unknown>): Anthropic {
+  return { messages: { parse: parseImpl } } as unknown as Anthropic;
+}
 
 const resumeFixture: ResumeData = {
   headline: "Headline.",
@@ -181,9 +187,82 @@ test("buildTailorPrompt includes only the highlights and Collate/Benchling bulle
   assert.match(prompt, /agile delivery experience/);
 });
 
+test("buildTailorPrompt strips HTML markup from the job's content field instead of sending it raw", () => {
+  const job: NormalizedJob & { company: string } = {
+    id: 1,
+    title: "Solutions Consultant",
+    absolute_url: "https://example.com/job/1",
+    content: "&lt;div&gt;&lt;p&gt;We need someone with &lt;strong&gt;agile&lt;/strong&gt; delivery experience.&lt;/p&gt;&lt;/div&gt;",
+    company: "Acme",
+  };
+  const prompt = buildTailorPrompt(job, resumeFixture);
+  assert.match(prompt, /agile delivery experience/);
+  assert.doesNotMatch(prompt, /&lt;|&gt;|<div|<p>|<strong>/);
+});
+
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
+
+// ---------------------------------------------------------------------------
+// generateTailorSuggestions - bounded retry on a failed structured-output parse
+// ---------------------------------------------------------------------------
+
+const tailorJob: NormalizedJob & { company: string } = {
+  id: 1,
+  title: "Solutions Consultant",
+  absolute_url: "https://example.com/job/1",
+  content: "We need someone with agile delivery experience.",
+  company: "Acme",
+};
+
+test("generateTailorSuggestions retries after parsed_output: null (e.g. a refusal) and succeeds on a later attempt", async () => {
+  let calls = 0;
+  const client = fakeClient(async () => {
+    calls += 1;
+    if (calls < 3) return { parsed_output: null, stop_reason: "refusal", stop_details: null };
+    return { parsed_output: { suggestions: [] } };
+  });
+
+  const suggestions = await generateTailorSuggestions(client, tailorJob, resumeFixture);
+  assert.deepEqual(suggestions, []);
+  assert.equal(calls, 3);
+});
+
+test("generateTailorSuggestions retries after a thrown parse error and succeeds on a later attempt", async () => {
+  let calls = 0;
+  const client = fakeClient(async () => {
+    calls += 1;
+    if (calls < 2) throw new Error("Failed to parse structured output as JSON: Unexpected end of JSON input");
+    return {
+      parsed_output: {
+        suggestions: [{ type: "reorder", target: "highlights", newOrder: [0, 1, 2], rationale: "r" }],
+      },
+    };
+  });
+
+  const suggestions = await generateTailorSuggestions(client, tailorJob, resumeFixture);
+  assert.equal(suggestions.length, 1);
+  assert.equal(calls, 2);
+});
+
+test("generateTailorSuggestions gives up after exhausting retries and reports the model's stop reason", async () => {
+  let calls = 0;
+  const client = fakeClient(async () => {
+    calls += 1;
+    return {
+      parsed_output: null,
+      stop_reason: "refusal",
+      stop_details: { type: "refusal", category: "general_harms", explanation: "policy violation" },
+    };
+  });
+
+  await assert.rejects(
+    generateTailorSuggestions(client, tailorJob, resumeFixture),
+    /did not parse against the suggestion schema after 3 attempts \(refusal: policy violation\)/,
+  );
+  assert.equal(calls, 3);
+});
 
 // ---------------------------------------------------------------------------
 // buildTailorPrompt - the "Revise" action's prior-suggestion and notes context
