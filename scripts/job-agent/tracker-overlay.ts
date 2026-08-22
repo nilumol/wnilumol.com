@@ -4,10 +4,9 @@ import type { JobAgentLedgerEntry, JobAgentSource } from "./types.ts";
 
 /**
  * The live-writable status path for "Mark Applied"/"Mark Passed" (from Tailor My Profile),
- * layered on top of the git-committed ledger at render time rather than replacing it. The
- * ledger (`content/job-agent-seen.json`) stays the sole source of truth for job data and is
- * written only by the daily scan and the manual scoring scripts; this overlay is the only place
- * a browser click can persist anything, and it never touches git. See docs/job-agent.md.
+ * layered on top of stored opportunities at render time rather than replacing them. The status
+ * overlay is the only place a browser click can change applied/passed state, and it never touches
+ * git; manual opportunity intake has its own separate Blob JSON document. See docs/job-agent.md.
  */
 export type TrackerOverlayStatus = Extract<JobAgentLedgerEntry["status"], "applied" | "passed">;
 
@@ -23,7 +22,10 @@ export interface TrackerOverlayEntry {
   status: TrackerOverlayStatus;
   title: string;
   company: string;
+  keywordFamily?: string;
   location: string | null;
+  compensationRange?: string | null;
+  postedAt?: string;
   absoluteUrl: string;
   updatedAt: string;
 }
@@ -81,7 +83,10 @@ export async function writeTrackerOverlayEntry(
       status,
       title: entry.title,
       company: entry.company,
+      keywordFamily: entry.keywordFamily,
       location: entry.location,
+      compensationRange: entry.compensationRange,
+      postedAt: entry.postedAt,
       absoluteUrl: entry.absoluteUrl,
       updatedAt: new Date().toISOString(),
     },
@@ -99,18 +104,20 @@ function overlayEntryToLedgerEntry(key: string, overlayEntry: TrackerOverlayEntr
   const separatorIndex = key.indexOf(":");
   const source = key.slice(0, separatorIndex) as JobAgentSource;
   const id = key.slice(separatorIndex + 1);
-  return {
+  const entry: JobAgentLedgerEntry = {
     id,
     source,
     company: overlayEntry.company,
     title: overlayEntry.title,
-    keywordFamily: "",
+    keywordFamily: overlayEntry.keywordFamily ?? "",
     absoluteUrl: overlayEntry.absoluteUrl,
     firstSeen: overlayEntry.updatedAt,
     status: overlayEntry.status,
     location: overlayEntry.location,
-    compensationRange: null,
+    compensationRange: overlayEntry.compensationRange ?? null,
   };
+  if (overlayEntry.postedAt) entry.postedAt = overlayEntry.postedAt;
+  return entry;
 }
 
 /**

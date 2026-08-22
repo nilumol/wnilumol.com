@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import ledgerJson from "@/content/job-agent-seen.json";
 import { classifyApplicationPage, scrapeApplicationPage } from "@/scripts/job-agent/application-scan";
 import { parseApplicationScanRequestBody } from "@/scripts/job-agent/application-scan-types";
-import { ledgerKey } from "@/scripts/job-agent/ledger";
+import { resolveOpportunityEntry } from "@/scripts/job-agent/opportunity-context";
 import { verifyTailorPassphrase } from "@/scripts/job-agent/tailor-auth";
 import type { JobAgentLedger } from "@/scripts/job-agent/types";
 
@@ -14,7 +14,7 @@ const ledger = ledgerJson as unknown as JobAgentLedger;
 
 /**
  * Scans the real application page for one job the captain sent forward from Opportunities -
- * Tailor My Profile's second-stage "Scan Application" action. Loads the ledger entry's
+ * Tailor My Profile's second-stage "Scan Application" action. Loads the stored entry's
  * `absoluteUrl` (the same "Open application" link already shown on the card) with headless
  * Chromium, extracts a generic ATS-agnostic snapshot of its form fields and visible text (see
  * scripts/job-agent/application-scan.ts), then asks Claude to classify cover-letter acceptance
@@ -31,9 +31,14 @@ export async function POST(request: Request): Promise<NextResponse> {
     return NextResponse.json({ error: "Request body must be { source, id }." }, { status: 400 });
   }
 
-  const entry = ledger[ledgerKey(body.source, body.id)];
+  let entry;
+  try {
+    entry = await resolveOpportunityEntry(ledger, body.source, body.id);
+  } catch (error) {
+    return NextResponse.json({ error: `Couldn't load the opportunity: ${(error as Error).message}` }, { status: 500 });
+  }
   if (!entry) {
-    return NextResponse.json({ error: "Job not found in the ledger." }, { status: 404 });
+    return NextResponse.json({ error: "Job not found in stored opportunities." }, { status: 404 });
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;

@@ -21,7 +21,9 @@ Winston's background. It's for Winston only - it is not part of the public portf
   on the current page, and a "Send" button (disabled with nothing selected) that removes the
   selected rows from the list and forwards them to the Tailor My Profile section as sent ledger
   entries (`JobAgentSections.tsx`'s `sentEntries` state) - client-side only, not persisted, and
-  reverts on refresh.
+  reverts on refresh. Above the table, `JobAgentOpportunityIntake.tsx` accepts one supported ATS
+  posting URL and adds the normalized record to this same row/selection flow; see "Manual URL
+  intake" below.
 - **Tracker** (collapsed by default) is a read-only table, built in
   `app/job-agent/JobAgentTracker.tsx`, of every job whose status is `applied` or `passed` - job
   title, company, a status pill, location, and a link to the posting, in a fixed company/title
@@ -64,9 +66,45 @@ Winston's background. It's for Winston only - it is not part of the public portf
      demonstrable feature; not part of the automated pipeline and never needs a GitHub Actions
      secret. See `scripts/job-agent/score-via-api.ts`.
    Either path flips matching `"pending"` ledger entries to `"scored"`.
-5. **Table page.** The hidden `/job-agent` page reads the same ledger JSON file (a build-time
-   static import) and renders it as a sortable table. Tracker also layers in the live Blob status
+5. **Table page.** The hidden `/job-agent` page reads the git ledger (a build-time static import)
+   plus manually added opportunities from a private Blob JSON document, merges them by the same
+   `<source>:<id>` key, and renders one sortable table. Tracker also layers in the live Blob status
    overlay at request time - see "Live status overlay: Mark Applied / Mark Passed" below.
+
+## Manual URL intake
+
+Opportunities includes an "Add an opportunity" form for postings that were not surfaced by the
+daily company/keyword scan. It accepts canonical HTTPS job URLs hosted by Greenhouse
+(`boards.greenhouse.io` or `job-boards.greenhouse.io`), Lever (`jobs.lever.co` or its EU host),
+and Ashby (`jobs.ashbyhq.com`). Other hosts, non-HTTPS URLs, custom ports/credentials, malformed
+ATS paths, closed postings, and records missing a title, company, or usable description are
+rejected with an inline error; no partial row is written.
+
+`POST /api/job-agent/opportunities` is gated by the existing `TAILOR_PASSPHRASE`. The client
+reuses the same tab-scoped passphrase as Tailor My Profile and shows the shared `.spinner` while
+extraction and persistence are in flight. The route parses the source token and stable posting id
+from the URL, checks both the git ledger and manual store for `<source>:<id>` before fetching, and
+returns `409` for repeat submissions. It never performs a generic fetch to the submitted host:
+data calls target hard-coded public Greenhouse, Lever, or Ashby API origins. When an untracked
+Lever/Ashby board does not provide a company in its API response, company identity is read from
+JobPosting JSON-LD on the already-allowlisted hosted page. Later application scans keep using
+that validated ATS page URL rather than trusting a response-provided custom redirect.
+
+Successful extraction writes one `ManualOpportunityRecord` to the private Vercel Blob document
+`job-agent/manual-opportunities.json`, using the same custom
+`JOB_AGENT_TRACKER_READ_WRITE_TOKEN` store as the tracker overlay. The record wraps the existing
+`JobAgentLedgerEntry` domain shape and adds the captured `NormalizedJob` description plus the
+original submitted URL and creation timestamp. Missing optional facts stay explicit (`null` or
+absent); Lever's structured salary range and Ashby's scrapeable salary summary are retained when
+provided. This is a live runtime store because a Vercel route cannot commit a browser-created row
+back to `content/job-agent-seen.json`.
+
+On success the returned ledger entry is appended to the current Opportunities state immediately
+and behaves like any other row: sort, select, Send to Tailor My Profile, scan the application,
+generate grounded resume suggestions/draft answers from the persisted posting description, and
+Mark Applied/Passed into Tracker. Suggestions and answers remain review-only; this path never
+applies, submits, or changes resume source data automatically. Manually added jobs remain
+`pending`/unscored unless a future workflow explicitly scores them.
 
 ## Companies currently tracked
 
@@ -156,14 +194,15 @@ Design System section) while in flight:
   a glance before downloading.
 - **Generate PDF** - identical merge/render, no highlight marks.
 
-**Three hosted API routes**, all Node runtime (not Edge - Puppeteer needs Node):
+**Hosted API routes**, all Node runtime (not Edge - Puppeteer needs Node):
 
-- `POST /api/job-agent/tailor/suggestions` - given `{ source, id }`, re-fetches the posting's
-  live content the same way `job-agent:score-via-api` does (the ledger doesn't persist full
-  descriptions), then calls Claude with the guardrailed prompt above. Returns the suggestion
-  list, each with a short one-clause rationale (~12 words - the existing fit-scoring rationale
-  style is 600+ characters and doesn't fit this compact checklist UI). Also accepts an optional
-  `revision: { priorSuggestions: { suggestion, accepted }[], notes }` block (the "Revise" action) -
+- `POST /api/job-agent/tailor/suggestions` - given `{ source, id }`, re-fetches an automated
+  ledger posting's live content the same way `job-agent:score-via-api` does, or uses the captured
+  description persisted with a manual opportunity, then calls Claude with the guardrailed prompt.
+  Returns the suggestion list, each with a short one-clause rationale (~12 words - the existing
+  fit-scoring rationale style is 600+ characters and doesn't fit this compact checklist UI). Also
+  accepts an optional `revision: { priorSuggestions: { suggestion, accepted }[], notes }` block
+  (the "Revise" action) -
   when present, `scripts/job-agent/tailor-suggestions.ts` appends the prior suggestions' kept/
   rejected state and the captain's notes to the prompt before calling Claude again.
 - `POST /api/job-agent/tailor/preview` - given the job's metadata, the captain's accepted
@@ -239,42 +278,45 @@ live overlay, never to git.
   git-committed and written only by the daily automated scan and the manual scoring scripts - a
   browser click was never going to commit-and-push on someone's behalf. A live-writable store was
   the only option that didn't mean building a commit-per-click flow.
-- **Storage: Vercel Blob, one JSON document.** `scripts/job-agent/tracker-overlay.ts` reads/writes
+- **Storage: Vercel Blob, one JSON document for statuses.**
+  `scripts/job-agent/tracker-overlay.ts` reads/writes
   a single blob at `job-agent/tracker-overlay.json` in a private Blob store (`job-agent-tracker`,
   env var prefix `JOB_AGENT_TRACKER` - every SDK call passes
   `token: process.env.JOB_AGENT_TRACKER_READ_WRITE_TOKEN` explicitly, since the custom prefix
   means `@vercel/blob`'s default `BLOB_READ_WRITE_TOKEN` env var doesn't apply). One document
-  holding a small `{ "<source>:<id>": { status, title, company, location, absoluteUrl, updatedAt
-  } }` map was chosen over one blob per job: expected volume is a handful of marks over the
+  holding a small `{ "<source>:<id>": { status, structured row fields, updatedAt } }` map was
+  chosen over one blob per job: expected volume is a handful of marks over the
   tool's lifetime, so a single read/write beats a `list()` call plus N reads. Retention is
   indefinite by design - no TTL or cleanup - matching the ledger's own "expired but retained
   forever" precedent.
-- **Why the overlay snapshots title/company/location/absoluteUrl instead of resolving them from
+- **Why the overlay snapshots structured row fields instead of resolving them from
   the ledger at read time:** the daily scan flips a ledger entry's own `status` to `"expired"`
   once its posting disappears from the board - which tends to happen exactly when you've been
   hired or the req has closed - and `/job-agent` drops expired ledger entries before Tracker ever
-  sees them. Snapshotting these fields at write time (server-side, from the ledger entry looked up
-  by id - never from client input) keeps a marked job visible in Tracker regardless of what later
+  sees them. Snapshotting title, company, role family, location, compensation, posting date, and
+  URL at write time (server-side, from the stored entry looked up by id - never from client input)
+  keeps a marked job visible in Tracker regardless of what later
   happens to the live posting.
-- **Route:** `POST /api/job-agent/tailor/status`, passphrase-gated the same way as the other three
+- **Route:** `POST /api/job-agent/tailor/status`, passphrase-gated the same way as the other
   Tailor routes. Body is `{ source, id, status }`; the job's other fields are looked up
-  server-side from the ledger, not trusted from the client.
-- **Merge at render time.** `app/job-agent/page.tsx` reads the non-expired ledger slice (as
-  before) plus the overlay, and calls `mergeTrackerEntries()` to build Tracker's full row list -
+  server-side from the git ledger or manual store, not trusted from the client.
+- **Merge at render time.** `app/job-agent/page.tsx` reads the non-expired merged opportunity
+  slice plus the overlay, and calls `mergeTrackerEntries()` to build Tracker's full row list -
   hand-set ledger rows, plus overlay rows, with an overlay entry winning over a stale ledger row
   for the same job. `JobAgentSections` receives this as a `trackedEntries` prop instead of
   deriving it from `initialEntries` itself.
-- **This forced `/job-agent` off static generation.** Reading the overlay from Blob is a
+- **This forced `/job-agent` off static generation.** Reading live JSON from Blob is a
   request-time operation, so `page.tsx` now declares `export const dynamic = "force-dynamic"`.
   Before this feature, the page was fully statically generated from the ledger's build-time JSON
-  import (served from cache, no per-request work); now every load does one Blob read server-side.
+  import (served from cache, no per-request work); now every load reads the two small Blob JSON
+  documents server-side.
   Tradeoff accepted deliberately for a low-traffic hidden internal tool - freshness beats
-  build-time caching here. The ledger JSON import itself is still a build-time static import; only
-  the overlay read is dynamic.
+  build-time caching here. The ledger JSON import itself is still a build-time static import;
+  tracker and manual-opportunity documents are dynamic.
 - **Read failures degrade gracefully; write failures don't.** If the Blob token is missing or the
   read fails for any reason (e.g. local dev, where `JOB_AGENT_TRACKER_READ_WRITE_TOKEN` isn't
-  set), `page.tsx` treats it as "no live overlay rows" rather than crashing the whole hidden page
-  - Tracker still shows any hand-set ledger rows. The `/status` route's write path does the
+  set), `page.tsx` treats it as "no live Blob rows" rather than crashing the whole hidden page
+  - the git ledger still renders. The intake and `/status` write paths do the
   opposite: a missing token or a failed write returns a clear error, shown inline on the card,
   because a click that silently did nothing would be worse than one that visibly failed.
 - **After a successful mark**, the card shows a status pill in place of the two buttons, and the
@@ -333,6 +375,8 @@ no category has to be filled in before any other can be used.
 
 ## Known limits / not yet built
 
+- **Manual intake is intentionally limited to Greenhouse, Lever, and Ashby hosted URLs.** Custom
+  company career sites and other ATS products return an actionable unsupported-source error.
 - **No UI for editing or un-marking an existing applied/passed status** - only setting one for the
   first time, from either path above.
 - **Voice-profile samples are still empty.** All three `content/voice-profile/*.ts` files start

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import ledgerJson from "@/content/job-agent-seen.json";
+import { mergeOpportunityEntries, readManualOpportunities } from "@/scripts/job-agent/manual-opportunities";
 import { mergeTrackerEntries, readTrackerOverlay } from "@/scripts/job-agent/tracker-overlay";
 import type { JobAgentLedger } from "@/scripts/job-agent/types";
 import { JobAgentSections } from "./JobAgentSections";
@@ -11,24 +12,27 @@ export const metadata: Metadata = {
 };
 
 /**
- * Tracker now depends on the live Blob status overlay (scripts/job-agent/tracker-overlay.ts),
- * read at request time - this page can no longer be statically generated at build time the way
- * it could when it only read the ledger's build-time JSON import. The tradeoff: every load now
- * does one Blob read server-side instead of serving a build-time-cached page; acceptable for a
- * low-traffic hidden internal tool. The ledger import above stays a build-time static import -
- * only the overlay read is dynamic.
+ * Tracker and manual intake depend on two small live Blob JSON documents, read at request time -
+ * this page can no longer be statically generated at build time the way it could when it only
+ * read the ledger's build-time JSON import. The tradeoff is acceptable for a low-traffic hidden
+ * internal tool. The git ledger import above stays a build-time static import.
  */
 export const dynamic = "force-dynamic";
 
 const ledger = ledgerJson as unknown as JobAgentLedger;
 
 export default async function JobAgentPage() {
-  const nonExpiredEntries = Object.values(ledger).filter((entry) => entry.status !== "expired");
+  const ledgerEntries = Object.values(ledger).filter((entry) => entry.status !== "expired");
   // Missing/misconfigured Blob credentials (e.g. local dev without JOB_AGENT_TRACKER_READ_WRITE_TOKEN
-  // set) degrade to "no live overlay rows" rather than crashing the whole hidden page - Tracker
-  // still shows hand-set ledger rows. The write path (the Mark Applied/Passed action itself)
-  // fails loudly instead; see app/api/job-agent/tailor/status/route.ts.
-  const overlay = await readTrackerOverlay().catch(() => ({}));
+  // set) degrade to "no live Blob rows" rather than crashing the whole hidden page - the git
+  // ledger still renders. Intake and status writes fail loudly instead; see docs/job-agent.md.
+  const [overlay, manualStore] = await Promise.all([
+    readTrackerOverlay().catch(() => ({})),
+    readManualOpportunities().catch(() => ({})),
+  ]);
+  const nonExpiredEntries = mergeOpportunityEntries(ledgerEntries, manualStore).filter(
+    (entry) => entry.status !== "expired",
+  );
   const trackedEntries = mergeTrackerEntries(nonExpiredEntries, overlay);
 
   return (
@@ -44,11 +48,7 @@ export default async function JobAgentPage() {
           </p>
         </header>
 
-        {nonExpiredEntries.length === 0 && trackedEntries.length === 0 ? (
-          <p className="job-agent-empty">No jobs tracked yet. The daily scan runs at 13:00 UTC.</p>
-        ) : (
-          <JobAgentSections entries={nonExpiredEntries} trackedEntries={trackedEntries} />
-        )}
+        <JobAgentSections entries={nonExpiredEntries} trackedEntries={trackedEntries} />
       </section>
     </main>
   );
