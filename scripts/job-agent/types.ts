@@ -59,6 +59,10 @@ export interface AshbyJob {
   descriptionPlain?: string;
   /** ISO 8601 timestamp. */
   publishedAt?: string;
+  compensation?: {
+    /** Salary-only summary intended for scraping/display, e.g. "$140K - $180K". */
+    scrapeableCompensationSalarySummary?: string | null;
+  };
 }
 
 interface AshbyJobBoardResponse {
@@ -88,7 +92,7 @@ export interface NormalizedJob {
   content?: string;
   location?: { name: string };
   postedAt?: string;
-  /** Structured compensation the source itself provides (currently Lever's `salaryRange` only). */
+  /** Structured compensation the source provides (Lever ranges or Ashby manual-intake summaries). */
   structuredCompensationRange?: string | null;
 }
 

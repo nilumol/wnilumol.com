@@ -1,14 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { appendOpportunity, moveSelectedOpportunities } from "@/scripts/job-agent/opportunity-session";
 import type { JobAgentLedgerEntry } from "@/scripts/job-agent/types";
+import { JobAgentOpportunityIntake } from "./JobAgentOpportunityIntake";
 import { JobAgentTable } from "./JobAgentTable";
 import { JobAgentTailor } from "./JobAgentTailor";
 import { JobAgentTracker } from "./JobAgentTracker";
-
-function entryKey(entry: JobAgentLedgerEntry): string {
-  return `${entry.source}:${entry.id}`;
-}
 
 export function JobAgentSections({
   entries: initialEntries,
@@ -16,22 +14,21 @@ export function JobAgentSections({
 }: {
   entries: JobAgentLedgerEntry[];
   /**
-   * Tracker's full row list, computed server-side in page.tsx from the non-expired ledger slice
-   * plus the live Blob status overlay - not derived here, since a marked-applied/passed job may
-   * no longer be part of `initialEntries` if its underlying posting has since expired. See
+   * Tracker's full row list, computed server-side in page.tsx from stored opportunities plus the
+   * live Blob status overlay - not derived here, since a marked-applied/passed job may no longer
+   * be part of `initialEntries` if its underlying posting has since expired. See
    * scripts/job-agent/tracker-overlay.ts.
    */
   trackedEntries: JobAgentLedgerEntry[];
 }) {
-  const [entries, setEntries] = useState(initialEntries);
-  const [sentEntries, setSentEntries] = useState<JobAgentLedgerEntry[]>([]);
+  const [session, setSession] = useState({ entries: initialEntries, sentEntries: [] as JobAgentLedgerEntry[] });
 
   function handleSend(sentKeys: Set<string>) {
-    setEntries((current) => current.filter((entry) => !sentKeys.has(entryKey(entry))));
-    setSentEntries((current) => [
-      ...current,
-      ...entries.filter((entry) => sentKeys.has(entryKey(entry))),
-    ]);
+    setSession((current) => moveSelectedOpportunities(current.entries, current.sentEntries, sentKeys));
+  }
+
+  function handleAdded(entry: JobAgentLedgerEntry) {
+    setSession((current) => ({ ...current, entries: appendOpportunity(current.entries, entry) }));
   }
 
   return (
@@ -44,10 +41,11 @@ export function JobAgentSections({
           </span>
         </summary>
         <div className="job-agent-section-body">
-          {entries.length === 0 ? (
+          <JobAgentOpportunityIntake onAdded={handleAdded} />
+          {session.entries.length === 0 ? (
             <p className="job-agent-placeholder">Nothing left in Opportunities this session.</p>
           ) : (
-            <JobAgentTable entries={entries} onSend={handleSend} />
+            <JobAgentTable entries={session.entries} onSend={handleSend} />
           )}
         </div>
       </details>
@@ -60,7 +58,7 @@ export function JobAgentSections({
           </span>
         </summary>
         <div className="job-agent-section-body">
-          <JobAgentTailor entries={sentEntries} />
+          <JobAgentTailor entries={session.sentEntries} />
         </div>
       </details>
 

@@ -103,6 +103,27 @@ test("mergeTrackerEntries lets an overlay entry win over a hand-set ledger row f
   assert.equal(result[0]?.status, "passed");
 });
 
+test("mergeTrackerEntries preserves structured opportunity fields captured in a status snapshot", () => {
+  const overlay = {
+    "lever:abc": {
+      status: "applied" as const,
+      title: "Solutions Architect",
+      company: "Acme",
+      keywordFamily: "Solutions Architect",
+      location: "Remote",
+      compensationRange: "$155K-$190K",
+      postedAt: "2026-08-20T00:00:00.000Z",
+      absoluteUrl: "https://jobs.lever.co/acme/abc",
+      updatedAt: "2026-08-21T00:00:00.000Z",
+    },
+  };
+  const result = mergeTrackerEntries([], overlay);
+  assert.equal(result[0]?.id, "abc");
+  assert.equal(result[0]?.keywordFamily, "Solutions Architect");
+  assert.equal(result[0]?.compensationRange, "$155K-$190K");
+  assert.equal(result[0]?.postedAt, "2026-08-20T00:00:00.000Z");
+});
+
 // ---------------------------------------------------------------------------
 // parseTailorStatusRequestBody - the /status route's envelope check
 // ---------------------------------------------------------------------------
