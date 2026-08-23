@@ -5,6 +5,7 @@ import {
   ManualOpportunityError,
   parseSupportedJobUrl,
 } from "./manual-opportunity-extract.ts";
+import { createManualOpportunityPostHandler } from "./manual-opportunity-handler.ts";
 import { parseManualOpportunityRequestBody, parseManualOpportunityStore } from "./manual-opportunity-types.ts";
 import {
   addManualOpportunity,
@@ -63,6 +64,42 @@ test("manual URL input accepts supported HTTPS posting URLs and rejects unsafe o
     () => parseSupportedJobUrl("https://example.com/jobs/1"),
     /Supported posting URLs are hosted by Greenhouse, Lever, or Ashby/,
   );
+});
+
+test("the intake POST requires only a URL and does not consume the Tailor passphrase", async () => {
+  const previousPassphrase = process.env.TAILOR_PASSPHRASE;
+  process.env.TAILOR_PASSPHRASE = "paid-actions-only";
+  const receivedUrls: string[] = [];
+  const handler = createManualOpportunityPostHandler({}, async (url) => {
+    receivedUrls.push(url);
+    return fixtureRecord();
+  });
+
+  try {
+    const withoutPassphrase = await handler(new Request("http://job-agent.test/api/job-agent/opportunities", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ url: "https://jobs.lever.co/acme-life/abc-123" }),
+    }));
+    assert.equal(withoutPassphrase.status, 201);
+
+    const withWrongLegacyPassphrase = await handler(new Request("http://job-agent.test/api/job-agent/opportunities", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-tailor-passphrase": "wrong-and-ignored",
+      },
+      body: JSON.stringify({ url: "https://jobs.lever.co/acme-life/def-456" }),
+    }));
+    assert.equal(withWrongLegacyPassphrase.status, 201);
+    assert.deepEqual(receivedUrls, [
+      "https://jobs.lever.co/acme-life/abc-123",
+      "https://jobs.lever.co/acme-life/def-456",
+    ]);
+  } finally {
+    if (previousPassphrase === undefined) delete process.env.TAILOR_PASSPHRASE;
+    else process.env.TAILOR_PASSPHRASE = previousPassphrase;
+  }
 });
 
 test("a Greenhouse URL extracts, normalizes, and persists one complete JSON-backed opportunity", async () => {

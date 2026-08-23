@@ -80,11 +80,12 @@ and Ashby (`jobs.ashbyhq.com`). Other hosts, non-HTTPS URLs, custom ports/creden
 ATS paths, closed postings, and records missing a title, company, or usable description are
 rejected with an inline error; no partial row is written.
 
-`POST /api/job-agent/opportunities` is gated by the existing `TAILOR_PASSPHRASE`. The client
-reuses the same tab-scoped passphrase as Tailor My Profile and shows the shared `.spinner` while
-extraction and persistence are in flight. The route parses the source token and stable posting id
-from the URL, checks both the git ledger and manual store for `<source>:<id>` before fetching, and
-returns `409` for repeat submissions. It never performs a generic fetch to the submitted host:
+`POST /api/job-agent/opportunities` accepts only the job URL and does not read or receive the
+Tailor passphrase because extraction and persistence do not invoke a paid AI action. The client
+shows the shared `.spinner` while extraction and persistence are in flight. The route parses the
+source token and stable posting id from the URL, checks both the git ledger and manual store for
+`<source>:<id>` before fetching, and returns `409` for repeat submissions. It never performs a
+generic fetch to the submitted host:
 data calls target hard-coded public Greenhouse, Lever, or Ashby API origins. When an untracked
 Lever/Ashby board does not provide a company in its API response, company identity is read from
 JobPosting JSON-LD on the already-allowlisted hosted page. Later application scans keep using
@@ -105,6 +106,10 @@ generate grounded resume suggestions/draft answers from the persisted posting de
 Mark Applied/Passed into Tracker. Suggestions and answers remain review-only; this path never
 applies, submits, or changes resume source data automatically. Manually added jobs remain
 `pending`/unscored unless a future workflow explicitly scores them.
+
+The passphrase boundary begins only after a row is sent to Tailor My Profile. Tailor suggestions,
+PDF generation, application scanning, draft answers, and status changes keep their existing
+`TAILOR_PASSPHRASE` checks; adding a URL does not unlock or alter that tab-scoped Tailor session.
 
 ## Companies currently tracked
 

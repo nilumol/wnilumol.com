@@ -120,8 +120,7 @@ p, h1, h2, ul { margin-top: 0; }
 .job-agent-intake-copy { display: flex; flex-direction: column; gap: 3px; margin-bottom: 14px; }
 .job-agent-intake-copy strong { font-family: var(--font-poppins), sans-serif; font-size: .9rem; font-weight: 600; }
 .job-agent-intake-copy span { color: var(--muted); font-size: .82rem; line-height: 1.5; }
-.job-agent-intake-fields { display: grid; grid-template-columns: minmax(260px, 1fr) minmax(150px, .3fr) auto; align-items: end; gap: 10px; min-width: 0; }
-.job-agent-intake-fields-unlocked { grid-template-columns: minmax(260px, 1fr) auto; }
+.job-agent-intake-fields { display: grid; grid-template-columns: minmax(260px, 1fr) auto; align-items: end; gap: 10px; min-width: 0; }
 .job-agent-intake-fields label { display: flex; min-width: 0; flex-direction: column; gap: 5px; color: var(--muted); font-family: var(--font-belleza), serif; font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; }
 .job-agent-intake-fields input { width: 100%; min-width: 0; padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.4); color: var(--text); font-family: var(--font-tenor), serif; font-size: .88rem; text-transform: none; }
 .job-agent-intake-fields .job-agent-btn { min-height: 38px; }
