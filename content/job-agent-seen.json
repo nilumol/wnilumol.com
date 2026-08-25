@@ -7,7 +7,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.ashbyhq.com/openai/0b80474f-6438-4b41-94e4-0e653c7e3457",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "scored",
+    "status": "expired",
     "location": "Dublin, Ireland",
     "compensationRange": null,
     "postedAt": "2026-07-16T18:18:11.023+00:00",
@@ -358,6 +358,19 @@
     "postedAt": "2026-07-27T13:10:21.071+00:00",
     "fitScore": 4,
     "fitRationale": "Commercial Solutions Consultant at Notion asks for only 1-3 years of technical selling experience - well below his 10+ years of seniority - and the productivity-software domain has no life-sciences adjacency, though the live-demo/discovery role family itself matches his track record."
+  },
+  "ashby:f7ea6f19-fc0f-482c-b5a8-1271747fea1b": {
+    "id": "f7ea6f19-fc0f-482c-b5a8-1271747fea1b",
+    "source": "ashby",
+    "company": "Notion",
+    "title": "Solutions Consultant, Commercial, France",
+    "keywordFamily": "Solutions Consultant",
+    "absoluteUrl": "https://jobs.ashbyhq.com/notion/f7ea6f19-fc0f-482c-b5a8-1271747fea1b",
+    "firstSeen": "2026-08-25T13:44:17.608Z",
+    "status": "pending",
+    "location": "Paris, France",
+    "compensationRange": null,
+    "postedAt": "2026-08-25T08:27:49.023+00:00"
   },
   "ashby:fa089457-a22c-406f-9bc2-223656b87026": {
     "id": "fa089457-a22c-406f-9bc2-223656b87026",
@@ -846,7 +859,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5158386007",
     "firstSeen": "2026-08-18T07:29:56.138Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family is a genuine match - presales technical ownership, running Proof of Value end-to-end, and enterprise/major accounts align with his Benchling Strategic Enterprise SC work. However, the substance is deep network security engineering (Zero Trust, CCNP/JNCIP/CISSP-level networking knowledge, 10+ years specifically as a Sales Engineer or systems integrator), which shares nothing with his SQL/Python/Veeva/Benchling/GMP toolset and zero life-sciences or regulated-industry adjacency. He'd be well short of the technical bar for a Principal-level cybersecurity SE role despite the title fit.",
     "location": "Remote - Illinois, USA; Remote - Indiana, USA; Remote - Kansas, USA; Remote - Kentucky, USA; Remote - Michigan, USA; Remote - Missouri, USA; Remote - Ohio, USA; Remote - Tennessee, USA",
@@ -1632,6 +1645,19 @@
     "fitScore": 2,
     "fitRationale": "Same cybersecurity Sales Engineer role as Zscaler's other SE postings, with an added French-fluency requirement; zero life-sciences domain relevance and a networking/security technical stack outside his background."
   },
+  "greenhouse:5216209007": {
+    "id": 5216209007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer - Mexico",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5216209007",
+    "firstSeen": "2026-08-25T13:44:17.608Z",
+    "status": "pending",
+    "location": "Mexico - Update Location",
+    "compensationRange": null,
+    "postedAt": "2026-08-25T00:02:50-04:00"
+  },
   "greenhouse:5217797007": {
     "id": 5217797007,
     "source": "greenhouse",
@@ -1644,6 +1670,19 @@
     "location": "Remote - Georgia, USA",
     "compensationRange": null,
     "postedAt": "2026-08-21T12:11:15-04:00"
+  },
+  "greenhouse:5217849007": {
+    "id": 5217849007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Principal Sales Engineer, SLED - East",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5217849007",
+    "firstSeen": "2026-08-25T13:44:17.607Z",
+    "status": "pending",
+    "location": "Remote - Connecticut, USA; Remote - Florida, USA; Remote - Georgia; Remote - Maine, USA; Remote - Maryland, USA; Remote - Massachusetts, USA; Remote - New Hampshire, USA; Remote - New Jersey, USA; Remote - New York, USA; Remote - North Carolina, USA; Remote - Pennsylvania, USA; Remote - South Carolina, USA; Remote - Virginia, USA; Remote - West Virginia, USA",
+    "compensationRange": null,
+    "postedAt": "2026-08-24T20:07:15-04:00"
   },
   "greenhouse:5615966004": {
     "id": 5615966004,
@@ -2837,7 +2876,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8549058002",
     "firstSeen": "2026-08-18T07:49:48.212Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "The role family is a reasonable adjacent match - post-sales technical account leadership, onboarding/adoption, executive stakeholder management, and discovery workshops all overlap with Winston's Benchling SC and Collate implementations work, and Python/SQL are in his toolkit. But the posting demands 15+ years of accountable technical delivery specifically in Data & AI plus understanding of distributed data systems architecture, which is well beyond his depth (his technical credibility is in life-sciences SaaS and lab/GMP systems, not Lakehouse/Spark platform engineering). Databricks is horizontal with no life-sciences framing in this posting, so his biopharma domain edge counts for little here.",
     "location": "Bengaluru, India",
@@ -3909,7 +3948,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8628080002",
     "firstSeen": "2026-08-18T07:44:11.297Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "Role family is a genuine match - pre-sales solutions architecture with discovery, POCs, demos, and AE partnership, all of which mirror his Benchling SC work, and Python/SQL are in his toolkit. However, this is a deeply hands-on data engineering/Spark/cloud-architecture role with no life sciences focus (suggested domains are CDP/Martech, cybersecurity, AI app patterns), so his biopharma/GxP SME value is largely irrelevant here. It's also based in London with regular commuting to the London office and 20-30% UK&I travel, which is a hard geographic mismatch.",
     "location": "London, United Kingdom",
@@ -4119,7 +4158,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8646022002",
     "firstSeen": "2026-08-18T07:54:23.647Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family fits (post-sales CSM owning adoption, retention, expansion, cross-functional liaison work) and Winston's implementation/onboarding and stakeholder-enablement track record transfers, but the domain is a total miss: DevSecOps, Git branching strategies, CI/CD pipelines, and SDLC fluency are core requirements and appear nowhere in his SQL/Veeva/Benchling/GMP toolset. US Public Sector focus means no leverage from his biopharma regulatory expertise (21 CFR Part 11, GMP) or his enterprise biopharma relationships, and no FedRAMP/government contracting experience. Effectively he'd be starting from zero on both the technical product and the buyer persona.",
     "location": "Remote, United States",
@@ -4537,6 +4576,19 @@
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-08-21T20:59:35-04:00"
+  },
+  "greenhouse:8742716002": {
+    "id": 8742716002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Customer Success Manager",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8742716002",
+    "firstSeen": "2026-08-25T13:44:17.608Z",
+    "status": "pending",
+    "location": "Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-08-24T14:42:55-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
