@@ -224,6 +224,19 @@
     "fitScore": 3,
     "fitRationale": "Customer Success Manager for OpenAI's Ads Solutions team requires 5-10+ years of digital-advertising/adtech account management - a domain (advertising) with no biopharma or regulated-industry adjacency, though the SQL/data-querying and trusted-advisor elements are familiar territory."
   },
+  "ashby:00960f3c-46b6-4ad5-ae6b-4175035b3cb9": {
+    "id": "00960f3c-46b6-4ad5-ae6b-4175035b3cb9",
+    "source": "ashby",
+    "company": "Notion",
+    "title": "Mid-Market Solutions Consultant",
+    "keywordFamily": "Solutions Consultant",
+    "absoluteUrl": "https://jobs.ashbyhq.com/notion/00960f3c-46b6-4ad5-ae6b-4175035b3cb9",
+    "firstSeen": "2026-08-26T13:50:56.493Z",
+    "status": "pending",
+    "location": "Seoul, South Korea",
+    "compensationRange": null,
+    "postedAt": "2026-08-26T05:42:34.386+00:00"
+  },
   "ashby:991f7a9c-5908-4690-b655-aea652f7e7b0": {
     "id": "991f7a9c-5908-4690-b655-aea652f7e7b0",
     "source": "ashby",
@@ -1480,6 +1493,19 @@
     "compensationRange": null,
     "postedAt": "2026-08-11T05:05:41-04:00"
   },
+  "greenhouse:5204735007": {
+    "id": 5204735007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer - Enterprise",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5204735007",
+    "firstSeen": "2026-08-26T13:50:56.493Z",
+    "status": "pending",
+    "location": "Gurgaon, IND",
+    "compensationRange": null,
+    "postedAt": "2026-08-26T09:15:05-04:00"
+  },
   "greenhouse:5206113007": {
     "id": 5206113007,
     "source": "greenhouse",
@@ -1767,7 +1793,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://boards.greenhouse.io/figma/jobs/5981822004?gh_jid=5981822004",
     "firstSeen": "2026-08-18T07:29:07.030Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "Role family is a strong match - presales solutions consulting with demos, technical discovery, security/enterprise requirements, and roadmap influence, and the 8+ years / 4+ years SaaS presales bar aligns with Winston's Benchling and Collate tenure. However, there is zero life-sciences or biopharma adjacency: the domain is design/UX tooling for federal agencies, and the preferred qualifications (front-end development, developer lifecycle, Figma/UX experience, federal agency consulting) share nothing with his GMP, 21 CFR Part 11, Veeva/Benchling/SQL-driven R&D background. Location is also restricted to DC or NYC metro, and FedRAMP/public-sector procurement is a different regulated world than biopharma compliance.",
     "location": "New York, NY; Washington, DC",
@@ -1872,7 +1898,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://job-boards.greenhouse.io/algolia/jobs/6097125004",
     "firstSeen": "2026-08-18T07:37:14.324Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Hard blocker: the role requires fluency in English, French and German and is based in Europe (EUR on-target earnings, hybrid in an EU office), which doesn't match Winston's US-based, English-only profile. Domain is e-commerce/retail AI search (Under Armour, PetSmart, Gymshark) with zero life-sciences or regulated-industry overlap, and the ask is only 2-3 years of CSM/account management experience, well below his 10+ years and enterprise SC/implementation seniority. The only real overlaps are generic post-sales adoption, product training, and cross-functional advocacy work he did at Benchling and Collate.",
     "location": "Paris, France",
@@ -1947,12 +1973,25 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://job-boards.greenhouse.io/algolia/jobs/6122251004",
     "firstSeen": "2026-08-18T07:37:07.946Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Hard blockers dominate: the role requires fluency in English, French, and German and is EUR-denominated/EMEA-based, while Winston's background is US-based with no indicated multilingual fluency. Domain is e-commerce/consumer AI search (Under Armour, PetSmart, Gymshark) with zero life-sciences or regulated-industry overlap, and the stated bar of 2-3 years is well below his 10+ years at enterprise/strategic level. The only real overlaps are generic CSM/adoption, technical product enablement, and cross-functional voice-of-customer work.",
     "location": "Remote - Germany",
     "compensationRange": "€80,000—€111,000 EUR (OTE)",
     "postedAt": "2026-07-22T04:20:23-04:00"
+  },
+  "greenhouse:6147302004": {
+    "id": 6147302004,
+    "source": "greenhouse",
+    "company": "Algolia",
+    "title": "Senior Customer Success Manager, UK",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://job-boards.greenhouse.io/algolia/jobs/6147302004",
+    "firstSeen": "2026-08-26T13:50:56.493Z",
+    "status": "pending",
+    "location": "London, England",
+    "compensationRange": null,
+    "postedAt": "2026-08-25T11:45:58-04:00"
   },
   "greenhouse:6328361002": {
     "id": 6328361002,
@@ -2298,6 +2337,19 @@
     "location": "Illinois; Michigan; Minnesota",
     "compensationRange": "$219,100—$301,300 USD",
     "postedAt": "2026-03-16T18:12:37-04:00"
+  },
+  "greenhouse:8407186002": {
+    "id": 8407186002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Senior Solutions Architect - Consumer Product Goods",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8407186002",
+    "firstSeen": "2026-08-26T13:50:56.493Z",
+    "status": "pending",
+    "location": "Dallas, Texas; Missouri; Remote - Missouri; Remote - Texas; St. Louis, Missouri; Texas; United States",
+    "compensationRange": null,
+    "postedAt": "2026-02-18T11:32:37-05:00"
   },
   "greenhouse:8407197002": {
     "id": 8407197002,
@@ -2996,7 +3048,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8563181002",
     "firstSeen": "2026-08-18T07:44:30.939Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "Role family is a genuine match — presales Solutions Architect work with discovery, POCs, technical champion building, and enterprise/strategic segment coverage mirrors his Benchling Strategic Enterprise SC work, and his Python/SQL and Google Cloud exposure are relevant at a surface level. However, the technical bar here is deep data engineering/ML infrastructure (Spark, Hadoop, Kafka, distributed data systems, PyTorch/scikit-learn, 'building distributed data systems'), which is well outside his lab-systems and life-sciences SaaS background. The 'AI Natives / Strategic Digital Natives' segment means the customer base is tech-native startups with no biopharma or regulated-industry adjacency, eliminating his strongest differentiator.",
     "location": "Remote - California; Remote - Colorado; Remote - Oregon; Remote - Washington",
@@ -3329,6 +3381,19 @@
     "compensationRange": "$219,100—$301,300 USD (Zone 3)",
     "postedAt": "2026-06-12T02:29:31-04:00"
   },
+  "greenhouse:8583353002": {
+    "id": 8583353002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8583353002",
+    "firstSeen": "2026-08-26T13:50:56.493Z",
+    "status": "pending",
+    "location": "Tokyo, Japan",
+    "compensationRange": null,
+    "postedAt": "2026-08-26T06:24:07-04:00"
+  },
   "greenhouse:8585599002": {
     "id": 8585599002,
     "source": "greenhouse",
@@ -3367,7 +3432,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8593411002",
     "firstSeen": "2026-08-18T07:50:47.480Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family is a genuine match - technical pre-sales Solutions Architect work with complex POCs, C-level influence, and customer engagement strategy alongside AEs, which mirrors his Benchling SC track record. But this is a hybrid role based in Sydney, Australia, which is a hard geographic mismatch for a US-based candidate, and the technical bar (hands-on coding in Python/Java/Scala plus Spark and deep public-cloud architecture) goes well beyond his SQL/Python analytics fluency. There is also zero life-sciences or regulated-industry framing - the platform is horizontal data/AI, so his 10+ years of GMP/21 CFR Part 11 domain depth is not a differentiator here.",
     "location": "Sydney, Australia",
@@ -4590,6 +4655,32 @@
     "compensationRange": null,
     "postedAt": "2026-08-24T14:42:55-04:00"
   },
+  "greenhouse:8746260002": {
+    "id": 8746260002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Product Specialist - Gen AI  (Sr. Specialist Solutions Architect) ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8746260002",
+    "firstSeen": "2026-08-26T13:50:56.493Z",
+    "status": "pending",
+    "location": "Paris, France",
+    "compensationRange": null,
+    "postedAt": "2026-08-26T09:24:00-04:00"
+  },
+  "greenhouse:8750467002": {
+    "id": 8750467002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Product Specialist - Gen AI  (Sr. Specialist Solutions Architect) ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8750467002",
+    "firstSeen": "2026-08-26T13:50:56.493Z",
+    "status": "pending",
+    "location": "Amsterdam, Netherlands",
+    "compensationRange": null,
+    "postedAt": "2026-08-26T09:28:27-04:00"
+  },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
     "source": "lever",
@@ -4705,6 +4796,19 @@
     "postedAt": "2026-06-17T17:10:43.194Z",
     "fitScore": 8,
     "fitRationale": "Duplicate Veeva Quality CSM posting - same strong GMP/quality domain match given his manufacturing-compliance background."
+  },
+  "lever:561c5970-3593-45e1-bb89-97e556c5ff73": {
+    "id": "561c5970-3593-45e1-bb89-97e556c5ff73",
+    "source": "lever",
+    "company": "Veeva",
+    "title": "Solutions Consultant - Commercial",
+    "keywordFamily": "Solutions Consultant",
+    "absoluteUrl": "https://jobs.lever.co/veeva/561c5970-3593-45e1-bb89-97e556c5ff73",
+    "firstSeen": "2026-08-26T13:50:56.493Z",
+    "status": "pending",
+    "location": "Pennsylvania - Philadelphia",
+    "compensationRange": null,
+    "postedAt": "2025-07-08T18:57:17.733Z"
   },
   "lever:961ebde4-46c4-44b6-b502-55fcd56d17b6": {
     "id": "961ebde4-46c4-44b6-b502-55fcd56d17b6",
