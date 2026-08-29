@@ -4351,6 +4351,19 @@
     "compensationRange": "$180,000 - $247,500 USD",
     "postedAt": "2026-08-12T13:54:16-04:00"
   },
+  "greenhouse:8652984002": {
+    "id": 8652984002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Senior Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8652984002",
+    "firstSeen": "2026-08-29T16:57:23.636Z",
+    "status": "pending",
+    "location": "Bengaluru, India",
+    "compensationRange": null,
+    "postedAt": "2026-08-29T02:49:24-04:00"
+  },
   "greenhouse:8656506002": {
     "id": 8656506002,
     "source": "greenhouse",
