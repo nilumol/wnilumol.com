@@ -725,6 +725,19 @@
     "compensationRange": null,
     "postedAt": "2026-06-15T00:13:55-04:00"
   },
+  "greenhouse:5150518007": {
+    "id": 5150518007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer - Public Sector",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5150518007",
+    "firstSeen": "2026-08-31T19:21:14.050Z",
+    "status": "pending",
+    "location": "Bangalore, IND",
+    "compensationRange": null,
+    "postedAt": "2026-07-16T03:39:54-04:00"
+  },
   "greenhouse:5150536007": {
     "id": 5150536007,
     "source": "greenhouse",
@@ -838,7 +851,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5156067007",
     "firstSeen": "2026-08-18T07:31:36.758Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Role family matches (presales Sales Engineer with technical demos, discovery, trusted-advisor work), but everything else diverges: the posting is a Hybrid Mumbai, India role and demands hands-on installation/configuration of routers, switches, firewalls/proxies, GPO/Active Directory, SSO/SAML, and Linux/Windows administration - none of which appear in Winston's SQL/Python/Veeva/Benchling/SAP toolset. There is zero life-sciences or regulated-industry adjacency; cloud security compliance is unrelated to 21 CFR Part 11/GMP experience. His enterprise POC, demo, and RFP track record is transferable in principle, but the network-security specialization gap and geography make this a poor practical fit.",
     "location": "Mumbai, IND",
@@ -949,6 +962,19 @@
     "location": "Singapore, SGP",
     "compensationRange": null,
     "postedAt": "2026-06-19T00:49:03-04:00"
+  },
+  "greenhouse:5170069007": {
+    "id": 5170069007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer - Public Sector",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5170069007",
+    "firstSeen": "2026-08-31T19:21:14.050Z",
+    "status": "pending",
+    "location": "Gurgaon, IND",
+    "compensationRange": null,
+    "postedAt": "2026-06-26T01:24:54-04:00"
   },
   "greenhouse:5173720007": {
     "id": 5173720007,
@@ -3442,6 +3468,19 @@
     "compensationRange": null,
     "postedAt": "2026-06-09T09:14:08-04:00"
   },
+  "greenhouse:8575048002": {
+    "id": 8575048002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8575048002",
+    "firstSeen": "2026-08-31T19:21:14.050Z",
+    "status": "pending",
+    "location": "Amsterdam, Netherlands",
+    "compensationRange": null,
+    "postedAt": "2026-06-09T09:15:24-04:00"
+  },
   "greenhouse:8576249002": {
     "id": 8576249002,
     "source": "greenhouse",
@@ -4720,6 +4759,19 @@
     "compensationRange": null,
     "postedAt": "2026-08-20T22:29:17-04:00"
   },
+  "greenhouse:8735820002": {
+    "id": 8735820002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8735820002",
+    "firstSeen": "2026-08-31T19:21:14.050Z",
+    "status": "pending",
+    "location": "Melbourne, Australia; Queensland, Australia",
+    "compensationRange": null,
+    "postedAt": "2026-08-30T21:45:15-04:00"
+  },
   "greenhouse:8737857002": {
     "id": 8737857002,
     "source": "greenhouse",
@@ -4979,6 +5031,19 @@
     "location": "San Francisco, California",
     "compensationRange": null,
     "postedAt": "2026-08-27T13:03:12-04:00"
+  },
+  "greenhouse:8758645002": {
+    "id": 8758645002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect - Agencies ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8758645002",
+    "firstSeen": "2026-08-31T19:21:14.050Z",
+    "status": "pending",
+    "location": "Northeast - United States",
+    "compensationRange": null,
+    "postedAt": "2026-08-31T11:08:58-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
