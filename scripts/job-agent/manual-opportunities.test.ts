@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { BlobPreconditionFailedError } from "@vercel/blob";
 import {
   extractManualOpportunity,
   ManualOpportunityError,
@@ -191,9 +192,7 @@ test("concurrent additions retry stale snapshots without losing either record", 
   };
   const writeSnapshot = async (next: ManualOpportunityStore, etag: string | null) => {
     if (etag !== String(version)) {
-      const conflict = new Error("stale snapshot");
-      conflict.name = "BlobPreconditionFailedError";
-      throw conflict;
+      throw new BlobPreconditionFailedError();
     }
     store = next;
     version += 1;
