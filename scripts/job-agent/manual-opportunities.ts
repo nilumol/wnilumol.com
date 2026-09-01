@@ -1,4 +1,4 @@
-import { get, put } from "@vercel/blob";
+import { BlobPreconditionFailedError, get, put } from "@vercel/blob";
 import { ledgerKey } from "./ledger.ts";
 import {
   extractManualOpportunity,
@@ -73,8 +73,10 @@ export async function writeManualOpportunities(store: ManualOpportunityStore): P
 }
 
 function isStoreWriteConflict(error: unknown): boolean {
-  return error instanceof Error &&
-    (error.name === "BlobPreconditionFailedError" || error.name === "BlobAlreadyExistsError");
+  return (
+    error instanceof BlobPreconditionFailedError ||
+    (error instanceof Error && /precondition failed|etag mismatch/i.test(error.message))
+  );
 }
 
 export async function persistManualOpportunity(
