@@ -1386,7 +1386,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198904007",
     "firstSeen": "2026-08-20T13:42:04.832Z",
-    "status": "scored",
+    "status": "expired",
     "location": "Remote - Florida, USA; Remote - Georgia, USA; Remote - North Carolina, USA; Remote - South Carolina, USA",
     "compensationRange": "$175,875-$251,250 USD",
     "postedAt": "2026-08-19T16:25:40-04:00",
@@ -1482,6 +1482,19 @@
     "location": "Remote - France",
     "compensationRange": null,
     "postedAt": "2026-08-07T07:28:21-04:00"
+  },
+  "greenhouse:5201257007": {
+    "id": 5201257007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Sales Engineer, Telco and Government",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5201257007",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "Tokyo, JPN",
+    "compensationRange": null,
+    "postedAt": "2026-08-31T21:29:00-04:00"
   },
   "greenhouse:5201259007": {
     "id": 5201259007,
@@ -1719,6 +1732,19 @@
     "compensationRange": null,
     "postedAt": "2026-08-13T03:19:58-04:00"
   },
+  "greenhouse:5211684007": {
+    "id": 5211684007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Sales Engineer",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5211684007",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "Remote - Sweden",
+    "compensationRange": null,
+    "postedAt": "2026-09-01T06:17:32-04:00"
+  },
   "greenhouse:5211688007": {
     "id": 5211688007,
     "source": "greenhouse",
@@ -1770,7 +1796,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5216242007",
     "firstSeen": "2026-08-27T22:44:08.740Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Melbourne, AUS; Sydney, AUS",
     "compensationRange": null,
     "postedAt": "2026-08-26T22:00:43-04:00"
@@ -1942,7 +1968,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/algolia/jobs/6008965004",
     "firstSeen": "2026-08-18T07:37:21.295Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family is a plausible match (customer-facing consultative Solutions Architect with enterprise accounts, roadmap influence, and prototyping - all things Winston did at Benchling and Collate), but the required stack is a hard gap: proficiency in JavaScript/HTML/CSS front-end plus a backend framework like Node/Rails/Django, search indexing/relevance architecture, and ecommerce search optimization, none of which appear in his SQL/Python/Veeva/Benchling toolset. Domain relevance is essentially zero - Algolia's customers are ecommerce/consumer brands (Under Armour, PetSmart, Gymshark), with no regulated-industry or life-sciences angle where his 10+ years of GMP/21 CFR Part 11 expertise adds value. Seniority (5+ years customer-facing technical) fits, and the comp is listed in AUD, suggesting a Sydney/Australia-based role rather than US.",
     "location": "Remote - Australia",
@@ -2180,7 +2206,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/celonis/jobs/7683570003?gh_jid=7683570003",
     "firstSeen": "2026-08-18T07:36:35.743Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "The role-family substance is actually a decent match - customer-facing solution design, prototyping/POVs, executive demos and workshops, 5+ years in solutions consulting/pre-sales, plus Python and SQL-adjacent data work echo his Benchling SC and Collate implementation experience. However, the posting hard-gates on native-level French for customer workshops and executive presentations, which Winston's background gives no indication of, and it's a public-sector role oriented to supply chain/finance process mining with zero life sciences or GxP/regulated-industry adjacency. The GenAI/RAG/LangChain and process-mining stack expectations are also outside his demonstrated toolset beyond casual Python/GenAI tinkering.",
     "location": "Paris, France",
@@ -2195,7 +2221,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://job-boards.greenhouse.io/celonis/jobs/7683572003?gh_jid=7683572003",
     "firstSeen": "2026-08-18T07:36:41.662Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Role family is a genuine match - customer-facing solutions consulting with discovery, prototyping, POVs, and executive demos, plus Python usage that touches Winston's toolkit. However, the posting states native-level French proficiency as a hard requirement for leading workshops and executive presentations, which is a disqualifying gap. Domain focus is also public sector with supply chain/finance process mining - no life sciences, GxP, or regulated-biopharma adjacency to leverage his 10+ years of domain depth.",
     "location": "Paris, France",
@@ -3524,6 +3550,19 @@
     "compensationRange": null,
     "postedAt": "2026-08-26T06:24:07-04:00"
   },
+  "greenhouse:8585164002": {
+    "id": 8585164002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Specialist Solutions Architect - AI/ML",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8585164002",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "Bengaluru, India",
+    "compensationRange": null,
+    "postedAt": "2026-06-16T01:56:24-04:00"
+  },
   "greenhouse:8585599002": {
     "id": 8585599002,
     "source": "greenhouse",
@@ -3568,6 +3607,19 @@
     "location": "Sydney, Australia",
     "compensationRange": null,
     "postedAt": "2026-06-18T22:22:23-04:00"
+  },
+  "greenhouse:8593505002": {
+    "id": 8593505002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Specialist Solutions Architect - AI/ML",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8593505002",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "Mumbai, India",
+    "compensationRange": null,
+    "postedAt": "2026-06-16T01:58:24-04:00"
   },
   "greenhouse:8595160002": {
     "id": 8595160002,
@@ -3995,7 +4047,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8625638002",
     "firstSeen": "2026-08-18T07:48:27.625Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "Role family is a genuine pre-sales Solutions Architect fit (technical discovery, architecture whiteboarding, demos, competitive technical wins, product feedback) and the 6+ years bar matches Winston's seniority. However, the domain is Real Money Gaming — zero adjacency to biopharma/regulated life sciences, and the posting's 'nice to have' industry list doesn't include it. The bigger gap is technical depth: it explicitly requires live coding/debugging in Python and SQL plus deep distributed data systems expertise (streaming, lakehouse patterns, production cloud deployments), which goes well beyond his SQL-driven demo and lab/SaaS implementation experience.",
     "location": "United States",
@@ -4613,6 +4665,19 @@
     "compensationRange": "$180,000 - $247,500 USD",
     "postedAt": "2026-08-10T14:20:46-04:00"
   },
+  "greenhouse:8695969002": {
+    "id": 8695969002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Senior Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8695969002",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "Remote, Germany",
+    "compensationRange": null,
+    "postedAt": "2026-09-01T09:35:57-04:00"
+  },
   "greenhouse:8697067002": {
     "id": 8697067002,
     "source": "greenhouse",
@@ -4733,6 +4798,19 @@
     "compensationRange": "€112,700—€140,325 EUR (Italy)",
     "postedAt": "2026-08-17T03:55:20-04:00"
   },
+  "greenhouse:8720995002": {
+    "id": 8720995002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect - Life Sciences",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8720995002",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "Munich, Germany",
+    "compensationRange": null,
+    "postedAt": "2026-09-01T05:26:08-04:00"
+  },
   "greenhouse:8720999002": {
     "id": 8720999002,
     "source": "greenhouse",
@@ -4745,6 +4823,19 @@
     "location": "Munich, Germany",
     "compensationRange": null,
     "postedAt": "2026-08-28T12:31:48-04:00"
+  },
+  "greenhouse:8721003002": {
+    "id": 8721003002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect - Automotive",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8721003002",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "Munich, Germany",
+    "compensationRange": null,
+    "postedAt": "2026-09-01T10:49:28-04:00"
   },
   "greenhouse:8735569002": {
     "id": 8735569002,
@@ -4849,6 +4940,19 @@
     "location": "Paris, France",
     "compensationRange": null,
     "postedAt": "2026-08-26T09:24:00-04:00"
+  },
+  "greenhouse:8747038002": {
+    "id": 8747038002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect - Teleco",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8747038002",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "Seattle, Washington",
+    "compensationRange": null,
+    "postedAt": "2026-08-31T16:26:06-04:00"
   },
   "greenhouse:8750467002": {
     "id": 8750467002,
@@ -5044,6 +5148,32 @@
     "location": "Northeast - United States",
     "compensationRange": null,
     "postedAt": "2026-08-31T11:08:58-04:00"
+  },
+  "greenhouse:8769750002": {
+    "id": 8769750002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8769750002",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "New York City, New York",
+    "compensationRange": null,
+    "postedAt": "2026-09-01T13:03:23-04:00"
+  },
+  "greenhouse:8769764002": {
+    "id": 8769764002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8769764002",
+    "firstSeen": "2026-09-01T17:07:07.859Z",
+    "status": "pending",
+    "location": "Chicago, Illinois",
+    "compensationRange": null,
+    "postedAt": "2026-09-01T13:03:26-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
