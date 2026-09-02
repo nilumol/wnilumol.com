@@ -22,7 +22,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/notion/0c457d2a-5e8e-4392-94b2-c63696b55dd8",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "scored",
+    "status": "expired",
     "location": "Tokyo, Japan",
     "compensationRange": null,
     "postedAt": "2026-08-17T01:35:29.502+00:00",
@@ -434,7 +434,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://job-boards.greenhouse.io/smartsheet/jobs/7917721",
     "firstSeen": "2026-08-18T06:23:12.976Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 5,
     "fitRationale": "Role family matches on paper (enterprise CSM: adoption, QBR/EBR, renewals influence, cross-functional partnering with Product/Sales), and Winston has real strategic-enterprise account and exec-stakeholder experience from Benchling plus data-driven insight work (SQL, Tableau). But the bar is 10+ years of specifically SaaS Customer Success/Account Management with 'deep Smartsheet subject matter expertise' and multiple Smartsheet certifications — Winston has ~2.5 years in SaaS presales/implementations and zero Smartsheet platform depth, so he'd read as a stretch for a Principal-level, mentor-the-team hire. Smartsheet is a horizontal collaborative work management vendor with no life sciences or regulated-industry angle, so his strongest differentiator (10+ years biopharma/GMP, 21 CFR Part 11, Veeva/Benchling) carries almost no weight here.",
     "location": null,
@@ -1192,7 +1192,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5196237007",
     "firstSeen": "2026-08-19T00:47:22.094Z",
-    "status": "scored",
+    "status": "expired",
     "location": "Remote - USA",
     "compensationRange": "$194,250-$277,500 USD",
     "postedAt": "2026-08-18T14:50:37-04:00",
@@ -1839,6 +1839,19 @@
     "location": "Remote - California, USA",
     "compensationRange": null,
     "postedAt": "2026-08-26T19:12:04-04:00"
+  },
+  "greenhouse:5225793007": {
+    "id": 5225793007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Manager, Sales Engineering - Majors, Bay Area",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5225793007",
+    "firstSeen": "2026-09-02T16:57:20.200Z",
+    "status": "pending",
+    "location": "Remote - California, USA",
+    "compensationRange": null,
+    "postedAt": "2026-09-02T11:07:32-04:00"
   },
   "greenhouse:5615966004": {
     "id": 5615966004,
@@ -2998,7 +3011,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8548980002",
     "firstSeen": "2026-08-18T07:54:16.997Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Hard blocker: the posting explicitly requires being based in Australia with full working rights there, and Winston is US-based (Genentech/Benchling/Collate, UCSD). Domain fit is also weak — the role centers on Git branching strategies, CI/CD pipelines, and DevSecOps tooling, none of which appear in his stack (SQL, Python, Veeva, Benchling, DeltaV, TrackWise), and there's zero life-sciences or regulated-industry relevance. The only real overlaps are generic: trusted-advisor relationships, workshops/demos, turning usage data into executive-facing insights, and cross-functional work with Product/Engineering.",
     "location": "Remote, Australia",
@@ -3296,7 +3309,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8567987002",
     "firstSeen": "2026-08-22T13:27:16.487Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - Oregon; Remote - Washington; Seattle, Washington",
     "compensationRange": null,
     "postedAt": "2026-08-21T14:06:43-04:00"
@@ -5149,6 +5162,32 @@
     "compensationRange": null,
     "postedAt": "2026-08-31T11:08:58-04:00"
   },
+  "greenhouse:8761732002": {
+    "id": 8761732002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Specialist Solutions Architect - Data Engineering & Warehousing (Digital Native Business) ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8761732002",
+    "firstSeen": "2026-09-02T16:57:20.200Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-09-01T23:42:39-04:00"
+  },
+  "greenhouse:8762362002": {
+    "id": 8762362002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Specialist Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8762362002",
+    "firstSeen": "2026-09-02T16:57:20.201Z",
+    "status": "pending",
+    "location": "Singapore",
+    "compensationRange": null,
+    "postedAt": "2026-09-02T05:08:15-04:00"
+  },
   "greenhouse:8769750002": {
     "id": 8769750002,
     "source": "greenhouse",
@@ -5174,6 +5213,19 @@
     "location": "Chicago, Illinois",
     "compensationRange": null,
     "postedAt": "2026-09-01T13:03:26-04:00"
+  },
+  "greenhouse:8769768002": {
+    "id": 8769768002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8769768002",
+    "firstSeen": "2026-09-02T16:57:20.200Z",
+    "status": "pending",
+    "location": "Denver, Colorado",
+    "compensationRange": null,
+    "postedAt": "2026-09-01T13:10:13-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
