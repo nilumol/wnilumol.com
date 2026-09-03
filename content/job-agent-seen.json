@@ -1745,6 +1745,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-01T06:17:32-04:00"
   },
+  "greenhouse:5211686007": {
+    "id": 5211686007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Sales Engineer - UK",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5211686007",
+    "firstSeen": "2026-09-03T16:52:08.013Z",
+    "status": "pending",
+    "location": "Remote - UK",
+    "compensationRange": null,
+    "postedAt": "2026-09-03T10:19:22-04:00"
+  },
   "greenhouse:5211688007": {
     "id": 5211688007,
     "source": "greenhouse",
@@ -1774,6 +1787,19 @@
     "postedAt": "2026-08-18T16:39:31-04:00",
     "fitScore": 2,
     "fitRationale": "Same cybersecurity Sales Engineer role as Zscaler's other SE postings, with an added French-fluency requirement; zero life-sciences domain relevance and a networking/security technical stack outside his background."
+  },
+  "greenhouse:5215336007": {
+    "id": 5215336007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Principal Sales Engineer",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5215336007",
+    "firstSeen": "2026-09-03T16:52:08.012Z",
+    "status": "pending",
+    "location": "Gurgaon, IND; Mumbai, IND",
+    "compensationRange": null,
+    "postedAt": "2026-09-03T04:26:34-04:00"
   },
   "greenhouse:5216209007": {
     "id": 5216209007,
@@ -2131,7 +2157,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://job-boards.greenhouse.io/algolia/jobs/6147302004",
     "firstSeen": "2026-08-26T13:50:56.493Z",
-    "status": "pending",
+    "status": "expired",
     "location": "London, England",
     "compensationRange": null,
     "postedAt": "2026-08-25T11:45:58-04:00"
@@ -2444,7 +2470,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8382743002",
     "firstSeen": "2026-08-18T07:49:02.503Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Although the title matches Solutions Architect and Winston has SQL/Python/R familiarity plus POC and demo experience, this is a deep hands-on data engineering role requiring production Spark/Delta, Hadoop, MPP/OLAP, CI/CD, and ML pipeline productionization - a technical stack with essentially no overlap with his Benchling/Genentech background. It also carries no life sciences or regulated-industry focus, and the requirement for native-level Korean (implying a Korea-based role) is a hard disqualifier.",
     "location": "Seoul, South Korea",
@@ -3161,7 +3187,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8560496002",
     "firstSeen": "2026-08-18T07:45:09.024Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Role family (presales Solutions Architect: discovery, POCs, technical demos, partnering with AEs) genuinely matches Winston's Benchling experience, but the hard blockers dominate: the role is Paris-based hybrid with mandatory French and English business proficiency, which Winston's US-based background does not satisfy. Domain fit is also weak — Digital Natives/SMB segment with no life sciences or regulated-industry angle, and the technical bar (Spark, Java/Scala, deep big data architecture) goes beyond his SQL/Python toolkit. Mid-market/SMB focus is also a step down from his Strategic Enterprise track record.",
     "location": "Paris, France",
@@ -3427,7 +3453,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8568029002",
     "firstSeen": "2026-08-18T07:46:38.933Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family is a genuine pre-sales Solutions Architect fit (AE-paired, demos, workshops, roadmap influence, tier-3 escalation) and Winston's SQL plus enterprise POC/discovery track record maps to some of the softer competencies. But the hard gate is 10+ years of deep OLTP/transactional database expertise across engineering, administration, DR/HA, backup-recovery, and on-prem-to-cloud migrations - a specialty Winston has zero exposure to, plus a CS/engineering degree preference against his biology B.S. No life sciences or regulated-industry angle either; Databricks is a horizontal data platform with no domain hook for his biopharma depth.",
     "location": "Seoul, South Korea",
@@ -3528,7 +3554,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8576249002",
     "firstSeen": "2026-08-18T07:42:26.174Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Role family (presales Solutions Architect with discovery, POCs, demos, AE partnership) genuinely matches Winston's Benchling experience, but the posting is a hard no on logistics: it mandates residence in the Milan/Rome region on a hybrid basis plus business proficiency in Italian. It also requires deep hands-on big data engineering depth (Spark, Java/Scala, cloud platform architecture) well beyond his SQL/Python fluency, and there is no life sciences or regulated-industry focus.",
     "location": "Milan, Italy",
@@ -3584,7 +3610,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8585599002",
     "firstSeen": "2026-08-18T07:42:05.442Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family is a genuine match - enterprise pre-sales solutions architecture with discovery, POCs, exec-to-engineer communication, and mentoring junior SCs all mirror Winston's Benchling work. However, the domain is Retail/CPG with zero life-sciences or regulated-industry relevance, and the technical bar (Spark, MLOps for LLMs, RAG/fine-tuning, big data platform architecture on AWS/Azure/GCP) goes far beyond his SQL/Python/Tableau toolkit. It is also based in the UK (Manchester/Leeds/London with regular office commute and EMEA travel), which makes it effectively inaccessible.",
     "location": "Remote - United Kingdom",
@@ -3827,6 +3853,19 @@
     "compensationRange": null,
     "postedAt": "2026-06-30T14:13:01-04:00"
   },
+  "greenhouse:8610015002": {
+    "id": 8610015002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect Italy",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8610015002",
+    "firstSeen": "2026-09-03T16:52:08.013Z",
+    "status": "pending",
+    "location": "Milan, Italy",
+    "compensationRange": null,
+    "postedAt": "2026-09-03T08:04:45-04:00"
+  },
   "greenhouse:8611700002": {
     "id": 8611700002,
     "source": "greenhouse",
@@ -3865,7 +3904,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8611767002",
     "firstSeen": "2026-08-18T07:56:12.438Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family is a strong match (presales Solutions Architect owning discovery, demos, POVs, voice-of-customer to Product), which mirrors his Benchling work closely. However the technical substance is DevSecOps/CI-CD/source control and cloud deployment - none of which appears in his toolset (SQL, Python, Veeva, Benchling, DeltaV, MES, SAP) - and there is zero life sciences or regulated-industry relevance. It's also scoped to Northern Europe with a regional EU reporting line, which is a practical mismatch for a US-based candidate.",
     "location": "Remote, United Kingdom",
@@ -4090,7 +4129,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8626762002",
     "firstSeen": "2026-08-18T07:55:04.388Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "This is a people-management role (hiring, headcount planning, coaching a distributed SA team) rather than an individual-contributor Solutions Consultant/Architect seat, and Winston has never managed a presales org. It's also hard-gated to UK/Ireland residency ('currently only able to accept applicants based in the UK or Ireland'), which Winston does not meet, and the domain is DevSecOps/developer tooling with zero life-sciences or regulated-industry overlap - his GitLab/CI-CD depth is absent. The only genuine overlap is presales fundamentals: technical demos, POCs, executive workshops, and cross-functional work with Product and GTM, which he did well at Benchling.",
     "location": "Remote, United Kingdom",
@@ -4736,6 +4775,19 @@
     "compensationRange": "$180,000—$247,500 USD",
     "postedAt": "2026-08-14T18:28:07-04:00"
   },
+  "greenhouse:8697993002": {
+    "id": 8697993002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8697993002",
+    "firstSeen": "2026-09-03T16:52:08.013Z",
+    "status": "pending",
+    "location": "Atlanta, Georgia; Chicago, Illinois",
+    "compensationRange": null,
+    "postedAt": "2026-09-03T09:09:44-04:00"
+  },
   "greenhouse:8704938002": {
     "id": 8704938002,
     "source": "greenhouse",
@@ -4850,6 +4902,32 @@
     "compensationRange": null,
     "postedAt": "2026-09-01T10:49:28-04:00"
   },
+  "greenhouse:8733334002": {
+    "id": 8733334002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect (Pre-sales) - Benelux Strategic Accounts",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8733334002",
+    "firstSeen": "2026-09-03T16:52:08.013Z",
+    "status": "pending",
+    "location": "Amsterdam, Netherlands",
+    "compensationRange": null,
+    "postedAt": "2026-09-02T13:51:46-04:00"
+  },
+  "greenhouse:8733726002": {
+    "id": 8733726002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect (Media, Entertainment and Agencies)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8733726002",
+    "firstSeen": "2026-09-03T16:52:08.013Z",
+    "status": "pending",
+    "location": "London, United Kingdom",
+    "compensationRange": null,
+    "postedAt": "2026-09-03T05:46:17-04:00"
+  },
   "greenhouse:8735569002": {
     "id": 8735569002,
     "source": "greenhouse",
@@ -4884,7 +4962,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8737857002",
     "firstSeen": "2026-08-22T13:27:16.487Z",
-    "status": "pending",
+    "status": "expired",
     "location": "California; Los Angeles, California; Remote - California; West Coast - United States",
     "compensationRange": null,
     "postedAt": "2026-08-21T15:38:17-04:00"
@@ -4940,6 +5018,19 @@
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-08-24T14:42:55-04:00"
+  },
+  "greenhouse:8746185002": {
+    "id": 8746185002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Benelux Fungible",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8746185002",
+    "firstSeen": "2026-09-03T16:52:08.013Z",
+    "status": "pending",
+    "location": "Amsterdam, Netherlands",
+    "compensationRange": null,
+    "postedAt": "2026-09-02T13:37:09-04:00"
   },
   "greenhouse:8746260002": {
     "id": 8746260002,
@@ -5110,6 +5201,19 @@
     "compensationRange": null,
     "postedAt": "2026-08-27T09:51:02-04:00"
   },
+  "greenhouse:8755662002": {
+    "id": 8755662002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - CPG and Manufacturing",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8755662002",
+    "firstSeen": "2026-09-03T16:52:08.013Z",
+    "status": "pending",
+    "location": "Zürich, Switzerland",
+    "compensationRange": null,
+    "postedAt": "2026-09-03T12:37:54-04:00"
+  },
   "greenhouse:8756203002": {
     "id": 8756203002,
     "source": "greenhouse",
@@ -5118,7 +5222,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8756203002",
     "firstSeen": "2026-08-27T22:44:08.741Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - California",
     "compensationRange": null,
     "postedAt": "2026-08-27T13:02:34-04:00"
@@ -5131,7 +5235,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8756213002",
     "firstSeen": "2026-08-27T22:44:08.740Z",
-    "status": "pending",
+    "status": "expired",
     "location": "San Diego, California",
     "compensationRange": null,
     "postedAt": "2026-08-27T13:02:38-04:00"
@@ -5144,7 +5248,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8756214002",
     "firstSeen": "2026-08-27T22:44:08.741Z",
-    "status": "pending",
+    "status": "expired",
     "location": "San Francisco, California",
     "compensationRange": null,
     "postedAt": "2026-08-27T13:03:12-04:00"
@@ -5188,6 +5292,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-02T05:08:15-04:00"
   },
+  "greenhouse:8768958002": {
+    "id": 8768958002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect (Presales, Data & AI, Digital Native Business)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8768958002",
+    "firstSeen": "2026-09-03T16:52:08.013Z",
+    "status": "pending",
+    "location": "London, United Kingdom",
+    "compensationRange": null,
+    "postedAt": "2026-09-03T05:47:12-04:00"
+  },
   "greenhouse:8769750002": {
     "id": 8769750002,
     "source": "greenhouse",
@@ -5226,6 +5343,19 @@
     "location": "Denver, Colorado",
     "compensationRange": null,
     "postedAt": "2026-09-01T13:10:13-04:00"
+  },
+  "greenhouse:8778009002": {
+    "id": 8778009002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Nordics Fungible",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8778009002",
+    "firstSeen": "2026-09-03T16:52:08.013Z",
+    "status": "pending",
+    "location": "Stockholm, Sweden",
+    "compensationRange": null,
+    "postedAt": "2026-09-02T13:41:46-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
