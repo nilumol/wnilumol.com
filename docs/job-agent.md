@@ -51,7 +51,9 @@ Winston's background. It's for Winston only - it is not part of the public portf
 3. **Ledger, as "pending".** Every job that survives the filter and hasn't been seen before is
    written to the ledger with `status: "pending"` - no LLM call happens in this automated path at
    all. A structured compensation range is recorded directly when the source provides one
-   (currently Lever's `salaryRange`); otherwise pay stays unset until scored.
+   (currently Lever's `salaryRange` or Ashby's `compensation.scrapeableCompensationSalarySummary`,
+   the latter requiring the `includeCompensation=true` query param); otherwise pay stays unset
+   until scored.
 4. **Scoring, outside the automated GitHub Actions pipeline.** Two ways to score "pending" jobs,
    run manually/locally, never from the workflow:
    - **Default, free**: `npm run job-agent:apply-scores -- <path-to-json>` merges a
