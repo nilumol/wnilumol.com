@@ -183,7 +183,7 @@ test("fetchLeverBoardJobs treats a 404 as board-not-found rather than throwing",
   assert.deepEqual(result.jobs, []);
 });
 
-test("fetchAshbyBoardJobs normalizes a job and always falls back to null structured compensation", async () => {
+test("fetchAshbyBoardJobs normalizes a job and falls back to null structured compensation when absent", async () => {
   const board: JobAgentBoard = { token: "notion", label: "Notion", source: "ashby" };
   const fixture = {
     jobs: [
@@ -211,6 +211,42 @@ test("fetchAshbyBoardJobs normalizes a job and always falls back to null structu
   assert.equal(job.location?.name, "San Francisco, CA");
   assert.equal(job.postedAt, "2026-08-01T12:00:00.000Z");
   assert.equal(job.structuredCompensationRange, null);
+});
+
+test("fetchAshbyBoardJobs requests includeCompensation and passes through a populated compensation summary", async () => {
+  const board: JobAgentBoard = { token: "notion", label: "Notion", source: "ashby" };
+  const fixture = {
+    jobs: [
+      {
+        id: "b2c3d4e5-0000-4444-8888-abcdefabcdef",
+        title: "Implementation Consultant",
+        location: "Remote - US",
+        jobUrl: "https://jobs.ashbyhq.com/notion/b2c3d4e5",
+        applyUrl: "https://jobs.ashbyhq.com/notion/b2c3d4e5/application",
+        descriptionHtml: "<p>Lead customer onboarding.</p>",
+        descriptionPlain: "Lead customer onboarding.",
+        publishedAt: "2026-08-05T12:00:00.000Z",
+        compensation: { scrapeableCompensationSalarySummary: "$140K - $180K" },
+      },
+    ],
+  };
+
+  let requestedUrl: string | undefined;
+  const original = globalThis.fetch;
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    requestedUrl = String(input);
+    return new Response(JSON.stringify(fixture), { status: 200, headers: { "content-type": "application/json" } });
+  }) as typeof fetch;
+  let result: Awaited<ReturnType<typeof fetchAshbyBoardJobs>>;
+  try {
+    result = await fetchAshbyBoardJobs(board);
+  } finally {
+    globalThis.fetch = original;
+  }
+
+  assert.equal(requestedUrl?.includes("includeCompensation=true"), true);
+  const job = result.jobs[0]!;
+  assert.equal(job.structuredCompensationRange, "$140K - $180K");
 });
 
 test("fetchAshbyBoardJobs treats a 404 as board-not-found rather than throwing", async () => {

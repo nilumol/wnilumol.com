@@ -228,7 +228,7 @@ function JobAgentRow({
   const postedLabel = formatPostedDate(entry.postedAt);
 
   return (
-    <tr className={[isPending ? "job-agent-row-pending" : "", selected ? "job-agent-row-selected" : ""].join(" ").trim() || undefined}>
+    <tr className={selected ? "job-agent-row-selected" : undefined}>
       <td>
         <input
           type="checkbox"
@@ -240,7 +240,9 @@ function JobAgentRow({
       </td>
       <td>
         {entry.title}
-        {entry.status !== "scored" ? <span className="job-agent-status">{entry.status}</span> : null}
+        {entry.status !== "scored" && entry.status !== "pending" ? (
+          <span className="job-agent-status">{entry.status}</span>
+        ) : null}
       </td>
       <td>{entry.company}</td>
       <td>{entry.keywordFamily}</td>
