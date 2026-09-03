@@ -1,4 +1,4 @@
-import { BlobPreconditionFailedError, get, put } from "@vercel/blob";
+import { BlobPreconditionFailedError, get, put, head } from "@vercel/blob";
 import { ledgerKey } from "./ledger.ts";
 import {
   extractManualOpportunity,
@@ -43,6 +43,14 @@ async function readManualOpportunitySnapshot(): Promise<ManualOpportunityStoreSn
   if (!result) return { store: {}, etag: null };
   if (result.statusCode !== 200 || !result.stream) {
     throw new Error(`Couldn't read the manual opportunity store (status ${result.statusCode}).`);
+  }
+  console.log("[DIAGNOSTIC] raw content-length header:", result.headers.get("content-length"));
+  try {
+    const headResult = await head(MANUAL_OPPORTUNITIES_PATHNAME, { token });
+      console.log("[DIAGNOSTIC] head() etag:", JSON.stringify(headResult.etag), "size:", headResult.size);
+  } 
+  catch (headError) {
+    console.log("[DIAGNOSTIC] head() failed:", headError);
   }
   console.log("[DIAGNOSTIC] read etag:", JSON.stringify(result.blob.etag), "size:", result.blob.size, "uploadedAt:", result.blob.uploadedAt);
   return {
