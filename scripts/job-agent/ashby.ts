@@ -14,9 +14,8 @@ function normalizeAshbyJob(job: AshbyJob): NormalizedJob {
     content: job.descriptionHtml ?? job.descriptionPlain,
     location: job.location ? { name: job.location } : undefined,
     postedAt: job.publishedAt,
-    // No structured compensation field observed on the Ashby job-board API - falls back to the
-    // existing LLM extraction from content, same as Greenhouse.
-    structuredCompensationRange: null,
+    // Requires the `includeCompensation=true` query param below - without it this field is absent.
+    structuredCompensationRange: job.compensation?.scrapeableCompensationSalarySummary ?? null,
   };
 }
 
@@ -27,7 +26,7 @@ function normalizeAshbyJob(job: AshbyJob): NormalizedJob {
  * than thrown, so the caller can skip it and continue the run. Any other non-OK status throws.
  */
 export async function fetchAshbyBoardJobs(board: JobAgentBoard): Promise<BoardFetchResult> {
-  const url = `https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(board.token)}`;
+  const url = `https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(board.token)}?includeCompensation=true`;
   const response = await fetch(url);
 
   if (response.status === 404) {

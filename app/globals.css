@@ -133,7 +133,6 @@ p, h1, h2, ul { margin-top: 0; }
 .job-agent-table td { padding: 16px 18px 16px 0; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.55; }
 .job-agent-table tbody tr:hover { background: rgba(25, 25, 25, 0.035); }
 .job-agent-table td:first-child { font-family: var(--font-poppins), sans-serif; font-weight: 600; }
-.job-agent-row-pending { opacity: 0.62; }
 .job-agent-status { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 999px; background: rgba(25,25,25,.06); font-family: var(--font-belleza), serif; font-size: 0.66rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 .job-agent-placeholder { font-style: italic; color: var(--muted); }
 .job-agent-sort-button { display: inline-flex; align-items: center; gap: 5px; padding: 12px 0; border: none; background: none; font: inherit; font-family: var(--font-belleza), serif; font-size: 0.72rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); cursor: pointer; }
