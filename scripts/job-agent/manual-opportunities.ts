@@ -44,6 +44,7 @@ async function readManualOpportunitySnapshot(): Promise<ManualOpportunityStoreSn
   if (result.statusCode !== 200 || !result.stream) {
     throw new Error(`Couldn't read the manual opportunity store (status ${result.statusCode}).`);
   }
+  console.log("[DIAGNOSTIC] read etag:", JSON.stringify(result.blob.etag), "size:", result.blob.size, "uploadedAt:", result.blob.uploadedAt);
   return {
     store: parseManualOpportunityStore(await new Response(result.stream).text()),
     etag: result.blob.etag,
@@ -58,6 +59,7 @@ async function writeManualOpportunitySnapshot(
   const sorted = Object.fromEntries(
     Object.entries(store).sort(([left], [right]) => left.localeCompare(right, undefined, { numeric: true })),
   );
+  console.log("[DIAGNOSTIC] attempting write with ifMatch:", JSON.stringify(etag));
   await put(MANUAL_OPPORTUNITIES_PATHNAME, `${JSON.stringify(sorted, null, 2)}\n`, {
     access: "private",
     token,
@@ -65,6 +67,7 @@ async function writeManualOpportunitySnapshot(
     allowOverwrite: etag !== null,
     ...(etag === null ? {} : { ifMatch: etag }),
   });
+  console.log("[DIAGNOSTIC] write succeeded");
 }
 
 export async function writeManualOpportunities(store: ManualOpportunityStore): Promise<void> {
@@ -96,6 +99,7 @@ export async function persistManualOpportunity(
       await writeSnapshot({ ...snapshot.store, [key]: record }, snapshot.etag);
       return;
     } catch (error) {
+      console.log("[DIAGNOSTIC] write failed, full error:", JSON.stringify(error, Object.getOwnPropertyNames(error as object)));
       if (!isStoreWriteConflict(error) || attempt === STORE_WRITE_ATTEMPTS - 1) throw error;
     }
   }
