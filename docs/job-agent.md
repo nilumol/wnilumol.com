@@ -45,9 +45,13 @@ Winston's background. It's for Winston only - it is not part of the public portf
 
 1. **Fetch.** Once a day, a script pulls every open job (with full description) from each
    tracked company's Greenhouse, Lever, or Ashby job board API.
-2. **Keyword pre-filter.** Each job title is checked against a list of role-family keywords
-   (see below). Anything that doesn't match is skipped and never stored - this keeps the ledger
-   small and relevant.
+2. **Keyword + location pre-filter.** Each job title is checked against a list of role-family
+   keywords (see below); anything that doesn't match is skipped and never stored. Jobs that match
+   are then checked for location: `classifyJobLocation()` (`scripts/job-agent/location.ts`, data
+   in `content/job-agent-locations.ts`) reads the raw location string as `"us"`, `"non-us"`, or
+   `"unrecognized"` - only `"non-us"` is dropped, since the design fails open (an unrecognized
+   format is kept, not assumed foreign). Unrecognized locations are logged in the run output for
+   periodic review. Together these filters keep the ledger small and relevant.
 3. **Ledger, as "pending".** Every job that survives the filter and hasn't been seen before is
    written to the ledger with `status: "pending"` - no LLM call happens in this automated path at
    all. A structured compensation range is recorded directly when the source provides one
@@ -127,6 +131,9 @@ Cloudflare, Ethena, Veeva, Windfall, Aizon, AlphaLifeSci, Notion, LevelPath.
 - **Change which job titles get tracked**: edit the keyword families in
   `content/job-agent-keywords.ts`. A job must match one of these families (by title substring)
   to ever land in the ledger; anything else is silently skipped every run.
+- **Extend the US/non-US location lists**: edit the plain arrays in
+  `content/job-agent-locations.ts` - a confidently non-US location is silently skipped every run.
+  Unrecognized locations are logged in the run output to help spot new formats worth adding.
 - **Tune the fit-scoring instructions**: edit `content/job-agent-scoring.md` in plain English.
   This is the rubric sent verbatim to Claude by `job-agent:score-via-api`, and the same rubric a
   human or an assistant should follow when scoring by hand for `job-agent:apply-scores` - no code
