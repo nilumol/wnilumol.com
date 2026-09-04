@@ -1,4 +1,5 @@
 import type { JobAgentBoard } from "../../content/job-agent-boards.ts";
+import type { JobLocationClassification } from "./location.ts";
 
 export type JobAgentSource = "greenhouse" | "lever" | "ashby";
 
@@ -130,12 +131,19 @@ export interface JobAgentLedgerEntry {
 /** Keyed by `<source>:<id>` (e.g. `"greenhouse:8122020"`) to guarantee uniqueness across sources. */
 export type JobAgentLedger = Record<string, JobAgentLedgerEntry>;
 
-/** A job that survived the company+keyword pre-filter, with its matched keyword family. */
+/** A job that survived the company+keyword+location pre-filter, with its matched keyword family. */
 export interface CandidateJob {
   job: NormalizedJob;
   company: string;
   keywordFamily: string;
   source: JobAgentSource;
+  /**
+   * How classifyJobLocation() (location.ts) read this job's location. filterCandidateJobs()
+   * already drops "non-us" candidates before they reach this array, so only "us" and
+   * "unrecognized" appear here - pipeline.ts surfaces the "unrecognized" ones for the captain
+   * to review and extend content/job-agent-locations.ts.
+   */
+  locationClassification: JobLocationClassification;
 }
 
 /** The result of scoring one job, whether by `job-agent:score-via-api` or a hand-assembled apply-scores batch. */

@@ -21,10 +21,18 @@ export interface JobAgentPipelineDeps {
   log?: (message: string) => void;
 }
 
+/** A candidate whose location classifyJobLocation() (location.ts) couldn't confidently place - kept, but surfaced for review. */
+export interface JobAgentUnrecognizedLocation {
+  title: string;
+  company: string;
+  location: string;
+}
+
 export interface JobAgentPipelineResult {
   addedCount: number;
   expiredCount: number;
   skippedBoardTokens: string[];
+  unrecognizedLocations: JobAgentUnrecognizedLocation[];
 }
 
 /**
@@ -66,6 +74,7 @@ export async function runJobAgentPipeline(
   const log = deps.log ?? ((): void => {});
   const pending: CandidateJob[] = [];
   const skippedBoardTokens: string[] = [];
+  const unrecognizedLocations: JobAgentUnrecognizedLocation[] = [];
   let expiredCount = 0;
 
   for (const board of boards) {
@@ -92,6 +101,20 @@ export async function runJobAgentPipeline(
     log(
       `job-agent: ${board.label}: ${fetchResult.jobs.length} job(s) fetched, ${candidates.length} matched the keyword pre-filter`,
     );
+
+    for (const candidate of candidates) {
+      if (candidate.locationClassification === "unrecognized" && candidate.job.location?.name) {
+        const unrecognized: JobAgentUnrecognizedLocation = {
+          title: candidate.job.title,
+          company: candidate.company,
+          location: candidate.job.location.name,
+        };
+        unrecognizedLocations.push(unrecognized);
+        log(
+          `job-agent: unrecognized location "${unrecognized.location}" for "${unrecognized.title}" (${unrecognized.company}) - review and extend content/job-agent-locations.ts if this is a new US/non-US format`,
+        );
+      }
+    }
 
     const freshJobIds = new Set(fetchResult.jobs.map((job) => job.id));
     expiredCount += expireMissingEntries(ledger, board, freshJobIds);
@@ -122,5 +145,5 @@ export async function runJobAgentPipeline(
     upsertLedgerEntry(ledger, entry);
   }
 
-  return { addedCount: pending.length, expiredCount, skippedBoardTokens };
+  return { addedCount: pending.length, expiredCount, skippedBoardTokens, unrecognizedLocations };
 }
