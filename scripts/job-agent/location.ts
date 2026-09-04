@@ -42,7 +42,17 @@ function matchesAnyToken(segment: string, values: readonly string[]): boolean {
 }
 
 const usStateFullNames = jobAgentUsStates.map((state) => state.fullName);
-const usStateAbbreviations = jobAgentUsStates.map((state) => state.abbreviation);
+
+/**
+ * Excludes Oregon ("OR") and Indiana ("IN") - unlike every other 2-letter state code, these
+ * collide with extremely common English connector words ("Remote or Hybrid", "Based in Munich"),
+ * so token matching on them produces false positives far more often than the rare cases (like
+ * "DE"/Delaware vs. Germany) this design otherwise accepts. Those two states still match via
+ * their full name in usStateFullNames above.
+ */
+const usStateAbbreviations = jobAgentUsStates
+  .map((state) => state.abbreviation)
+  .filter((abbreviation) => abbreviation !== "OR" && abbreviation !== "IN");
 
 function isUsSegment(segment: string): boolean {
   return (

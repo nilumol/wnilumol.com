@@ -109,6 +109,15 @@ test("classifyJobLocation does not misread a state abbreviation embedded inside 
   assert.equal(classifyJobLocation("Onsite Coordinator Position"), "unrecognized");
 });
 
+test("classifyJobLocation excludes Oregon/Indiana abbreviations from token matching but keeps their full names and other short codes", () => {
+  // "OR" and "IN" collide with the common English connector words "or"/"in", unlike every
+  // other state code (including "US", which must stay a matchable token for "US - Remote").
+  assert.equal(classifyJobLocation("US - Remote"), "us");
+  assert.equal(classifyJobLocation("Portland, Oregon"), "us");
+  assert.equal(classifyJobLocation("Indianapolis, Indiana"), "us");
+  assert.equal(classifyJobLocation("San Francisco or Denver"), "unrecognized");
+});
+
 test("classifyJobLocation confidently recognizes a single foreign location", () => {
   assert.equal(classifyJobLocation("London, England"), "non-us");
   assert.equal(classifyJobLocation("Bangalore, India"), "non-us");
