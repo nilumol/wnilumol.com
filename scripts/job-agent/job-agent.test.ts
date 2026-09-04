@@ -13,7 +13,7 @@ import type { GreenhouseBoardFetchResult } from "./greenhouse.ts";
 import { htmlToPlainText } from "./html.ts";
 import { expireMissingEntries, hasLedgerEntry, loadLedger, saveLedger } from "./ledger.ts";
 import { fetchLeverBoardJobs } from "./lever.ts";
-import { cleanLocationName } from "./location.ts";
+import { classifyJobLocation, cleanLocationName } from "./location.ts";
 import { runJobAgentPipeline } from "./pipeline.ts";
 import { buildScoringPrompt } from "./scoring.ts";
 import type { CandidateJob, GreenhouseJob, JobAgentLedger, JobAgentStatus, JobAgentSource } from "./types.ts";
@@ -87,6 +87,64 @@ test("cleanLocationName returns null for missing or empty input", () => {
   assert.equal(cleanLocationName("-"), null);
 });
 
+// ---------------------------------------------------------------------------
+// Location classification (US/non-US pre-filter)
+// ---------------------------------------------------------------------------
+
+test("classifyJobLocation confidently recognizes a plain US city+state", () => {
+  assert.equal(classifyJobLocation("San Francisco, CA"), "us");
+  assert.equal(classifyJobLocation("Boston, Massachusetts"), "us");
+});
+
+test("classifyJobLocation matches a state abbreviation regardless of word order", () => {
+  assert.equal(classifyJobLocation("NC - Remote"), "us");
+  assert.equal(classifyJobLocation("Remote - NC"), "us");
+});
+
+test("classifyJobLocation does not misread a state abbreviation embedded inside an unrelated word", () => {
+  // "August" contains "US"; "Coordinator" contains "OR" - naive substring matching would
+  // misfire on both. Word-boundary matching must not, and neither string has any other
+  // real US/non-US signal, so both come back unrecognized (kept, not confidently US).
+  assert.equal(classifyJobLocation("August Corp Remote Office"), "unrecognized");
+  assert.equal(classifyJobLocation("Onsite Coordinator Position"), "unrecognized");
+});
+
+test("classifyJobLocation excludes Oregon/Indiana abbreviations from token matching but keeps their full names and other short codes", () => {
+  // "OR" and "IN" collide with the common English connector words "or"/"in", unlike every
+  // other state code (including "US", which must stay a matchable token for "US - Remote").
+  assert.equal(classifyJobLocation("US - Remote"), "us");
+  assert.equal(classifyJobLocation("Portland, Oregon"), "us");
+  assert.equal(classifyJobLocation("Indianapolis, Indiana"), "us");
+  assert.equal(classifyJobLocation("San Francisco or Denver"), "unrecognized");
+});
+
+test("classifyJobLocation confidently recognizes a single foreign location", () => {
+  assert.equal(classifyJobLocation("London, England"), "non-us");
+  assert.equal(classifyJobLocation("Bangalore, India"), "non-us");
+});
+
+test("classifyJobLocation keeps a multi-location string that mixes US and foreign locations", () => {
+  assert.equal(classifyJobLocation("London, England; Remote - North Carolina"), "us");
+  assert.equal(
+    classifyJobLocation("Atlanta, Georgia; Boston, Massachusetts; Remote - North Carolina"),
+    "us",
+  );
+});
+
+test("classifyJobLocation drops a multi-location string that is entirely foreign", () => {
+  assert.equal(classifyJobLocation("London, England; Munich, Germany"), "non-us");
+});
+
+test("classifyJobLocation keeps a genuinely unrecognized location string", () => {
+  assert.equal(classifyJobLocation("Onsite - Springfield"), "unrecognized");
+});
+
+test("classifyJobLocation keeps missing or empty locations as unrecognized", () => {
+  assert.equal(classifyJobLocation(undefined), "unrecognized");
+  assert.equal(classifyJobLocation(null), "unrecognized");
+  assert.equal(classifyJobLocation("   "), "unrecognized");
+});
+
 function fixtureJob(overrides: Partial<GreenhouseJob> & { id: number; title: string }): GreenhouseJob {
   return {
     absolute_url: `https://job-boards.greenhouse.io/acme/jobs/${overrides.id}`,
@@ -109,6 +167,24 @@ test("filterCandidateJobs keeps only keyword-matching jobs and tags company + fa
   assert.equal(candidates[0]!.company, "Acme");
   assert.equal(candidates[0]!.keywordFamily, "Solutions Consultant");
   assert.equal(candidates[0]!.source, "greenhouse");
+  assert.equal(candidates[0]!.locationClassification, "unrecognized"); // fixtureJob has no location field
+});
+
+test("filterCandidateJobs also gates on location: drops confident non-US, keeps US and unrecognized", () => {
+  const board: JobAgentBoard = { token: "acme", label: "Acme", source: "greenhouse" };
+  const jobs = [
+    fixtureJob({ id: 1, title: "Solutions Consultant", location: { name: "San Francisco, CA" } }),
+    fixtureJob({ id: 2, title: "Solutions Architect", location: { name: "London, England" } }),
+    fixtureJob({ id: 3, title: "Sales Engineer", location: { name: "Onsite - Springfield" } }),
+  ];
+  const candidates = filterCandidateJobs(board, jobs);
+  assert.equal(candidates.length, 2);
+  assert.deepEqual(
+    candidates.map((c) => c.job.id),
+    [1, 3],
+  );
+  assert.equal(candidates[0]!.locationClassification, "us");
+  assert.equal(candidates[1]!.locationClassification, "unrecognized");
 });
 
 // ---------------------------------------------------------------------------
@@ -345,6 +421,7 @@ test("buildScoringPrompt includes the rubric verbatim, the resume, and the job p
     company: "Acme",
     keywordFamily: "Solutions Consultant",
     source: "greenhouse",
+    locationClassification: "us",
   };
   const rubric = "# Fixture rubric\n\nWeigh biopharma domain experience heavily.";
   const prompt = buildScoringPrompt(candidate, resumeData, rubric);
@@ -512,6 +589,45 @@ test("runJobAgentPipeline: maps Greenhouse's first_published into the ledger's p
 
   assert.equal(result.addedCount, 1);
   assert.equal(ledger["greenhouse:500"]!.postedAt, "2026-06-01T00:00:00-07:00");
+});
+
+test("runJobAgentPipeline: drops confident non-US candidates and logs unrecognized locations", async () => {
+  const acme: JobAgentBoard = { token: "acme", label: "Acme", source: "greenhouse" };
+  const jobs: GreenhouseJob[] = [
+    fixtureJob({ id: 600, title: "Solutions Consultant", location: { name: "San Francisco, CA" } }), // US -> kept
+    fixtureJob({ id: 601, title: "Solutions Architect", location: { name: "London, England" } }), // non-US -> dropped
+    fixtureJob({ id: 602, title: "Sales Engineer", location: { name: "Onsite - Springfield" } }), // unrecognized -> kept + logged
+  ];
+  const fetchGreenhouse = async (board: JobAgentBoard): Promise<GreenhouseBoardFetchResult> => ({
+    board,
+    found: true,
+    jobs,
+  });
+  const fetchLever = async (): Promise<never> => {
+    throw new Error("not called");
+  };
+
+  const logLines: string[] = [];
+  const ledger: JobAgentLedger = {};
+  const result = await runJobAgentPipeline([acme], ledger, {
+    fetchers: { greenhouse: fetchGreenhouse, lever: fetchLever, ashby: fetchLever },
+    log: (message) => logLines.push(message),
+  });
+
+  // Only the US and unrecognized candidates were added - the confident non-US one never touches the ledger.
+  assert.equal(result.addedCount, 2);
+  assert.equal(hasLedgerEntry(ledger, "greenhouse", 600), true);
+  assert.equal(hasLedgerEntry(ledger, "greenhouse", 601), false);
+  assert.equal(hasLedgerEntry(ledger, "greenhouse", 602), true);
+
+  assert.equal(result.unrecognizedLocations.length, 1);
+  assert.equal(result.unrecognizedLocations[0]!.title, "Sales Engineer");
+  assert.equal(result.unrecognizedLocations[0]!.company, "Acme");
+  assert.equal(result.unrecognizedLocations[0]!.location, "Onsite - Springfield");
+
+  assert.ok(
+    logLines.some((line) => line.includes("unrecognized location") && line.includes("Onsite - Springfield")),
+  );
 });
 
 // ---------------------------------------------------------------------------

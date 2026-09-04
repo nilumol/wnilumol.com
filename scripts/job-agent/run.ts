@@ -35,7 +35,8 @@ async function main(): Promise<void> {
 
   console.log(
     `job-agent: run complete - added ${result.addedCount} pending job(s), expired ${result.expiredCount} entry(ies), ` +
-      `skipped ${result.skippedBoardTokens.length} board(s), ledger has ${Object.keys(ledger).length} entry(ies) total`,
+      `skipped ${result.skippedBoardTokens.length} board(s), ${result.unrecognizedLocations.length} unrecognized location(s) logged above, ` +
+      `ledger has ${Object.keys(ledger).length} entry(ies) total`,
   );
 }
 
