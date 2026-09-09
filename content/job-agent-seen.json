@@ -279,6 +279,19 @@
     "fitScore": 3,
     "fitRationale": "Principal Solutions Architect for Cloudflare's Public Sector Federal team requires 15+ years of technical sales and deep government/edge-cloud/networking expertise - the strategic-account and roadmap-building elements echo his enterprise consulting experience, but the technical domain (edge networking, FEDRAMP) and vertical (federal government, not life sciences) don't overlap."
   },
+  "greenhouse:8169689": {
+    "id": 8169689,
+    "source": "greenhouse",
+    "company": "Cloudflare",
+    "title": "Senior Solutions Architect, APJC (Developer Platform) - Hindi Speaking",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://boards.greenhouse.io/cloudflare/jobs/8169689?gh_jid=8169689",
+    "firstSeen": "2026-09-09T16:58:38.346Z",
+    "status": "pending",
+    "location": "Hybrid",
+    "compensationRange": null,
+    "postedAt": "2026-09-08T22:01:25-04:00"
+  },
   "greenhouse:8178793": {
     "id": 8178793,
     "source": "greenhouse",
@@ -291,6 +304,19 @@
     "location": "REMOTE, USA",
     "compensationRange": null,
     "postedAt": "2026-09-03T19:37:58-04:00"
+  },
+  "greenhouse:8179387": {
+    "id": 8179387,
+    "source": "greenhouse",
+    "company": "Cloudflare",
+    "title": "Principal Solutions Architect, APJC (Developer Platform) - Mandarin Speaking",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://boards.greenhouse.io/cloudflare/jobs/8179387?gh_jid=8179387",
+    "firstSeen": "2026-09-09T16:58:38.346Z",
+    "status": "pending",
+    "location": "Hybrid",
+    "compensationRange": null,
+    "postedAt": "2026-09-08T21:55:05-04:00"
   },
   "greenhouse:5032672007": {
     "id": 5032672007,
@@ -988,6 +1014,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-02T11:07:32-04:00"
   },
+  "greenhouse:5226899007": {
+    "id": 5226899007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Principal Sales Engineer - Federal",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5226899007",
+    "firstSeen": "2026-09-09T16:58:38.346Z",
+    "status": "pending",
+    "location": "Remote - Maryland, USA; Remote - New Jersey, USA; Remote - North Carolina, USA; Remote - Pennsylvania, USA; Remote - South Carolina, USA; Remote - Virginia, USA; Remote - West Virginia, USA",
+    "compensationRange": null,
+    "postedAt": "2026-09-08T19:56:46-04:00"
+  },
   "greenhouse:5783377004": {
     "id": 5783377004,
     "source": "greenhouse",
@@ -1146,7 +1185,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/celonis/jobs/7905008003?gh_jid=7905008003",
     "firstSeen": "2026-08-20T13:42:04.832Z",
-    "status": "scored",
+    "status": "expired",
     "location": "New York, US, New York",
     "compensationRange": "$126,000-$149,000 USD",
     "postedAt": "2026-08-19T13:36:05-04:00",
@@ -1698,6 +1737,19 @@
     "location": "Colorado; Denver, Colorado; Remote - Colorado",
     "compensationRange": "$180,000 - $247,500 USD (Zone 3)",
     "postedAt": "2026-07-27T14:35:57-04:00"
+  },
+  "greenhouse:8569637002": {
+    "id": 8569637002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect - Travel and Hospitality",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8569637002",
+    "firstSeen": "2026-09-09T16:58:38.346Z",
+    "status": "pending",
+    "location": "Remote - Washington; Seattle, Washington",
+    "compensationRange": null,
+    "postedAt": "2026-09-08T14:15:24-04:00"
   },
   "greenhouse:8569640002": {
     "id": 8569640002,
@@ -2557,6 +2609,19 @@
     "location": "Denver, Colorado",
     "compensationRange": null,
     "postedAt": "2026-09-01T13:10:13-04:00"
+  },
+  "greenhouse:8782711002": {
+    "id": 8782711002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Digital Native Business (Healthtech)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8782711002",
+    "firstSeen": "2026-09-09T16:58:38.346Z",
+    "status": "pending",
+    "location": "Remote - California; San Francisco, California",
+    "compensationRange": null,
+    "postedAt": "2026-09-08T22:39:18-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
