@@ -170,7 +170,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/smartsheet/jobs/7776527",
     "firstSeen": "2026-09-04T16:42:07.381Z",
-    "status": "pending",
+    "status": "expired",
     "location": "REMOTE, USA",
     "compensationRange": null,
     "postedAt": "2026-04-08T09:00:08-04:00"
@@ -317,6 +317,19 @@
     "location": "Hybrid",
     "compensationRange": null,
     "postedAt": "2026-09-08T21:55:05-04:00"
+  },
+  "greenhouse:8189858": {
+    "id": 8189858,
+    "source": "greenhouse",
+    "company": "Cloudflare",
+    "title": "Solutions Architect, AI/Cloudflare Developer Platform ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://boards.greenhouse.io/cloudflare/jobs/8189858?gh_jid=8189858",
+    "firstSeen": "2026-09-11T16:51:08.906Z",
+    "status": "pending",
+    "location": "Hybrid",
+    "compensationRange": null,
+    "postedAt": "2026-09-11T10:32:21-04:00"
   },
   "greenhouse:5032672007": {
     "id": 5032672007,
@@ -1980,7 +1993,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8627207002",
     "firstSeen": "2026-08-18T07:55:54.130Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "Role family is a strong match - senior technical presales with discovery, demos, POV/POC ownership, workshop facilitation, tender/RFP support, roadmap feedback to Product, and mentoring SCs, all of which map directly to Winston's Benchling track record in the Strategic Enterprise segment. The gap is technical domain: GitLab requires working knowledge of the SDLC, DevSecOps, CI/CD, source code management, and cloud platform architecture, none of which appear in Winston's toolset (SQL, Python, Veeva, Benchling, DeltaV, MES, Tableau) and there's no life-sciences or regulated-industry angle beyond generic security/compliance risk. Seniority level fits well, but selling a developer-tooling platform to engineering practitioners would be a hard technical pivot with essentially zero biopharma leverage.",
     "location": "Remote, US",
@@ -2635,6 +2648,19 @@
     "location": "Remote - California; San Francisco, California",
     "compensationRange": null,
     "postedAt": "2026-09-08T22:39:18-04:00"
+  },
+  "greenhouse:8788266002": {
+    "id": 8788266002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Hunter (Communications, Media, Entertainment and Games)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8788266002",
+    "firstSeen": "2026-09-11T16:51:08.906Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-09-11T08:56:55-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
