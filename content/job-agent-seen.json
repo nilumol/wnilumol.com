@@ -893,7 +893,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5206113007",
     "firstSeen": "2026-08-18T07:29:35.983Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family fits well - technical presentations, requirements discovery, POVs/evaluations - which mirrors Winston's presales work at Benchling. However, the minimum qualifications center on hands-on cybersecurity and networking fundamentals (TCP/IP, DNS, routing, VPN, firewalls) plus CCNA/CCNP-type certifications, a stack with zero overlap with his SQL/Python/Benchling/Veeva/GMP toolkit. Also no life sciences or regulated-industry domain relevance, and the commercial/SMB segment focus sits below his Strategic Enterprise experience.",
     "location": "Remote - Illinois, USA; Remote - Kansas, USA; Remote - Kentucky, USA; Remote - Michigan, USA; Remote - Missouri, USA; Remote - Ohio, USA; Remote - Tennessee, USA",
@@ -1009,7 +1009,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5220295007",
     "firstSeen": "2026-08-27T22:44:08.740Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - California, USA",
     "compensationRange": null,
     "postedAt": "2026-08-26T19:12:04-04:00"
@@ -1052,6 +1052,19 @@
     "location": "Remote - Florida, USA; Remote - Georgia, USA; Remote - North Carolina, USA; Remote - South Carolina, USA",
     "compensationRange": null,
     "postedAt": "2026-09-10T11:50:02-04:00"
+  },
+  "greenhouse:5235465007": {
+    "id": 5235465007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer - Army ",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5235465007",
+    "firstSeen": "2026-09-12T15:58:04.493Z",
+    "status": "pending",
+    "location": "Remote - Maryland, USA; Remote - Virginia, USA",
+    "compensationRange": null,
+    "postedAt": "2026-09-11T14:46:22-04:00"
   },
   "greenhouse:5783377004": {
     "id": 5783377004,
@@ -2661,6 +2674,19 @@
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-09-11T08:56:55-04:00"
+  },
+  "greenhouse:8790538002": {
+    "id": 8790538002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Solutions Architect, Manager - Public Sector",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8790538002",
+    "firstSeen": "2026-09-12T15:58:04.493Z",
+    "status": "pending",
+    "location": "Remote",
+    "compensationRange": null,
+    "postedAt": "2026-09-11T16:32:18-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
