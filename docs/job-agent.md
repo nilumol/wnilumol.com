@@ -119,10 +119,8 @@ PDF generation, application scanning, draft answers, and status changes keep the
 
 ## Companies currently tracked
 
-Defined in `content/job-agent-boards.ts`, across Greenhouse, Lever, and Ashby:
-
-Smartsheet, Vaxcyte, HealthVerity, Figma, Zscaler, Celonis, Algolia, Databricks, GitLab,
-Cloudflare, Ethena, Veeva, Windfall, Aizon, AlphaLifeSci, Notion, LevelPath.
+See `content/job-agent-boards.ts` for the authoritative, current list across Greenhouse, Lever,
+and Ashby - it changes often enough that a copy here would go stale.
 
 ## Common edits (no code changes needed)
 
