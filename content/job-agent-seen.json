@@ -946,7 +946,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198912007",
     "firstSeen": "2026-08-18T07:32:12.463Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "This is a second-line leadership role (recruiting, managing, and coaching an entire Majors sales engineering team) requiring technical expertise in cybersecurity and networking - Winston has never managed an SE org and has zero security/networking stack overlap (his depth is SQL, Veeva, Benchling, MES/DeltaV, GMP systems). The only real overlaps are generic presales motions he does know well: discovery, technical qualification, POCs, and value-based selling in a matrixed GTM environment, plus a passing 'regulatory compliance' preference. No life sciences or regulated-industry adjacency and a seniority/scope mismatch make this a poor fit despite the Sales Engineer title match.",
     "location": "Remote - Delaware, USA; Remote - Maryland, USA; Remote - Pennsylvania, USA; Remote - Virginia, USA; Remote - West Virginia, USA",
@@ -1427,7 +1427,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8353049002",
     "firstSeen": "2026-08-18T07:53:21.733Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "The role family is a strong on-paper match — customer-facing pre-sales solutions architecture with POCs, demos, reference architectures, and trusted-advisor relationship building, which maps directly to Winston's Benchling SC work at 8+ years experience. But the technical bar is deep data engineering (designing distributed data systems, Spark/Hadoop/Kafka, data warehousing, multi-cloud builds) well beyond his SQL/Python/Tableau toolkit, and there's zero life-sciences adjacency: the vertical is SLED public sector, where his biopharma/GMP/Part 11 domain equity counts for nothing and 'experience supporting Public Sector clients' is an explicit ask. Realistically he'd screen out on the distributed-data-architecture and public-sector requirements.",
     "location": "Remote - California",
@@ -1848,6 +1848,19 @@
     "location": "California; Remote - California; San Francisco, California; West Coast - United States",
     "compensationRange": null,
     "postedAt": "2026-08-18T15:53:24-04:00"
+  },
+  "greenhouse:8567963002": {
+    "id": 8567963002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect - Digital Native Business (Strategic Accounts)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8567963002",
+    "firstSeen": "2026-09-16T17:26:46.720Z",
+    "status": "pending",
+    "location": "Nevada; Remote - Arizona; Remote - California; Remote - Colorado; Remote - Oregon; Remote - Washington",
+    "compensationRange": null,
+    "postedAt": "2026-09-16T12:09:47-04:00"
   },
   "greenhouse:8567976002": {
     "id": 8567976002,
@@ -2475,7 +2488,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8717331002",
     "firstSeen": "2026-09-15T17:26:59.393Z",
-    "status": "pending",
+    "status": "expired",
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-09-14T23:51:07-04:00"
@@ -2882,6 +2895,19 @@
     "location": "Remote",
     "compensationRange": null,
     "postedAt": "2026-09-11T16:32:18-04:00"
+  },
+  "greenhouse:8790680002": {
+    "id": 8790680002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Solutions Architect, Public Sector - East",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8790680002",
+    "firstSeen": "2026-09-16T17:26:46.720Z",
+    "status": "pending",
+    "location": "Remote",
+    "compensationRange": null,
+    "postedAt": "2026-09-15T14:14:35-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
