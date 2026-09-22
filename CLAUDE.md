@@ -115,8 +115,9 @@ the list without a client fetch. Privacy model is "unlinked URL only," the same 
 no passphrase gate.
 
 Storage is a single Postgres table, `journal_entries` (id, body, created_at defaulted server-side
-via `DEFAULT now()` - never trust a client timestamp), defined in `scripts/journal/schema.sql`
-and applied idempotently at runtime by `ensureJournalTable()` in `scripts/journal/db.ts`. That
+via `DEFAULT now()` - never trust a client timestamp), created idempotently at runtime by
+`ensureJournalTable()` in `scripts/journal/db.ts` (its inline DDL must stay in sync with the
+reference copy in `scripts/journal/schema.sql`, which the app does not read). That
 file uses `@neondatabase/serverless`'s `neon()`, not `@vercel/postgres` (deprecated - Vercel's
 current Postgres offering is Neon-backed, and its own migration guide points new integrations at
 `@neondatabase/serverless`). It reads `DATABASE_URL` at request time; **the actual Postgres

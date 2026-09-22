@@ -1,5 +1,6 @@
--- Canonical schema for the gratitude journal's single table. The app applies this
--- automatically at runtime (see ensureJournalTable() in scripts/journal/db.ts), so running
+-- Canonical schema for the gratitude journal's single table. The app applies an inline copy
+-- of this DDL at runtime (see createJournalTable() in scripts/journal/db.ts - keep the two in
+-- sync), so running
 -- this file by hand is optional - it exists as a readable reference and for manual psql use
 -- against the project's Postgres database (Vercel's Neon-backed Postgres storage) once it's
 -- provisioned and linked to this project.
