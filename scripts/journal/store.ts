@@ -67,24 +67,55 @@ export async function insertJournalEntry(body: string): Promise<JournalEntry> {
   return { pathname, ...stored };
 }
 
+export type JournalEntryListing = {
+  entries: JournalEntry[];
+  unreadableCount: number;
+};
+
+type JournalBlobClient = { list: typeof list; get: typeof get };
+
 /**
  * Lists every entry under journal/, newest first, reading each blob's content back to render
- * the list - fine at personal-journal volume; no pagination or caching layer was asked for.
+ * the list - fine at personal-journal volume; no caching layer was asked for. Follows the list
+ * cursor until exhausted, since the Blob API caps each page and returns pages in no guaranteed
+ * order. A single unreadable blob is counted rather than thrown, so one bad entry can't hide the
+ * rest; a failed listing still throws and is the caller's to handle.
  */
-export async function listJournalEntries(): Promise<JournalEntry[]> {
+export async function listJournalEntries(
+  client: JournalBlobClient = { list, get },
+): Promise<JournalEntryListing> {
   const token = blobToken();
-  const { blobs } = await list({ prefix: JOURNAL_PREFIX, token });
-  const sorted = [...blobs].sort((a, b) => (a.pathname < b.pathname ? 1 : -1));
+  const pathnames: string[] = [];
+  let cursor: string | undefined;
+  do {
+    const page = await client.list({ prefix: JOURNAL_PREFIX, token, cursor });
+    pathnames.push(...page.blobs.map((blob) => blob.pathname));
+    cursor = page.hasMore ? page.cursor : undefined;
+  } while (cursor);
+  pathnames.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0));
 
-  const entries = await Promise.all(
-    sorted.map(async (blob): Promise<JournalEntry | null> => {
-      const result = await get(blob.pathname, { access: "private", token, useCache: false });
-      if (!result || result.statusCode !== 200 || !result.stream) return null;
+  const results = await Promise.allSettled(
+    pathnames.map(async (pathname): Promise<JournalEntry> => {
+      const result = await client.get(pathname, { access: "private", token, useCache: false });
+      if (!result || result.statusCode !== 200 || !result.stream) {
+        throw new Error(`Journal entry ${pathname} could not be read.`);
+      }
       const text = await new Response(result.stream).text();
       const parsed = parseStoredJournalEntry(text);
-      return parsed ? { pathname: blob.pathname, ...parsed } : null;
+      if (!parsed) throw new Error(`Journal entry ${pathname} is malformed.`);
+      return { pathname, ...parsed };
     }),
   );
 
-  return entries.filter((entry): entry is JournalEntry => entry !== null);
+  const entries: JournalEntry[] = [];
+  let unreadableCount = 0;
+  for (const result of results) {
+    if (result.status === "fulfilled") {
+      entries.push(result.value);
+    } else {
+      unreadableCount += 1;
+      console.error("[journal] Failed to read entry:", result.reason);
+    }
+  }
+  return { entries, unreadableCount };
 }

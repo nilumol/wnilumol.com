@@ -18,11 +18,30 @@ function formatEntryTimestamp(iso: string): string {
   return `${datePart} · ${timePart}`;
 }
 
-export function JournalEntryList({ entries }: { entries: JournalEntry[] }) {
+export function JournalEntryList({
+  entries,
+  unreadableCount = 0,
+  listFailed = false,
+}: {
+  entries: JournalEntry[];
+  unreadableCount?: number;
+  listFailed?: boolean;
+}) {
   return (
     <section className="journal-past" aria-label="Past entries">
       <p className="journal-eyebrow">Past entries</p>
-      {entries.length === 0 ? (
+      {listFailed ? (
+        <p className="journal-error" role="status">
+          Past entries couldn&apos;t be loaded right now. You can still write today&apos;s entry.
+        </p>
+      ) : unreadableCount > 0 ? (
+        <p className="journal-error" role="status">
+          {unreadableCount === 1
+            ? "One past entry couldn't be loaded right now."
+            : `${unreadableCount} past entries couldn't be loaded right now.`}
+        </p>
+      ) : null}
+      {listFailed ? null : entries.length === 0 && unreadableCount === 0 ? (
         <p className="journal-empty">Nothing written yet. Your first entry will appear here.</p>
       ) : (
         <ul className="journal-entry-list">
