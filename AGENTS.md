@@ -124,8 +124,10 @@ Because every save is a brand-new pathname rather than an overwrite, there's no 
 race and no etag/`BlobPreconditionFailedError` precondition-retry dance the way
 `manual-opportunities.ts` needs for its single shared document. `listJournalEntries()` lists
 everything under the `journal/` prefix, sorts by pathname (chronological, since the timestamp
-prefix sorts lexicographically) descending, and reads each blob's content back - fine at
-personal-journal volume, deliberately with no pagination or caching layer. Nothing new needs to
+prefix sorts lexicographically) descending, and reads each blob's content back (following the
+Blob list cursor to exhaustion) - fine at personal-journal volume, deliberately with no UI
+pagination or caching layer. Reads are graceful (an unreadable entry or a failed listing shows a
+notice but never blocks the composer); writes stay strict. Tests: `npm run journal:test`. Nothing new needs to
 be provisioned before this works in production; it rides on the same Blob store `/job-agent`
 already has configured.
 
