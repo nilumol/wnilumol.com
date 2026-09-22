@@ -1,12 +1,12 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { insertJournalEntry } from "@/scripts/journal/db";
+import { insertJournalEntry } from "@/scripts/journal/store";
 
 export type JournalActionState = {
   status: "idle" | "success" | "error";
   message: string;
-  entryId?: number;
+  entryPathname?: string;
 };
 
 export async function submitJournalEntry(
@@ -23,7 +23,7 @@ export async function submitJournalEntry(
   try {
     const entry = await insertJournalEntry(body);
     revalidatePath("/journal");
-    return { status: "success", message: "Saved.", entryId: entry.id };
+    return { status: "success", message: "Saved.", entryPathname: entry.pathname };
   } catch (error) {
     console.error("Failed to save journal entry", error);
     return { status: "error", message: "Couldn't save - your text is still here, try again." };

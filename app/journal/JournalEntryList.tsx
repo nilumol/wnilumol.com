@@ -1,6 +1,6 @@
 "use client";
 
-import type { JournalEntry } from "@/scripts/journal/db";
+import type { JournalEntry } from "@/scripts/journal/store";
 
 /**
  * A client component so timestamps format in the reader's own timezone (same convention as
@@ -27,7 +27,7 @@ export function JournalEntryList({ entries }: { entries: JournalEntry[] }) {
       ) : (
         <ul className="journal-entry-list">
           {entries.map((entry) => (
-            <li key={entry.id} className="journal-entry">
+            <li key={entry.pathname} className="journal-entry">
               <time className="journal-entry-time" dateTime={entry.createdAt}>
                 {formatEntryTimestamp(entry.createdAt)}
               </time>

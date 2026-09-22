@@ -114,17 +114,20 @@ then calls `insertJournalEntry()` and `revalidatePath("/journal")` so the new en
 the list without a client fetch. Privacy model is "unlinked URL only," the same as `/job-agent` -
 no passphrase gate.
 
-Storage is a single Postgres table, `journal_entries` (id, body, created_at defaulted server-side
-via `DEFAULT now()` - never trust a client timestamp), created idempotently at runtime by
-`ensureJournalTable()` in `scripts/journal/db.ts` (its inline DDL must stay in sync with the
-reference copy in `scripts/journal/schema.sql`, which the app does not read). That
-file uses `@neondatabase/serverless`'s `neon()`, not `@vercel/postgres` (deprecated - Vercel's
-current Postgres offering is Neon-backed, and its own migration guide points new integrations at
-`@neondatabase/serverless`). It reads `DATABASE_URL` at request time; **the actual Postgres
-database still needs to be provisioned and attached to this Vercel project from the dashboard**
-(Storage → Marketplace Database → Neon), which is an infrastructure/billing action outside this
-repo's code and wasn't done as part of adding this feature - until that's done and `DATABASE_URL`
-is set, `/journal` will error on load.
+Storage is Vercel Blob, reusing the `job-agent-tracker` store and its
+`JOB_AGENT_TRACKER_READ_WRITE_TOKEN` env var that `scripts/job-agent/tracker-overlay.ts` and
+`manual-opportunities.ts` already use - not a new store, provider, or env var. `scripts/journal/store.ts`
+writes one immutable blob per entry under `journal/` (pathname: a sanitized ISO-8601
+`created_at` timestamp, stamped server-side at save time and never client-supplied, plus a short
+random suffix for same-millisecond collision safety) holding `{ body, createdAt }` as JSON.
+Because every save is a brand-new pathname rather than an overwrite, there's no read-modify-write
+race and no etag/`BlobPreconditionFailedError` precondition-retry dance the way
+`manual-opportunities.ts` needs for its single shared document. `listJournalEntries()` lists
+everything under the `journal/` prefix, sorts by pathname (chronological, since the timestamp
+prefix sorts lexicographically) descending, and reads each blob's content back - fine at
+personal-journal volume, deliberately with no pagination or caching layer. Nothing new needs to
+be provisioned before this works in production; it rides on the same Blob store `/job-agent`
+already has configured.
 
 The page's visual identity is intentionally its own: `.journal-*` classes in `app/globals.css`
 define local `--journal-*` tokens (warm paper background, oxblood ink accent) instead of reusing

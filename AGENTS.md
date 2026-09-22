@@ -100,6 +100,42 @@ section for the authoritative behavior, storage, and security contract.
 
 `applied`/`passed` status has two paths, never from arbitrary code: a captain hand-edit to `content/job-agent-seen.json` (permanent, part of git history), or clicking "Mark Applied"/"Mark Passed" in Tailor My Profile, which calls `POST /api/job-agent/tailor/status` (passphrase-gated like the other Tailor routes) to write a small live status overlay in Vercel Blob (`scripts/job-agent/tracker-overlay.ts`) - one JSON document at `job-agent/tracker-overlay.json` in the `job-agent-tracker` store, keyed the same way as the ledger. That store uses a custom env var prefix, so every Blob SDK call passes `token: process.env.JOB_AGENT_TRACKER_READ_WRITE_TOKEN` explicitly (not the SDK's default `BLOB_READ_WRITE_TOKEN`). The overlay never touches git and is merged with the ledger only at render time (`mergeTrackerEntries()` in `page.tsx`) - this is why `/job-agent` had to become dynamic (`force-dynamic`) instead of statically generated: Tracker's data now includes a request-time Blob read. See `docs/job-agent.md`'s "Live status overlay" section for the full rationale (why a snapshot instead of a ledger-resolved read, why one document instead of one blob per job, the static-generation tradeoff, and the graceful-read/strict-write failure split).
 
+## Gratitude Journal (hidden)
+
+A hidden, unlisted daily journal lives at `/journal` (not in `navigation`, `robots:
+noindex/nofollow`, no sitemap exists in this project to exclude it from): `app/journal/page.tsx`
+(async server component, `dynamic = "force-dynamic"` since entries and "today" change per visit)
+renders `JournalComposer.tsx` (client component - today's date, one autofocused freeform
+textarea, a Server Action submit with no page redirect) and `JournalEntryList.tsx` (client
+component so timestamps format in the reader's own timezone, matching `JobAgentTable`'s
+convention) as a reverse-chronological list. The submit path is a Server Action
+(`app/journal/actions.ts`), not an API route - it trims and rejects an empty body server-side,
+then calls `insertJournalEntry()` and `revalidatePath("/journal")` so the new entry appears in
+the list without a client fetch. Privacy model is "unlinked URL only," the same as `/job-agent` -
+no passphrase gate.
+
+Storage is Vercel Blob, reusing the `job-agent-tracker` store and its
+`JOB_AGENT_TRACKER_READ_WRITE_TOKEN` env var that `scripts/job-agent/tracker-overlay.ts` and
+`manual-opportunities.ts` already use - not a new store, provider, or env var. `scripts/journal/store.ts`
+writes one immutable blob per entry under `journal/` (pathname: a sanitized ISO-8601
+`created_at` timestamp, stamped server-side at save time and never client-supplied, plus a short
+random suffix for same-millisecond collision safety) holding `{ body, createdAt }` as JSON.
+Because every save is a brand-new pathname rather than an overwrite, there's no read-modify-write
+race and no etag/`BlobPreconditionFailedError` precondition-retry dance the way
+`manual-opportunities.ts` needs for its single shared document. `listJournalEntries()` lists
+everything under the `journal/` prefix, sorts by pathname (chronological, since the timestamp
+prefix sorts lexicographically) descending, and reads each blob's content back - fine at
+personal-journal volume, deliberately with no pagination or caching layer. Nothing new needs to
+be provisioned before this works in production; it rides on the same Blob store `/job-agent`
+already has configured.
+
+The page's visual identity is intentionally its own: `.journal-*` classes in `app/globals.css`
+define local `--journal-*` tokens (warm paper background, oxblood ink accent) instead of reusing
+`--background`/`--text`, and `app/journal/layout.tsx` loads two fonts scoped to this route only
+(Caveat for the dateline, used with restraint; Literata for body/entry text, chosen for long-form
+reading) via their own `next/font/google` variables - deliberately not the site's Tenor
+Sans/Belleza/Poppins set.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.

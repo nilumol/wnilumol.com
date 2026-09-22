@@ -1,4 +1,4 @@
-import { listJournalEntries } from "@/scripts/journal/db";
+import { listJournalEntries } from "@/scripts/journal/store";
 import { JournalComposer } from "./JournalComposer";
 import { JournalEntryList } from "./JournalEntryList";
 
