@@ -9,8 +9,6 @@ export type JournalActionState = {
   entryId?: number;
 };
 
-export const initialJournalActionState: JournalActionState = { status: "idle", message: "" };
-
 export async function submitJournalEntry(
   _prevState: JournalActionState,
   formData: FormData,

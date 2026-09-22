@@ -1,7 +1,10 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
-import { initialJournalActionState, submitJournalEntry } from "./actions";
+import { submitJournalEntry, type JournalActionState } from "./actions";
+
+/** Lives here, not in actions.ts: a "use server" module may only export async functions. */
+const initialJournalActionState: JournalActionState = { status: "idle", message: "" };
 
 export function JournalComposer() {
   const [todayLabel, setTodayLabel] = useState<string | null>(null);
