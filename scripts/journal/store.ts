@@ -75,9 +75,34 @@ export type JournalEntryListing = {
 
 type JournalBlobClient = { list: typeof list; get: typeof get };
 
+const READ_CONCURRENCY = 10;
+
+async function settleWithConcurrency<T, R>(
+  items: readonly T[],
+  limit: number,
+  task: (item: T) => Promise<R>,
+): Promise<PromiseSettledResult<R>[]> {
+  const results: PromiseSettledResult<R>[] = new Array(items.length);
+  let next = 0;
+  async function worker(): Promise<void> {
+    while (next < items.length) {
+      const index = next++;
+      try {
+        results[index] = { status: "fulfilled", value: await task(items[index]) };
+      } catch (reason) {
+        results[index] = { status: "rejected", reason };
+      }
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+  return results;
+}
+
 /**
  * Lists every entry under journal/, newest first, reading each blob's content back to render
- * the list - fine at personal-journal volume; no caching layer was asked for. Follows the list
+ * the list - fine at personal-journal volume; no caching layer was asked for. Reads run with a
+ * small concurrency cap so a growing history can't fan out into a burst of simultaneous Blob
+ * requests, and use the Blob cache since every entry pathname is write-once. Follows the list
  * cursor until exhausted, since the Blob API caps each page and returns pages in no guaranteed
  * order. A single unreadable blob is counted rather than thrown, so one bad entry can't hide the
  * rest; a failed listing still throws and is the caller's to handle.
@@ -95,9 +120,11 @@ export async function listJournalEntries(
   } while (cursor);
   pathnames.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0));
 
-  const results = await Promise.allSettled(
-    pathnames.map(async (pathname): Promise<JournalEntry> => {
-      const result = await client.get(pathname, { access: "private", token, useCache: false });
+  const results = await settleWithConcurrency(
+    pathnames,
+    READ_CONCURRENCY,
+    async (pathname): Promise<JournalEntry> => {
+      const result = await client.get(pathname, { access: "private", token });
       if (!result || result.statusCode !== 200 || !result.stream) {
         throw new Error(`Journal entry ${pathname} could not be read.`);
       }
@@ -105,7 +132,7 @@ export async function listJournalEntries(
       const parsed = parseStoredJournalEntry(text);
       if (!parsed) throw new Error(`Journal entry ${pathname} is malformed.`);
       return { pathname, ...parsed };
-    }),
+    },
   );
 
   const entries: JournalEntry[] = [];

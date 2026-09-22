@@ -70,3 +70,36 @@ test("listJournalEntries keeps readable entries when one blob fails or is malfor
     console.error = originalError;
   }
 });
+
+test("listJournalEntries caps concurrent blob reads and preserves newest-first order", async () => {
+  process.env.JOURNAL_READ_WRITE_TOKEN = "test-token";
+  const pathnames = Array.from(
+    { length: 45 },
+    (_, i) => `journal/2026-01-${String(i + 1).padStart(2, "0")}.json`,
+  );
+  const base = fakeClient(
+    [pathnames],
+    Object.fromEntries(pathnames.map((p, i) => [p, entry(String(i + 1), "2026-01-01T00:00:00.000Z")])),
+  );
+  let inFlight = 0;
+  let peak = 0;
+  const get = (async (...args: Parameters<Client["get"]>) => {
+    inFlight += 1;
+    peak = Math.max(peak, inFlight);
+    await new Promise((resolve) => setTimeout(resolve, 1));
+    try {
+      return await base.get(...args);
+    } finally {
+      inFlight -= 1;
+    }
+  }) as unknown as Client["get"];
+
+  const { entries, unreadableCount } = await listJournalEntries({ list: base.list, get });
+
+  assert.equal(unreadableCount, 0);
+  assert.equal(entries.length, 45);
+  assert.equal(entries[0].body, "45");
+  assert.equal(entries[44].body, "1");
+  assert.ok(peak > 1, `expected parallel reads, peak was ${peak}`);
+  assert.ok(peak <= 10, `expected at most 10 concurrent reads, peak was ${peak}`);
+});
