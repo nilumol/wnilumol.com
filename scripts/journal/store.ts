@@ -12,13 +12,14 @@ type StoredJournalEntry = { body: string; createdAt: string };
 const JOURNAL_PREFIX = "journal/";
 
 /**
- * Reuses the job-agent-tracker Blob store this project already has - not a new store or env
- * var. See the "Gratitude Journal" note in CLAUDE.md.
+ * Its own dedicated Blob store ("journal"), separate from job-agent's job-agent-tracker store -
+ * isolates this personal, sensitive content from job-agent's operational data. See the
+ * "Gratitude Journal" note in CLAUDE.md.
  */
 function blobToken(): string {
-  const token = process.env.JOB_AGENT_TRACKER_READ_WRITE_TOKEN;
+  const token = process.env.JOURNAL_READ_WRITE_TOKEN;
   if (!token) {
-    throw new Error("JOB_AGENT_TRACKER_READ_WRITE_TOKEN is not configured.");
+    throw new Error("JOURNAL_READ_WRITE_TOKEN is not configured.");
   }
   return token;
 }

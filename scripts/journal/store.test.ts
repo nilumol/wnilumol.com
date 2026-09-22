@@ -31,7 +31,7 @@ function entry(body: string, createdAt: string): string {
 }
 
 test("listJournalEntries follows the list cursor across pages and sorts newest first", async () => {
-  process.env.JOB_AGENT_TRACKER_READ_WRITE_TOKEN = "test-token";
+  process.env.JOURNAL_READ_WRITE_TOKEN = "test-token";
   const client = fakeClient(
     [["journal/2026-01-02.json", "journal/2026-01-01.json"], ["journal/2026-01-03.json"]],
     {
@@ -51,7 +51,7 @@ test("listJournalEntries follows the list cursor across pages and sorts newest f
 });
 
 test("listJournalEntries keeps readable entries when one blob fails or is malformed", async () => {
-  process.env.JOB_AGENT_TRACKER_READ_WRITE_TOKEN = "test-token";
+  process.env.JOURNAL_READ_WRITE_TOKEN = "test-token";
   const client = fakeClient([["journal/a.json", "journal/b.json", "journal/c.json"]], {
     "journal/a.json": entry("kept", "2026-01-01T00:00:00.000Z"),
     "journal/b.json": null,

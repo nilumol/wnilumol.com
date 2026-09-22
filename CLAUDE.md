@@ -114,22 +114,26 @@ then calls `insertJournalEntry()` and `revalidatePath("/journal")` so the new en
 the list without a client fetch. Privacy model is "unlinked URL only," the same as `/job-agent` -
 no passphrase gate.
 
-Storage is Vercel Blob, reusing the `job-agent-tracker` store and its
-`JOB_AGENT_TRACKER_READ_WRITE_TOKEN` env var that `scripts/job-agent/tracker-overlay.ts` and
-`manual-opportunities.ts` already use - not a new store, provider, or env var. `scripts/journal/store.ts`
-writes one immutable blob per entry under `journal/` (pathname: a sanitized ISO-8601
-`created_at` timestamp, stamped server-side at save time and never client-supplied, plus a short
-random suffix for same-millisecond collision safety) holding `{ body, createdAt }` as JSON.
-Because every save is a brand-new pathname rather than an overwrite, there's no read-modify-write
-race and no etag/`BlobPreconditionFailedError` precondition-retry dance the way
-`manual-opportunities.ts` needs for its single shared document. `listJournalEntries()` lists
-everything under the `journal/` prefix, sorts by pathname (chronological, since the timestamp
-prefix sorts lexicographically) descending, and reads each blob's content back (following the
-Blob list cursor to exhaustion) - fine at personal-journal volume, deliberately with no UI
-pagination or caching layer. Reads are graceful (an unreadable entry or a failed listing shows a
-notice but never blocks the composer); writes stay strict. Tests: `npm run journal:test`. Nothing new needs to
-be provisioned before this works in production; it rides on the same Blob store `/job-agent`
-already has configured.
+Storage is Vercel Blob in its own dedicated store, `journal` - deliberately separate from
+job-agent's `job-agent-tracker` store, to isolate this personal, sensitive content from
+job-agent's operational data. `scripts/journal/store.ts` reads its token from
+`JOURNAL_READ_WRITE_TOKEN` (the `@vercel/blob` functions - `put`/`list`/`get` - take an explicit
+`{ token }` per call for exactly this multi-store-in-one-project case, the same pattern
+`scripts/job-agent/tracker-overlay.ts` uses for its own store) and writes one immutable blob per
+entry under `journal/` (pathname: a sanitized ISO-8601 `created_at` timestamp, stamped
+server-side at save time and never client-supplied, plus a short random suffix for
+same-millisecond collision safety) holding `{ body, createdAt }` as JSON. Because every save is a
+brand-new pathname rather than an overwrite, there's no read-modify-write race and no
+etag/`BlobPreconditionFailedError` precondition-retry dance the way
+`scripts/job-agent/manual-opportunities.ts` needs for its single shared document.
+`listJournalEntries()` lists everything under the `journal/` prefix, sorts by pathname
+(chronological, since the timestamp prefix sorts lexicographically) descending, and reads each
+blob's content back (following the Blob list cursor to exhaustion) - fine at personal-journal
+volume, deliberately with no UI pagination or caching layer. Reads are graceful (an unreadable
+entry or a failed listing shows a notice but never blocks the composer); writes stay strict.
+Tests: `npm run journal:test`. The `journal` Blob store must be provisioned and attached to this
+Vercel project with `JOURNAL_READ_WRITE_TOKEN` set before `/journal` works in production - unlike
+job-agent's store, this one is not yet configured as of this writing.
 
 The page's visual identity is intentionally its own: `.journal-*` classes in `app/globals.css`
 define local `--journal-*` tokens (warm paper background, oxblood ink accent) instead of reusing
