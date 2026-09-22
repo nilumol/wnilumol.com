@@ -22,8 +22,12 @@ export async function submitJournalEntry(
     return { status: "error", message: "Write something before saving." };
   }
 
-  const entry = await insertJournalEntry(body);
-  revalidatePath("/journal");
-
-  return { status: "success", message: "Saved.", entryId: entry.id };
+  try {
+    const entry = await insertJournalEntry(body);
+    revalidatePath("/journal");
+    return { status: "success", message: "Saved.", entryId: entry.id };
+  } catch (error) {
+    console.error("Failed to save journal entry", error);
+    return { status: "error", message: "Couldn't save - your text is still here, try again." };
+  }
 }

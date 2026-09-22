@@ -6,7 +6,7 @@ export type JournalEntry = {
   createdAt: string;
 };
 
-type JournalRow = { id: number; body: string; created_at: string };
+type JournalRow = { id: number; body: string; created_at: string | Date };
 
 /**
  * @vercel/postgres is deprecated; Vercel's current Postgres storage is Neon-backed and its own
@@ -25,11 +25,21 @@ function sql() {
 }
 
 /**
- * Applies the journal_entries schema (see schema.sql) if it doesn't exist yet. Idempotent and
- * cheap, so it's simplest to call before every query rather than introduce a migration runner
- * for a single table.
+ * Applies the journal_entries schema (see schema.sql) if it doesn't exist yet. Idempotent, and
+ * memoized per server instance (cleared on failure so the next request retries), so it's simplest
+ * to call before every query rather than introduce a migration runner for a single table.
  */
-async function ensureJournalTable(): Promise<void> {
+let journalTableReady: Promise<void> | null = null;
+
+function ensureJournalTable(): Promise<void> {
+  journalTableReady ??= createJournalTable().catch((error: unknown) => {
+    journalTableReady = null;
+    throw error;
+  });
+  return journalTableReady;
+}
+
+async function createJournalTable(): Promise<void> {
   await sql()`
     CREATE TABLE IF NOT EXISTS journal_entries (
       id SERIAL PRIMARY KEY,
@@ -40,7 +50,7 @@ async function ensureJournalTable(): Promise<void> {
 }
 
 function toJournalEntry(row: JournalRow): JournalEntry {
-  return { id: row.id, body: row.body, createdAt: row.created_at };
+  return { id: row.id, body: row.body, createdAt: new Date(row.created_at).toISOString() };
 }
 
 /** created_at is stamped by the database default (now()); callers cannot supply a timestamp. */

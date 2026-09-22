@@ -1,11 +1,11 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { initialJournalActionState, submitJournalEntry } from "./actions";
 
 export function JournalComposer() {
   const [todayLabel, setTodayLabel] = useState<string | null>(null);
-  const formRef = useRef<HTMLFormElement>(null);
+  const [draft, setDraft] = useState("");
   const [state, formAction, isPending] = useActionState(submitJournalEntry, initialJournalActionState);
   const [showStatus, setShowStatus] = useState(false);
 
@@ -24,7 +24,7 @@ export function JournalComposer() {
     if (state.status === "idle") return;
     setShowStatus(true);
     if (state.status === "success") {
-      formRef.current?.reset();
+      setDraft("");
     }
   }, [state]);
 
@@ -37,7 +37,7 @@ export function JournalComposer() {
         </h1>
       </header>
 
-      <form ref={formRef} action={formAction} className="journal-form">
+      <form action={formAction} className="journal-form">
         <label htmlFor="journal-entry-body" className="journal-sr-only">
           Journal entry
         </label>
@@ -49,7 +49,11 @@ export function JournalComposer() {
           autoFocus
           required
           rows={10}
-          onChange={() => setShowStatus(false)}
+          value={draft}
+          onChange={(event) => {
+            setDraft(event.target.value);
+            setShowStatus(false);
+          }}
         />
         <div className="journal-form-footer">
           <button type="submit" className="journal-submit" disabled={isPending}>
