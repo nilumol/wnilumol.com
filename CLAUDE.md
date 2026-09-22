@@ -76,7 +76,7 @@ npm run build     # production build, TypeScript validation, and static generati
 npm run start     # serve an existing production build
 ```
 
-- There is currently no separate lint or test script. `npm run build` is the required verification for code or layout changes.
+- There is no lint script; feature-scoped test scripts exist (`npm run job-agent:test`, `npm run journal:test`). `npm run build` is the required verification for code or layout changes.
 - Google fonts are fetched during builds; a network-restricted build may fail for font download even when application code is valid.
 - Before committing, run `git diff --check` and inspect `git status` so local references or unrelated user files are not staged accidentally.
 
