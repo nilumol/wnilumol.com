@@ -383,6 +383,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-11T10:32:21-04:00"
   },
+  "greenhouse:8201957": {
+    "id": 8201957,
+    "source": "greenhouse",
+    "company": "Cloudflare",
+    "title": "Senior Solutions Architect, Cloudflare Developer Platform ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://boards.greenhouse.io/cloudflare/jobs/8201957?gh_jid=8201957",
+    "firstSeen": "2026-09-23T17:39:43.175Z",
+    "status": "pending",
+    "location": "Hybrid",
+    "compensationRange": null,
+    "postedAt": "2026-09-22T14:12:39-04:00"
+  },
   "greenhouse:8219990": {
     "id": 8219990,
     "source": "greenhouse",
@@ -656,7 +669,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5187339007",
     "firstSeen": "2026-08-18T07:29:43.140Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family is a direct match (presales demos, technical discovery, POCs/POVs, evaluation test plans), and Winston's Benchling SC track record maps cleanly onto those activities. But the minimum qualifications hinge on a hands-on cybersecurity and networking stack — TCP/IP, DNS, routing, VPN, firewalls, CCNA/CCNP/Security+ — which shares nothing with his SQL/Python/Benchling/Veeva/GMP toolkit, and there is zero life-sciences or regulated-industry angle. It is also a Commercial (SMB/mid-market) segment role, a step below his Strategic Enterprise experience, so both the domain and seniority signals cut against it.",
     "location": "New York City, New York, USA; Remote - New Jersey, USA",
@@ -1260,6 +1273,32 @@
     "location": "Remote - Maryland, USA; Remote - Virginia, USA",
     "compensationRange": null,
     "postedAt": "2026-09-11T14:46:22-04:00"
+  },
+  "greenhouse:5240511007": {
+    "id": 5240511007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Principal Specialist Sales Engineer, Data Security - Majors",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5240511007",
+    "firstSeen": "2026-09-23T17:39:43.174Z",
+    "status": "pending",
+    "location": "Remote - USA",
+    "compensationRange": null,
+    "postedAt": "2026-09-22T23:18:02-04:00"
+  },
+  "greenhouse:5241321007": {
+    "id": 5241321007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Manager, Commercial Sales Engineering - Central",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5241321007",
+    "firstSeen": "2026-09-23T17:39:43.174Z",
+    "status": "pending",
+    "location": "Remote - Illinois, USA; Remote - Michigan, USA; Remote - North Carolina, USA; Remote - Ohio, USA",
+    "compensationRange": null,
+    "postedAt": "2026-09-22T23:25:01-04:00"
   },
   "greenhouse:5783377004": {
     "id": 5783377004,
@@ -2287,7 +2326,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8633225002",
     "firstSeen": "2026-08-18T07:43:33.654Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 5,
     "fitRationale": "Role family is a genuine match — enterprise pre-sales technical leadership, executive relationship building, value selling, and technical strategy for >$1M ARR accounts, which mirrors his Strategic Enterprise Solutions Consultant work at Benchling ($150K ACV, $2M+ influenced ARR). However, the vertical is High Tech and Manufacturing rather than life sciences, so his 12+ years of biopharma/GMP/21 CFR Part 11 domain equity is largely unmonetized here, and Databricks' bar of 'technical in big data, data science and cloud' plus production programming in Python/R/Scala/Java goes well beyond his SQL-driven demo and lab-infrastructure background. The Central US location requirement is also a likely mismatch given his Bay Area/California-based history.",
     "location": "Central - United States",
