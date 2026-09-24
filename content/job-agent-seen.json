@@ -1807,6 +1807,58 @@
     "compensationRange": "$85,200—$144,000 USD",
     "postedAt": "2026-06-23T17:12:13-04:00"
   },
+  "greenhouse:8535434002": {
+    "id": 8535434002,
+    "source": "greenhouse",
+    "company": "Brex",
+    "title": "Solutions Consultant",
+    "keywordFamily": "Solutions Consultant",
+    "absoluteUrl": "https://www.brex.com/careers/8535434002?gh_jid=8535434002",
+    "firstSeen": "2026-09-24T17:42:59.357Z",
+    "status": "pending",
+    "location": "San Francisco, California, United States",
+    "compensationRange": null,
+    "postedAt": "2026-05-05T02:20:35-04:00"
+  },
+  "greenhouse:8536524002": {
+    "id": 8536524002,
+    "source": "greenhouse",
+    "company": "Brex",
+    "title": "Solutions Consultant",
+    "keywordFamily": "Solutions Consultant",
+    "absoluteUrl": "https://www.brex.com/careers/8536524002?gh_jid=8536524002",
+    "firstSeen": "2026-09-24T17:42:59.357Z",
+    "status": "pending",
+    "location": "New York, New York, United States",
+    "compensationRange": null,
+    "postedAt": "2026-05-05T15:54:30-04:00"
+  },
+  "greenhouse:8536526002": {
+    "id": 8536526002,
+    "source": "greenhouse",
+    "company": "Brex",
+    "title": "Solutions Consultant",
+    "keywordFamily": "Solutions Consultant",
+    "absoluteUrl": "https://www.brex.com/careers/8536526002?gh_jid=8536526002",
+    "firstSeen": "2026-09-24T17:42:59.357Z",
+    "status": "pending",
+    "location": "Seattle, Washington, United States",
+    "compensationRange": null,
+    "postedAt": "2026-05-05T15:54:29-04:00"
+  },
+  "greenhouse:8536760002": {
+    "id": 8536760002,
+    "source": "greenhouse",
+    "company": "Brex",
+    "title": "Solutions Consultant",
+    "keywordFamily": "Solutions Consultant",
+    "absoluteUrl": "https://www.brex.com/careers/8536760002?gh_jid=8536760002",
+    "firstSeen": "2026-09-24T17:42:59.357Z",
+    "status": "pending",
+    "location": "Salt Lake City, Utah, United States",
+    "compensationRange": null,
+    "postedAt": "2026-05-05T17:23:25-04:00"
+  },
   "greenhouse:8548986002": {
     "id": 8548986002,
     "source": "greenhouse",
@@ -2987,6 +3039,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-11T16:32:18-04:00"
   },
+  "greenhouse:8790621002": {
+    "id": 8790621002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Public Sector (DOJ)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8790621002",
+    "firstSeen": "2026-09-24T17:42:59.357Z",
+    "status": "pending",
+    "location": "Alabama",
+    "compensationRange": null,
+    "postedAt": "2026-09-23T18:55:45-04:00"
+  },
   "greenhouse:8790680002": {
     "id": 8790680002,
     "source": "greenhouse",
@@ -3139,5 +3204,18 @@
     "location": "New York - New York City",
     "compensationRange": null,
     "postedAt": "2026-05-29T21:10:06.751Z"
+  },
+  "lever:f331c56b-2b33-4341-8646-06e28d50e32a": {
+    "id": "f331c56b-2b33-4341-8646-06e28d50e32a",
+    "source": "lever",
+    "company": "Windfall",
+    "title": "Sales Engineer",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://jobs.lever.co/windfalldata/f331c56b-2b33-4341-8646-06e28d50e32a",
+    "firstSeen": "2026-09-24T17:42:59.357Z",
+    "status": "pending",
+    "location": "San Francisco",
+    "compensationRange": "$150K-$175K",
+    "postedAt": "2026-07-10T23:17:45.617Z"
   }
 }
