@@ -1086,7 +1086,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5203169007",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "scored",
+    "status": "expired",
     "location": "Remote - USA",
     "compensationRange": "$194,250-$277,500 USD",
     "postedAt": "2026-08-18T18:17:52-04:00",
@@ -1256,7 +1256,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5231503007",
     "firstSeen": "2026-09-10T16:51:57.558Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - Florida, USA; Remote - Georgia, USA; Remote - North Carolina, USA; Remote - South Carolina, USA",
     "compensationRange": null,
     "postedAt": "2026-09-10T11:50:02-04:00"
@@ -1299,6 +1299,19 @@
     "location": "Remote - Illinois, USA; Remote - Michigan, USA; Remote - North Carolina, USA; Remote - Ohio, USA",
     "compensationRange": null,
     "postedAt": "2026-09-22T23:25:01-04:00"
+  },
+  "greenhouse:5244299007": {
+    "id": 5244299007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer, Enterprise - Minnesota",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5244299007",
+    "firstSeen": "2026-09-26T16:51:20.648Z",
+    "status": "pending",
+    "location": "Remote - Minnesota, USA",
+    "compensationRange": null,
+    "postedAt": "2026-09-25T21:16:04-04:00"
   },
   "greenhouse:5783377004": {
     "id": 5783377004,
