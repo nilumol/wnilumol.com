@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { JournalCalendar, localDayKey } from "./JournalCalendar";
+import { JournalCalendar } from "./JournalCalendar";
+import { filterEntriesByDay } from "./calendar";
 import type { JournalEntry } from "@/scripts/journal/store";
 
 /**
@@ -33,9 +34,7 @@ export function JournalEntryList({
   const [selectedDay, setSelectedDay] = useState<Date | null>(null);
   // Server and initial client markup must agree before reading the browser timezone.
   useEffect(() => { setReady(true); }, []);
-  const visibleEntries = selectedDay
-    ? entries.filter((entry) => localDayKey(new Date(entry.createdAt)) === localDayKey(selectedDay))
-    : entries;
+  const visibleEntries = filterEntriesByDay(entries, selectedDay);
 
   return (
     <section className="journal-past" aria-label="Past entries">

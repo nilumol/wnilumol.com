@@ -2,10 +2,7 @@
 import { useState } from "react";
 import type { JournalEntry } from "@/scripts/journal/store";
 
-/** Use the reader's calendar date, never the UTC date from an ISO timestamp. */
-export function localDayKey(date: Date): string {
-  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-}
+import { localDayKey, countEntriesByDay, shiftMonth, monthGrid } from "./calendar";
 
 export function JournalCalendar({ entries, selectedDay, onSelectDay }: {
   entries: JournalEntry[];
@@ -16,22 +13,16 @@ export function JournalCalendar({ entries, selectedDay, onSelectDay }: {
     const today = new Date();
     return new Date(today.getFullYear(), today.getMonth(), 1);
   });
-  const counts = new Map<string, number>();
-  for (const entry of entries) {
-    const key = localDayKey(new Date(entry.createdAt));
-    counts.set(key, (counts.get(key) ?? 0) + 1);
-  }
+  const counts = countEntriesByDay(entries);
   const todayKey = localDayKey(new Date());
-  const days = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
-  const offset = month.getDay();
-  const cells = Math.ceil((offset + days) / 7) * 7;
+  const { days, offset, cells } = monthGrid(month);
 
   return (
     <section className="journal-calendar" aria-label="Browse entries by date">
       <div className="journal-calendar-toolbar">
-        <button type="button" className="journal-calendar-control" aria-label="Previous month" onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))}>←</button>
+        <button type="button" className="journal-calendar-control" aria-label="Previous month" onClick={() => setMonth((current) => shiftMonth(current, -1))}>←</button>
         <h2 aria-live="polite">{month.toLocaleDateString("en-US", { month: "long", year: "numeric" })}</h2>
-        <button type="button" className="journal-calendar-control" aria-label="Next month" onClick={() => setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))}>→</button>
+        <button type="button" className="journal-calendar-control" aria-label="Next month" onClick={() => setMonth((current) => shiftMonth(current, 1))}>→</button>
       </div>
       <div className="journal-calendar-grid">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => <span key={day} className="journal-calendar-weekday" aria-hidden="true">{day}</span>)}
