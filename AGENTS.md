@@ -108,8 +108,11 @@ noindex/nofollow`, no sitemap exists in this project to exclude it from): `app/j
 renders `JournalComposer.tsx` (client component - today's date, one autofocused freeform
 textarea, a Server Action submit with no page redirect) and `JournalEntryList.tsx` (client
 component so timestamps format in the reader's own timezone, matching `JobAgentTable`'s
-convention) as a reverse-chronological list. The submit path is a Server Action
-(`app/journal/actions.ts`), not an API route - it trims and rejects an empty body server-side,
+convention) as a reverse-chronological list, with a month calendar (`JournalCalendar.tsx`,
+reader-local date helpers in `calendar.ts`, rendered only after hydration) that filters it to a
+selected day; a failed listing still shows a navigable calendar with zero counts. See
+`docs/journal-calendar-validation.md` for date semantics and the browser-check harness. The
+submit path is a Server Action (`app/journal/actions.ts`), not an API route - it trims and rejects an empty body server-side,
 then calls `insertJournalEntry()` and `revalidatePath("/journal")` so the new entry appears in
 the list without a client fetch. Privacy model is "unlinked URL only," the same as `/job-agent` -
 no passphrase gate.
