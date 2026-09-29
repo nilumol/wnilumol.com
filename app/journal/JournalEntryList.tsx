@@ -34,18 +34,19 @@ export function JournalEntryList({
   const [selectedDay, setSelectedDay] = useState<Date | null>(null);
   // Server and initial client markup must agree before reading the browser timezone.
   useEffect(() => { setReady(true); }, []);
-  const visibleEntries = filterEntriesByDay(entries, selectedDay);
+  const calendarEntries = listFailed ? [] : entries;
+  const visibleEntries = filterEntriesByDay(calendarEntries, selectedDay);
 
   return (
     <section className="journal-past" aria-label="Past entries">
       <p className="journal-eyebrow">Past entries</p>
-      {!ready && !listFailed && (
+      {!ready && (
         <p className="journal-calendar-note" role="status">
           <span className="spinner" aria-hidden="true" /> Loading calendar…
         </p>
       )}
-      {ready && !listFailed && (
-        <JournalCalendar entries={entries} selectedDay={selectedDay} onSelectDay={setSelectedDay} />
+      {ready && (
+        <JournalCalendar entries={calendarEntries} selectedDay={selectedDay} onSelectDay={setSelectedDay} entriesUnavailable={listFailed} />
       )}
       {listFailed ? (
         <p className="journal-error" role="status">

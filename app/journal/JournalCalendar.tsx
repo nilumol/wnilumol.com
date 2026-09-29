@@ -4,8 +4,9 @@ import type { JournalEntry } from "@/scripts/journal/store";
 
 import { localDayKey, countEntriesByDay, shiftMonth, monthGrid } from "./calendar";
 
-export function JournalCalendar({ entries, selectedDay, onSelectDay }: {
+export function JournalCalendar({ entries, selectedDay, onSelectDay, entriesUnavailable = false }: {
   entries: JournalEntry[];
+  entriesUnavailable?: boolean;
   selectedDay: Date | null;
   onSelectDay: (day: Date | null) => void;
 }) {
@@ -43,7 +44,7 @@ export function JournalCalendar({ entries, selectedDay, onSelectDay }: {
         })}
       </div>
       <div className="journal-calendar-footer">
-        <p className="journal-calendar-note">Select a day to read its entries.</p>
+        <p className="journal-calendar-note">{entriesUnavailable ? "Entry counts are unavailable while past entries cannot be loaded." : "Select a day to read its entries."}</p>
         <div className="journal-calendar-actions">
           <button type="button" className="journal-calendar-control" onClick={() => {
             const today = new Date();

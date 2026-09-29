@@ -34,7 +34,7 @@ export default async function Fixture({ searchParams }: { searchParams: Promise<
   const { mode } = await searchParams;
   return <main className="journal-shell"><JournalComposer /><JournalEntryList
     entries={mode === 'empty' || mode === 'failed' ? [] : ${JSON.stringify(entries)}}
-    unreadableCount={mode === 'partial' ? 1 : 0} listFailed={mode === 'failed'}
+    unreadableCount={mode === 'partial' ? 1 : 0} listFailed={mode === 'failed' || mode === 'failed-with-entries'}
   /></main>;
 }
 `);
@@ -138,10 +138,40 @@ export default async function Fixture({ searchParams }: { searchParams: Promise<
       assert.match(await page.$eval('.journal-empty', node => node.textContent), /Nothing written yet/);
       await page.click(day(27));
       assert.match(await page.$eval('.journal-empty', node => node.textContent), /No entries for this day/);
-      await open('failed');
-      assert.match(await page.$eval('.journal-error', node => node.textContent), /Past entries couldn't be loaded/);
-      assert.ok(await page.$('textarea'));
-      assert.equal(await page.$('.journal-calendar'), null);
+      for (const mode of ['failed', 'failed-with-entries']) {
+        await open(mode);
+        const failureState = async () => {
+          assert.match(await page.$eval('.journal-error', node => node.textContent), /Past entries couldn't be loaded/);
+          assert.match(await page.$eval('.journal-calendar-footer .journal-calendar-note', node => node.textContent), /Entry counts are unavailable/);
+          assert.ok(await page.$('textarea'));
+          assert.deepEqual(await bodies(), []);
+          assert.equal(await page.$('.journal-empty'), null);
+          assert.equal(await page.$('.has-entries'), null);
+          assert.equal(await page.$('#journal-day-entries .journal-calendar-note'), null);
+          assert.ok(await page.$$eval('.journal-calendar-day', nodes => nodes.length > 0 && nodes.every(node => node.getAttribute('aria-label').endsWith(', 0 entries'))));
+        };
+        await month('February 2024');
+        await failureState();
+        await page.focus('[aria-label="Previous month"]');
+        await page.keyboard.press('Enter');
+        await month('January 2024');
+        await failureState();
+        await page.focus('[aria-label="Next month"]');
+        await page.keyboard.press('Space');
+        await month('February 2024');
+        await page.click(day(29));
+        assert.equal(await page.$eval(day(29), node => node.getAttribute('aria-pressed')), 'true');
+        await failureState();
+        await page.click('[aria-label="Next month"]');
+        await month('March 2024');
+        await page.click('.journal-calendar-actions ' + button('Today'));
+        await month('February 2024');
+        await failureState();
+        await page.click(button('All entries'));
+        await failureState();
+        await noOverflow();
+        await page.screenshot({ path: new URL(`${timezone.split('/')[1]}-${width}-${mode}.png`, evidence).pathname, fullPage: true });
+      }
       assert.deepEqual(errors, [], `${timezone}/${width}: browser errors`);
       console.log(`PASS ${timezone} ${width}px: hydration, filters, counts, leap day, year navigation, Today/All, keyboard, draft preservation, read failures, no overflow`);
       await page.close();
