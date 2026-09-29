@@ -1295,7 +1295,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5241321007",
     "firstSeen": "2026-09-23T17:39:43.174Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - Illinois, USA; Remote - Michigan, USA; Remote - North Carolina, USA; Remote - Ohio, USA",
     "compensationRange": null,
     "postedAt": "2026-09-22T23:25:01-04:00"
@@ -1798,7 +1798,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8522046002",
     "firstSeen": "2026-08-18T07:53:00.102Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 5,
     "fitRationale": "Role family is a strong match — enterprise pre-sales technical strategy, value selling, executive relationship building, and mentoring other SCs all mirror Winston's Benchling Strategic Enterprise work. However, the posting is explicitly verticalized to Oil, Gas, and Energy accounts in Houston, which gives zero overlap with his 10+ years of biopharma/GMP/regulated-industry depth, the single biggest differentiator he brings. The technical bar (big data/ML/AI platform depth, production programming in Python/R/Scala/Java, Databricks certification, >$1M ARR global accounts) also runs deeper and larger-scale than his SQL-driven demo and $150K ACV track record.",
     "location": "United States",
@@ -2481,7 +2481,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8642263002",
     "firstSeen": "2026-08-18T07:40:08.920Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "This is a people-management role requiring 3+ years leading technical teams plus deep hands-on Lakehouse/distributed-systems, ETL, streaming, and ML productionization expertise - Winston has led small scientific teams but never a technical DSA/architecture org, and his stack (SQL, Python, Tableau, Veeva, Benchling) is far shallower than the cloud-native data engineering depth demanded. The customer-facing delivery/onboarding orientation and executive-stakeholder work do echo his Implementations Manager and Solutions Consultant experience, but there is no life-sciences or regulated-industry angle here beyond generic enterprise breadth. Net: plausible title match, but a significant gap in both technical specialty and management-of-technical-teams credentials.",
     "location": "Remote - California; Remote - Colorado; Remote - Illinois; Remote - Massachusetts; Remote - New York; Remote - Oregon; Remote - Pennsylvania; Remote - Texas; Remote - Washington",
@@ -2648,6 +2648,19 @@
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-09-14T23:51:07-04:00"
+  },
+  "greenhouse:8735549002": {
+    "id": 8735549002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Financial Services",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8735549002",
+    "firstSeen": "2026-09-29T18:26:01.298Z",
+    "status": "pending",
+    "location": "Georgia; Illinois; Massachusetts; New York; North Carolina; Washington, D.C.",
+    "compensationRange": null,
+    "postedAt": "2026-09-29T11:48:06-04:00"
   },
   "greenhouse:8735551002": {
     "id": 8735551002,
