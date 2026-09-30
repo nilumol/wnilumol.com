@@ -65,7 +65,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://jobs.ashbyhq.com/candidhealth/6f3f5aef-069b-4153-80e3-ce96cc4f7a47",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "scored",
+    "status": "expired",
     "location": "New York City",
     "compensationRange": "$175,000-$226,000 OTE",
     "postedAt": "2026-02-19T05:43:37.889+00:00",
@@ -172,6 +172,19 @@
     "postedAt": "2026-07-27T13:06:34.843+00:00",
     "fitScore": 4,
     "fitRationale": "Commercial Solutions Consultant at Notion (1-3 years) is below his seniority level, though the demo-driven role family fits and there's no life-sciences domain overlap."
+  },
+  "ashby:aa17f5f2-0443-404d-9717-96cf06873150": {
+    "id": "aa17f5f2-0443-404d-9717-96cf06873150",
+    "source": "ashby",
+    "company": "OpenAI",
+    "title": "Customer Success Manager, Ads Solutions (Los Angeles)",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://jobs.ashbyhq.com/openai/aa17f5f2-0443-404d-9717-96cf06873150",
+    "firstSeen": "2026-09-30T18:14:55.176Z",
+    "status": "pending",
+    "location": "US - Remote",
+    "compensationRange": "$176K - $234K",
+    "postedAt": "2026-09-30T01:34:27.418+00:00"
   },
   "ashby:cc15b36b-023e-4748-928a-625dbf2c497b": {
     "id": "cc15b36b-023e-4748-928a-625dbf2c497b",
@@ -2286,7 +2299,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8616005002",
     "firstSeen": "2026-08-18T07:55:13.292Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "Role family is a clean match - senior post-sales CSM owning a book of business, driving adoption/retention/expansion, coordinating with Support, Product, and Engineering, all of which mirrors his Benchling and Collate customer-facing work. However, the domain is US public sector DevSecOps with explicit requirements around Git branching strategies, CI/CD pipelines, and SDLC tooling - zero overlap with his biopharma/GxP regulated-industry depth and nothing in his stack (SQL, Veeva, Benchling, SAP) transfers directly. Public-sector/government compliance is a regulated space but not adjacent to life sciences, so he'd be competing against candidates with native DevOps and federal experience.",
     "location": "Remote, US",
@@ -2740,6 +2753,19 @@
     "compensationRange": null,
     "postedAt": "2026-08-21T20:59:35-04:00"
   },
+  "greenhouse:8739515002": {
+    "id": 8739515002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": " Delivery Solutions Architect - Public Sector (DHS, Intelligence Community)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8739515002",
+    "firstSeen": "2026-09-30T18:14:55.176Z",
+    "status": "pending",
+    "location": "Northeast - United States; Southeast - United States",
+    "compensationRange": null,
+    "postedAt": "2026-09-30T13:08:34-04:00"
+  },
   "greenhouse:8739519002": {
     "id": 8739519002,
     "source": "greenhouse",
@@ -3052,6 +3078,32 @@
     "compensationRange": null,
     "postedAt": "2026-09-11T08:56:55-04:00"
   },
+  "greenhouse:8790289002": {
+    "id": 8790289002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Public Sector (Defense, DIBS)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8790289002",
+    "firstSeen": "2026-09-30T18:14:55.176Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-09-30T13:20:47-04:00"
+  },
+  "greenhouse:8790301002": {
+    "id": 8790301002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Public Sector (Federal, SLED)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8790301002",
+    "firstSeen": "2026-09-30T18:14:55.176Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-09-30T13:25:30-04:00"
+  },
   "greenhouse:8790317002": {
     "id": 8790317002,
     "source": "greenhouse",
@@ -3103,6 +3155,19 @@
     "location": "Remote",
     "compensationRange": null,
     "postedAt": "2026-09-15T14:14:35-04:00"
+  },
+  "greenhouse:8826637002": {
+    "id": 8826637002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Senior Solutions Architect- Sydney ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8826637002",
+    "firstSeen": "2026-09-30T18:14:55.176Z",
+    "status": "pending",
+    "location": "Remote",
+    "compensationRange": null,
+    "postedAt": "2026-09-29T23:01:20-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
