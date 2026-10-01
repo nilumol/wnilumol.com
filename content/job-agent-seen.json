@@ -125,7 +125,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.ashbyhq.com/medscout/76eef9e7-cba9-4c3d-b49b-9346d53e8897",
     "firstSeen": "2026-09-15T17:26:59.393Z",
-    "status": "pending",
+    "status": "expired",
     "location": "US Remote",
     "compensationRange": null,
     "postedAt": "2026-03-30T14:24:04.726+00:00"
@@ -562,7 +562,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5070045007",
     "firstSeen": "2026-08-18T07:30:02.456Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family fits (presales SE running POVs and technical sales for major/enterprise accounts, which matches Winston's Benchling discovery/demo/POC track record), but the technical substance is network security - Zero Trust, firewalls, CCNP/JNCIP/CISSP-type depth - which shares nothing with his SQL/Python/Benchling/Veeva/GMP toolset. It also asks for 10+ years specifically as a Sales Engineer or systems integrator, versus his ~2.5 years in presales, and there is zero life sciences or regulated-biopharma domain overlap. Compensation and seniority are attractive, but he'd be screened out on the security stack.",
     "location": "Remote - Alabama, USA; Remote - Arkansas, USA; Remote - Florida, USA; Remote - Georgia, USA; Remote - Louisiana, USA; Remote - Mississippi, USA; Remote - North Carolina, USA; Remote - Oklahoma, USA; Remote - South Carolina, USA; Remote - Texas, USA",
@@ -1039,7 +1039,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198914007",
     "firstSeen": "2026-08-20T13:42:04.832Z",
-    "status": "scored",
+    "status": "expired",
     "location": "Remote - Texas, USA",
     "compensationRange": "$175,875-$251,250 USD",
     "postedAt": "2026-08-19T16:25:45-04:00",
@@ -2524,7 +2524,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8646549002",
     "firstSeen": "2026-08-18T07:50:11.446Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 5,
     "fitRationale": "Role family is a genuine match on paper - post-sales technical account leadership, discovery workshops, onboarding/enablement, executive stakeholder management and use-case-to-production delivery closely mirror Winston's Benchling SC and Collate Senior Implementations Manager work, and his SQL/Python fluency plus enterprise/strategic account track record fit. However, the posting explicitly demands 7+ years of accountable technical delivery specifically within Data & AI plus solution architecture of distributed data systems (Lakehouse, Unity Catalog, cloud cost tuning), a depth Winston doesn't have beyond SQL demos and general cloud exposure. The vertical is 'Digital Native Business' - startups/tech-first companies - so there is essentially zero life sciences or regulated-industry leverage, which removes his strongest differentiator.",
     "location": "United States",
@@ -3078,6 +3078,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-11T08:56:55-04:00"
   },
+  "greenhouse:8790285002": {
+    "id": 8790285002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Public Sector (SLED)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8790285002",
+    "firstSeen": "2026-10-01T18:40:06.264Z",
+    "status": "pending",
+    "location": "USCA",
+    "compensationRange": null,
+    "postedAt": "2026-10-01T10:20:08-04:00"
+  },
   "greenhouse:8790289002": {
     "id": 8790289002,
     "source": "greenhouse",
@@ -3156,6 +3169,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-15T14:14:35-04:00"
   },
+  "greenhouse:8821959002": {
+    "id": 8821959002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Manager, Delivery Solutions Architects - Financial Services",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8821959002",
+    "firstSeen": "2026-10-01T18:40:06.264Z",
+    "status": "pending",
+    "location": "Illinois; Massachusetts; New York; Texas; Washington, D.C.",
+    "compensationRange": null,
+    "postedAt": "2026-09-30T16:36:13-04:00"
+  },
   "greenhouse:8826637002": {
     "id": 8826637002,
     "source": "greenhouse",
@@ -3168,6 +3194,19 @@
     "location": "Remote",
     "compensationRange": null,
     "postedAt": "2026-09-29T23:01:20-04:00"
+  },
+  "greenhouse:8856826002": {
+    "id": 8856826002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Senior Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8856826002",
+    "firstSeen": "2026-10-01T18:40:06.264Z",
+    "status": "pending",
+    "location": "Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-09-30T15:40:43-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
@@ -3246,7 +3285,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://jobs.lever.co/ethena/961ebde4-46c4-44b6-b502-55fcd56d17b6",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "scored",
+    "status": "expired",
     "location": "Remote",
     "compensationRange": "$95K-$150K",
     "postedAt": "2026-07-09T22:47:03.998Z",
