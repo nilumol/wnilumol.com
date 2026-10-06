@@ -181,7 +181,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.ashbyhq.com/openai/aa17f5f2-0443-404d-9717-96cf06873150",
     "firstSeen": "2026-09-30T18:14:55.176Z",
-    "status": "pending",
+    "status": "expired",
     "location": "US - Remote",
     "compensationRange": "$176K - $234K",
     "postedAt": "2026-09-30T01:34:27.418+00:00"
@@ -421,6 +421,19 @@
     "location": "Hybrid",
     "compensationRange": null,
     "postedAt": "2026-09-22T01:55:32-04:00"
+  },
+  "greenhouse:8259302": {
+    "id": 8259302,
+    "source": "greenhouse",
+    "company": "Smartsheet",
+    "title": "Principal Customer Success Manager - West",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://job-boards.greenhouse.io/smartsheet/jobs/8259302",
+    "firstSeen": "2026-10-06T18:44:38.007Z",
+    "status": "pending",
+    "location": "Bellevue, WA, USA",
+    "compensationRange": null,
+    "postedAt": "2026-10-06T13:47:42-04:00"
   },
   "greenhouse:4693446006": {
     "id": 4693446006,
@@ -742,7 +755,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5196229007",
     "firstSeen": "2026-08-18T07:30:21.378Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family fits well - presales SE work with technical demos, discovery, POCs/evaluation test plans, and matrixed GTM collaboration mirrors Winston's Benchling experience. But the substance is deep cybersecurity/data protection: 3+ years selling security/networking, web technologies, and Zscaler/competitive DLP tooling, none of which appears in his stack (SQL, Python, Veeva, Benchling, SAP, MES). Zero life sciences or biopharma adjacency, and the 'Principal Specialist' level presumes domain-specific security depth he'd have to build from scratch.",
     "location": "Remote - D.C., USA; Remote - Maryland, USA; Remote - Massachusetts, USA; Remote - New Jersey, USA; Remote - New York, USA; Remote - Virginia, USA",
@@ -1325,6 +1338,19 @@
     "location": "Remote - Minnesota, USA",
     "compensationRange": null,
     "postedAt": "2026-09-25T21:16:04-04:00"
+  },
+  "greenhouse:5250686007": {
+    "id": 5250686007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Manager, Sales Engineering - Federal DoW",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5250686007",
+    "firstSeen": "2026-10-06T18:44:38.007Z",
+    "status": "pending",
+    "location": "Remote - Maryland, USA; Remote - Virginia, USA",
+    "compensationRange": null,
+    "postedAt": "2026-10-06T12:05:46-04:00"
   },
   "greenhouse:5783377004": {
     "id": 5783377004,
@@ -2082,7 +2108,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8568031002",
     "firstSeen": "2026-08-27T22:44:08.740Z",
-    "status": "pending",
+    "status": "expired",
     "location": "San Francisco, California",
     "compensationRange": null,
     "postedAt": "2026-08-26T14:47:55-04:00"
@@ -2129,6 +2155,19 @@
     "location": "Nevada; Remote - California; Remote - Colorado; Remote - Oregon; Remote - Washington",
     "compensationRange": "$180,000 - $247,500 USD",
     "postedAt": "2026-08-03T11:56:12-04:00"
+  },
+  "greenhouse:8570084002": {
+    "id": 8570084002,
+    "source": "greenhouse",
+    "company": "Komodo Health",
+    "title": "Senior Salesforce Solutions Consultant ",
+    "keywordFamily": "Solutions Consultant",
+    "absoluteUrl": "https://job-boards.greenhouse.io/komodohealth/jobs/8570084002",
+    "firstSeen": "2026-10-06T18:44:38.007Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-06-09T10:02:41-04:00"
   },
   "greenhouse:8583085002": {
     "id": 8583085002,
