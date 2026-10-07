@@ -1067,7 +1067,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5199283007",
     "firstSeen": "2026-08-18T07:30:52.712Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "The role family is a strong match - technical presentations, requirements gathering, POC/evaluation design and 10+ years of SE/SC experience all mirror Winston's Benchling presales work, and the Healthcare/SLED vertical gives faint regulated-industry adjacency. However, the minimum qualification of proven experience selling network security technologies (SD-WAN, SWG, proxies, firewalls, SSL/IPsec VPNs, DLP) plus preferred CISSP/CCNP/CCIE certs is a hard stack gap - his toolset is SQL, Python, Veeva, Benchling, MES/DeltaV, not network infrastructure. Healthcare here means hospital/SLED IT security buyers, not biopharma R&D or GMP stakeholders, so his domain SME value largely doesn't transfer.",
     "location": "AMS - Update Location; Remote - Alabama, USA; Remote - Connecticut, USA; Remote - D.C., USA; Remote - Delaware, USA; Remote - Florida, USA; Remote - Georgia, USA; Remote - Indiana, USA; Remote - Kentucky, USA; Remote - Maine, USA; Remote - Maryland, USA; Remote - Massachusetts, USA; Remote - Michigan, USA; Remote - Mississippi, USA; Remote - New Hampshire, USA; Remote - New Jersey, USA; Remote - New York, USA; Remote - North Carolina, USA; Remote - Ohio, USA; Remote - Pennsylvania, USA; Remote - Rhode Island, USA; Remote - South Carolina, USA; Remote - Tennessee, USA; Remote - Vermont, USA; Remote - Virginia, USA; Remote - West Virginia, USA",
@@ -1351,6 +1351,19 @@
     "location": "Remote - Maryland, USA; Remote - Virginia, USA",
     "compensationRange": null,
     "postedAt": "2026-10-06T12:05:46-04:00"
+  },
+  "greenhouse:5252244007": {
+    "id": 5252244007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Manager, Commercial Sales Engineering - West",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5252244007",
+    "firstSeen": "2026-10-07T19:10:50.473Z",
+    "status": "pending",
+    "location": "Remote - USA",
+    "compensationRange": null,
+    "postedAt": "2026-10-07T12:51:16-04:00"
   },
   "greenhouse:5783377004": {
     "id": 5783377004,
@@ -2057,6 +2070,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-16T12:09:47-04:00"
   },
+  "greenhouse:8567972002": {
+    "id": 8567972002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Senior Solutions Architect - Retail, Consumer Goods, Travel & Hospitality ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8567972002",
+    "firstSeen": "2026-10-07T19:10:50.473Z",
+    "status": "pending",
+    "location": "Atlanta, Georgia; Charlotte, North Carolina; Southeast - United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-06T15:36:59-04:00"
+  },
   "greenhouse:8567976002": {
     "id": 8567976002,
     "source": "greenhouse",
@@ -2295,7 +2321,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8607059002",
     "firstSeen": "2026-08-22T13:27:16.487Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Charlotte, North Carolina; Raleigh, North Carolina; Remote - North Carolina",
     "compensationRange": null,
     "postedAt": "2026-07-13T14:03:03-04:00"
@@ -2314,6 +2340,19 @@
     "location": "Denver, Colorado; Los Angeles, California; Nevada; San Francisco, California; United States; Utah",
     "compensationRange": null,
     "postedAt": "2026-08-13T14:32:41-04:00"
+  },
+  "greenhouse:8615016002": {
+    "id": 8615016002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Retail, Consumer Goods, Travel & Hospitality ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8615016002",
+    "firstSeen": "2026-10-07T19:10:50.473Z",
+    "status": "pending",
+    "location": "Central - United States; Northeast - United States; Remote - New York; Southeast - United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-06T16:02:40-04:00"
   },
   "greenhouse:8615045002": {
     "id": 8615045002,
@@ -2700,6 +2739,19 @@
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-09-14T23:51:07-04:00"
+  },
+  "greenhouse:8735545002": {
+    "id": 8735545002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8735545002",
+    "firstSeen": "2026-10-07T19:10:50.473Z",
+    "status": "pending",
+    "location": "Atlanta, Georgia; Remote - Colorado; Remote - Texas",
+    "compensationRange": null,
+    "postedAt": "2026-10-06T15:33:30-04:00"
   },
   "greenhouse:8735549002": {
     "id": 8735549002,
@@ -3104,6 +3156,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-08T22:39:18-04:00"
   },
+  "greenhouse:8782816002": {
+    "id": 8782816002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8782816002",
+    "firstSeen": "2026-10-07T19:10:50.473Z",
+    "status": "pending",
+    "location": "Central - United States; Remote - Texas",
+    "compensationRange": null,
+    "postedAt": "2026-10-06T15:48:26-04:00"
+  },
   "greenhouse:8788266002": {
     "id": 8788266002,
     "source": "greenhouse",
@@ -3208,6 +3273,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-15T14:14:35-04:00"
   },
+  "greenhouse:8819053002": {
+    "id": 8819053002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Senior Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8819053002",
+    "firstSeen": "2026-10-07T19:10:50.473Z",
+    "status": "pending",
+    "location": "Austin, Texas; Chicago, Illinois; Dallas, Texas; Phoenix, Arizona; United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-06T15:31:07-04:00"
+  },
   "greenhouse:8821959002": {
     "id": 8821959002,
     "source": "greenhouse",
@@ -3247,6 +3325,32 @@
     "compensationRange": null,
     "postedAt": "2026-09-30T15:40:43-04:00"
   },
+  "greenhouse:8862046002": {
+    "id": 8862046002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Senior Director, Global SME Solutions Architecture",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8862046002",
+    "firstSeen": "2026-10-07T19:10:50.473Z",
+    "status": "pending",
+    "location": "Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-07T12:28:26-04:00"
+  },
+  "greenhouse:8862137002": {
+    "id": 8862137002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Digital Native Business (Fintech)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8862137002",
+    "firstSeen": "2026-10-07T19:10:50.473Z",
+    "status": "pending",
+    "location": "New Jersey; Remote - Illinois; Remote - Massachusetts; Remote - New York; Remote - North Carolina; Remote - Pennsylvania; Remote - Texas",
+    "compensationRange": null,
+    "postedAt": "2026-10-07T11:53:59-04:00"
+  },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
     "source": "lever",
@@ -3261,6 +3365,19 @@
     "postedAt": "2026-05-29T21:09:21.237Z",
     "fitScore": 7,
     "fitRationale": "Senior Client Partner for Veeva's Ostro platform serving pharmaceutical companies - strong life-sciences domain and appropriate seniority, though centered on executive relationship-building rather than the technical discovery/demo work he's best known for."
+  },
+  "lever:6d479321-f2ec-4b30-98dd-d40b2dfc652c": {
+    "id": "6d479321-f2ec-4b30-98dd-d40b2dfc652c",
+    "source": "lever",
+    "company": "Veeva",
+    "title": "Customer Success Manager - CRM Suite",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://jobs.lever.co/veeva/6d479321-f2ec-4b30-98dd-d40b2dfc652c",
+    "firstSeen": "2026-10-07T19:10:50.473Z",
+    "status": "pending",
+    "location": "Massachusetts - Boston",
+    "compensationRange": null,
+    "postedAt": "2026-07-16T20:09:05.823Z"
   },
   "lever:6e838fc4-565a-45cc-b00c-bf6c8668035e": {
     "id": "6e838fc4-565a-45cc-b00c-bf6c8668035e",
@@ -3367,7 +3484,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/windfalldata/d309d40d-0325-4913-820f-832089865db0",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "scored",
+    "status": "expired",
     "location": "San Francisco",
     "compensationRange": "$110K-$168K",
     "postedAt": "2023-08-31T17:05:48.810Z",
