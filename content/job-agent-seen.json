@@ -1256,7 +1256,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5225793007",
     "firstSeen": "2026-09-02T16:57:20.200Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - California, USA",
     "compensationRange": null,
     "postedAt": "2026-09-02T11:07:32-04:00"
@@ -3350,6 +3350,19 @@
     "location": "New Jersey; Remote - Illinois; Remote - Massachusetts; Remote - New York; Remote - North Carolina; Remote - Pennsylvania; Remote - Texas",
     "compensationRange": null,
     "postedAt": "2026-10-07T11:53:59-04:00"
+  },
+  "greenhouse:8877968002": {
+    "id": 8877968002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Digital Native Business, Named Accounts",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8877968002",
+    "firstSeen": "2026-10-08T19:06:56.792Z",
+    "status": "pending",
+    "location": "Northeast - United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-08T13:35:10-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
