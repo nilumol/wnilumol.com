@@ -1641,7 +1641,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8407197002",
     "firstSeen": "2026-08-18T07:47:30.489Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "The role family (pre-sales Solutions Architect paired with an AE, demos, workshops, roadmap influence) genuinely matches Winston's Benchling experience, and SQL/Python plus GCP exposure are light overlaps. But the core bar is 10+ years of transactional database (OLTP) engineering/administration depth — HA/DR, backup and recovery, scale-out, vendor-to-vendor and on-prem-to-cloud migrations — plus tier-3 escalation ownership, none of which appear anywhere in his background; he is a life-sciences domain SC, not a database platform specialist. Databricks also brings no biopharma/regulated-industry framing here, so his 21 CFR Part 11/GMP differentiation is unusable.",
     "location": "United States",
@@ -2203,7 +2203,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8583085002",
     "firstSeen": "2026-08-18T07:52:45.072Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 6,
     "fitRationale": "Strong role-family match: this is a true enterprise pre-sales Solutions Architect role centered on technical discovery, executive influence, POC oversight and >$1M ARR accounts, which maps directly to Winston's Strategic Enterprise SC work at Benchling. Gaps are the domain and technical depth - the vertical is industrial/discrete manufacturing in Wisconsin/Minnesota rather than biopharma (his GMP manufacturing background is only loosely adjacent), and the posting expects production programming (Python/R/Scala/Java) plus deep big-data/ML/cloud platform fluency that goes beyond his SQL-driven demo and Tableau/Python scripting experience. Seniority and value-selling expectations line up well, but location and the lakehouse/data-engineering technical bar pull the fit down.",
     "location": "Central - United States",
@@ -3143,6 +3143,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-01T13:10:13-04:00"
   },
+  "greenhouse:8770661002": {
+    "id": 8770661002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Senior Solutions Architect Operations Manager ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8770661002",
+    "firstSeen": "2026-10-09T18:38:04.393Z",
+    "status": "pending",
+    "location": "Remote, Canada; Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-09T12:58:49-04:00"
+  },
   "greenhouse:8782711002": {
     "id": 8782711002,
     "source": "greenhouse",
@@ -3325,6 +3338,19 @@
     "compensationRange": null,
     "postedAt": "2026-09-30T15:40:43-04:00"
   },
+  "greenhouse:8859538002": {
+    "id": 8859538002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8859538002",
+    "firstSeen": "2026-10-09T18:38:04.393Z",
+    "status": "pending",
+    "location": "San Francisco, California; Seattle, Washington",
+    "compensationRange": null,
+    "postedAt": "2026-10-08T23:44:44-04:00"
+  },
   "greenhouse:8862046002": {
     "id": 8862046002,
     "source": "greenhouse",
@@ -3420,6 +3446,19 @@
     "compensationRange": null,
     "postedAt": "2026-05-29T21:10:47.485Z"
   },
+  "lever:49a25b69-56f9-49c4-918b-6e70ab180c94": {
+    "id": "49a25b69-56f9-49c4-918b-6e70ab180c94",
+    "source": "lever",
+    "company": "Veeva",
+    "title": "Customer Success Manager - Commercial Content",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://jobs.lever.co/veeva/49a25b69-56f9-49c4-918b-6e70ab180c94",
+    "firstSeen": "2026-10-09T18:38:04.394Z",
+    "status": "pending",
+    "location": "Pennsylvania - Philadelphia",
+    "compensationRange": null,
+    "postedAt": "2026-10-08T21:55:32.839Z"
+  },
   "lever:87c8a056-1cb0-4b33-bd1e-2144acf1821c": {
     "id": "87c8a056-1cb0-4b33-bd1e-2144acf1821c",
     "source": "lever",
@@ -3433,6 +3472,32 @@
     "compensationRange": null,
     "postedAt": "2026-07-08T21:44:37.737Z"
   },
+  "lever:95cfeb57-342a-4921-bab0-0f75adc43042": {
+    "id": "95cfeb57-342a-4921-bab0-0f75adc43042",
+    "source": "lever",
+    "company": "Veeva",
+    "title": "Customer Success Manager - Commercial Content",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://jobs.lever.co/veeva/95cfeb57-342a-4921-bab0-0f75adc43042",
+    "firstSeen": "2026-10-09T18:38:04.394Z",
+    "status": "pending",
+    "location": "Illinois - Chicago",
+    "compensationRange": null,
+    "postedAt": "2026-10-08T21:54:33.995Z"
+  },
+  "lever:183bf848-398b-4459-934e-2f2ca5793114": {
+    "id": "183bf848-398b-4459-934e-2f2ca5793114",
+    "source": "lever",
+    "company": "Veeva",
+    "title": "Customer Success Manager - Commercial Content",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://jobs.lever.co/veeva/183bf848-398b-4459-934e-2f2ca5793114",
+    "firstSeen": "2026-10-09T18:38:04.394Z",
+    "status": "pending",
+    "location": "Massachusetts - Boston",
+    "compensationRange": null,
+    "postedAt": "2026-10-08T21:56:11.202Z"
+  },
   "lever:561c5970-3593-45e1-bb89-97e556c5ff73": {
     "id": "561c5970-3593-45e1-bb89-97e556c5ff73",
     "source": "lever",
@@ -3445,6 +3510,19 @@
     "location": "Pennsylvania - Philadelphia",
     "compensationRange": null,
     "postedAt": "2025-07-08T18:57:17.733Z"
+  },
+  "lever:579e0618-1cf5-46d7-a6cd-3360c66103f9": {
+    "id": "579e0618-1cf5-46d7-a6cd-3360c66103f9",
+    "source": "lever",
+    "company": "Veeva",
+    "title": "Customer Success Manager - Quality",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://jobs.lever.co/veeva/579e0618-1cf5-46d7-a6cd-3360c66103f9",
+    "firstSeen": "2026-10-09T18:38:04.394Z",
+    "status": "pending",
+    "location": "Illinois - Chicago",
+    "compensationRange": null,
+    "postedAt": "2026-10-08T19:46:27.636Z"
   },
   "lever:961ebde4-46c4-44b6-b502-55fcd56d17b6": {
     "id": "961ebde4-46c4-44b6-b502-55fcd56d17b6",
@@ -3488,6 +3566,32 @@
     "postedAt": "2026-07-08T21:43:32.804Z",
     "fitScore": 7,
     "fitRationale": "Principal Client Services role for Veeva's Ostro brand-engagement platform serving life-sciences/pharma clients - strong domain fit and appropriate senior title, though it's an account-ownership/ROI role rather than the technical demo-driven work that's his strongest track record."
+  },
+  "lever:bf77c839-0073-4fe8-957b-1572f746a6ab": {
+    "id": "bf77c839-0073-4fe8-957b-1572f746a6ab",
+    "source": "lever",
+    "company": "Veeva",
+    "title": "Customer Success Manager - Quality",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://jobs.lever.co/veeva/bf77c839-0073-4fe8-957b-1572f746a6ab",
+    "firstSeen": "2026-10-09T18:38:04.394Z",
+    "status": "pending",
+    "location": "Pennsylvania - Philadelphia",
+    "compensationRange": null,
+    "postedAt": "2026-10-08T19:48:19.518Z"
+  },
+  "lever:d0cc2938-21fa-43dd-9d55-12dddad5a10e": {
+    "id": "d0cc2938-21fa-43dd-9d55-12dddad5a10e",
+    "source": "lever",
+    "company": "Veeva",
+    "title": "Customer Success Manager - Quality",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://jobs.lever.co/veeva/d0cc2938-21fa-43dd-9d55-12dddad5a10e",
+    "firstSeen": "2026-10-09T18:38:04.394Z",
+    "status": "pending",
+    "location": "Massachusetts - Boston",
+    "compensationRange": null,
+    "postedAt": "2026-10-08T21:23:06.794Z"
   },
   "lever:d309d40d-0325-4913-820f-832089865db0": {
     "id": "d309d40d-0325-4913-820f-832089865db0",
