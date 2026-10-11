@@ -1835,7 +1835,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8511491002",
     "firstSeen": "2026-08-18T07:39:21.151Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 5,
     "fitRationale": "Role family is a decent match - post-sale technical account leadership blending solutions architecture, implementation/onboarding, and customer success maps to Winston's Benchling SC and Collate implementations work, and his discovery workshops, exec stakeholder management, and program delivery track record (Genentech $50M CapEx, 30+ implementation projects) all read well. The killer gaps are domain and depth: this is the Retail vertical with zero biopharma/regulated-industry adjacency, and Databricks expects 5+ years accountable for Data & AI technical delivery plus real understanding of distributed data systems - Winston's SQL/Python fluency is demo- and analysis-level, not lakehouse architecture level. Strong comp and enterprise-strategic account framing keep it from scoring lower, but he'd be competing against candidates with hands-on data platform delivery experience.",
     "location": "Denver, Colorado; West Coast - United States",
