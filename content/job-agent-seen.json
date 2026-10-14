@@ -1391,6 +1391,19 @@
     "compensationRange": null,
     "postedAt": "2026-10-12T22:09:45-04:00"
   },
+  "greenhouse:5262887007": {
+    "id": 5262887007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer, Majors - West",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5262887007",
+    "firstSeen": "2026-10-14T17:45:03.442Z",
+    "status": "pending",
+    "location": "Remote - California, USA",
+    "compensationRange": null,
+    "postedAt": "2026-10-13T21:36:13-04:00"
+  },
   "greenhouse:5783377004": {
     "id": 5783377004,
     "source": "greenhouse",
@@ -1654,7 +1667,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8407186002",
     "firstSeen": "2026-08-26T13:50:56.493Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Dallas, Texas; Missouri; Remote - Missouri; Remote - Texas; St. Louis, Missouri; Texas; United States",
     "compensationRange": null,
     "postedAt": "2026-02-18T11:32:37-05:00"
