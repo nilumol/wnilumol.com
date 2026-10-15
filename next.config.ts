@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  rewrites() {
+    return [{ source: "/halsey-intro", destination: "/halsey-intro.html" }];
+  },
   // puppeteer-core + @sparticuz/chromium (Tailor My Profile's PDF route) must not be
   // bundled/tree-shaken - they resolve their own binary paths at runtime.
   serverExternalPackages: ["@sparticuz/chromium", "puppeteer-core"],
