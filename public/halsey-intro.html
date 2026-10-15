@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Halsey: my AI chief of staff</title>
-<meta name="description" content="A write-up of Halsey, an AI chief of staff: check-ins, a records log, thesis-first research, strategy, goals and values, and how it's being built and tested.">
+<meta name="description" content="Halsey, my AI chief of staff: what is built, what is planned, and how I'm testing the design for check-ins, research, goals, and records.">
 <style>
 :root {
   --paper: #f7f4ee; --card: #fffdf9; --ink: #1d1b18; --ink-2: #4f4a43; --ink-3: #857f75;
@@ -91,10 +91,10 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 
 <h2 id="what">What Halsey is</h2>
 <p>Halsey is a chief of staff, and I mean that in the specific sense. A good chief of staff doesn't do the principal's job, and doesn't build the company's products. It keeps the principal's attention on what matters. It tracks commitments, notices when something is slipping, researches before recommending, pushes back when a plan doesn't fit, and hands work to the right people. It also remembers what was decided and why.</p>
-<p>That's the job I gave Halsey. It thinks, researches, judges, strategizes, summarizes, records my data, and analyzes it to tell me whether I'm on track. And it keeps working to understand what I'm actually after: my longer-term goals, the milestones on the way, and the values behind them.</p>
-<p>Halsey was inspired by Firstmate, the agent that already manages my software projects, and it hands anything that needs building to that agent rather than writing software itself.</p>
-<p>That last point is a deliberate line, not a limitation. Halsey makes things I read: a daily page, a weekly review, reports, spreadsheets, charts, and briefings, all generated from its own data and fixed templates. When its own analysis needs a quick calculation, it may write and run a small throwaway script in a sandbox. But anything that has to be kept, runs on a schedule, is depended on by something else, or connects to something new goes to the builder. There, it gets built properly, reviewed automatically, and checked by Halsey against what I actually asked for before I ever see it.</p>
-<p>Three rules hold everywhere:</p>
+<p>That's the job I designed for Halsey. Today I can talk with it and set it up. The fuller design calls for it to research, judge, strategize, summarize, record my data, and analyze whether I'm on track. It is meant to keep working to understand what I'm actually after: my longer-term goals, the milestones on the way, and the values behind them.</p>
+<p>Halsey was inspired by Firstmate, the agent that already manages my software projects. In the design, Halsey hands anything that needs building to that agent rather than writing software itself.</p>
+<p>That last point is a deliberate line, not a limitation. The plan is for Halsey to make things I read: a daily page, a weekly review, reports, spreadsheets, charts, and briefings, all generated from its own data and fixed templates. When its own analysis needs a quick calculation, it may write and run a small throwaway script in a sandbox. But anything that has to be kept, runs on a schedule, is depended on by something else, or connects to something new goes to the builder. There, it gets built properly, reviewed automatically, and checked by Halsey against what I actually asked for before I ever see it.</p>
+<p>Three rules guide the design:</p>
 <ul>
 <li><b>Every number says where it came from.</b> It was counted from an agent's records, I told Halsey in a check-in, or it's a flagged estimate. Time spent is never assumed to be measured, and a number nobody reported shows as "not reported", never as zero.</li>
 <li><b>Halsey asks; it never overrules.</b> It can propose a change to my goals, challenge a plan, or question whether a goal still fits me. Nothing about my goals, values, or its own rules changes without my explicit Accept.</li>
@@ -118,7 +118,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <path class="d-line" d="M360 224 V254"/><path class="d-arrow" d="M354 248 L360 258 L366 248 Z"/>
 <text class="d-small" x="372" y="246">reports up · requests down</text>
 <rect class="d-box" x="10" y="258" width="222" height="70" rx="12"/><text class="d-txt" x="26" y="288">The builder</text><text class="d-sub" x="26" y="310">builds all software</text>
-<rect class="d-box" x="249" y="258" width="222" height="70" rx="12"/><text class="d-txt" x="265" y="288">Job search agent</text><text class="d-sub" x="265" y="310">planned</text>
+<rect class="d-box" x="249" y="258" width="222" height="70" rx="12"/><text class="d-txt" x="265" y="288">Job search agent</text><text class="d-sub" x="265" y="310">connection planned</text>
 <rect class="d-box" x="488" y="258" width="222" height="70" rx="12"/><text class="d-txt" x="504" y="288">Study coach, and more</text><text class="d-sub" x="504" y="310">later</text>
 <path class="d-line" d="M360 328 V352"/><path class="d-arrow" d="M354 346 L360 356 L366 346 Z"/>
 <rect class="d-box" x="10" y="356" width="700" height="54" rx="12" stroke-dasharray="5 4"/>
@@ -126,7 +126,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 </svg></div>
 <figcaption>Only two things have to be right from day one: the layer boundaries, and the contract between Halsey and the agents.</figcaption>
 </figure>
-<p>That contract is a small, versioned file format I call an <b>Area Report</b>. Each agent writes one for its area of my life every period. It holds the numbers tied to my goals, each with its source; what happened, how, and with what results; anything waiting on me; the questions it needs me to answer, because its records can't; and the changes it would suggest. Going the other way, an <b>Area Request</b> asks an agent to change how it works.</p>
+<p>The planned contract is a small, versioned file format I call an <b>Area Report</b>. Each agent would write one for its area of my life every period. It would hold the numbers tied to my goals, each with its source; what happened, how, and with what results; anything waiting on me; the questions it needs me to answer, because its records can't; and the changes it would suggest. Going the other way, an <b>Area Request</b> would ask an agent to change how it works.</p>
 <p>The format only grows by adding optional fields, so an old report keeps working when the format gains something new. A report that fails validation is set aside with its reason, never half-read.</p>
 <p>Keeping the interface this narrow is what lets new agents plug in later. A health agent, a study coach, or an agent living inside my spreadsheets would each just be one more thing that files a report.</p>
 
@@ -146,7 +146,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 
 <h2 id="checkins">Check-ins: four short conversations a day</h2>
 <p>The numbers that matter most are often the ones no system records: how long I actually spent on the job search, whether I studied, what came up in a conversation. My first design asked for them with a one-tap prompt every morning. That was efficient and shallow: three quick answers, and nothing that could get to <i>why</i> something was stuck.</p>
-<p>So check-ins are now conversations. Halsey checks in four times a day:</p>
+<p>So the planned check-ins are conversations. The design calls for four a day:</p>
 <figure>
 <div class="fig-scroll"><svg viewBox="0 0 720 200" role="img" aria-labelledby="fig2t">
 <title id="fig2t">A day of check-ins at 9:00, 13:00, 17:00, and 21:00</title>
@@ -182,7 +182,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <p>This is the most expensive part of the design, and I want to be honest about it. I estimate four conversations a day would take 10 to 20 minutes, up from an estimated 30 seconds of tapping in my first design. My model-input estimate is roughly half a million to a million tokens a day, most of it repeated context. While designing this, I actually hit my plan's usage limit. Whether the depth is worth that is exactly what the first weeks of use will answer.</p>
 
 <h2 id="log">The records log: the tracker I don't keep</h2>
-<p>I don't keep a tracker in a notes app or a spreadsheet. I've tried, and it lasts about a week. So Halsey is the tracker. I mention things in plain conversation, like "applied to one through a referral" or "had coffee with a former colleague who might refer me", and Halsey turns them into structured entries in a local database: a category, the fields that category needs, a date, and where the entry came from, including my own words.</p>
+<p>I don't keep a tracker in a notes app or a spreadsheet. I've tried, and it lasts about a week. The records log is meant to make Halsey the tracker. I would mention things in plain conversation, like "applied to one through a referral" or "had coffee with a former colleague who might refer me", and Halsey would turn them into structured entries in a local database: a category, the fields that category needs, a date, and where the entry came from, including my own words.</p>
 <p>It works like this:</p>
 <ul>
 <li><b>Plain facts are saved immediately</b>, with a one-line read-back I can correct. "Logged: application · company website · yesterday. Say fix to change it."</li>
@@ -190,7 +190,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <li><b>It never logs from inference.</b> Only what I said, or what an agent reported, becomes an entry.</li>
 <li><b>Corrections are just conversation</b> ("that was Tuesday, not Monday"), and every change is kept in a history. A deleted entry can be restored for 30 days, then it's gone for good.</li>
 </ul>
-<p>Then I can ask for overviews whenever I want: everything I did this week, or every application with how I applied and what came of it. These are answered by plain database queries, so the AI only words the answer. It doesn't compute it.</p>
+<p>The design would then let me ask for overviews whenever I want: everything I did this week, or every application with how I applied and what came of it. These would be answered by plain database queries, so the AI would only word the answer. It wouldn't compute it.</p>
 <p>The subtle part is counting. Say I mark an application in the job agent's tracker on Monday, then mention the same application in Tuesday's check-in with the detail that it came through a referral. That's one application, not two. Halsey matches entries by a shared identifier when there is one. When it only <i>probably</i> matches (same company, similar role, a day apart), it asks me instead of merging silently. Four applications from the agent plus one I only mentioned makes five, not six.</p>
 <p>The log is also not a journal. It holds facts: what I did and what happened. Reflection stays out of it unless I explicitly ask to keep something.</p>
 
@@ -241,12 +241,12 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 
 <h2 id="strategy">Strategy for open-ended goals</h2>
 <p>"Pass the exam by December" is a structured goal: there's a syllabus, a practice score, and a date. "Land a new role in two to four months" is open-ended. Nobody hands you the plan, and working harder at the wrong stage doesn't help.</p>
-<p>For open-ended goals, Halsey writes a strategy: the approach, milestones, and three to five KPIs, with targets that come from checked research, not from vibes. For a job search, those would be stage-by-stage conversion rates: applications to first screens, screens to interviews, interviews to offers. It tracks them weekly. When a KPI misses, it works out <b>which stage is failing and why</b>, using my own data first. Are the roles a good fit? How many applications were tailored? How many came through referrals? Then it proposes options, each labeled by where the evidence comes from: research, Halsey's judgment, or my data.</p>
+<p>The planned strategy workflow would give open-ended goals an approach, milestones, and three to five KPIs, with targets that come from checked research, not from vibes. For a job search, those would be stage-by-stage conversion rates: applications to first screens, screens to interviews, interviews to offers. Halsey would track them weekly. When a KPI misses, it would work out <b>which stage is failing and why</b>, using my own data first. Are the roles a good fit? How many applications were tailored? How many came through referrals? Then it would propose options, each labeled by where the evidence comes from: research, Halsey's judgment, or my data.</p>
 <p>An approved change runs as a small <b>experiment</b>: one change, one number to watch, and a date to check. If the reply rate is flat after two weeks of tailoring, that's evidence too. What Halsey learns goes into a playbook for that area, with sources and confidence levels that get updated as my own results arrive. That's how Halsey is meant to get genuinely better at helping me over time, not just more verbose.</p>
 
 <h2 id="values">Goals and values, as a continuous job</h2>
 <p>A chief of staff that only asks "are you hitting the number?" is a very expensive spreadsheet. The more useful question is whether the number is still the right one.</p>
-<p>So understanding my goals and values isn't a quarterly exercise. It's one of Halsey's standing jobs. It keeps working out my longer-term goals and milestones, and the values behind them, from four sources:</p>
+<p>In the full design, understanding my goals and values isn't a quarterly exercise. It is one of Halsey's standing jobs. Halsey would keep working out my longer-term goals and milestones, and the values behind them, from four sources:</p>
 <ul>
 <li>the check-in conversations, which are the main source and a big reason check-ins became conversations;</li>
 <li>the weekly review;</li>
@@ -257,7 +257,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <p>The guardrails haven't moved. Halsey proposes wording for a goal, a milestone, or a value. Only my Accept writes it down. The alignment signal is a question, never a verdict, and Halsey never pauses or reprioritizes a goal on its own. Its observations are kept separately and labeled as its understanding, never presented as my values.</p>
 
 <h2 id="weekly">The weekly review</h2>
-<p>Once a week, Halsey steps back. The review has a fixed shape:</p>
+<p>The planned weekly review would give Halsey a fixed way to step back:</p>
 <ul>
 <li>A <b>scorecard</b> for every goal: each number against its target, with its source and its change since last week.</li>
 <li><b>Halsey's read:</b> a short paragraph on what actually moved and why. It's the kind of observation I'd never make myself, like "you're one application short, but the bigger leak is earlier: three good postings closed before you looked at them."</li>
@@ -269,7 +269,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 
 <h2 id="artifacts">Reports that line up week to week</h2>
 <p>If a weekly report is written freehand by a model, you can't compare two weeks of it. Sections move, numbers get rounded differently, and every so often a number appears that nobody can trace.</p>
-<p>So every report Halsey makes has a fixed, versioned structure. Each type, whether a weekly scorecard, a report, a chart, a dashboard, or a briefing, has a schema with the same sections and columns every week. Everything is shaped as tables, so it maps straight onto a spreadsheet sheet or a database table.</p>
+<p>The plan gives every report Halsey makes a fixed, versioned structure. Each type, whether a weekly scorecard, a report, a chart, a dashboard, or a briefing, would have a schema with the same sections and columns every week. Everything would be shaped as tables, so it maps straight onto a spreadsheet sheet or a database table.</p>
 <ul>
 <li><b>Numbers come only from Halsey's own records</b>, filled in by named queries. The model never writes a number into a table.</li>
 <li><b>The model fills only named text fields</b>, like a 90-word "Halsey's read" or a 40-word "one change to try". A check rejects any number in that text that doesn't match a cell in the tables.</li>
@@ -278,7 +278,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <p>The weekly scorecard, for example, is a spreadsheet with a Scorecard sheet (goal, metric, value, target, status, source, change since last week), plus sheets for alignment, running experiments, a summary of the records log, and the notes. The columns are the same in week 12 as in week 1. That's what makes the trend real.</p>
 
 <h2 id="authority">What Halsey does alone, and what needs me</h2>
-<p>An assistant that asks permission for everything is useless, and one that asks for nothing is dangerous. Halsey's authority is written down in a short charter that I approve, and its scripts enforce it. It isn't just a prompt it could talk itself out of.</p>
+<p>An assistant that asks permission for everything is useless, and one that asks for nothing is dangerous. The design calls for Halsey's authority to be written down in a short charter that I approve, with scripts to enforce it. It isn't meant to be just a prompt it could talk itself out of.</p>
 <div class="table"><table>
 <thead><tr><th>On its own</th><th>After one approval</th><th>Always my call</th><th>Never</th></tr></thead>
 <tbody><tr>
@@ -301,12 +301,12 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <p>Halsey also knows when to stop. If the round limit is reached, the same item fails twice in a row, or a question comes up that only I can answer, it escalates. It tells me what passed, what failed, what was tried, and what my options are, instead of looping forever. The design calls for two independent reviews before anything reaches me: one on the code, and one against the goal.</p>
 
 <h2 id="better">Getting better on purpose</h2>
-<p>Every assistant hits things it can't do. The usual failure is to improvise quietly or fail silently. Halsey logs a <b>capability gap</b> instead, with evidence: what it tried to do, what was missing (a skill, a script, some data, or some access), and which goal it affected.</p>
+<p>Every assistant hits things it can't do. The usual failure is to improvise quietly or fail silently. The plan has Halsey log a <b>capability gap</b> instead, with evidence: what it tried to do, what was missing (a skill, a script, some data, or some access), and which goal it affected.</p>
 <p>It proposes a fix only when the gap is worth it. Either the gap blocks a goal's number outright, or the same gap has come up three or more times in four weeks. Otherwise it keeps watching, and a gap that doesn't recur fades away. When it does propose, it proposes the <b>smallest</b> fix: a new check-in question beats a new script, and a written procedure beats new code. A knowledge gap, like having no playbook for salary negotiation, becomes a research run rather than a build.</p>
 <p>The throwaway scripts feed this too. If Halsey writes the same one-off calculation for the third time in a month, that's a repeated need. It proposes a proper, tested version, and that goes through the builder like any other build. Access gaps, like wanting to read my calendar, are never self-granted. They're always my decision, with a note on what data would flow where.</p>
 
 <h2 id="memory">Memory that stays small</h2>
-<p>Long-running assistants tend to drown in their own notes. Halsey's memory has three tiers:</p>
+<p>Long-running assistants tend to drown in their own notes. The planned memory has three tiers:</p>
 <ul>
 <li>a small <b>hot</b> set, loaded every session under a fixed size budget: its rules, my goals, pinned facts, and a digest of today;</li>
 <li>a <b>warm</b> set it loads only when a task needs it: recent reviews, the decision log, playbooks;</li>
@@ -324,7 +324,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <p><b>Sunday.</b> The weekly review: a scorecard with the same columns as every week, Halsey's read on what moved, two proposed changes and one challenge, a check-up on the tailoring experiment, and one question about whether a side project still fits what I said I care about. The records log answers "what did I actually do this week?" in one query. I accept one proposal, decline another, and answer the question in my own words. That answer goes into the decision log, so Halsey won't ask it again unless something changes.</p>
 
 <h2 id="privacy">Where the data goes</h2>
-<p>Halsey keeps its records on my own laptop. Its goals, values, records log, and metrics live in local files and small local databases. There's no cloud service in between. But I'm not going to pretend nothing leaves the machine:</p>
+<p>The design keeps Halsey's records on my own laptop. Goals, values, the records log, and metrics are meant to live in local files and small local databases, with no cloud service in between. The conversation command already uses an AI model; the planned features would also send some information outside the machine:</p>
 <ul>
 <li><b>Anything I say in a check-in goes to the AI model</b> that runs the conversation, and so does every records-log entry as it's captured. That includes things like how I applied for a role, or a referrer's name.</li>
 <li>Because goals and values are now a continuous job, <b>my values reach the model during check-ins</b>, not just occasionally.</li>
