@@ -196,17 +196,17 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 
 <h2 id="research">Research, thesis first</h2>
 <p>An agent that recommends things needs to know things, and "search the web and summarize" is a weak way to know things. It returns whatever ranks well, and a confident summary of SEO content is worse than no answer.</p>
-<p>So Halsey's research runs thesis first, in three moves: <b>think, then check, using trusted sources only.</b></p>
+<p>Halsey's planned research workflow runs thesis first, in three moves: <b>think, then check, using trusted sources only.</b></p>
 <figure>
 <div class="fig-scroll"><svg viewBox="0 0 720 330" role="img" aria-labelledby="fig3t">
-<title id="fig3t">Thesis-first research: thesis, testable claims, checks for and against, a script re-checks, then verdicts and a revised thesis</title>
+<title id="fig3t">Planned thesis-first research: thesis, testable claims, checks for and against, a script re-check, then verdicts and a revised thesis</title>
 <rect class="d-acc" x="10" y="10" width="220" height="86" rx="12"/><text class="d-txt" x="26" y="40">1 · Thesis</text><text class="d-sub" x="26" y="62">from the model's own</text><text class="d-sub" x="26" y="80">knowledge, no search</text>
 <path class="d-line" d="M230 53 H250"/><path class="d-arrow" d="M246 47 L256 53 L246 59 Z"/>
 <rect class="d-box" x="256" y="10" width="220" height="86" rx="12"/><text class="d-txt" x="272" y="40">2 · Testable claims</text><text class="d-sub" x="272" y="62">confidence · what would</text><text class="d-sub" x="272" y="80">prove it wrong · stale?</text>
 <path class="d-line" d="M476 53 H496"/><path class="d-arrow" d="M492 47 L502 53 L492 59 Z"/>
 <rect class="d-box" x="502" y="10" width="208" height="86" rx="12"/><text class="d-txt" x="518" y="40">3 · Check each</text><text class="d-sub" x="518" y="62">search for it and</text><text class="d-sub" x="518" y="80">against it · quote pages</text>
 <path class="d-line" d="M606 96 V126"/><path class="d-arrow" d="M600 120 L606 130 L612 120 Z"/>
-<rect class="d-ok" x="330" y="130" width="380" height="86" rx="12"/><text class="d-txt" x="346" y="160">4 · A script re-checks, no AI</text><text class="d-sub" x="346" y="182">re-opens pages · finds each quote · reads dates</text><text class="d-sub" x="346" y="200">applies my trusted-source list · sets verdicts</text>
+<rect class="d-ok" x="330" y="130" width="380" height="86" rx="12"/><text class="d-txt" x="346" y="160">4 · Planned script re-check, no AI</text><text class="d-sub" x="346" y="182">re-opens pages · finds each quote · reads dates</text><text class="d-sub" x="346" y="200">applies my trusted-source list · sets verdicts</text>
 <path class="d-line" d="M330 173 H250"/><path class="d-arrow" d="M256 167 L246 173 L256 179 Z"/>
 <rect class="d-box" x="10" y="130" width="236" height="86" rx="12"/><text class="d-txt" x="26" y="160">Verdicts</text><text class="d-sub" x="26" y="182">confirmed · contradicted</text><text class="d-sub" x="26" y="200">· unverified</text>
 <path class="d-line" d="M128 216 V246"/><path class="d-arrow" d="M122 240 L128 250 L134 240 Z"/>
@@ -226,17 +226,17 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <tr><td><span class="tag t-bad">4</span></td><td>SEO blogs, vendor marketing, forums, AI-written summaries</td><td>Never</td></tr>
 </tbody></table></div>
 <p>The tier comes from a list I approve for each topic, not from the model's opinion. Halsey can propose adding a source it keeps running into, but until I accept it, the source can't verify anything.</p>
-<p>The step I trust most is the dullest one. <b>A plain script, with no AI, re-checks the model's work.</b> It re-opens every cited page and confirms the quoted sentence is actually there. It reads the publication date from the page itself, applies the tier list, and computes the verdicts by fixed rules. A claim is <span class="tag t-ok">confirmed</span>, <span class="tag t-bad">contradicted</span>, or <span class="tag t-dim">unverified</span>. Contradicted claims get rewritten, and the revised thesis is what gets saved.</p>
-<h3>What happened when I ran it</h3>
-<p>I ran this flow for real on a question I care about: typical conversion rates through a job-search funnel, and how long a search takes. The model's thesis, written without searching, was reasonable-sounding: roughly 3–10% of applications get a screen, 10–25% of interview processes end in an offer, and a search takes 3–6 months.</p>
+<p>The planned step I trust most is the dullest one. <b>A plain script, with no AI, will re-check the model's work.</b> It will re-open every cited page and confirm the quoted sentence is actually there. It will read the publication date from the page itself, apply the tier list, and compute verdicts by fixed rules. A claim will be <span class="tag t-ok">confirmed</span>, <span class="tag t-bad">contradicted</span>, or <span class="tag t-dim">unverified</span>. Contradicted claims will be rewritten, and the revised thesis will be what gets saved.</p>
+<h3>What happened in a manual trial</h3>
+<p>I tried the thesis-first reasoning and model-led source-checking steps on a question I care about: typical conversion rates through a job-search funnel, and how long a search takes. The research workflow and its script re-check are not built yet. The model's thesis, written without searching, was reasonable-sounding: roughly 3–10% of applications get a screen, 10–25% of interview processes end in an offer, and a search takes 3–6 months.</p>
 <p>The check told a more interesting story. One industry dataset put interview-to-offer at 36.2%, up from 16–19% in earlier years. That contradicts the thesis, which then gets revised upward. Most other claims ended up <b>unverified</b>. The public data measured something close but not the same, such as how long people stay unemployed, which isn't how long a search takes, or it didn't separate the stages the claim was about. That's the honest result. The real evidence will be my own numbers.</p>
-<p>The model's own check also made exactly the mistakes the script exists to catch:</p>
+<p>The model's own check also made exactly the mistakes the planned script is meant to catch:</p>
 <ul>
 <li>It <b>misquoted a government statistic</b>: 9.3 weeks where the table says 10.3.</li>
 <li>It marked a claim <b>"confirmed" from two papers it never opened</b>.</li>
 <li>It called a dated page "undated".</li>
 </ul>
-<p>I checked those by opening the pages myself. Without the dull script, all three would have gone into my notes as fact.</p>
+<p>I checked those by opening the pages myself. Catching them by hand is why the planned script re-check matters.</p>
 <p>The design still has weaknesses. A model can anchor on its first idea, so the check sees claims rather than the narrative, and ideally a different model does the checking. The best sources are often paywalled or a year or two behind. Some trusted sites block scripted access entirely. When evidence can't be machine-checked, the claim stays unverified, which is the right default.</p>
 
 <h2 id="strategy">Strategy for open-ended goals</h2>
@@ -352,7 +352,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <li><b>Live tests before each deploy</b>, with the real model and a throwaway copy of the other agents' mailboxes. These catch what stand-ins can't. Real answers drift from the expected shape, usage limits get hit, and command-line tools change their flags. The model's command-line tool went through several versions in the three days I spent designing this.</li>
 <li><b>My own product tests.</b> This is the layer I care most about. I've picked a fixed set of real goal scenarios: an open-ended one (landing a new role) and a structured one (passing a certification exam). I'll run them through Halsey at every deploy with the same inputs, and score each answer on a rubric I wrote: <b>specific</b>, <b>sourced</b>, <b>actionable</b>, and <b>fits my values</b>. Since AI answers vary, each scenario runs twice. Comparing the scores deploy to deploy is how I'll know whether Halsey is actually getting better, and it's what I'll write about here.</li>
 </ol>
-<p>On top of that, Halsey's own code goes through automated code review before it lands. Its outputs go through the checkers described above: the report structure check and the research re-check.</p>
+<p>On top of that, Halsey's own code goes through automated code review before it lands. As the later capabilities are built, their outputs will go through the checkers described above: the report structure check and the research re-check.</p>
 <h3>Why Python</h3>
 <p>Halsey is written in Python using only the standard library. Almost everything it does is data work: a small database, structured files, spreadsheets, a local web page, dates, and some statistics. Python's standard library covers all of that without installing anything, and it's much easier to test than shell scripts. The one constraint is that the Python that ships with my laptop is an older version, 3.9. The code has to stick to what 3.9 supports, which rules out a few newer language features.</p>
 
@@ -360,7 +360,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <ul>
 <li><b>Narrow interfaces beat clever integration.</b> The one report format between Halsey and every other agent is the most important decision in the design. It's what makes it possible to add an agent without touching Halsey, or change an agent without breaking it.</li>
 <li><b>"Not reported" is a feature.</b> Drawing a missing week as zero is the most common way a personal dashboard lies. Refusing to guess, all the way through to the charts, keeps the numbers trustworthy.</li>
-<li><b>Dull scripts beat clever prompts for anything that must be true.</b> The research re-check, the report structure, the no-double-counting rule, and the authority limits are all plain code with plain tests. The model does the thinking. The scripts decide what's allowed and what's verified.</li>
+<li><b>Dull scripts beat clever prompts for anything that must be true.</b> The design puts the research re-check, the report structure, the no-double-counting rule, and the authority limits in plain code with plain tests. The model does the thinking; the scripts will decide what's allowed and what's verified.</li>
 <li><b>Conversation is expensive, so it has to earn its place.</b> Moving from three taps to four conversations a day multiplies the time and AI cost many times over. The five-question cap and the twenty-second "nothing new" path are what keep it honest.</li>
 <li><b>A chief of staff's most useful question isn't "did you do it?"</b> It's "is this still the right thing to do?" That's why goals and values became a continuous job instead of a quarterly checkbox.</li>
 </ul>
