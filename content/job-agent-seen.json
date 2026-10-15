@@ -738,7 +738,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5196217007",
     "firstSeen": "2026-08-18T07:30:44.193Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "Role family (Sales Engineer / presales demos, POCs, evaluation test plans) matches Winston's Benchling experience, but the minimum qualifications hinge entirely on selling network security technologies - SD-WAN, routing protocols, proxies, firewalls, SSL/IPsec VPNs, DLP - plus CISSP/CCNP-type certifications, none of which appear anywhere in his background. There is zero life sciences or regulated-industry adjacency (cybersecurity/networking, not GMP or 21 CFR Part 11), and the 'Principal Specialist' level implies deep domain-specific network security depth he can't demonstrate. His SQL/Benchling/Veeva/MES toolset shares nothing with this stack, so despite title alignment this is a weak substantive fit.",
     "location": "Boston, Massachusetts, USA; Remote - Connecticut, USA; Remote - D.C., USA; Remote - Maine, USA; Remote - New Hampshire, USA; Remote - New York, USA; Remote - Pennsylvania, USA; Remote - Vermont, USA; Remote - Virginia, USA; Remote - West Virginia, USA",
