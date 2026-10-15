@@ -131,12 +131,12 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <p>Keeping the interface this narrow is what lets new agents plug in later. A health agent, a study coach, or an agent living inside my spreadsheets would each just be one more thing that files a report.</p>
 
 <h2 id="daily">The daily page</h2>
-<p>Everything Halsey knows about my day shows up on one page. It opens from an icon, and it's rebuilt from the underlying records every time I open it, which takes about a tenth of a second. It isn't a dashboard that went stale overnight.</p>
+<p>The planned daily page will show everything Halsey knows about my day. It will open from an icon and rebuild from the underlying records each time I open it, with a design target of about a tenth of a second to open. It is meant to avoid a dashboard that went stale overnight.</p>
 <p>From top to bottom:</p>
 <ul>
 <li><b>Today:</b> the four check-ins with their status, and a line saying what changed since the last one.</li>
 <li><b>Anything waiting from a skipped check-in:</b> if I declined the morning check-in, its number questions wait here as one-tap answers, with a button that opens the conversation if I want it after all.</li>
-<li><b>A short summary.</b> The counts appear instantly, and a few sentences from the model fill in a few seconds later. If the model is unavailable, I still get the counts.</li>
+<li><b>A short summary.</b> The design target is for the counts to appear immediately and a few sentences from the model to follow within a few seconds. If the model is unavailable, I still get the counts.</li>
 <li><b>My list</b>, which is a plain text file I can also edit anywhere else.</li>
 <li><b>What other agents are waiting on me for.</b> My project agent alone often has more than twenty open questions for me. A chief of staff's most underrated job is <b>gatekeeping</b>. Only three get through each day, picked by a rule I set: whatever blocks a goal number first, then the oldest. The rest are listed as "can wait", never hidden.</li>
 <li><b>Builds that are ready for my look</b>, meaning only the ones that already passed Halsey's review.</li>
@@ -153,15 +153,15 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <path class="d-line" d="M40 100 H680"/>
 <circle class="d-acc" cx="80" cy="100" r="16"/><circle class="d-box" cx="260" cy="100" r="12"/><circle class="d-box" cx="440" cy="100" r="12"/><circle class="d-ok" cx="620" cy="100" r="16"/>
 <text class="d-txt" x="80" y="60" text-anchor="middle">9:00</text><text class="d-txt" x="260" y="60" text-anchor="middle">13:00</text><text class="d-txt" x="440" y="60" text-anchor="middle">17:00</text><text class="d-txt" x="620" y="60" text-anchor="middle">21:00</text>
-<text class="d-sub" x="80" y="142" text-anchor="middle">main check-in</text><text class="d-small" x="80" y="162" text-anchor="middle">5–10 min · dig into one topic</text>
+<text class="d-sub" x="80" y="142" text-anchor="middle">main check-in</text><text class="d-small" x="80" y="162" text-anchor="middle">5–10 min target · one topic</text>
 <text class="d-sub" x="260" y="142" text-anchor="middle">quick</text><text class="d-small" x="260" y="162" text-anchor="middle">anything big or new?</text>
 <text class="d-sub" x="440" y="142" text-anchor="middle">quick</text><text class="d-small" x="440" y="162" text-anchor="middle">anything big or new?</text>
 <text class="d-sub" x="620" y="142" text-anchor="middle">wrap-up</text><text class="d-small" x="620" y="162" text-anchor="middle">today's numbers · tomorrow's top 3</text>
 </svg></div>
 <figcaption>Between check-ins, Halsey keeps the daily page current and saves what changed for the next check-in.</figcaption>
 </figure>
-<p><b>9:00 is the main check-in:</b> five to ten minutes. Halsey collects last night's numbers if I missed the evening one, confirms my top priorities for the day, asks anything an agent needs to know (did I hear back about that application?), and picks <b>one topic to dig into</b>. That might be a goal that's slipping, a decision I keep putting off, or a question about whether a plan still fits what I care about.</p>
-<p><b>13:00 and 17:00 are quick:</b> "Any big status updates, or anything new come up?" If the answer is no, it's done in twenty seconds. If something changed, Halsey asks what, and adjusts the day's plan.</p>
+<p><b>9:00 is the main check-in:</b> the target is five to ten minutes. Halsey collects last night's numbers if I missed the evening one, confirms my top priorities for the day, asks anything an agent needs to know (did I hear back about that application?), and picks <b>one topic to dig into</b>. That might be a goal that's slipping, a decision I keep putting off, or a question about whether a plan still fits what I care about.</p>
+<p><b>13:00 and 17:00 are quick:</b> "Any big status updates, or anything new come up?" If the answer is no, the target is to finish in twenty seconds. If something changed, Halsey asks what, and adjusts the day's plan.</p>
 <p><b>21:00 is the wrap-up:</b> today's numbers while they're fresh, what got done against the morning's plan, what carries over, and a draft of tomorrow's top three for the morning check-in to confirm.</p>
 <h3>A doorbell, not a form</h3>
 <p>A pop-up can't hold a conversation, so the pop-up is just a doorbell. At each time, a small window appears with two buttons: <b>Check in with Halsey</b> and <b>Decline</b>. Check in opens a terminal window where Halsey is already talking. Decline records the check-in as skipped, with no second ring and no nagging.</p>
@@ -179,7 +179,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <p>Two design choices matter here. First, every answer is saved the moment I give it, so closing the window halfway keeps what I said. Second, every outcome is recorded honestly. A check-in can be answered, cut short, declined, left unanswered, or missed because the laptop was asleep. Any number that didn't get answered is "not reported" in every chart and total, never zero.</p>
 <h3>Between check-ins</h3>
 <p>A chief of staff tracks a changing day, not just four moments in it. Between check-ins, Halsey keeps the daily page current: replies from other agents, a build that's ready for me, research that finished, a new report. A "since your last check-in" line lists what changed. Halsey doesn't interrupt me for any of it. Instead, at the next check-in it raises the one thing that changed the picture, like a new request that blocks a goal, or a plan item that clearly won't fit anymore.</p>
-<p>This is the most expensive part of the design, and I want to be honest about it. Four conversations a day cost me something like 10 to 20 minutes, up from about 30 seconds of tapping. They also use a real share of my AI plan: roughly half a million to a million tokens of model input a day, most of it repeated context. While designing this, I actually hit my plan's usage limit. Whether the depth is worth that is exactly what the first weeks of use will answer.</p>
+<p>This is the most expensive part of the design, and I want to be honest about it. I estimate four conversations a day would take 10 to 20 minutes, up from an estimated 30 seconds of tapping in my first design. My model-input estimate is roughly half a million to a million tokens a day, most of it repeated context. While designing this, I actually hit my plan's usage limit. Whether the depth is worth that is exactly what the first weeks of use will answer.</p>
 
 <h2 id="log">The records log: the tracker I don't keep</h2>
 <p>I don't keep a tracker in a notes app or a spreadsheet. I've tried, and it lasts about a week. So Halsey is the tracker. I mention things in plain conversation, like "applied to one through a referral" or "had coffee with a former colleague who might refer me", and Halsey turns them into structured entries in a local database: a category, the fields that category needs, a date, and where the entry came from, including my own words.</p>
@@ -298,7 +298,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <li>If it falls short, Halsey sends back a specific revision note ("item 2 failed: the week of the 7th is drawn as zero") for another round. There are three rounds by default.</li>
 <li>Only when every must-have passes do I see it: "ready for your look", with the review attached.</li>
 </ol>
-<p>Halsey also knows when to stop. If the round limit is reached, the same item fails twice in a row, or a question comes up that only I can answer, it escalates. It tells me what passed, what failed, what was tried, and what my options are, instead of looping forever. Two independent reviews happen before anything reaches me: one on the code, and one against the goal.</p>
+<p>Halsey also knows when to stop. If the round limit is reached, the same item fails twice in a row, or a question comes up that only I can answer, it escalates. It tells me what passed, what failed, what was tried, and what my options are, instead of looping forever. The design calls for two independent reviews before anything reaches me: one on the code, and one against the goal.</p>
 
 <h2 id="better">Getting better on purpose</h2>
 <p>Every assistant hits things it can't do. The usual failure is to improvise quietly or fail silently. Halsey logs a <b>capability gap</b> instead, with evidence: what it tried to do, what was missing (a skill, a script, some data, or some access), and which goal it affected.</p>
@@ -361,7 +361,7 @@ footer { margin-top: 64px; color: var(--ink-3); font-size: 14px; border-top: 1px
 <li><b>Narrow interfaces beat clever integration.</b> The one report format between Halsey and every other agent is the most important decision in the design. It's what makes it possible to add an agent without touching Halsey, or change an agent without breaking it.</li>
 <li><b>"Not reported" is a feature.</b> Drawing a missing week as zero is the most common way a personal dashboard lies. Refusing to guess, all the way through to the charts, keeps the numbers trustworthy.</li>
 <li><b>Dull scripts beat clever prompts for anything that must be true.</b> The design puts the research re-check, the report structure, the no-double-counting rule, and the authority limits in plain code with plain tests. The model does the thinking; the scripts will decide what's allowed and what's verified.</li>
-<li><b>Conversation is expensive, so it has to earn its place.</b> Moving from three taps to four conversations a day multiplies the time and AI cost many times over. The five-question cap and the twenty-second "nothing new" path are what keep it honest.</li>
+<li><b>Conversation is expensive, so it has to earn its place.</b> Moving from three taps to four conversations a day could multiply the time and AI cost many times over. The five-question cap and the twenty-second "nothing new" target are what keep it honest.</li>
 <li><b>A chief of staff's most useful question isn't "did you do it?"</b> It's "is this still the right thing to do?" That's why goals and values became a continuous job instead of a quarterly checkbox.</li>
 </ul>
 
