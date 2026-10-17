@@ -899,7 +899,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198882007",
     "firstSeen": "2026-08-18T07:34:20.724Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "The presales motion itself matches Winston's Benchling experience (technical discovery, running POVs end-to-end, supporting enterprise/major accounts), but the technical substance is network security/Zero Trust architecture with preferred certs like CCNP, JNCIP, CISSP — a stack with zero overlap to his SQL/Veeva/Benchling/GMP toolkit. There is no life sciences or regulated-industry angle at all, and the posting expects 5-8+ years specifically as a security-domain SE. It is also geographically anchored to Ohio or Tennessee for East Central majors coverage, which conflicts with his California base.",
     "location": "Remote - Ohio, USA; Remote - Tennessee, USA",
@@ -3398,7 +3398,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8856826002",
     "firstSeen": "2026-10-01T18:40:06.264Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-09-30T15:40:43-04:00"
@@ -3480,6 +3480,32 @@
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-10-16T11:58:55-04:00"
+  },
+  "greenhouse:8886648002": {
+    "id": 8886648002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Sr. Manager, Solutions Architect SME",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8886648002",
+    "firstSeen": "2026-10-17T16:05:32.459Z",
+    "status": "pending",
+    "location": "Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-16T19:46:49-04:00"
+  },
+  "greenhouse:8896139002": {
+    "id": 8896139002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Manager, Delivery Solutions Architects - Healthcare & Life Sciences (HLS)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8896139002",
+    "firstSeen": "2026-10-17T16:05:32.459Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-16T19:02:23-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
@@ -3711,6 +3737,19 @@
     "location": "New York - New York City",
     "compensationRange": null,
     "postedAt": "2026-05-29T21:10:06.751Z"
+  },
+  "lever:e4e50aed-ada3-47fa-875e-169ef416d93e": {
+    "id": "e4e50aed-ada3-47fa-875e-169ef416d93e",
+    "source": "lever",
+    "company": "Ethena",
+    "title": "Sales Engineer",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://jobs.lever.co/ethena/e4e50aed-ada3-47fa-875e-169ef416d93e",
+    "firstSeen": "2026-10-17T16:05:32.460Z",
+    "status": "pending",
+    "location": "Remote",
+    "compensationRange": "$125K-$150K",
+    "postedAt": "2026-10-16T23:47:29.061Z"
   },
   "lever:f331c56b-2b33-4341-8646-06e28d50e32a": {
     "id": "f331c56b-2b33-4341-8646-06e28d50e32a",
