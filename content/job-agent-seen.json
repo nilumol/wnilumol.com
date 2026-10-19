@@ -1048,7 +1048,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198910007",
     "firstSeen": "2026-08-18T07:32:23.275Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "This is a people-management role leading an existing sales engineering team, requiring proven experience managing/directing SEs plus deep technical expertise in cybersecurity and networking - neither of which Winston has (his leadership was in scientific program management and IC presales, not SE org leadership). The presales process overlap (discovery, technical qualification, POC, value-based selling in a matrixed GTM org) is genuine and maps to his Benchling work, but the domain is Zero Trust networking/security with zero life-sciences or regulated-biopharma adjacency. Seniority level is a stretch upward, and the technical stack (Zscaler/competitive security platforms) shares nothing with SQL/Veeva/Benchling/MES.",
     "location": "Remote - Connecticut, USA; Remote - New Jersey, USA; Remote - New York, USA",
@@ -1416,6 +1416,19 @@
     "location": "Remote - California, USA",
     "compensationRange": null,
     "postedAt": "2026-10-13T21:36:13-04:00"
+  },
+  "greenhouse:5267159007": {
+    "id": 5267159007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer - Majors, Kansas City",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5267159007",
+    "firstSeen": "2026-10-19T18:57:15.724Z",
+    "status": "pending",
+    "location": "Remote - Kansas, USA; Remote - Missouri, USA",
+    "compensationRange": null,
+    "postedAt": "2026-10-19T12:04:47-04:00"
   },
   "greenhouse:5783377004": {
     "id": 5783377004,
@@ -2214,7 +2227,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8569637002",
     "firstSeen": "2026-09-09T16:58:38.346Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - Washington; Seattle, Washington",
     "compensationRange": null,
     "postedAt": "2026-09-08T14:15:24-04:00"
@@ -2917,7 +2930,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8739515002",
     "firstSeen": "2026-09-30T18:14:55.176Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Northeast - United States; Southeast - United States",
     "compensationRange": null,
     "postedAt": "2026-09-30T13:08:34-04:00"
@@ -3138,7 +3151,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8758645002",
     "firstSeen": "2026-08-31T19:21:14.050Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Northeast - United States",
     "compensationRange": null,
     "postedAt": "2026-08-31T11:08:58-04:00"
@@ -3268,7 +3281,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8790285002",
     "firstSeen": "2026-10-01T18:40:06.264Z",
-    "status": "pending",
+    "status": "expired",
     "location": "USCA",
     "compensationRange": null,
     "postedAt": "2026-10-01T10:20:08-04:00"
@@ -3281,7 +3294,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8790289002",
     "firstSeen": "2026-09-30T18:14:55.176Z",
-    "status": "pending",
+    "status": "expired",
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-09-30T13:20:47-04:00"
@@ -3294,7 +3307,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8790301002",
     "firstSeen": "2026-09-30T18:14:55.176Z",
-    "status": "pending",
+    "status": "expired",
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-09-30T13:25:30-04:00"
@@ -3333,7 +3346,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8790621002",
     "firstSeen": "2026-09-24T17:42:59.357Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Alabama",
     "compensationRange": null,
     "postedAt": "2026-09-23T18:55:45-04:00"
@@ -3468,6 +3481,19 @@
     "compensationRange": null,
     "postedAt": "2026-10-08T13:35:10-04:00"
   },
+  "greenhouse:8880391002": {
+    "id": 8880391002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Telco",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8880391002",
+    "firstSeen": "2026-10-19T18:57:15.724Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-19T10:34:25-04:00"
+  },
   "greenhouse:8886426002": {
     "id": 8886426002,
     "source": "greenhouse",
@@ -3494,6 +3520,19 @@
     "compensationRange": null,
     "postedAt": "2026-10-16T19:46:49-04:00"
   },
+  "greenhouse:8893782002": {
+    "id": 8893782002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect- Public Sector (Federal Healthcare)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8893782002",
+    "firstSeen": "2026-10-19T18:57:15.724Z",
+    "status": "pending",
+    "location": "Maryland; Virginia; Washington, D.C.",
+    "compensationRange": null,
+    "postedAt": "2026-10-19T10:36:36-04:00"
+  },
   "greenhouse:8896139002": {
     "id": 8896139002,
     "source": "greenhouse",
@@ -3506,6 +3545,84 @@
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-10-16T19:02:23-04:00"
+  },
+  "greenhouse:8899461002": {
+    "id": 8899461002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Public Sector (DOJ)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8899461002",
+    "firstSeen": "2026-10-19T18:57:15.724Z",
+    "status": "pending",
+    "location": "Alabama",
+    "compensationRange": null,
+    "postedAt": "2026-10-18T13:10:27-04:00"
+  },
+  "greenhouse:8899462002": {
+    "id": 8899462002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Public Sector (DOW, DHS, Intelligence Community)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8899462002",
+    "firstSeen": "2026-10-19T18:57:15.724Z",
+    "status": "pending",
+    "location": "Northeast - United States; Southwest - United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-18T13:21:14-04:00"
+  },
+  "greenhouse:8899463002": {
+    "id": 8899463002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Public Sector (Defense Industrial Base) ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8899463002",
+    "firstSeen": "2026-10-19T18:57:15.724Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-18T13:25:43-04:00"
+  },
+  "greenhouse:8899464002": {
+    "id": 8899464002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Public Sector (Federal) ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8899464002",
+    "firstSeen": "2026-10-19T18:57:15.724Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-18T13:29:37-04:00"
+  },
+  "greenhouse:8899465002": {
+    "id": 8899465002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Delivery Solutions Architect - Public Sector (SLED)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8899465002",
+    "firstSeen": "2026-10-19T18:57:15.724Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-18T13:35:10-04:00"
+  },
+  "greenhouse:8900134002": {
+    "id": 8900134002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Communications, Media, Entertainment and Games",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8900134002",
+    "firstSeen": "2026-10-19T18:57:15.724Z",
+    "status": "pending",
+    "location": "Denver, Colorado",
+    "compensationRange": null,
+    "postedAt": "2026-10-19T12:19:32-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
