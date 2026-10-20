@@ -417,7 +417,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://boards.greenhouse.io/cloudflare/jobs/8201957?gh_jid=8201957",
     "firstSeen": "2026-09-23T17:39:43.175Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Hybrid",
     "compensationRange": null,
     "postedAt": "2026-09-22T14:12:39-04:00"
@@ -958,7 +958,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198892007",
     "firstSeen": "2026-08-18T07:34:27.422Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family is a genuine match — presales technical advisor running discovery, demos, custom configs, and Proof of Value for large enterprise/major accounts, which mirrors Winston's Benchling Strategic Enterprise SC work. But the technical substance is network/cloud security (Zero Trust, CCNP/JNCIP/PCNSA/CISSP-level networking knowledge) with zero overlap with his biopharma, GxP, LIMS/ELN, or SQL/lab-infrastructure toolset, and it asks for 7+ years specifically as a security-focused SE. Domain relevance is nil and he'd be competing against career network-security SEs, so despite the strong seniority and comp match this is a weak overall fit.",
     "location": "Remote - Florida, USA",
@@ -1033,7 +1033,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198908007",
     "firstSeen": "2026-08-18T07:32:17.233Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 2,
     "fitRationale": "This is a people-management role leading a sales engineering team, requiring proven experience directing SEs plus deep technical expertise in cybersecurity and networking - Winston has never managed an SE org and has no security/networking background. The only overlaps are generic presales process elements (discovery, technical qualification, POCs) and value-based selling; there is zero life-sciences or biopharma adjacency, and the 'regulatory compliance' mention refers to security/privacy standards, not GxP. Also geographically anchored to New England/Northeast.",
     "location": "Remote - Maine, USA; Remote - Massachusetts, USA; Remote - New Hampshire, USA; Remote - Rhode Island, USA; Remote - Vermont, USA",
@@ -1429,6 +1429,19 @@
     "location": "Remote - Kansas, USA; Remote - Missouri, USA",
     "compensationRange": null,
     "postedAt": "2026-10-19T12:04:47-04:00"
+  },
+  "greenhouse:5267171007": {
+    "id": 5267171007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Commercial Sales Engineer - SMB",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5267171007",
+    "firstSeen": "2026-10-20T17:43:53.936Z",
+    "status": "pending",
+    "location": "Remote - USA",
+    "compensationRange": null,
+    "postedAt": "2026-10-19T15:19:56-04:00"
   },
   "greenhouse:5783377004": {
     "id": 5783377004,
@@ -3255,7 +3268,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8782816002",
     "firstSeen": "2026-10-07T19:10:50.473Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Central - United States; Remote - Texas",
     "compensationRange": null,
     "postedAt": "2026-10-06T15:48:26-04:00"
@@ -3519,6 +3532,19 @@
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-10-16T19:46:49-04:00"
+  },
+  "greenhouse:8893716002": {
+    "id": 8893716002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Adtech",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8893716002",
+    "firstSeen": "2026-10-20T17:43:53.936Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-19T17:37:16-04:00"
   },
   "greenhouse:8893782002": {
     "id": 8893782002,
