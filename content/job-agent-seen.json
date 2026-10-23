@@ -305,7 +305,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://job-boards.greenhouse.io/smartsheet/jobs/8109667",
     "firstSeen": "2026-08-18T06:23:32.199Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 5,
     "fitRationale": "The day-to-day work — leading concurrent implementation projects, discovery, prototyping/iterative build sprints, UAT, scope/budget ownership, and partnering with Sales on expansion — maps closely to Winston's Senior Implementations Manager work at Collate and the 30+ implementation projects at Genentech, so role-family fit is solid. However, Smartsheet is a horizontal work-management platform with zero life sciences or regulated-industry angle, so his single biggest differentiator (biopharma/GMP/21 CFR Part 11, Veeva/Benchling/TrackWise depth) carries almost no weight here, and the posting instead prizes management-consulting delivery mechanics (billable utilization, project margin, Agile, change management) that he can only partially evidence. Seniority also skews slightly junior for him (4–5 years minimum, $92.5–126K band), and the role is restricted to the US Eastern region, which is a likely hard geographic blocker given his Bay Area/West Coast track record.",
     "location": null,
@@ -335,7 +335,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://job-boards.greenhouse.io/smartsheet/jobs/8122020",
     "firstSeen": "2026-08-18T06:23:51.454Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 6,
     "fitRationale": "Role family fits reasonably well — this is a professional-services delivery consultant blending implementation ownership (scope, timeline, UAT, iterative build sprints) with advisory discovery and sales-partnered expansion, which maps directly onto his Collate Senior Implementations Manager work and his Benchling discovery/demo/POC experience. The main gaps are domain and level: Smartsheet is horizontal work-management software with no life-sciences or regulated-industry angle (explicitly 'a variety of industries'), so his 10+ years of GMP/21 CFR Part 11/Veeva/Benchling depth is largely non-differentiating here, and the $92.5–126K band plus '4–5 years consulting' bar sits below his Strategic Enterprise seniority. He also has no track record in a billable-utilization/project-margin PS model or formal Agile/change-management methodology, and the posting contradicts its own 'West' title by requiring Eastern-region residence, which may make him ineligible.",
     "location": null,
@@ -1443,6 +1443,19 @@
     "compensationRange": null,
     "postedAt": "2026-10-19T15:19:56-04:00"
   },
+  "greenhouse:5268698007": {
+    "id": 5268698007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Manager, Sales Engineering - SMB",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5268698007",
+    "firstSeen": "2026-10-23T17:40:03.082Z",
+    "status": "pending",
+    "location": "Remote - USA",
+    "compensationRange": null,
+    "postedAt": "2026-10-22T21:52:11-04:00"
+  },
   "greenhouse:5268700007": {
     "id": 5268700007,
     "source": "greenhouse",
@@ -1620,6 +1633,32 @@
     "postedAt": "2026-08-19T13:36:05-04:00",
     "fitScore": 2,
     "fitRationale": "Senior Solutions Architect role centered on Kubernetes/container deployment, Terraform/IaC, and federal government-clearance work - this is a hands-on DevOps/infrastructure role, not the consultative discovery-and-demo Solutions Architect work Winston has done, and there is no life-sciences relevance."
+  },
+  "greenhouse:8037540003": {
+    "id": 8037540003,
+    "source": "greenhouse",
+    "company": "Celonis",
+    "title": "Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/celonis/jobs/8037540003?gh_jid=8037540003",
+    "firstSeen": "2026-10-23T17:40:03.082Z",
+    "status": "pending",
+    "location": "New York, US, New York",
+    "compensationRange": null,
+    "postedAt": "2026-10-22T13:54:21-04:00"
+  },
+  "greenhouse:8041920003": {
+    "id": 8041920003,
+    "source": "greenhouse",
+    "company": "Celonis",
+    "title": "Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/celonis/jobs/8041920003?gh_jid=8041920003",
+    "firstSeen": "2026-10-23T17:40:03.082Z",
+    "status": "pending",
+    "location": "Raleigh, US, North Carolina",
+    "compensationRange": null,
+    "postedAt": "2026-10-22T13:54:47-04:00"
   },
   "greenhouse:8085877002": {
     "id": 8085877002,
@@ -3701,6 +3740,32 @@
     "location": "Denver, Colorado",
     "compensationRange": null,
     "postedAt": "2026-10-19T12:19:32-04:00"
+  },
+  "greenhouse:8907111002": {
+    "id": 8907111002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Solutions Architect - SLED (East)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8907111002",
+    "firstSeen": "2026-10-23T17:40:03.082Z",
+    "status": "pending",
+    "location": "Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-22T15:13:13-04:00"
+  },
+  "greenhouse:8907130002": {
+    "id": 8907130002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Solutions Architect - SLED (West)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8907130002",
+    "firstSeen": "2026-10-23T17:40:03.082Z",
+    "status": "pending",
+    "location": "Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-22T15:14:02-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
