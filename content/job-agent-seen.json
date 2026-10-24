@@ -796,7 +796,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5196231007",
     "firstSeen": "2026-08-18T07:30:29.382Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "The presales role family is a genuine match — technical demos, requirements discovery, leading POCs/evaluations, and matrixed GTM collaboration all mirror Winston's Benchling Solutions Consultant work. However, the domain is cybersecurity/data protection sold into SLED (state, local, education government), with zero life sciences or biopharma adjacency, and the minimum bar of 3+ years selling security/networking solutions plus web/data-protection technologies is a specialty he has no exposure to (his stack is SQL, Veeva, Benchling, MES/DeltaV, Tableau). Seniority is roughly right (Principal, 5+ years presales), but the technical specialization gap makes this a stretch.",
     "location": "Remote - USA",
@@ -1438,7 +1438,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5267171007",
     "firstSeen": "2026-10-20T17:43:53.936Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - USA",
     "compensationRange": null,
     "postedAt": "2026-10-19T15:19:56-04:00"
@@ -1468,6 +1468,19 @@
     "location": "Remote - Massachusetts, USA; Remote - New Jersey, USA; Remote - New York, USA; Remote - Virginia, USA",
     "compensationRange": null,
     "postedAt": "2026-10-21T23:01:04-04:00"
+  },
+  "greenhouse:5274394007": {
+    "id": 5274394007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Pipeline Req - Senior Manager, Sales Engineering",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5274394007",
+    "firstSeen": "2026-10-24T16:25:09.358Z",
+    "status": "pending",
+    "location": "USA - Update Location",
+    "compensationRange": null,
+    "postedAt": "2026-10-23T16:43:16-04:00"
   },
   "greenhouse:5783377004": {
     "id": 5783377004,
@@ -1777,6 +1790,19 @@
     "location": "United States",
     "compensationRange": "$219,100—$301,300 USD",
     "postedAt": "2026-02-18T11:33:14-05:00"
+  },
+  "greenhouse:8415025002": {
+    "id": 8415025002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Public Sector (DoW - 4th Estate)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8415025002",
+    "firstSeen": "2026-10-24T16:25:09.358Z",
+    "status": "pending",
+    "location": "Maryland; Virginia; Washington, D.C.",
+    "compensationRange": null,
+    "postedAt": "2026-05-11T10:01:26-04:00"
   },
   "greenhouse:8417656002": {
     "id": 8417656002,
