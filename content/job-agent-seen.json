@@ -676,7 +676,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5167453007",
     "firstSeen": "2026-08-18T07:35:07.554Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family fits well - enterprise presales SE work (technical discovery, demos, POVs, custom configurations, major accounts) mirrors Winston's Benchling Strategic Enterprise Solutions Consultant experience. However, the domain is network security / Zero Trust with explicit requirements for network security technologies and certifications like CCNP, CISSP, or CCSP - zero overlap with his biopharma/GMP/life-sciences SaaS background or his SQL/Veeva/Benchling toolset. The stated 7+ years as an SE or systems integrator also exceeds his ~2.5 years of presales tenure, and Texas location adds friction.",
     "location": "Remote - Texas, USA",
