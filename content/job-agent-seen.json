@@ -320,7 +320,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://boards.greenhouse.io/cloudflare/jobs/8113115?gh_jid=8113115",
     "firstSeen": "2026-08-19T00:47:22.095Z",
-    "status": "scored",
+    "status": "expired",
     "location": "Hybrid",
     "compensationRange": null,
     "postedAt": "2026-08-18T18:34:51-04:00",
@@ -1219,6 +1219,19 @@
     "postedAt": "2026-08-18T17:54:57-04:00",
     "fitScore": 2,
     "fitRationale": "Senior Manager leading a regional sales engineering team for Zscaler's core cybersecurity portfolio; while the people-leadership and demo/POC process elements echo his GTM launch experience, the required cybersecurity/networking technical expertise and total absence of life-sciences relevance make this a weak fit."
+  },
+  "greenhouse:5210723007": {
+    "id": 5210723007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer - Majors, Tennessee",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5210723007",
+    "firstSeen": "2026-10-27T18:31:30.334Z",
+    "status": "pending",
+    "location": "Remote - Kentucky, USA; Remote - Tennessee, USA",
+    "compensationRange": null,
+    "postedAt": "2026-08-17T16:47:17-04:00"
   },
   "greenhouse:5211688007": {
     "id": 5211688007,
@@ -2683,7 +2696,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8637758002",
     "firstSeen": "2026-08-18T07:48:06.460Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "The pre-sales solutions architect role family fits Winston's Benchling SC experience (discovery, demos, POCs, trusted advisor), and his SQL/Python/GCP exposure is a partial technical match. However, the posting requires a Top Secret Security Clearance and Public Sector client experience, both of which he lacks entirely, and demands deep distributed data systems architecture (Spark, Hadoop, Kafka, ML tooling) that goes well beyond his SQL-driven demo work. Zero life sciences/regulated-biopharma overlap makes this a weak substantive fit despite the title match.",
     "location": "Maryland; Virginia; Washington, D.C.",
@@ -3766,6 +3779,19 @@
     "location": "Denver, Colorado",
     "compensationRange": null,
     "postedAt": "2026-10-19T12:19:32-04:00"
+  },
+  "greenhouse:8906915002": {
+    "id": 8906915002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Senior Solutions Architect",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8906915002",
+    "firstSeen": "2026-10-27T18:31:30.334Z",
+    "status": "pending",
+    "location": "Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-27T11:52:43-04:00"
   },
   "greenhouse:8907111002": {
     "id": 8907111002,
