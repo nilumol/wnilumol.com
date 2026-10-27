@@ -11,7 +11,16 @@ export const navigation = [
   { label: "About", href: "/about" },
 ];
 
-export const projects = [
+type Project = {
+  slug: string;
+  title: string;
+  description: string;
+  status: string;
+  // Overrides the default /projects/<slug> route, e.g. for a write-up served elsewhere.
+  href?: string;
+};
+
+export const projects: Project[] = [
   {
     slug: "enterprise-gxp-agents",
     title: "Leveraging AI for authoring regulatory documents",
@@ -25,6 +34,14 @@ export const projects = [
     description:
       "Why I built wnilumol.com myself, and what building it is teaching me about how I work.",
     status: "Origin story",
+  },
+  {
+    slug: "halsey",
+    title: "Halsey: my AI chief of staff",
+    description:
+      "What I've built and what's planned for Halsey, my AI chief of staff, and how I'm testing its design for check-ins, research, goals, and records.",
+    status: "In progress",
+    href: "/halsey-intro",
   },
 ];
 

@@ -22,7 +22,7 @@ export default function ProjectsPage() {
               title={project.title}
               description={project.description}
               eyebrow={project.status}
-              href={`/projects/${project.slug}`}
+              href={project.href ?? `/projects/${project.slug}`}
             />
           ))}
         </div>
