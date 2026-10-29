@@ -3437,7 +3437,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8790317002",
     "firstSeen": "2026-09-15T17:26:59.393Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-09-15T12:15:47-04:00"
@@ -3532,6 +3532,19 @@
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-09-30T15:40:43-04:00"
+  },
+  "greenhouse:8859518002": {
+    "id": 8859518002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Games",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8859518002",
+    "firstSeen": "2026-10-29T18:46:38.097Z",
+    "status": "pending",
+    "location": "West Coast - United States",
+    "compensationRange": null,
+    "postedAt": "2026-10-29T08:54:47-04:00"
   },
   "greenhouse:8859538002": {
     "id": 8859538002,
@@ -3636,6 +3649,19 @@
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-10-16T11:58:55-04:00"
+  },
+  "greenhouse:8886517002": {
+    "id": 8886517002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect - Travel and Hospitality",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8886517002",
+    "firstSeen": "2026-10-29T18:46:38.097Z",
+    "status": "pending",
+    "location": "Chicago, Illinois; Dallas, Texas",
+    "compensationRange": null,
+    "postedAt": "2026-10-29T14:34:52-04:00"
   },
   "greenhouse:8886626002": {
     "id": 8886626002,
@@ -3818,6 +3844,19 @@
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-10-22T15:14:02-04:00"
+  },
+  "greenhouse:8923269002": {
+    "id": 8923269002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Games",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8923269002",
+    "firstSeen": "2026-10-29T18:46:38.096Z",
+    "status": "pending",
+    "location": "California",
+    "compensationRange": null,
+    "postedAt": "2026-10-29T08:54:45-04:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
