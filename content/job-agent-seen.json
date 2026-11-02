@@ -1548,7 +1548,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://boards.greenhouse.io/figma/jobs/6111166004?gh_jid=6111166004",
     "firstSeen": "2026-08-18T07:29:22.454Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "Role family is a clean match - pre-sales Solutions Consulting with demos, POC-style evaluations, security/IT stakeholder management, and product roadmap influence, all of which mirror Winston's Benchling work at enterprise scale. However, there is zero life-sciences or regulated-industry overlap, and the posting leans on frontend development, modern developer workflows, and CMS/DXP (Payload) knowledge - a stack that shares nothing with his SQL/Python/Veeva/Benchling toolkit. His 4+ years SC/implementation experience clears the bar, but he'd be competing against candidates with native web-dev domain fluency.",
     "location": "San Francisco, CA • New York, NY • United States",
@@ -1597,6 +1597,19 @@
     "location": "New York, NY • United States",
     "compensationRange": null,
     "postedAt": "2026-10-27T16:24:36-04:00"
+  },
+  "greenhouse:6237654004": {
+    "id": 6237654004,
+    "source": "greenhouse",
+    "company": "Figma",
+    "title": "Solutions Consultant, Mid-Market",
+    "keywordFamily": "Solutions Consultant",
+    "absoluteUrl": "https://boards.greenhouse.io/figma/jobs/6237654004?gh_jid=6237654004",
+    "firstSeen": "2026-11-02T22:04:58.013Z",
+    "status": "pending",
+    "location": "San Francisco, CA • United States",
+    "compensationRange": null,
+    "postedAt": "2026-11-02T11:26:11-05:00"
   },
   "greenhouse:6328361002": {
     "id": 6328361002,
@@ -2544,7 +2557,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8615045002",
     "firstSeen": "2026-08-18T07:51:50.583Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "The role family is right - pre-sales technical discovery, POCs, architecture design, and strategic technical advisory alongside sales - and the seniority bar (7+ years, strategic segment) matches Winston's Strategic Enterprise SC experience at Benchling. However, the depth of required technical specialty is a real gap: Databricks wants demonstrated experience building distributed data systems and expertise in Spark/Hadoop/Kafka or PyTorch/scikit-learn, whereas Winston's stack is SQL/Python for demo-building plus domain systems (Veeva, Benchling, DeltaV, MES). The Digital Natives vertical is explicitly tech/startup accounts, so his 10+ years of biopharma GMP/21 CFR Part 11 regulated-industry depth carries almost no weight here.",
     "location": "Nevada; Remote - California; Remote - Colorado; Remote - Washington",
@@ -3554,7 +3567,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8859518002",
     "firstSeen": "2026-10-29T18:46:38.097Z",
-    "status": "pending",
+    "status": "expired",
     "location": "West Coast - United States",
     "compensationRange": null,
     "postedAt": "2026-10-29T08:54:47-04:00"
@@ -3697,7 +3710,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8886648002",
     "firstSeen": "2026-10-17T16:05:32.459Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-10-16T19:46:49-04:00"
@@ -3892,7 +3905,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8923269002",
     "firstSeen": "2026-10-29T18:46:38.096Z",
-    "status": "pending",
+    "status": "expired",
     "location": "California",
     "compensationRange": null,
     "postedAt": "2026-10-29T08:54:45-04:00"
