@@ -44,9 +44,10 @@ Prefer evidence of thinking and execution over unsupported claims. The site must
 - Preserve the restrained editorial identity: warm neutral background, near-black text, subtle translucent rules, generous whitespace, and minimal decoration.
 - Reuse CSS custom properties in `:root`: `--background`, `--text`, `--line`, `--muted`, spacing variables, and `--content-width`.
 - Preserve font roles:
-  - Tenor Sans: body copy and primary display text.
+  - Tenor Sans: default body copy and primary display text on portfolio pages other than the homepage.
   - Belleza: eyebrows, section headings, and restrained editorial labels.
   - Poppins: selective technical/diagram emphasis.
+  - DM Sans: homepage copy only; keep the WN mark in Poppins.
 - Maintain the shared header and shallow primary navigation. Do not add hidden or targeted projects to `navigation` or `projects` unless explicitly requested.
 - Project pages should be designed arguments, not dumps of research notes. Follow the five movements in `docs/project-page-system.md`: orient, make the problem visible, show the key idea, make it concrete, establish fit and momentum.
 - Aim for a 2–4 minute primary reading path, one dominant visual, and progressive disclosure of supporting technical detail.

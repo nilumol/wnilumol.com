@@ -3,7 +3,7 @@ import Image from "next/image";
 import { SiteHeader } from "@/components/site-header";
 import { site } from "@/content/site";
 
-// The home page alone uses DM Sans; every other route keeps the site-wide Tenor Sans / Belleza set.
+// Keep DM Sans scoped to the homepage; the root layout provides the shared fonts.
 const dmSans = DM_Sans({ subsets: ["latin"], style: ["normal", "italic"], axes: ["opsz"], variable: "--font-dm-sans" });
 
 export default function HomePage() {
