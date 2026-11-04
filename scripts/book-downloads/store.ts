@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { list, put } from "@vercel/blob";
 
 /**
- * Free-PDF download counting for /books/*: one private, immutable blob per download started, holding
+ * Free-PDF download counting for /books/*: one private, immutable blob per eligible request, holding
  * only a server-side timestamp (no IP, user agent, or other personal data). Same write-once
  * one-blob-per-entry pattern as scripts/journal/store.ts, so concurrent downloads can never race.
  *

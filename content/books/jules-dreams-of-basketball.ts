@@ -6,6 +6,7 @@
  * text-only pages lossless. `text` is the page's own words, rendered as visually hidden text behind each page for
  * screen readers and search. `alt` describes illustrated pages and is empty for text pages, whose words are in `text`.
  * Illustration alt text is a draft placeholder until the author supplies scene descriptions.
+ * When the PDF changes, re-render both image sizes and regenerate this text from the replacement PDF.
  */
 
 export type BookPage = {

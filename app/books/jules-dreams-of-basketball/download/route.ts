@@ -7,10 +7,10 @@ import { recordBookDownload } from "@/scripts/book-downloads/store";
 export const dynamic = "force-dynamic";
 
 /**
- * Counts one download started, then redirects to the static PDF in public/, so the file itself stays a
+ * Schedules a count for an eligible download request and redirects to the static PDF in public/, so it stays a
  * plain static asset. The count is written after the response (`after`), so a slow or failing Blob
  * write can never delay or block the download; bots, link previews and prefetches are not counted.
- * This counts downloads started: the site cannot see whether the reader then saved or opened the file.
+ * This measures download requests: the site cannot see whether the reader then saved or opened the file.
  * The count is private: nothing on the site displays it or returns it.
  */
 export function GET(request: NextRequest) {

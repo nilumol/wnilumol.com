@@ -1,8 +1,8 @@
 /**
- * Prints how many free-PDF downloads were started for a book: the total, then one line per UTC day.
+ * Prints recorded free-PDF download requests for a book: the total, then one line per UTC day.
  * Usage: BOOK_DOWNLOADS_READ_WRITE_TOKEN=... npm run book:downloads [-- <book-slug>]
  * (`vercel env pull` writes the token into .env.local; pass it through the environment.)
- * Counts downloads started - the site cannot see whether a reader saved or opened the file.
+ * Counts eligible requests - the site cannot see whether a reader saved or opened the file.
  */
 import { bookDownloadsToken, listBookDownloads, summarizeDownloads } from "./store.ts";
 
