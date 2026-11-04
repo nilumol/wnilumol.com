@@ -112,14 +112,9 @@ The site should progressively disclose information.
 
 ### Level 1: Immediate Understanding
 
-Goal: Within several seconds, a visitor should understand the general intersection of my work:
+Goal: Within several seconds, a visitor should encounter a concise, personal introduction and see clear paths to the professional work elsewhere on the site.
 
-- Technology
-- Enterprise value
-- Biopharma
-- Technical problem solving
-
-The homepage should remain concise and visually simple.
+The homepage should remain visually simple; the career and project pages carry the detailed positioning and evidence.
 
 ### Level 2: Supporting Evidence
 
@@ -159,20 +154,10 @@ Complexity should appear only when the user chooses to explore it.
 
 Purpose:
 
-- Communicate the primary professional positioning.
-- Provide a concise overview of my background.
-- Surface selected evidence.
-- Route visitors into deeper pages.
+- Open with a personal, reflective impression through the Moraine Lake photo and Hesse quote.
+- Let the shared navigation lead visitors to career and project evidence.
 
-Possible homepage sections:
-
-- Hero / primary positioning
-- How I create value
-- Career overview
-- Selected work or proof
-- Navigation to deeper pages
-
-Exact homepage layout and copy are not yet finalized.
+The current homepage keeps the quote beside the photo on wide screens and stacks them on narrow screens. It has no visible name heading, biography, role labels, or separate project and career calls to action.
 
 ### About
 
@@ -267,8 +252,6 @@ Home
 - Use an aesthetically pleasing and restrained color palette
 - Maintain visual consistency
 - Use whitespace deliberately
-
-The visual system is not yet selected.
 
 ### 7.3 Professional with Personality
 
@@ -445,11 +428,8 @@ Every architectural addition should be explainable in terms of:
 
 The following decisions are intentionally unresolved:
 
-- Final homepage copy
-- Exact homepage layout
 - Visual design direction
 - Color palette
-- Typography
 - Styling approach
 - Whether to use Tailwind
 - Whether to use shadcn/ui, another component library, or custom components
