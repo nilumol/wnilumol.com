@@ -43,6 +43,14 @@ export const projects: Project[] = [
     status: "In progress",
     href: "/halsey-intro",
   },
+  {
+    slug: "jules-dreams-of-basketball",
+    title: "A Book Dedicated to Julien",
+    description:
+      "Jules Dreams of Basketball, a picture book I wrote for my son. Flip through it here or download it free.",
+    status: "Picture book",
+    href: "/books/jules-dreams-of-basketball",
+  },
 ];
 
 export const career = [

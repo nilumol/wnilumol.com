@@ -145,19 +145,27 @@ define local `--journal-*` tokens (warm paper background, oxblood ink accent) in
 reading) via their own `next/font/google` variables - deliberately not the site's Tenor
 Sans/Belleza/Poppins set.
 
-## Books (hidden)
+## Books
 
-`/books/jules-dreams-of-basketball` is an unlisted (`robots: noindex/nofollow`, not in `navigation` or
-`projects`) flip-book reader for Winston's picture book. `page.tsx` (static Server Component, DM Sans scoped
-like the homepage) renders `FlipBook.tsx`, a client component wrapping `page-flip@2.0.7` (imported from its
-untyped ES module build, `page-flip/dist/js/page-flip.module.js`; types in the sibling `page-flip.d.ts`).
-page-flip moves and finally deletes the DOM it is given, so FlipBook builds the page elements imperatively
-inside an empty React-owned host and never lets page-flip touch React nodes - keep it that way (it is what
-makes React 19 StrictMode's double effect safe). Page data and story text live in
-`content/books/jules-dreams-of-basketball.ts`; pre-rendered page images (1600/800 px WebP, illustrations q92,
-text pages lossless) and the free-download PDF live under `public/books/jules-dreams-of-basketball/`. A
-replacement PDF means re-rendering those images and regenerating the content file's text, not editing them by
-hand. Styles are the `book-*` block at the end of `app/globals.css`.
+`/books/jules-dreams-of-basketball` is a flip-book reader for Winston's picture book, listed on /projects as
+"A Book Dedicated to Julien" (in `content/site.ts` `projects`, not in `navigation`) and indexable.
+`page.tsx` (static Server Component, DM Sans scoped like the homepage) renders `FlipBook.tsx`, a client
+component wrapping `page-flip@2.0.7` (imported from its untyped ES module build,
+`page-flip/dist/js/page-flip.module.js`; types in the sibling `page-flip.d.ts`). page-flip moves and finally
+deletes the DOM it is given, so FlipBook builds the page elements imperatively inside an empty React-owned host
+and never lets page-flip touch React nodes - keep it that way (it is what makes React 19 StrictMode's double
+effect safe). Page data and story text live in `content/books/jules-dreams-of-basketball.ts`; pre-rendered page
+images (1600/800 px WebP, illustrations q92, text pages lossless) and the free PDF live under
+`public/books/jules-dreams-of-basketball/`. A replacement PDF means re-rendering those images and regenerating
+the content file's text, not editing them by hand. Styles are the `book-*` block at the end of `app/globals.css`.
+
+The download link points at `download/route.ts`, which counts one download started and 307-redirects to the
+static PDF. The count is one private, timestamp-only blob per download in a dedicated `book-downloads` Blob store
+(`scripts/book-downloads/store.ts`, token `BOOK_DOWNLOADS_READ_WRITE_TOKEN`, same write-once pattern as the
+journal), written in `after()` so it never delays or blocks the file; bots, link previews and prefetches are
+skipped (`scripts/book-downloads/bots.ts`). Without the token it skips counting and still redirects. Totals and
+per-day counts: `npm run book:downloads`; tests: `npm run book:test`. Like the journal store, the
+`book-downloads` store must be provisioned and attached to the Vercel project before counts are recorded.
 
 ## Maintaining this file
 

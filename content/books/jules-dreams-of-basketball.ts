@@ -18,7 +18,13 @@ export type BookPage = {
 export const julesBook = {
   slug: "jules-dreams-of-basketball",
   title: "Jules Dreams of Basketball",
-  pdf: { href: "/books/jules-dreams-of-basketball/jules-dreams-of-basketball.pdf", sizeLabel: "6.5 MB" },
+  pdf: {
+    /** The static file in public/. Readers reach it through `downloadHref`, which counts the download first. */
+    href: "/books/jules-dreams-of-basketball/jules-dreams-of-basketball.pdf",
+    downloadHref: "/books/jules-dreams-of-basketball/download",
+    fileName: "jules-dreams-of-basketball.pdf",
+    sizeLabel: "6.5 MB",
+  },
   imageBase: "/books/jules-dreams-of-basketball/pages",
 };
 

@@ -10,7 +10,9 @@
     "job-agent:apply-scores": "node --experimental-strip-types scripts/job-agent/apply-scores.ts",
     "job-agent:score-via-api": "node --experimental-strip-types scripts/job-agent/score-via-api.ts",
     "job-agent:test": "node --experimental-strip-types --test scripts/job-agent/*.test.ts",
-    "journal:test": "node --experimental-strip-types --test scripts/journal/*.test.ts"
+    "journal:test": "node --experimental-strip-types --test scripts/journal/*.test.ts",
+    "book:downloads": "node --experimental-strip-types scripts/book-downloads/report.ts",
+    "book:test": "node --experimental-strip-types --test scripts/book-downloads/*.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.117.1",

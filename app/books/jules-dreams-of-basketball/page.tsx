@@ -10,8 +10,6 @@ const dmSans = DM_Sans({ subsets: ["latin"], style: ["normal", "italic"], axes: 
 export const metadata: Metadata = {
   title: julesBook.title,
   description: "Read Jules Dreams of Basketball, a picture book by Winston Nilumol, as a flip book, or download the free PDF.",
-  // Unlisted for now: not in navigation or /projects, and not indexed until the owner decides otherwise.
-  robots: { index: false, follow: false },
 };
 
 export default function JulesDreamsOfBasketballPage() {
@@ -26,7 +24,7 @@ export default function JulesDreamsOfBasketballPage() {
         <FlipBook pages={julesPages} imageBase={julesBook.imageBase} />
 
         <p className="book-download">
-          <a className="book-btn" href={julesBook.pdf.href} download>
+          <a className="book-btn" href={julesBook.pdf.downloadHref} download={julesBook.pdf.fileName}>
             Download the free PDF <span className="book-download-size">({julesBook.pdf.sizeLabel})</span>
           </a>
         </p>
