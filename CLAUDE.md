@@ -145,6 +145,20 @@ define local `--journal-*` tokens (warm paper background, oxblood ink accent) in
 reading) via their own `next/font/google` variables - deliberately not the site's Tenor
 Sans/Belleza/Poppins set.
 
+## Books (hidden)
+
+`/books/jules-dreams-of-basketball` is an unlisted (`robots: noindex/nofollow`, not in `navigation` or
+`projects`) flip-book reader for Winston's picture book. `page.tsx` (static Server Component, DM Sans scoped
+like the homepage) renders `FlipBook.tsx`, a client component wrapping `page-flip@2.0.7` (imported from its
+untyped ES module build, `page-flip/dist/js/page-flip.module.js`; types in the sibling `page-flip.d.ts`).
+page-flip moves and finally deletes the DOM it is given, so FlipBook builds the page elements imperatively
+inside an empty React-owned host and never lets page-flip touch React nodes - keep it that way (it is what
+makes React 19 StrictMode's double effect safe). Page data and story text live in
+`content/books/jules-dreams-of-basketball.ts`; pre-rendered page images (1600/800 px WebP, illustrations q92,
+text pages lossless) and the free-download PDF live under `public/books/jules-dreams-of-basketball/`. A
+replacement PDF means re-rendering those images and regenerating the content file's text, not editing them by
+hand. Styles are the `book-*` block at the end of `app/globals.css`.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.
