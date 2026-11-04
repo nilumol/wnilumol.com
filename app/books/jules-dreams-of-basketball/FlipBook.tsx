@@ -72,6 +72,54 @@ function buildLeaf(page: BookPage) {
   return leaf;
 }
 
+function loadWithManagedFrames(instance: PageFlip, leaves: HTMLElement[]) {
+  const requestFrame = window.requestAnimationFrame.bind(window);
+  const cancelFrame = window.cancelAnimationFrame.bind(window);
+  const originalRequest = window.requestAnimationFrame;
+  let active = true;
+  let frame: number | null = null;
+  let started = false;
+
+  const schedule = (callback: FrameRequestCallback): number => {
+    frame = requestFrame((time) => {
+      frame = null;
+      if (!active) return;
+      const currentRequest = window.requestAnimationFrame;
+      window.requestAnimationFrame = (next) =>
+        next === callback ? schedule(next) : currentRequest.call(window, next);
+      try {
+        callback(time);
+      } finally {
+        window.requestAnimationFrame = currentRequest;
+      }
+    });
+    return frame;
+  };
+
+  const stop = () => {
+    active = false;
+    if (frame !== null) cancelFrame(frame);
+    frame = null;
+  };
+
+  window.requestAnimationFrame = (callback) => {
+    if (!started) {
+      started = true;
+      return schedule(callback);
+    }
+    return originalRequest.call(window, callback);
+  };
+  try {
+    instance.loadFromHTML(leaves);
+  } catch (error) {
+    stop();
+    throw error;
+  } finally {
+    window.requestAnimationFrame = originalRequest;
+  }
+  return stop;
+}
+
 export function FlipBook({ pages, imageBase }: { pages: BookPage[]; imageBase: string }) {
   const readerRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -80,6 +128,7 @@ export function FlipBook({ pages, imageBase }: { pages: BookPage[]; imageBase: s
   const syncRef = useRef<() => void>(() => {});
   const [ready, setReady] = useState(false);
   const [state, setState] = useState<ReaderState>({ index: 0, portrait: false, flipState: "read" });
+  const [openingFromDrag, setOpeningFromDrag] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [pseudoFullscreen, setPseudoFullscreen] = useState(false);
   const total = pages.length;
@@ -90,6 +139,8 @@ export function FlipBook({ pages, imageBase }: { pages: BookPage[]; imageBase: s
     let cancelled = false;
     let flip: PageFlip | null = null;
     let block: HTMLDivElement | null = null;
+    let stopFrames: (() => void) | null = null;
+    let restoreDrag: (() => void) | null = null;
 
     import("page-flip/dist/js/page-flip.module.js").then(({ PageFlip }) => {
       if (cancelled) return;
@@ -130,8 +181,21 @@ export function FlipBook({ pages, imageBase }: { pages: BookPage[]; imageBase: s
       syncRef.current = () => sync();
       instance.on("flip", () => sync());
       instance.on("changeOrientation", () => sync());
-      instance.on("changeState", (e) => sync(e.data));
-      instance.loadFromHTML(leaves);
+      instance.on("changeState", (e) => {
+        if (e.data === "read") setOpeningFromDrag(false);
+        sync(e.data);
+      });
+      stopFrames = loadWithManagedFrames(instance, leaves);
+      const controller = instance.getFlipController();
+      const stopMove = controller.stopMove;
+      controller.stopMove = () => {
+        const calculation = controller.getCalculation();
+        if (instance.getCurrentPageIndex() === 0 && instance.getOrientation() === "landscape" && calculation && calculation.getPosition().x <= 0) {
+          setOpeningFromDrag(true);
+        }
+        stopMove.call(controller);
+      };
+      restoreDrag = () => { controller.stopMove = stopMove; };
       sync();
       setReady(true);
     });
@@ -140,6 +204,8 @@ export function FlipBook({ pages, imageBase }: { pages: BookPage[]; imageBase: s
       cancelled = true;
       flipRef.current = null;
       syncRef.current = () => {};
+      restoreDrag?.();
+      stopFrames?.();
       flip?.destroy(); // removes page-flip's own root (the imperative `block`), never React's nodes
       block?.remove();
     };
@@ -195,7 +261,7 @@ export function FlipBook({ pages, imageBase }: { pages: BookPage[]; imageBase: s
   if (ready) classes.push("is-ready");
   if (!portrait) classes.push("is-landscape");
   // page-flip draws the closed cover on the right half of the spread; center it until a turn starts.
-  if (index === 0 && flipState !== "flipping") classes.push("is-cover");
+  if (index === 0 && flipState !== "flipping" && !openingFromDrag) classes.push("is-cover");
   if (flipState !== "read") classes.push("is-interacting");
   if (pseudoFullscreen) classes.push("is-pseudo-fullscreen");
 

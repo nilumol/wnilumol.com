@@ -25,6 +25,11 @@ declare module "page-flip/dist/js/page-flip.module.js" {
     data: T;
   }
 
+  export interface FlipController {
+    getCalculation(): { getPosition(): { x: number; y: number } } | null;
+    stopMove(): void;
+  }
+
   export class PageFlip {
     constructor(element: HTMLElement, setting: FlipSetting);
     loadFromHTML(items: NodeListOf<HTMLElement> | HTMLElement[]): void;
@@ -37,6 +42,7 @@ declare module "page-flip/dist/js/page-flip.module.js" {
     getCurrentPageIndex(): number;
     getOrientation(): FlipOrientation;
     getState(): FlipState;
+    getFlipController(): FlipController;
     update(): void;
     destroy(): void;
   }
