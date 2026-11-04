@@ -10,13 +10,16 @@
     "job-agent:apply-scores": "node --experimental-strip-types scripts/job-agent/apply-scores.ts",
     "job-agent:score-via-api": "node --experimental-strip-types scripts/job-agent/score-via-api.ts",
     "job-agent:test": "node --experimental-strip-types --test scripts/job-agent/*.test.ts",
-    "journal:test": "node --experimental-strip-types --test scripts/journal/*.test.ts"
+    "journal:test": "node --experimental-strip-types --test scripts/journal/*.test.ts",
+    "book:downloads": "node --experimental-strip-types scripts/book-downloads/report.ts",
+    "book:test": "node --experimental-strip-types --test scripts/book-downloads/*.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.117.1",
     "@sparticuz/chromium": "^149.0.0",
     "@vercel/blob": "^2.8.0",
     "next": "16.3.0",
+    "page-flip": "2.0.7",
     "puppeteer-core": "^25.8.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",

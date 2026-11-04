@@ -335,3 +335,62 @@ p, h1, h2, ul { margin-top: 0; }
 .journal-calendar-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
 .journal-calendar-note { margin: 0; font-size: 0.8rem; color: var(--journal-ink-muted); }
 .journal-calendar-actions { display: flex; gap: 8px; }
+
+/* ---- /books/jules-dreams-of-basketball: flip-book reader (book-* classes; FlipBook.tsx) ---- */
+/* Pure white on this route so the page and the book's white pages read as one surface; :has() keeps it route-scoped. */
+html:has(.book-shell), html:has(.book-shell) body { background: #fff; }
+.book-shell { min-height: 100vh; overflow-x: clip; background: #fff; font-family: var(--font-dm-sans), sans-serif; }
+.book-page { width: min(100%, var(--content-width)); margin: 0 auto; padding: clamp(28px, 3.5vw, 44px) var(--page-x) 96px; }
+.book-intro { margin-bottom: clamp(20px, 2.4vw, 32px); padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.book-intro h1 { margin: 0; font-size: clamp(2.1rem, 4.4vw, 3.5rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.08; }
+
+/* The reader renders inline at a size that fits one viewport (an open spread is 2:1). */
+.book-reader { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.book-stage { width: min(100%, calc((100svh - 150px) * 2)); min-width: 0; transition: transform 500ms ease; }
+/* page-flip draws the closed cover on the right half of the spread; shift it to the center until a turn starts. */
+.book-reader.is-cover.is-landscape .book-stage { transform: translateX(-25%); }
+.book-frame { position: relative; }
+/* Reserve the book's space until page-flip has measured it, so the page doesn't jump on load. */
+.book-reader:not(.is-ready) .book-flip-host { aspect-ratio: 2 / 1; }
+.book-pending { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--muted); font-size: 0.85rem; }
+.book-flip { margin: 0 auto; }
+.book-page-leaf { background: #fff; overflow: hidden; }
+/* A thin black outline on each page (above its image) makes the book read as a physical book on the white page.
+   Left pages omit their spine edge, leaving one line down the spine; a right page (also the lone cover and every
+   page in single-page mode) is outlined on all four sides. It turns and clips with the page during a flip. */
+.book-page-leaf::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(17, 17, 17, 0.9); pointer-events: none; z-index: 3; }
+.book-page-leaf.--left::after { border-right: 0; }
+.book-page-leaf img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 240ms ease; }
+.book-page-leaf img.is-loaded { opacity: 1; }
+.book-page-loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 12px; pointer-events: none; }
+.book-page-leaf.is-loaded .book-page-loading { display: none; }
+/* Soft spine shading on an open spread, faded at top and bottom; hidden on the closed cover and while a page turns. */
+.book-frame::after { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 9%; transform: translateX(-50%); background: linear-gradient(90deg, rgba(25, 25, 25, 0) 0%, rgba(25, 25, 25, 0.025) 38%, rgba(25, 25, 25, 0.06) 50%, rgba(25, 25, 25, 0.025) 62%, rgba(25, 25, 25, 0) 100%); -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%); pointer-events: none; opacity: 0; transition: opacity 200ms ease; z-index: 2; }
+.book-reader.is-ready.is-landscape:not(.is-cover):not(.is-interacting) .book-frame::after { opacity: 1; }
+
+.book-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px clamp(10px, 2vw, 22px); width: 100%; }
+.book-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: var(--text); font: inherit; font-size: 0.9rem; cursor: pointer; transition: background 160ms ease; }
+@media (hover: hover) { .book-btn:hover:not(:disabled) { background: rgba(25, 25, 25, 0.05); } }
+.book-btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.book-btn:disabled { opacity: 0.35; cursor: default; }
+.book-btn svg { width: 16px; height: 16px; flex: none; }
+.book-counter { margin: 0; min-width: 10em; text-align: center; color: var(--muted); font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+.book-fullscreen, .book-download .book-btn { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
+.book-fullscreen { margin-left: clamp(0px, 2vw, 18px); }
+.book-download { margin: 28px 0 0; text-align: center; }
+.book-download-size { color: var(--muted); }
+
+/* Full screen: the same reader enlarged to the viewport. The pseudo mode covers iPhone Safari, which lacks element full screen. */
+.book-reader:fullscreen { background: #fff; justify-content: center; padding: 24px; }
+.book-reader.is-pseudo-fullscreen { position: fixed; inset: 0; z-index: 50; background: #fff; justify-content: center; padding: 16px; }
+.book-reader:fullscreen .book-stage, .book-reader.is-pseudo-fullscreen .book-stage { width: min(100%, calc((100svh - 120px) * 2)); }
+
+@media (max-width: 640px) {
+  .book-stage { width: min(100%, calc(100svh - 200px)); }
+  .book-reader:not(.is-ready) .book-flip-host { aspect-ratio: 1; }
+  /* Phones: Previous, counter, Next on one row; the "Full screen" text button on its own row. */
+  .book-counter { min-width: 0; flex: 1; font-size: 0.82rem; }
+  .book-fullscreen { flex-basis: 100%; justify-content: center; margin-left: 0; }
+  .book-reader:fullscreen .book-stage, .book-reader.is-pseudo-fullscreen .book-stage { width: min(100%, calc(100svh - 110px)); }
+}
+@media (prefers-reduced-motion: reduce) { .book-stage { transition: none; } }
