@@ -1495,6 +1495,32 @@
     "compensationRange": null,
     "postedAt": "2026-10-23T16:43:16-04:00"
   },
+  "greenhouse:5277459007": {
+    "id": 5277459007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Director, Sales Engineering - SLED",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5277459007",
+    "firstSeen": "2026-11-04T20:13:21.622Z",
+    "status": "pending",
+    "location": "Remote - USA",
+    "compensationRange": null,
+    "postedAt": "2026-11-04T12:46:26-05:00"
+  },
+  "greenhouse:5284066007": {
+    "id": 5284066007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer - Federal (NSA, CIA, FBI) ",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5284066007",
+    "firstSeen": "2026-11-04T20:13:21.623Z",
+    "status": "pending",
+    "location": "Remote - Maryland, USA; Remote - Virginia, USA",
+    "compensationRange": null,
+    "postedAt": "2026-11-04T11:04:24-05:00"
+  },
   "greenhouse:5783377004": {
     "id": 5783377004,
     "source": "greenhouse",
@@ -1503,7 +1529,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://boards.greenhouse.io/figma/jobs/5783377004?gh_jid=5783377004",
     "firstSeen": "2026-08-18T07:28:47.848Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 5,
     "fitRationale": "Role-family fit is strong: enterprise-segment presales with demos, technical discovery, security questionnaires/RFI-RFP ownership, and roadmap influence maps almost one-to-one to Winston's Benchling Strategic Enterprise SC work. However, there is zero life-sciences or regulated-industry overlap — Figma's value story is design/UX and digital product delivery, and the posting asks for front-end development or developer-lifecycle experience plus UX/UI familiarity, which is absent from his SQL/Veeva/Benchling/GMP toolset. Tenure is borderline too: he clears 8+ years total but has roughly 2.5 years of pure SaaS sales-engineering time against the 4+ year ask.",
     "location": "San Francisco, CA • New York, NY • United States",
@@ -3935,6 +3961,19 @@
     "location": "Denver, Colorado",
     "compensationRange": null,
     "postedAt": "2026-11-03T14:39:59-05:00"
+  },
+  "greenhouse:8929477002": {
+    "id": 8929477002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Manager, Customer Success Manager (PubSec)",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8929477002",
+    "firstSeen": "2026-11-04T20:13:21.623Z",
+    "status": "pending",
+    "location": "Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-11-04T11:24:30-05:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
