@@ -36,6 +36,7 @@ declare module "page-flip/dist/js/page-flip.module.js" {
     flipPrev(): void;
     getCurrentPageIndex(): number;
     getOrientation(): FlipOrientation;
+    getState(): FlipState;
     update(): void;
     destroy(): void;
   }

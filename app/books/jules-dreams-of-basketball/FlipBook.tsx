@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { FlipSetting, PageFlip } from "page-flip/dist/js/page-flip.module.js";
+import type { FlipSetting, FlipState, PageFlip } from "page-flip/dist/js/page-flip.module.js";
 import type { BookPage } from "@/content/books/jules-dreams-of-basketball";
 
 const SETTINGS: FlipSetting = {
@@ -25,7 +25,7 @@ const SETTINGS: FlipSetting = {
 const LOAD_BEHIND = 2;
 const LOAD_AHEAD = 5;
 
-type ReaderState = { index: number; portrait: boolean; flipping: boolean };
+type ReaderState = { index: number; portrait: boolean; flipState: FlipState };
 
 function counterLabel({ index, portrait }: ReaderState, total: number) {
   if (index === 0) return "Cover";
@@ -79,7 +79,7 @@ export function FlipBook({ pages, imageBase }: { pages: BookPage[]; imageBase: s
   const flipRef = useRef<PageFlip | null>(null);
   const syncRef = useRef<() => void>(() => {});
   const [ready, setReady] = useState(false);
-  const [state, setState] = useState<ReaderState>({ index: 0, portrait: false, flipping: false });
+  const [state, setState] = useState<ReaderState>({ index: 0, portrait: false, flipState: "read" });
   const [fullscreen, setFullscreen] = useState(false);
   const [pseudoFullscreen, setPseudoFullscreen] = useState(false);
   const total = pages.length;
@@ -121,16 +121,16 @@ export function FlipBook({ pages, imageBase }: { pages: BookPage[]; imageBase: s
       const instance = new PageFlip(block, SETTINGS);
       flip = instance;
       flipRef.current = instance;
-      const sync = (flipping = false) => {
+      const sync = (flipState = instance.getState()) => {
         const index = instance.getCurrentPageIndex();
         const portrait = instance.getOrientation() === "portrait";
-        setState({ index, portrait, flipping });
+        setState({ index, portrait, flipState });
         loadAround(index, portrait);
       };
       syncRef.current = () => sync();
       instance.on("flip", () => sync());
       instance.on("changeOrientation", () => sync());
-      instance.on("changeState", (e) => sync(e.data !== "read"));
+      instance.on("changeState", (e) => sync(e.data));
       instance.loadFromHTML(leaves);
       sync();
       setReady(true);
@@ -190,13 +190,13 @@ export function FlipBook({ pages, imageBase }: { pages: BookPage[]; imageBase: s
     }
   }, []);
 
-  const { index, portrait, flipping } = state;
+  const { index, portrait, flipState } = state;
   const classes = ["book-reader"];
   if (ready) classes.push("is-ready");
   if (!portrait) classes.push("is-landscape");
   // page-flip draws the closed cover on the right half of the spread; center it until a turn starts.
-  if (index === 0 && !flipping) classes.push("is-cover");
-  if (flipping) classes.push("is-flipping");
+  if (index === 0 && flipState !== "flipping") classes.push("is-cover");
+  if (flipState !== "read") classes.push("is-interacting");
   if (pseudoFullscreen) classes.push("is-pseudo-fullscreen");
 
   return (
