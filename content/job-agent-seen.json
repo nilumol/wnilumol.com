@@ -2041,7 +2041,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8502991002",
     "firstSeen": "2026-08-18T07:45:59.360Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "Role family is a genuine match - customer-facing pre-sales/solutions architecture with POCs, reference architectures, and demos, which mirrors his Benchling SC work, and the 7+ years customer-facing requirement fits his tenure. But the vertical is Financial Services, with zero biopharma/life-sciences adjacency and an explicit preference for FS technology/data provider background he lacks. The technical bar is also deeper than his stack: distributed data systems design, Spark/Hadoop/Kafka, data warehousing, and an engineering/math degree (he has a B.S. in Biology); only Python/SQL/R and Google Cloud overlap.",
     "location": "Illinois; Massachusetts; New Jersey; New York; Washington, D.C.",
