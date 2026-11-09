@@ -616,7 +616,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5082269007",
     "firstSeen": "2026-08-18T07:33:05.655Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "The role family (presales SE doing demos, technical discovery, and POVs for large enterprise accounts) genuinely matches Winston's Benchling experience, but the technical substance is network/cloud security - Zero Trust, network security technologies, CCNP/CISSP/PCNSA certifications - which shares nothing with his SQL/Veeva/Benchling/GMP toolset. There is zero life sciences or regulated-industry adjacency, and he'd be competing against candidates with deep networking and security fundamentals he'd need to build from scratch. Also geographically anchored to NC/SC/Atlanta, further narrowing fit.",
     "location": "Remote - Georgia, USA; Remote - North Carolina, USA; Remote - South Carolina, USA",
@@ -929,7 +929,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198888007",
     "firstSeen": "2026-08-18T07:34:36.020Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "The role family is a clean match — presales technical advisor running discovery, technical demos, custom configurations, and Proof of Value, all things Winston did at Benchling in the Strategic Enterprise segment. But the substance is network/cloud security (Zero Trust, CCNP/JNCIP/CISSP/CCSP-preferred, 7+ years as an SE or systems integrator), which shares essentially nothing with his SQL/Veeva/Benchling/GMP toolset and 10+ years of biopharma domain depth; he'd also fall well short of the 7+ years pure SE requirement with ~2.5 years in presales. Additional friction: the role is Georgia-based and requires deep network security fluency he'd have to build from zero.",
     "location": "Remote - Georgia, USA",
@@ -1507,6 +1507,19 @@
     "location": "Remote - USA",
     "compensationRange": null,
     "postedAt": "2026-11-04T12:46:26-05:00"
+  },
+  "greenhouse:5283484007": {
+    "id": 5283484007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Director, Sales Engineering - Majors",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5283484007",
+    "firstSeen": "2026-11-09T22:50:49.056Z",
+    "status": "pending",
+    "location": "Remote - USA",
+    "compensationRange": null,
+    "postedAt": "2026-11-09T11:22:25-05:00"
   },
   "greenhouse:5284066007": {
     "id": 5284066007,
