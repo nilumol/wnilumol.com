@@ -1464,7 +1464,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5268698007",
     "firstSeen": "2026-10-23T17:40:03.082Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - USA",
     "compensationRange": null,
     "postedAt": "2026-10-22T21:52:11-04:00"
@@ -1508,6 +1508,19 @@
     "compensationRange": null,
     "postedAt": "2026-11-04T12:46:26-05:00"
   },
+  "greenhouse:5279588007": {
+    "id": 5279588007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Principal Specialist Sales Engineer, Data Security - Public Sector",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5279588007",
+    "firstSeen": "2026-11-10T20:10:30.167Z",
+    "status": "pending",
+    "location": "Remote - USA",
+    "compensationRange": null,
+    "postedAt": "2026-11-10T10:41:37-05:00"
+  },
   "greenhouse:5283484007": {
     "id": 5283484007,
     "source": "greenhouse",
@@ -1520,6 +1533,19 @@
     "location": "Remote - USA",
     "compensationRange": null,
     "postedAt": "2026-11-09T11:22:25-05:00"
+  },
+  "greenhouse:5284060007": {
+    "id": 5284060007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5284060007",
+    "firstSeen": "2026-11-10T20:10:30.167Z",
+    "status": "pending",
+    "location": "Remote - Hong Kong",
+    "compensationRange": null,
+    "postedAt": "2026-11-09T22:44:33-05:00"
   },
   "greenhouse:5284066007": {
     "id": 5284066007,
@@ -1795,6 +1821,58 @@
     "location": "Remote - California",
     "compensationRange": "$180,000—$247,500 USD",
     "postedAt": "2025-10-28T16:31:33-04:00"
+  },
+  "greenhouse:8307799002": {
+    "id": 8307799002,
+    "source": "greenhouse",
+    "company": "Brex",
+    "title": "Mid-Market Customer Success Manager",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://www.brex.com/careers/8307799002?gh_jid=8307799002",
+    "firstSeen": "2026-11-10T20:10:30.167Z",
+    "status": "pending",
+    "location": "San Francisco, California, United States",
+    "compensationRange": null,
+    "postedAt": "2025-11-25T12:34:54-05:00"
+  },
+  "greenhouse:8307841002": {
+    "id": 8307841002,
+    "source": "greenhouse",
+    "company": "Brex",
+    "title": "Mid-Market Customer Success Manager",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://www.brex.com/careers/8307841002?gh_jid=8307841002",
+    "firstSeen": "2026-11-10T20:10:30.167Z",
+    "status": "pending",
+    "location": "New York, New York, United States",
+    "compensationRange": null,
+    "postedAt": "2025-11-25T12:36:43-05:00"
+  },
+  "greenhouse:8307843002": {
+    "id": 8307843002,
+    "source": "greenhouse",
+    "company": "Brex",
+    "title": "Mid-Market Customer Success Manager",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://www.brex.com/careers/8307843002?gh_jid=8307843002",
+    "firstSeen": "2026-11-10T20:10:30.167Z",
+    "status": "pending",
+    "location": "Seattle, Washington, United States",
+    "compensationRange": null,
+    "postedAt": "2025-11-25T12:37:24-05:00"
+  },
+  "greenhouse:8307850002": {
+    "id": 8307850002,
+    "source": "greenhouse",
+    "company": "Brex",
+    "title": "Mid-Market Customer Success Manager",
+    "keywordFamily": "Customer Success Manager",
+    "absoluteUrl": "https://www.brex.com/careers/8307850002?gh_jid=8307850002",
+    "firstSeen": "2026-11-10T20:10:30.167Z",
+    "status": "pending",
+    "location": "Salt Lake City, Utah, United States",
+    "compensationRange": null,
+    "postedAt": "2025-11-25T12:39:08-05:00"
   },
   "greenhouse:8353049002": {
     "id": 8353049002,
@@ -2166,7 +2244,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8548986002",
     "firstSeen": "2026-08-18T07:38:39.704Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 6,
     "fitRationale": "Strong role-family fit: this is essentially a post-sale technical account/implementation lead role blending Solutions Architect, Implementation Manager, and CSM duties, which maps well to Winston's Benchling presales work and his 0->1 implementation leadership at Collate, plus explicit Python/SQL and discovery-workshop/roadmap requirements he clearly meets. The main gap is domain: the 'Digital Native Business' segment targets tech-native/consumer companies rather than regulated life sciences, so his 10+ years of biopharma/GMP/21 CFR Part 11 depth carries little weight here. Also expects deeper Data & AI platform architecture credibility (distributed data systems, cloud cost tuning, Lakehouse adoption) than his Benchling/Collate SaaS stack demonstrates, which could make him a middling candidate against data-platform specialists.",
     "location": "Remote - California; Remote - Oregon; Remote - Washington",
@@ -3021,7 +3099,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8735569002",
     "firstSeen": "2026-08-21T13:41:13.528Z",
-    "status": "pending",
+    "status": "expired",
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-08-20T22:29:17-04:00"
@@ -3034,7 +3112,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8736471002",
     "firstSeen": "2026-10-12T21:31:09.608Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Northeast - United States; Southeast - United States; West Coast - United States",
     "compensationRange": null,
     "postedAt": "2026-10-12T14:50:09-04:00"
