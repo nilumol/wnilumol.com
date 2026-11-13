@@ -404,7 +404,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://boards.greenhouse.io/cloudflare/jobs/8189858?gh_jid=8189858",
     "firstSeen": "2026-09-11T16:51:08.906Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Hybrid",
     "compensationRange": null,
     "postedAt": "2026-09-11T10:32:21-04:00"
@@ -1572,6 +1572,19 @@
     "location": "Remote - Michigan, USA",
     "compensationRange": null,
     "postedAt": "2026-11-11T12:46:51-05:00"
+  },
+  "greenhouse:5292843007": {
+    "id": 5292843007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer - Majors, NYC Financials ",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5292843007",
+    "firstSeen": "2026-11-13T20:15:32.077Z",
+    "status": "pending",
+    "location": "Remote - Connecticut, USA; Remote - New Jersey, USA; Remote - New York, USA",
+    "compensationRange": null,
+    "postedAt": "2026-11-13T11:12:05-05:00"
   },
   "greenhouse:5783377004": {
     "id": 5783377004,
@@ -3775,7 +3788,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8877968002",
     "firstSeen": "2026-10-08T19:06:56.792Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Northeast - United States",
     "compensationRange": null,
     "postedAt": "2026-10-08T13:35:10-04:00"
@@ -4117,6 +4130,19 @@
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-11-04T11:24:30-05:00"
+  },
+  "greenhouse:8938652002": {
+    "id": 8938652002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Digital Native Business (DNB)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8938652002",
+    "firstSeen": "2026-11-13T20:15:32.077Z",
+    "status": "pending",
+    "location": "Remote - California; San Francisco, California",
+    "compensationRange": null,
+    "postedAt": "2026-11-13T09:02:25-05:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
