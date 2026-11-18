@@ -2429,7 +2429,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8567972002",
     "firstSeen": "2026-10-07T19:10:50.473Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Atlanta, Georgia; Charlotte, North Carolina; Southeast - United States",
     "compensationRange": null,
     "postedAt": "2026-10-06T15:36:59-04:00"
@@ -3936,6 +3936,32 @@
     "compensationRange": null,
     "postedAt": "2026-10-29T15:42:42-04:00"
   },
+  "greenhouse:8893776002": {
+    "id": 8893776002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Senior Solutions Architect - DNB Named B2B accounts",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8893776002",
+    "firstSeen": "2026-11-18T21:04:26.754Z",
+    "status": "pending",
+    "location": "Central - United States; Northeast - United States; Southeast - United States",
+    "compensationRange": null,
+    "postedAt": "2026-11-18T12:34:06-05:00"
+  },
+  "greenhouse:8893778002": {
+    "id": 8893778002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Public Sector (Federal Civilian)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8893778002",
+    "firstSeen": "2026-11-18T21:04:26.754Z",
+    "status": "pending",
+    "location": "Maryland; Virginia; Washington, D.C.",
+    "compensationRange": null,
+    "postedAt": "2026-11-18T14:16:27-05:00"
+  },
   "greenhouse:8893782002": {
     "id": 8893782002,
     "source": "greenhouse",
@@ -4074,7 +4100,7 @@
     "keywordFamily": "Solutions Architect",
     "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8907111002",
     "firstSeen": "2026-10-23T17:40:03.082Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote, United States",
     "compensationRange": null,
     "postedAt": "2026-10-22T15:13:13-04:00"
@@ -4104,6 +4130,19 @@
     "location": "Northeast - United States",
     "compensationRange": null,
     "postedAt": "2026-11-16T15:52:14-05:00"
+  },
+  "greenhouse:8910858002": {
+    "id": 8910858002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect - Public Sector (LEAPS) ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8910858002",
+    "firstSeen": "2026-11-18T21:04:26.754Z",
+    "status": "pending",
+    "location": "Maryland; Virginia; Washington, D.C.",
+    "compensationRange": null,
+    "postedAt": "2026-11-18T14:08:18-05:00"
   },
   "greenhouse:8920805002": {
     "id": 8920805002,
@@ -4209,6 +4248,32 @@
     "compensationRange": null,
     "postedAt": "2026-11-16T17:25:56-05:00"
   },
+  "greenhouse:8941364002": {
+    "id": 8941364002,
+    "source": "greenhouse",
+    "company": "GitLab",
+    "title": "Solutions Architect - SLED (East) ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://job-boards.greenhouse.io/gitlab/jobs/8941364002",
+    "firstSeen": "2026-11-18T21:04:26.754Z",
+    "status": "pending",
+    "location": "Remote, United States",
+    "compensationRange": null,
+    "postedAt": "2026-11-18T11:06:02-05:00"
+  },
+  "greenhouse:8948988002": {
+    "id": 8948988002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Sr. Solutions Architect - Financial Services (Strategic Banking)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8948988002",
+    "firstSeen": "2026-11-18T21:04:26.754Z",
+    "status": "pending",
+    "location": "Massachusetts; New Jersey; New York; North Carolina; Pennsylvania",
+    "compensationRange": null,
+    "postedAt": "2026-11-18T11:41:42-05:00"
+  },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
     "source": "lever",
@@ -4273,7 +4338,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/49a25b69-56f9-49c4-918b-6e70ab180c94",
     "firstSeen": "2026-10-09T18:38:04.394Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Pennsylvania - Philadelphia",
     "compensationRange": null,
     "postedAt": "2026-10-08T21:55:32.839Z"
@@ -4299,7 +4364,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/95cfeb57-342a-4921-bab0-0f75adc43042",
     "firstSeen": "2026-10-09T18:38:04.394Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Illinois - Chicago",
     "compensationRange": null,
     "postedAt": "2026-10-08T21:54:33.995Z"
@@ -4312,7 +4377,7 @@
     "keywordFamily": "Customer Success Manager",
     "absoluteUrl": "https://jobs.lever.co/veeva/183bf848-398b-4459-934e-2f2ca5793114",
     "firstSeen": "2026-10-09T18:38:04.394Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Massachusetts - Boston",
     "compensationRange": null,
     "postedAt": "2026-10-08T21:56:11.202Z"
@@ -4342,6 +4407,19 @@
     "location": "Illinois - Chicago",
     "compensationRange": null,
     "postedAt": "2026-10-08T19:46:27.636Z"
+  },
+  "lever:0920de25-ca22-4349-b543-45a3c830f113": {
+    "id": "0920de25-ca22-4349-b543-45a3c830f113",
+    "source": "lever",
+    "company": "Ethena",
+    "title": "Sales Engineer",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://jobs.lever.co/ethena/0920de25-ca22-4349-b543-45a3c830f113",
+    "firstSeen": "2026-11-18T21:04:26.754Z",
+    "status": "pending",
+    "location": "Remote",
+    "compensationRange": "$125K-$150K",
+    "postedAt": "2026-11-18T15:55:21.169Z"
   },
   "lever:961ebde4-46c4-44b6-b502-55fcd56d17b6": {
     "id": "961ebde4-46c4-44b6-b502-55fcd56d17b6",
@@ -4448,7 +4526,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://jobs.lever.co/ethena/e4e50aed-ada3-47fa-875e-169ef416d93e",
     "firstSeen": "2026-10-17T16:05:32.460Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote",
     "compensationRange": "$125K-$150K",
     "postedAt": "2026-10-16T23:47:29.061Z"
