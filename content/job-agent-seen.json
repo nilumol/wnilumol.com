@@ -644,7 +644,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5100430007",
     "firstSeen": "2026-08-18T07:29:48.861Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 3,
     "fitRationale": "Role family (Sales Engineer, POVs, executive technical discovery, roadmap influence) matches well, and the healthcare vertical is nominally adjacent to Winston's regulated-industry background. However, the substance is deep enterprise cybersecurity and networking — Zero Trust, SD-WAN, routers/switches, authentication, CISSP/CCIE, EHR/PACS — with a hard 7+ years of cybersecurity presales requirement that Winston does not have; his SQL/Benchling/GMP toolset shares almost nothing with this stack. Principal-level vendor architect expectations further widen the gap despite matching seniority in years.",
     "location": "Remote - USA",
@@ -2231,7 +2231,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://www.brex.com/careers/8535434002?gh_jid=8535434002",
     "firstSeen": "2026-09-24T17:42:59.357Z",
-    "status": "pending",
+    "status": "expired",
     "location": "San Francisco, California, United States",
     "compensationRange": null,
     "postedAt": "2026-05-05T02:20:35-04:00"
@@ -2244,7 +2244,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://www.brex.com/careers/8536524002?gh_jid=8536524002",
     "firstSeen": "2026-09-24T17:42:59.357Z",
-    "status": "pending",
+    "status": "expired",
     "location": "New York, New York, United States",
     "compensationRange": null,
     "postedAt": "2026-05-05T15:54:30-04:00"
@@ -2257,7 +2257,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://www.brex.com/careers/8536526002?gh_jid=8536526002",
     "firstSeen": "2026-09-24T17:42:59.357Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Seattle, Washington, United States",
     "compensationRange": null,
     "postedAt": "2026-05-05T15:54:29-04:00"
@@ -2270,7 +2270,7 @@
     "keywordFamily": "Solutions Consultant",
     "absoluteUrl": "https://www.brex.com/careers/8536760002?gh_jid=8536760002",
     "firstSeen": "2026-09-24T17:42:59.357Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Salt Lake City, Utah, United States",
     "compensationRange": null,
     "postedAt": "2026-05-05T17:23:25-04:00"
@@ -4273,6 +4273,58 @@
     "location": "Massachusetts; New Jersey; New York; North Carolina; Pennsylvania",
     "compensationRange": null,
     "postedAt": "2026-11-18T11:41:42-05:00"
+  },
+  "greenhouse:8951414002": {
+    "id": 8951414002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Games ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8951414002",
+    "firstSeen": "2026-11-19T21:08:37.028Z",
+    "status": "pending",
+    "location": "Arizona",
+    "compensationRange": null,
+    "postedAt": "2026-11-19T09:16:35-05:00"
+  },
+  "greenhouse:8951419002": {
+    "id": 8951419002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Games ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8951419002",
+    "firstSeen": "2026-11-19T21:08:37.027Z",
+    "status": "pending",
+    "location": "Washington",
+    "compensationRange": null,
+    "postedAt": "2026-11-19T09:16:38-05:00"
+  },
+  "greenhouse:8951434002": {
+    "id": 8951434002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Games ",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8951434002",
+    "firstSeen": "2026-11-19T21:08:37.028Z",
+    "status": "pending",
+    "location": "California",
+    "compensationRange": null,
+    "postedAt": "2026-11-19T09:16:40-05:00"
+  },
+  "greenhouse:8952028002": {
+    "id": 8952028002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Specialist Solutions Architect - Azure Infrastructure & AI Platform",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8952028002",
+    "firstSeen": "2026-11-19T21:08:37.028Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-11-19T11:33:50-05:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
