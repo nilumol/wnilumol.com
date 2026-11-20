@@ -1599,6 +1599,19 @@
     "compensationRange": null,
     "postedAt": "2026-11-13T11:12:05-05:00"
   },
+  "greenhouse:5301401007": {
+    "id": 5301401007,
+    "source": "greenhouse",
+    "company": "Zscaler",
+    "title": "Senior Sales Engineer, SLED - Texas",
+    "keywordFamily": "Sales Engineer",
+    "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5301401007",
+    "firstSeen": "2026-11-20T20:53:20.472Z",
+    "status": "pending",
+    "location": "Remote - Texas, USA",
+    "compensationRange": null,
+    "postedAt": "2026-11-20T07:41:49-05:00"
+  },
   "greenhouse:5783377004": {
     "id": 5783377004,
     "source": "greenhouse",
@@ -3936,6 +3949,19 @@
     "compensationRange": null,
     "postedAt": "2026-10-29T15:42:42-04:00"
   },
+  "greenhouse:8893767002": {
+    "id": 8893767002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Solutions Architect - Public Sector (Manufacturing / Supply Chain)",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8893767002",
+    "firstSeen": "2026-11-20T20:53:20.472Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-11-19T17:26:57-05:00"
+  },
   "greenhouse:8893776002": {
     "id": 8893776002,
     "source": "greenhouse",
@@ -4325,6 +4351,19 @@
     "location": "United States",
     "compensationRange": null,
     "postedAt": "2026-11-19T11:33:50-05:00"
+  },
+  "greenhouse:8957103002": {
+    "id": 8957103002,
+    "source": "greenhouse",
+    "company": "Databricks",
+    "title": "Specialist Solutions Architect - AWS Infrastructure & AI Platform",
+    "keywordFamily": "Solutions Architect",
+    "absoluteUrl": "https://databricks.com/company/careers/open-positions/job?gh_jid=8957103002",
+    "firstSeen": "2026-11-20T20:53:20.472Z",
+    "status": "pending",
+    "location": "United States",
+    "compensationRange": null,
+    "postedAt": "2026-11-20T14:09:44-05:00"
   },
   "lever:5ff3db43-cc72-40b1-a618-7d90aecfe12c": {
     "id": "5ff3db43-cc72-40b1-a618-7d90aecfe12c",
