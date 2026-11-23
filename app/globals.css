@@ -336,6 +336,16 @@ p, h1, h2, ul { margin-top: 0; }
 .journal-calendar-note { margin: 0; font-size: 0.8rem; color: var(--journal-ink-muted); }
 .journal-calendar-actions { display: flex; gap: 8px; }
 
+/* ---- /how-to-be-human: life vlog page (hth-* classes) ---- */
+/* White with DM Sans, matching the picture-book page; :has() keeps the white route-scoped. */
+html:has(.hth-shell), html:has(.hth-shell) body { background: #fff; }
+.hth-shell { min-height: 100vh; overflow-x: clip; background: #fff; font-family: var(--font-dm-sans), sans-serif; }
+.hth-page { width: min(100%, 900px); margin: 0 auto; padding: clamp(56px, 7vw, 104px) var(--page-x) 110px; }
+.hth-page h1 { margin: 0 0 18px; font-size: clamp(2.6rem, 6vw, 4.6rem); font-weight: 400; letter-spacing: -0.025em; line-height: 1.04; }
+.hth-lede { max-width: 620px; margin: 0 0 56px; font-size: clamp(1.02rem, 1.4vw, 1.15rem); line-height: 1.65; }
+.hth-page section { padding-top: 26px; border-top: 1px solid var(--line); }
+.hth-page h2 { margin: 0; font-size: 1.3rem; font-weight: 400; letter-spacing: -0.01em; }
+
 /* ---- /books/jules-dreams-of-basketball: flip-book reader (book-* classes; FlipBook.tsx) ---- */
 /* Pure white on this route so the page and the book's white pages read as one surface; :has() keeps it route-scoped. */
 html:has(.book-shell), html:has(.book-shell) body { background: #fff; }
