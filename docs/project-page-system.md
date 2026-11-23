@@ -2,7 +2,7 @@
 
 ## Status
 
-Working specification for constructing project pages on wnilumol.com.
+Working specification for analytical project writeups on wnilumol.com. Personal work listed under Projects can use a simpler page when its purpose is to introduce or host that work.
 
 This document defines how a project idea becomes a useful reading experience. It sits between raw research or working notes and implementation in JSX/CSS.
 

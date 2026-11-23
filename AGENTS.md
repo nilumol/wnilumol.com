@@ -24,7 +24,7 @@ Prefer evidence of thinking and execution over unsupported claims. The site must
 - `content/site.ts`: concise structured copy used by public index pages.
 - `projects/<project>/`: research, problem statements, and content briefs; these are source material, not automatic website routes.
 - `docs/site-design.md`: site purpose, audience, information architecture, and high-level UX principles.
-- `docs/project-page-system.md`: required content hierarchy, visual grammar, diagram rules, and project-page review gate. Read it before designing or materially revising a project page.
+- `docs/project-page-system.md`: content hierarchy, visual grammar, diagram rules, and review gate for analytical project writeups. Read it before designing or materially revising one.
 - `references/`: temporary or source visual references and standalone mockups. Do not expose these as Next.js routes or ship them as public navigation. Do not delete user-provided references casually.
 - `career/`: resume and other career artifacts.
 
@@ -44,20 +44,19 @@ Prefer evidence of thinking and execution over unsupported claims. The site must
 - Preserve the restrained editorial identity: warm neutral background, near-black text, subtle translucent rules, generous whitespace, and minimal decoration.
 - Reuse CSS custom properties in `:root`: `--background`, `--text`, `--line`, `--muted`, spacing variables, and `--content-width`.
 - Preserve font roles:
-  - Tenor Sans: default body copy and primary display text on portfolio pages other than the homepage.
+  - Tenor Sans: default body copy and primary display text on editorial portfolio pages.
   - Belleza: eyebrows, section headings, and restrained editorial labels.
   - Poppins: selective technical/diagram emphasis.
-  - DM Sans: homepage copy only; keep the WN mark in Poppins.
+  - DM Sans: route-scoped homepage and personal media pages; keep the WN mark in Poppins.
 - Maintain the shared header and shallow primary navigation. Do not add hidden or targeted projects to `navigation` or `projects` unless explicitly requested.
-- Project pages should be designed arguments, not dumps of research notes. Follow the five movements in `docs/project-page-system.md`: orient, make the problem visible, show the key idea, make it concrete, establish fit and momentum.
-- Aim for a 2–4 minute primary reading path, one dominant visual, and progressive disclosure of supporting technical detail.
+- For analytical project writeups, follow the argument, reading path, and visual guidance in `docs/project-page-system.md`.
 - Use cards only for genuinely comparable, independent items. Do not give every section equal visual weight.
 - Diagrams must answer one clear question, use a consistent reading direction, label information flow, expose trust/system boundaries, and remain usable on narrow screens. Prefer a separate accessible SVG component for complex architecture.
 - Connect regulations to design consequences; do not use lists of regulations as decoration.
 - Separate observed facts, inferences, proposals, and validated results. Never imply that a conceptual architecture or unbuilt prototype has measured outcomes.
 - Any action with real processing time (an API/AI call, a server render, a file generation) must show a loading/buffering indicator while in flight. Use the shared `.spinner` class in `app/globals.css` (see its use in `app/job-agent/JobAgentTailor.tsx`) rather than inventing a new animation.
 
-## Recurring Project-Page Pattern
+## Recurring Analytical Project-Page Pattern
 
 - Begin with a concise thesis and intended value.
 - Show a concrete current workflow before introducing architecture.
