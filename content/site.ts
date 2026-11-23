@@ -51,6 +51,13 @@ export const projects: Project[] = [
     status: "Picture book",
     href: "/books/jules-dreams-of-basketball",
   },
+  {
+    slug: "how-to-be-human",
+    title: "How to Be Human",
+    description: "A vlog that captures every aspect of my life",
+    status: "Life vlog",
+    href: "/how-to-be-human",
+  },
 ];
 
 export const career = [
