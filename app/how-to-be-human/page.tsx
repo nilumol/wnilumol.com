@@ -8,6 +8,7 @@ const dmSans = DM_Sans({ subsets: ["latin"], style: ["normal", "italic"], axes: 
 export const metadata: Metadata = {
   title: "How to Be Human",
   description: "A vlog that captures every aspect of my life.",
+  robots: { index: false, follow: false },
 };
 
 export default function HowToBeHumanPage() {
