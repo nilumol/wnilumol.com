@@ -897,7 +897,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5198880007",
     "firstSeen": "2026-08-18T07:34:58.482Z",
-    "status": "scored",
+    "status": "expired",
     "fitScore": 4,
     "fitRationale": "Role family is a strong match on paper — enterprise/Majors Sales Engineer owning technical discovery, POVs, and cross-functional support, which mirrors Winston's Benchling SC work on Strategic Enterprise deals with 3-12 month cycles. However, the substantive requirement is network security depth (Zero Trust, CCNP/JNCIP/PCNSA/CISSP/CCSP-level knowledge), a stack with zero overlap with his SQL/Python/Benchling/Veeva/GMP toolkit, and there is no life sciences or regulated-industry angle to leverage his 10+ years of biopharma domain expertise. He'd be competing against career network-security SEs and would need to rebuild his technical credibility from scratch.",
     "location": "Remote - Connecticut, USA; Remote - New Jersey, USA; Remote - New York, USA",
@@ -1581,7 +1581,7 @@
     "keywordFamily": "Sales Engineer",
     "absoluteUrl": "https://job-boards.greenhouse.io/zscaler/jobs/5287748007",
     "firstSeen": "2026-11-11T19:58:06.064Z",
-    "status": "pending",
+    "status": "expired",
     "location": "Remote - Michigan, USA",
     "compensationRange": null,
     "postedAt": "2026-11-11T12:46:51-05:00"
